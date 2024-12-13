@@ -41,7 +41,7 @@ public:
 		SetWindowTextA(WindowHandle, Text.data());
 	}
 
-	void SetWindowPosAndScale(FVector _Pos, FVector _Scale);
+	ENGINEAPI void SetWindowPosAndScale(FVector _Pos, FVector _Scale);
 
 	FVector GetMousePos();
 
