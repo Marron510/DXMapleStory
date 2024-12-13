@@ -4,9 +4,11 @@
     <ClInclude Include="EngineDefine.h" />
     <ClInclude Include="EngineMath.h" />
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="EngineDebug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="PreCompile.cpp" />
+    <ClCompile Include="EngineDebug.cpp" />
   </ItemGroup>
 </Project>
