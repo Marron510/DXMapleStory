@@ -63,6 +63,7 @@ void UEngineCore::LoadContents(std::string_view _DllName)
 		return;
 	}
 }
+
 void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 {
 	UEngineDebug::LeakCheck();
@@ -79,7 +80,6 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 		{
 			UEngineInitData Data;
 			Core->EngineStart(Data);
-
 			MainWindow.SetWindowPosAndScale(Data.WindowPos, Data.WindowSize);
 
 			// 시작할때 하고 싶은것

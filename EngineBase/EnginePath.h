@@ -11,11 +11,6 @@ public:
 	ENGINEAPI UEnginePath(std::filesystem::path _Path);
 	ENGINEAPI virtual ~UEnginePath();
 
-	//// delete Function
-	//UEnginePath(const UEnginePath& _Other) = delete;
-	//UEnginePath(UEnginePath&& _Other) noexcept = delete;
-	//UEnginePath& operator=(const UEnginePath& _Other) = delete;
-	//UEnginePath& operator=(UEnginePath&& _Other) noexcept = delete;
 
 	bool IsExists();
 	void MoveParent();
