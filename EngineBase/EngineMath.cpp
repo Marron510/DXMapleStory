@@ -48,7 +48,6 @@ public:
 	}
 };
 
-// 데이터 영역
 CollisionFunctionInit Inst = CollisionFunctionInit();
 
 
@@ -86,22 +85,22 @@ bool FTransform::CirCleToCirCle(const FTransform& _Left, const FTransform& _Righ
 bool FTransform::RectToRect(const FTransform& _Left, const FTransform& _Right)
 {
 
-	if (_Left.CenterLeft() > _Right.CenterRight())
+	if (_Left.ZAxisCenterLeft() > _Right.ZAxisCenterRight())
 	{
 		return false;
 	}
 
-	if (_Left.CenterRight() < _Right.CenterLeft())
+	if (_Left.ZAxisCenterRight() < _Right.ZAxisCenterLeft())
 	{
 		return false;
 	}
 
-	if (_Left.CenterTop() > _Right.CenterBottom())
+	if (_Left.ZAxisCenterTop() > _Right.ZAxisCenterBottom())
 	{
 		return false;
 	}
 
-	if (_Left.CenterBottom() < _Right.CenterTop())
+	if (_Left.ZAxisCenterBottom() < _Right.ZAxisCenterTop())
 	{
 		return false;
 	}
@@ -129,10 +128,10 @@ bool FTransform::CirCleToRect(const FTransform& _Left, const FTransform& _Right)
 
 	FVector ArrPoint[4];
 
-	ArrPoint[0] = _Right.CenterLeftTop();
-	ArrPoint[1] = _Right.CenterLeftBottom();
-	ArrPoint[2] = _Right.CenterRightTop();
-	ArrPoint[3] = _Right.CenterRightBottom();
+	ArrPoint[0] = _Right.ZAxisCenterLeftTop();
+	ArrPoint[1] = _Right.ZAxisCenterLeftBottom();
+	ArrPoint[2] = _Right.ZAxisCenterRightTop();
+	ArrPoint[3] = _Right.ZAxisCenterRightBottom();
 
 	FTransform PointCirCle;
 	PointCirCle.Scale = _Left.Scale;
@@ -170,11 +169,11 @@ FVector FVector::TransformNormal(const FVector& _Vector, const class FMatrix& _M
 FVector FVector::operator*(const class FMatrix& _Matrix) const
 {
 	FVector Result;
-	
 	Result.X = Arr2D[0][0] * _Matrix.Arr2D[0][0] + Arr2D[0][1] * _Matrix.Arr2D[1][0] + Arr2D[0][2] * _Matrix.Arr2D[2][0] + Arr2D[0][3] * _Matrix.Arr2D[3][0];
 	Result.Y = Arr2D[0][0] * _Matrix.Arr2D[0][1] + Arr2D[0][1] * _Matrix.Arr2D[1][1] + Arr2D[0][2] * _Matrix.Arr2D[2][1] + Arr2D[0][3] * _Matrix.Arr2D[3][1];
 	Result.Z = Arr2D[0][0] * _Matrix.Arr2D[0][2] + Arr2D[0][1] * _Matrix.Arr2D[1][2] + Arr2D[0][2] * _Matrix.Arr2D[2][2] + Arr2D[0][3] * _Matrix.Arr2D[3][2];
 	Result.W = Arr2D[0][0] * _Matrix.Arr2D[0][3] + Arr2D[0][1] * _Matrix.Arr2D[1][3] + Arr2D[0][2] * _Matrix.Arr2D[2][3] + Arr2D[0][3] * _Matrix.Arr2D[3][3];
+
 
 	return Result;
 }

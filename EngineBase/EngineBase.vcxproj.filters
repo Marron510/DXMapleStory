@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="EngineDefine.h" />
-    <ClInclude Include="EngineMath.h" />
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="EngineDebug.h" />
     <ClInclude Include="EngineDirectory.h">
       <Filter>IO</Filter>
     </ClInclude>
@@ -17,11 +14,21 @@
     <ClInclude Include="EngineSerializer.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="EngineDebug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDefine.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="PreCompile.cpp" />
-    <ClCompile Include="EngineDebug.cpp" />
     <ClCompile Include="EngineDirectory.cpp">
       <Filter>IO</Filter>
     </ClCompile>
@@ -34,10 +41,31 @@
     <ClCompile Include="EngineSerializer.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="EngineDebug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
       <UniqueIdentifier>{1d2f4b8a-4950-4de4-9af5-e42608924459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{4ca2527e-2383-49a9-8b36-973774b24bd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{e5ddb29e-db1f-4d0c-aff5-53fca7c36666}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{de359a7c-e602-4c9c-be70-7305510ce00f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{c2f21779-5de3-4df0-bfdc-583bb0c284ff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

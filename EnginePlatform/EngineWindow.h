@@ -1,13 +1,14 @@
 #pragma once
-
+// Os Header
 #include <Windows.h>
 
+// std Header
 #include <map>
 #include <string>
 #include <functional>
 
+// user header
 #include <EngineBase/EngineMath.h>
-
 
 
 // Ό³Έν :
@@ -45,10 +46,17 @@ public:
 
 	FVector GetMousePos();
 
+	void ApplicationOff()
+	{
+		LoopActive = false;
+	}
+
 protected:
 
 private:
+	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	static HINSTANCE hInstance;
+	static bool LoopActive;
 	static std::map<std::string, WNDCLASSEXA> WindowClasss;
 
 	FVector WindowSize;

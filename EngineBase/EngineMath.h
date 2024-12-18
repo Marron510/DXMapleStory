@@ -5,7 +5,8 @@
 
 #include "EngineDefine.h"
 
-class UEngineMath
+
+class ENGINEAPI  UEngineMath
 {
 public:
 	// 상수 정의
@@ -126,6 +127,7 @@ public:
 
 		float CosRad = Dot(LCopy, RCopy);
 
+
 		return acos(CosRad);
 	}
 
@@ -142,6 +144,7 @@ public:
 	{
 		float LeftLen = _Left.Length();
 		float RightLen = _Right.Length();
+
 
 		return _Left.X * _Right.X + _Left.Y * _Right.Y + _Left.Z * _Right.Z;
 	}
@@ -388,12 +391,14 @@ public:
 		return X == _Other.X && Y == _Other.Y;
 	}
 
+
 	bool EqualToInt(FVector _Other) const
 	{
+	
 		return iX() == _Other.iX() && iY() == _Other.iY();
 	}
 
-
+	
 	FVector& operator+=(const FVector& _Other)
 	{
 		X += _Other.X;
@@ -437,7 +442,7 @@ public:
 
 };
 
-// 행렬은 매트릭스
+
 class FMatrix
 {
 public:
@@ -474,7 +479,7 @@ public:
 		Identity();
 	}
 
-	// 정규화 항등행렬 만드는 함수
+	
 	void Identity()
 	{
 		Arr2D[0][0] = 1.0f;
@@ -526,13 +531,13 @@ public:
 		FMatrix RotY;
 		FMatrix RotZ;
 
+	
+
 		RotX.RotationXDeg(_Angle.X);
 		RotY.RotationYDeg(_Angle.Y);
 		RotZ.RotationZDeg(_Angle.Z);
 
-		// 순서를 바꿔줘야 할때가 있습니다.
-		// 짐벌락이라는 현상이 발생하기 때문에
-		// RotY * RotZ * RotX;
+	
 		*this = RotX * RotY * RotZ;
 	}
 
@@ -550,7 +555,6 @@ public:
 
 	}
 
-	// View행렬의 인자입니다.
 	void View(const FVector& _Pos, const FVector& _Dir, const FVector& _Up)
 	{
 		FVector Forward = _Dir.NormalizeReturn();
@@ -589,13 +593,11 @@ public:
 
 		float fRange = 1.0f / (_Far - _Near);
 
-
 		Arr2D[0][0] = 2.0f / _Width;
 		Arr2D[1][1] = 2.0f / _Height;
 		Arr2D[2][2] = fRange;
 
 		Arr2D[3][2] = -fRange * _Near;
-
 	}
 
 	void PerspectiveFovDeg(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
@@ -610,12 +612,14 @@ public:
 		float ScreenRatio = _Width / _Height;
 		float DivFov = _FovAngle / 2.0f;
 
+
 		Arr2D[2][3] = 1.0f;
 		Arr2D[3][3] = 0.0f;
-		
+
 		Arr2D[0][0] = 1.0f / (tanf(DivFov) * ScreenRatio);
 		Arr2D[1][1] = 1.0f / tanf(DivFov);
 		Arr2D[2][2] = (_Far + _Near) / (_Far - _Near);
+
 		Arr2D[3][2] = -2 * (_Near * _Far) / (_Far - _Near);
 	}
 
@@ -683,8 +687,9 @@ enum class ECollisionType
 {
 	Point,
 	Rect,
-	CirCle, 
+	CirCle, // 타원이 아닌 정방원 
 	Max
+
 };
 
 class FTransform
@@ -706,17 +711,25 @@ public:
 	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
 	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
 
-
 	FVector Scale;
+	FVector Rotation;
 	FVector Location;
 
+	FMatrix World;
+	FMatrix View;
+	FMatrix Projection;
+	FMatrix WVP;
 
-	FVector CenterLeftTop() const
+	// FMatrix WVP;
+
+
+
+	FVector ZAxisCenterLeftTop() const
 	{
 		return Location - Scale.Half();
 	}
 
-	FVector CenterLeftBottom() const
+	FVector ZAxisCenterLeftBottom() const
 	{
 		FVector Result;
 		Result.X = Location.X - Scale.hX();
@@ -724,17 +737,17 @@ public:
 		return Result;
 	}
 
-	float CenterLeft() const
+	float ZAxisCenterLeft() const
 	{
 		return Location.X - Scale.hX();
 	}
 
-	float CenterTop() const
+	float ZAxisCenterTop() const
 	{
 		return Location.Y - Scale.hY();
 	}
 
-	FVector CenterRightTop() const
+	FVector ZAxisCenterRightTop() const
 	{
 		FVector Result;
 		Result.X = Location.X + Scale.hX();
@@ -742,17 +755,17 @@ public:
 		return Result;
 	}
 
-	FVector CenterRightBottom() const
+	FVector ZAxisCenterRightBottom() const
 	{
 		return Location + Scale.Half();
 	}
 
-	float CenterRight() const
+	float ZAxisCenterRight() const
 	{
 		return Location.X + Scale.hX();
 	}
 
-	float CenterBottom() const
+	float ZAxisCenterBottom() const
 	{
 		return Location.Y + Scale.hY();
 	}
