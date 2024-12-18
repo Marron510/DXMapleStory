@@ -32,6 +32,10 @@ public:
 
 	void Release();
 
+	void RenderStart();
+
+	void RenderEnd();
+
 protected:
 
 private:
@@ -43,5 +47,10 @@ private:
 	ID3D11DeviceContext* Context = nullptr;
 
 	IDXGISwapChain* SwapChain = nullptr;
+
+	IDXGIAdapter* MainAdapter = nullptr;
+
+	ID3D11Texture2D* DXBackBufferTexture = nullptr;
+	ID3D11RenderTargetView* RTV = nullptr;
 };
 
