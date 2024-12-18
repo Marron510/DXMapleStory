@@ -148,7 +148,7 @@ void UEngineCore::EngineFrame()
 
 void UEngineCore::EngineEnd()
 {
-
+	Device.Release();
 	LevelMap.clear();
 	UEngineDebug::EndConsole();
 }

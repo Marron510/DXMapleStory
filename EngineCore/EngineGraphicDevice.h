@@ -41,5 +41,7 @@ private:
 
 	// 랜더링 그려라 관련
 	ID3D11DeviceContext* Context = nullptr;
+
+	IDXGISwapChain* SwapChain = nullptr;
 };
 
