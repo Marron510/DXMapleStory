@@ -1,9 +1,7 @@
 #pragma once
 #include "SceneComponent.h"
 
-// 기하구조를 이야기해 봅시다.
 // 설명 :
-// 언리얼에서 Actor는 절대 트랜스폼을 가지지 않는다.
 class AActor : public UObject
 {
 	friend class ULevel;
@@ -19,8 +17,6 @@ public:
 	AActor& operator=(const AActor& _Other) = delete;
 	AActor& operator=(AActor&& _Other) noexcept = delete;
 
-	// 시점함수는 엔진이 실행시켜주는 겁니다.
-	// 직접호출하는 일은 있으면 안됩니다.
 	ENGINEAPI virtual void BeginPlay();
 	ENGINEAPI virtual void Tick(float _DeltaTime);
 
@@ -28,7 +24,6 @@ public:
 	virtual void LevelChangeEnd() {}
 
 
-	// 이녀석 꽤 많이 
 	template<typename ComponentType>
 	inline std::shared_ptr<ComponentType> CreateDefaultSubObject()
 	{
@@ -38,7 +33,6 @@ public:
 		{
 			MSGASSERT("액터 컴포넌트를 상속받지 않은 클래스를 CreateDefaultSubObject하려고 했습니다.");
 			return nullptr;
-			// static_assert
 		}
 
 		char* ComMemory = new char[sizeof(ComponentType)];
@@ -47,8 +41,6 @@ public:
 		ComPtr->Actor = this;
 
 		ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComMemory);
-		// 레벨먼저 세팅하고
-		// 플레이스먼트 new 
 		std::shared_ptr<ComponentType> NewCom(new(ComMemory) ComponentType());
 
 		// 내가 그냥 ActorComponent
