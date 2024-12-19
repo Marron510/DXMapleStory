@@ -4,15 +4,8 @@
 struct EngineVertex
 {
 public:
-	// 점의 위치
-	FVector Pos;
-
-	// 점의 색상
 	FVector Color;
-
-	// FVector UV;
-
-	// FVector AnimationRatio;
+	FVector Pos;
 };
 
 
@@ -44,5 +37,11 @@ public:
 	ID3D11Buffer* VertexBuffer = nullptr;
 	void InputAssembler1Init();
 	void InputAssembler1Setting();
+
+	ID3DBlob* ShaderCodeBlob = nullptr;
+	ID3DBlob* ErrorCodeBlob = nullptr; // 중간 컴파일 결과물
+	ID3D11VertexShader* VertexShader = nullptr;
+	void VertexShaderInit();
+	void VertexShaderSetting();
 };
 

@@ -442,7 +442,6 @@ public:
 
 };
 
-using FVector = float4;
 
 class FMatrix
 {

@@ -12,35 +12,12 @@ UEngineGraphicDevice::~UEngineGraphicDevice()
 
 void UEngineGraphicDevice::Release()
 {
-    if (nullptr != RTV)
-    {
-        RTV->Release();
-        RTV = nullptr;
-    }
-
-    if (nullptr != DXBackBufferTexture)
-    {
-        DXBackBufferTexture->Release();
-        DXBackBufferTexture = nullptr;
-    }
-
-    if (nullptr != SwapChain)
-    {
-        SwapChain->Release();
-        SwapChain = nullptr;
-    }
-
-    if (nullptr != Context)
-    {
-        Context->Release();
-        Context = nullptr;
-    }
-
-    if (nullptr != Device)
-    {
-        Device->Release();
-        Device = nullptr;
-    }
+    MainAdapter.Get();
+    DXBackBufferTexture = nullptr;
+    RTV = nullptr;
+    SwapChain = nullptr;
+    Context = nullptr;
+    Device = nullptr;
 }
 
 IDXGIAdapter* UEngineGraphicDevice::GetHighPerFormanceAdapter()
@@ -114,7 +91,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
     D3D_FEATURE_LEVEL ResultLevel;
 
     HRESULT Result = D3D11CreateDevice(
-        MainAdapter,
+        MainAdapter.Get(),
         D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
         nullptr, // 특정 단계를 내가 짠 코드로 대체
         iFlag,
@@ -192,7 +169,7 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
 
     MainAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&pF));
 
-    pF->CreateSwapChain(Device, &ScInfo, &SwapChain);
+    pF->CreateSwapChain(Device.Get(), &ScInfo, &SwapChain);
 
     pF->Release();
     MainAdapter->Release();
@@ -202,16 +179,19 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
         MSGASSERT("스왑체인 제작에 실패했습니다.");
     }
 
+    ID3D11Texture2D* TexPtr = nullptr;
+
     DXBackBufferTexture = nullptr;
     if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>
-        (&DXBackBufferTexture)))
+        (&TexPtr)))
     {
         MSGASSERT("백버퍼 텍스처를 얻어오는데 실패했습니다.");
     };
 
+    DXBackBufferTexture = TexPtr;
 
     //                             HBITMAP                       HDC
-    if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture, nullptr, &RTV))
+    if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture.Get(), nullptr, &RTV))
     {
         MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
     }
@@ -226,7 +206,7 @@ void UEngineGraphicDevice::RenderStart()
     ClearColor = FVector(0.0f, 0.0f, 1.0f, 1.0f);
 
     // 이미지 파란색으로 채색
-    Context->ClearRenderTargetView(RTV, ClearColor.Arr1D);
+    Context->ClearRenderTargetView(RTV.Get(), ClearColor.Arr1D);
 }
 
 void UEngineGraphicDevice::RenderEnd()

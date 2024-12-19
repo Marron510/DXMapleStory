@@ -26,6 +26,9 @@
     <ClInclude Include="EngineDefine.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="EngineString.h">
+      <Filter>String</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -50,6 +53,9 @@
     <ClCompile Include="Object.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="EngineString.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
@@ -66,6 +72,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{c2f21779-5de3-4df0-bfdc-583bb0c284ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{6e131c8e-3d61-498b-942b-485fea35593b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

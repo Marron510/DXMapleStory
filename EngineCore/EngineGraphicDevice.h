@@ -1,5 +1,6 @@
 #pragma once
 
+#include <wrl.h>
 #include <d3d11_4.h> // directx 11 버전4용 헤더
 #include <d3dcompiler.h> 
 #include <EnginePlatform/EngineWindow.h>
@@ -38,12 +39,12 @@ public:
 
 	ENGINEAPI ID3D11Device* GetDevice()
 	{
-		return Device;
+		return Device.Get();
 	}
 
 	ENGINEAPI ID3D11DeviceContext* GetContext()
 	{
-		return Context;
+		return Context.Get();
 	}
 
 protected:
@@ -51,17 +52,19 @@ protected:
 private:
 
 	// 메모리 로드해라 관련
-	ID3D11Device* Device = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Device> Device = nullptr;
 
 	// 랜더링 그려라 관련
-	ID3D11DeviceContext* Context = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> Context = nullptr;
 
-	IDXGISwapChain* SwapChain = nullptr;
+	// 다이렉트 x에서는 백버퍼를 스왑 체인
+	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain = nullptr;
 
-	IDXGIAdapter* MainAdapter = nullptr;
+	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
 
-	ID3D11Texture2D* DXBackBufferTexture = nullptr;
-	ID3D11RenderTargetView* RTV = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RTV = nullptr;
+
 };
 
 
