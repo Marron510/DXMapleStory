@@ -187,6 +187,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp" />
+    <ClCompile Include="TitleLogo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapleContentsCore.h">
@@ -196,6 +197,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="TitleGameMode.h" />
+    <ClInclude Include="TitleLogo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
