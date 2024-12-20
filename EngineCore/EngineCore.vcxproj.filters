@@ -29,6 +29,12 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Object\Component\Contents</Filter>
     </ClCompile>
+    <ClCompile Include="CameraActor.cpp">
+      <Filter>Object\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCamera.cpp">
+      <Filter>Object\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -62,6 +68,12 @@
     <ClInclude Include="Renderer.h">
       <Filter>Object\Component\Contents</Filter>
     </ClInclude>
+    <ClInclude Include="CameraActor.h">
+      <Filter>Object\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCamera.h">
+      <Filter>Object\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Interface">
@@ -84,6 +96,9 @@
     </Filter>
     <Filter Include="Object\Component\Contents">
       <UniqueIdentifier>{ddc5316e-1855-45b9-aff8-54f99b89b835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Render">
+      <UniqueIdentifier>{af41336a-3be8-41b3-a010-236487db8b92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

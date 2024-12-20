@@ -3,6 +3,9 @@
 #include <string>
 #include <functional>
 
+#include <DirectXMath.h>
+#include <DirectXCollision.h>
+
 #include "EngineDefine.h"
 
 
@@ -80,6 +83,9 @@ public:
 		float Arr1D[4];
 	};
 
+
+	// 다이렉트 simd 연산 전용 벡터.
+	DirectX::XMVECTOR DirectVector;
 
 	ENGINEAPI FVector()
 		: X(0.0f), Y(0.0f), Z(0.0f), W(1.0f)
@@ -452,6 +458,8 @@ public:
 		FVector ArrVector[4];
 		float Arr1D[16];
 
+		DirectX::XMMATRIX DirectMatrix;
+
 		struct
 		{
 			float _00;
@@ -513,32 +521,22 @@ public:
 
 	void Scale(const FVector& _Value)
 	{
-		Arr2D[0][0] = _Value.X;
-		Arr2D[1][1] = _Value.Y;
-		Arr2D[2][2] = _Value.Z;
+		DirectMatrix = DirectX::XMMatrixScalingFromVector(_Value.DirectVector);
 	}
 
 	void Position(const FVector& _Value)
 	{
-		Arr2D[3][0] = _Value.X;
-		Arr2D[3][1] = _Value.Y;
-		Arr2D[3][2] = _Value.Z;
+		DirectMatrix = DirectX::XMMatrixTranslationFromVector(_Value.DirectVector);
 	}
 
 	void RotationDeg(const FVector& _Angle)
 	{
-		FMatrix RotX;
-		FMatrix RotY;
-		FMatrix RotZ;
+		RotationRad(_Angle * UEngineMath::D2R);
+	}
 
-	
-
-		RotX.RotationXDeg(_Angle.X);
-		RotY.RotationYDeg(_Angle.Y);
-		RotZ.RotationZDeg(_Angle.Z);
-
-	
-		*this = RotX * RotY * RotZ;
+	void RotationRad(const FVector& _Angle)
+	{
+		DirectMatrix = DirectX::XMMatrixRotationRollPitchYawFromVector(_Angle.DirectVector);
 	}
 
 	void Transpose()
@@ -692,8 +690,26 @@ enum class ECollisionType
 
 };
 
-class FTransform
+struct FTransform
 {
+	// transformupdate는 
+	// 아래의 값들을 다 적용해서
+	// WVP를 만들어내는 함수이다.
+	FVector Scale;
+	FVector Rotation;
+	FVector Location;
+
+	FMatrix ScaleMat;
+	FMatrix RotationMat;
+	FMatrix LocationMat;
+	FMatrix World;
+	FMatrix View;
+	FMatrix Projection;
+	FMatrix WVP;
+
+public:
+	ENGINEAPI void TransformUpdate(); 
+
 private:
 	friend class CollisionFunctionInit;
 
@@ -711,17 +727,7 @@ public:
 	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
 	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
 
-	FVector Scale;
-	FVector Rotation;
-	FVector Location;
-
-	FMatrix World;
-	FMatrix View;
-	FMatrix Projection;
-	FMatrix WVP;
-
-	// FMatrix WVP;
-
+	
 
 
 	FVector ZAxisCenterLeftTop() const

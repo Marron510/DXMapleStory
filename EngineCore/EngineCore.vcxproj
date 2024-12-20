@@ -173,6 +173,8 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="ActorComponent.cpp" />
+    <ClCompile Include="CameraActor.cpp" />
+    <ClCompile Include="EngineCamera.cpp" />
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="EngineGraphicDevice.cpp" />
     <ClCompile Include="GameMode.cpp" />
@@ -194,6 +196,8 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="ActorComponent.h" />
+    <ClInclude Include="CameraActor.h" />
+    <ClInclude Include="EngineCamera.h" />
     <ClInclude Include="EngineCore.h" />
     <ClInclude Include="EngineGraphicDevice.h" />
     <ClInclude Include="GameMode.h" />
