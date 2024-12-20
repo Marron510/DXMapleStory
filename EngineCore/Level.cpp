@@ -6,12 +6,6 @@
 #include "EngineCamera.h"
 #include "CameraActor.h"
 
-// 플레이어 Renderer
-
-// 카메라 1 Renderer
-// 카메라 2 Renderer
-
-
 
 std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int _Order)
 {
@@ -67,7 +61,6 @@ void ULevel::Tick(float _DeltaTime)
 		AllActorList.push_back(CurActor);
 	}
 
-	// 절대 Ranged for안에서는 erase 리스트의 구조가 변경될 일을 하지 말라고 했ㅅ어요.
 	for (std::shared_ptr<AActor> CurActor : AllActorList)
 	{
 		CurActor->Tick(_DeltaTime);
@@ -83,7 +76,6 @@ void ULevel::Render(float _DeltaTime)
 		Camera.second->Tick(_DeltaTime);
 		Camera.second->CameraComponent->Render(_DeltaTime);
 	}
-
 
 	UEngineCore::Device.RenderEnd();
 }
