@@ -490,10 +490,7 @@ public:
 	
 	void Identity()
 	{
-		Arr2D[0][0] = 1.0f;
-		Arr2D[1][1] = 1.0f;
-		Arr2D[2][2] = 1.0f;
-		Arr2D[3][3] = 1.0f;
+		DirectMatrix = DirectX::XMMatrixIdentity();
 	}
 
 	FVector GetFoward()
@@ -555,33 +552,8 @@ public:
 
 	void View(const FVector& _Pos, const FVector& _Dir, const FVector& _Up)
 	{
-		FVector Forward = _Dir.NormalizeReturn();
-		FVector Up = _Up.NormalizeReturn();
-		FVector Right = FVector::Cross(Up, Forward);
-		Right.Normalize();
-
-
-		ArrVector[2] = Forward;
-		ArrVector[1] = Up;
-		ArrVector[0] = Right;
-
-		ArrVector[2].W = 0.0f;
-		ArrVector[1].W = 0.0f;
-		ArrVector[0].W = 0.0f;
-
-		Transpose();
-
-		FMatrix OrginRot = *this;
-
-		FVector NPos = -_Pos;
-
-		ArrVector[3].X = FVector::Dot(Right, NPos);
-		ArrVector[3].Y = FVector::Dot(Up, NPos);
-		ArrVector[3].Z = FVector::Dot(Forward, NPos);
-
-		FVector Move = ArrVector[3];
-		FVector OriginMove = NPos * OrginRot;
-
+		Identity();
+		DirectMatrix = DirectX::XMMatrixLookToLH(_Pos.DirectVector, _Dir.DirectVector, _Up.DirectVector);
 		return;
 	}
 
@@ -589,13 +561,7 @@ public:
 	{
 		Identity();
 
-		float fRange = 1.0f / (_Far - _Near);
-
-		Arr2D[0][0] = 2.0f / _Width;
-		Arr2D[1][1] = 2.0f / _Height;
-		Arr2D[2][2] = fRange;
-
-		Arr2D[3][2] = -fRange * _Near;
+		DirectMatrix = DirectX::XMMatrixOrthographicLH(_Width, _Height, _Near, _Far);
 	}
 
 	void PerspectiveFovDeg(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
@@ -607,18 +573,8 @@ public:
 	{
 		Identity();
 
-		float ScreenRatio = _Width / _Height;
-		float DivFov = _FovAngle / 2.0f;
-
-
-		Arr2D[2][3] = 1.0f;
-		Arr2D[3][3] = 0.0f;
-
-		Arr2D[0][0] = 1.0f / (tanf(DivFov) * ScreenRatio);
-		Arr2D[1][1] = 1.0f / tanf(DivFov);
-		Arr2D[2][2] = (_Far + _Near) / (_Far - _Near);
-
-		Arr2D[3][2] = -2 * (_Near * _Far) / (_Far - _Near);
+		Identity();
+		DirectMatrix = DirectX::XMMatrixPerspectiveFovLH(_FovAngle, _Width / _Height, _Near, _Far);
 	}
 
 	void ViewPort(float _Width, float _Height, float _Left, float _Top, float _ZMin, float _ZMax)
@@ -695,7 +651,7 @@ struct FTransform
 	// transformupdate는 
 	// 아래의 값들을 다 적용해서
 	// WVP를 만들어내는 함수이다.
-	FVector Scale;
+	FVector Scale = { 1.0f, 1.0f, 1.0f };
 	FVector Rotation;
 	FVector Location;
 
