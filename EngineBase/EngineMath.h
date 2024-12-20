@@ -12,7 +12,6 @@
 class ENGINEAPI  UEngineMath
 {
 public:
-	// 상수 정의
 	static const double DPI;
 	static const double DPI2;
 
@@ -68,6 +67,7 @@ public:
 	static const FVector FORWARD;
 	static const FVector BACK;
 
+
 public:
 	union
 	{
@@ -81,11 +81,10 @@ public:
 
 		float Arr2D[1][4];
 		float Arr1D[4];
+		// 다이렉트 simd 연산 전용 벡터.
+		DirectX::XMVECTOR DirectVector;
 	};
 
-
-	// 다이렉트 simd 연산 전용 벡터.
-	DirectX::XMVECTOR DirectVector;
 
 	ENGINEAPI FVector()
 		: X(0.0f), Y(0.0f), Z(0.0f), W(1.0f)
@@ -133,7 +132,6 @@ public:
 
 		float CosRad = Dot(LCopy, RCopy);
 
-
 		return acos(CosRad);
 	}
 
@@ -150,7 +148,6 @@ public:
 	{
 		float LeftLen = _Left.Length();
 		float RightLen = _Right.Length();
-
 
 		return _Left.X * _Right.X + _Left.Y * _Right.Y + _Left.Z * _Right.Z;
 	}
@@ -217,6 +214,7 @@ public:
 		return { X * 0.5f, Y * 0.5f };
 	}
 
+	// 빗변의 길이
 	float Length() const
 	{
 		return UEngineMath::Sqrt(X * X + Y * Y + Z * Z);
@@ -248,7 +246,7 @@ public:
 		return Result;
 	}
 
-	
+	// 
 	void RotationXDeg(float _Angle)
 	{
 		RotationXRad(_Angle * UEngineMath::D2R);
@@ -275,7 +273,6 @@ public:
 	}
 
 
-	// 
 	void RotationYDeg(float _Angle)
 	{
 		RotationYRad(_Angle * UEngineMath::D2R);
@@ -301,7 +298,6 @@ public:
 		return Result;
 	}
 
-	
 	void RotationZDeg(float _Angle)
 	{
 		RotationZRad(_Angle * UEngineMath::D2R);
@@ -397,14 +393,11 @@ public:
 		return X == _Other.X && Y == _Other.Y;
 	}
 
-
 	bool EqualToInt(FVector _Other) const
 	{
-	
 		return iX() == _Other.iX() && iY() == _Other.iY();
 	}
 
-	
 	FVector& operator+=(const FVector& _Other)
 	{
 		X += _Other.X;
@@ -448,6 +441,7 @@ public:
 
 };
 
+using float4 = FVector;
 
 class FMatrix
 {
@@ -457,7 +451,6 @@ public:
 		float Arr2D[4][4] = { 0, };
 		FVector ArrVector[4];
 		float Arr1D[16];
-
 		DirectX::XMMATRIX DirectMatrix;
 
 		struct
@@ -487,7 +480,6 @@ public:
 		Identity();
 	}
 
-	
 	void Identity()
 	{
 		DirectMatrix = DirectX::XMMatrixIdentity();
@@ -514,7 +506,7 @@ public:
 		return Dir;
 	}
 
-	FMatrix operator*(const FMatrix& _Value);
+	ENGINEAPI FMatrix operator*(const FMatrix& _Value);
 
 	void Scale(const FVector& _Value)
 	{
@@ -535,6 +527,7 @@ public:
 	{
 		DirectMatrix = DirectX::XMMatrixRotationRollPitchYawFromVector(_Angle.DirectVector);
 	}
+
 
 	void Transpose()
 	{
@@ -560,7 +553,6 @@ public:
 	void OrthographicLH(float _Width, float _Height, float _Near, float _Far)
 	{
 		Identity();
-
 		DirectMatrix = DirectX::XMMatrixOrthographicLH(_Width, _Height, _Near, _Far);
 	}
 
@@ -635,15 +627,16 @@ public:
 
 };
 
+using float4x4 = FMatrix;
+
 
 
 enum class ECollisionType
 {
 	Point,
 	Rect,
-	CirCle, // 타원이 아닌 정방원 
+	CirCle,
 	Max
-
 };
 
 struct FTransform
@@ -651,20 +644,26 @@ struct FTransform
 	// transformupdate는 
 	// 아래의 값들을 다 적용해서
 	// WVP를 만들어내는 함수이다.
-	FVector Scale = { 1.0f, 1.0f, 1.0f };
-	FVector Rotation;
-	FVector Location;
+	float4 Scale;
+	float4 Rotation;
+	float4 Location;
 
-	FMatrix ScaleMat;
-	FMatrix RotationMat;
-	FMatrix LocationMat;
-	FMatrix World;
-	FMatrix View;
-	FMatrix Projection;
-	FMatrix WVP;
+	float4x4 ScaleMat;
+	float4x4 RotationMat;
+	float4x4 LocationMat;
+	float4x4 World;
+	float4x4 View;
+	float4x4 Projection;
+	float4x4 WVP;
+
+	FTransform()
+		: Scale({ 1.0f, 1.0f, 1.0f, 1.0f })
+	{
+
+	}
 
 public:
-	ENGINEAPI void TransformUpdate(); 
+	ENGINEAPI void TransformUpdate();
 
 private:
 	friend class CollisionFunctionInit;
@@ -682,9 +681,6 @@ public:
 
 	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
 	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
-
-	
-
 
 	FVector ZAxisCenterLeftTop() const
 	{
@@ -824,4 +820,3 @@ public:
 	}
 };
 
-using float4 = FVector;

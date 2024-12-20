@@ -4,12 +4,8 @@
 
 UEngineCamera::UEngineCamera()
 {
-}
 
-UEngineCamera::~UEngineCamera()
-{
 }
-
 
 void UEngineCamera::BeginPlay()
 {
@@ -18,6 +14,9 @@ void UEngineCamera::BeginPlay()
 	ProjectionScale = Scale;
 }
 
+UEngineCamera::~UEngineCamera()
+{
+}
 
 void UEngineCamera::Tick(float _DetlaTime)
 {

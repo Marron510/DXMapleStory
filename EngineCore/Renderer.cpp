@@ -20,14 +20,6 @@ void URenderer::SetOrder(int _Order)
 	int PrevOrder = GetOrder();
 	UObject::SetOrder(_Order);
 	ULevel* Level = GetActor()->GetWorld();
-	// std::shared_ptr<URenderer> Render(this);
-	// std::enable_shared_from_this<UObject> 상속받은 클래스가 자기자신을 this
-	// std::shared_ptr로 만들어진 this를 사용하고 싶을대 호출하는 함수.
-	// std::shared_ptr<UObject> ObjectPtr = UObject::shared_from_this();
-	// dynmaic_cast를 사용하는 방법이 있을 것이다. 
-	// dynamic_cast <= 는 순수한 포인터를 변환시키는 녀석이지 std::shared_ptr
-	// std::shared_ptr<int> NewInt = std::make_shared<int>();
-	// std::shared_ptr<URenderer> RendererPtr = std::dynamic_pointer_cast<URenderer>(ObjectPtr);
 	std::shared_ptr<URenderer> RendererPtr = GetThis<URenderer>();
 	Level->ChangeRenderGroup(0, PrevOrder, RendererPtr);
 }
@@ -36,15 +28,57 @@ ENGINEAPI void URenderer::BeginPlay()
 {
 	SetOrder(0);
 
-	// 기본적인 랜더링 파이프라인을 익히기 위한 
-	// 모든 기본 코드들을 다 쳐볼 생각입니다.
-
 	InputAssembler1Init();
 	VertexShaderInit();
 	InputAssembler2Init();
 	RasterizerInit();
 	PixelShaderInit();
+	ShaderResInit();
 }
+
+void URenderer::ShaderResInit()
+{
+	D3D11_BUFFER_DESC BufferInfo = { 0 };
+	BufferInfo.ByteWidth = sizeof(FTransform);
+	BufferInfo.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	BufferInfo.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+	BufferInfo.Usage = D3D11_USAGE_DYNAMIC;
+
+	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&BufferInfo, nullptr, &TransformConstBuffer))
+	{
+		MSGASSERT("상수버퍼 생성에 실패했습니다..");
+		return;
+	}
+
+}
+
+void URenderer::ShaderResSetting()
+{
+	FTransform& RendererTrans = GetTransformRef();
+
+	D3D11_MAPPED_SUBRESOURCE Data = {};
+
+	// 이 데이터를 사용하는 랜더링 랜더링 잠깐 정지
+	// 잠깐 그래픽카드야 멈 그래픽카드에 있는 상수버퍼 수정해야 해.
+	UEngineCore::Device.GetContext()->Map(TransformConstBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &Data);
+
+	// Data.pData 그래픽카드와 연결된 주소값.
+	if (nullptr == Data.pData)
+	{
+		MSGASSERT("그래픽카드가 수정을 거부했습니다.");
+	}
+
+	memcpy_s(Data.pData, sizeof(FTransform), &RendererTrans, sizeof(FTransform));
+
+
+	UEngineCore::Device.GetContext()->Unmap(TransformConstBuffer.Get(), 0);
+
+	// 같은 상수버퍼를 
+	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
+
+	UEngineCore::Device.GetContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+}
+
 
 void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 {
@@ -52,12 +86,12 @@ void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 	FTransform& RendererTrans = GetTransformRef();
 
-	// 랜더러는 월드 뷰 프로젝트를 다 세팅받았고
 	RendererTrans.View = CameraTrans.View;
 	RendererTrans.Projection = CameraTrans.Projection;
 
 	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
 
+	ShaderResSetting();
 
 	InputAssembler1Setting();
 	VertexShaderSetting();
@@ -65,7 +99,6 @@ void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 	RasterizerSetting();
 	PixelShaderSetting();
 	OutPutMergeSetting();
-	// 인덱스 버퍼를 통해서 그리겠다.
 	UEngineCore::Device.GetContext()->DrawIndexed(6, 0, 0);
 
 }
@@ -83,9 +116,6 @@ void URenderer::InputAssembler1Init()
 	Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {0.0f, 1.0f, 0.0f, 1.0f} };
 	Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 0.0f, 1.0f, 1.0f} };
 	Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f, 1.0f, 1.0f} };
-	// 0   1
-	// 
-	// 2   3
 
 
 	D3D11_BUFFER_DESC BufferInfo = {0};
@@ -95,21 +125,6 @@ void URenderer::InputAssembler1Init()
 	BufferInfo.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	// CPU에서 수정할수 있어?
 	BufferInfo.CPUAccessFlags = 0;
-	// 중요 메모리 위치를 그래픽카드로 할거냐 cpu로 할거야?
-	// 여러가지 옵션
-
-	// D3D11_USAGE_DEFAULT
-	// GPU에서 읽기 및 쓰기 액세스가 필요한 리소스입니다.이는 가장 일반적인 사용 선택일 수 있습니다.
-	
-    // D3D11_USAGE_IMMUTABLE
-	// GPU에서만 읽을 수 있는 리소스입니다.GPU에서 작성할 수 없으며 CPU에서 전혀 액세스할 수 없습니다.이 유형의 리소스는 만든 후에 변경할 수 없으므로 만들 때 초기화해야 합니다.
-
-	// D3D11_USAGE_DYNAMIC
-	// GPU(읽기 전용)와 CPU(쓰기 전용)에서 액세스할 수 있는 리소스입니다.동적 리소스는 CPU에서 프레임당 한 번 이상 업데이트되는 리소스에 적합합니다.동적 리소스를 업데이트하려면 Map 메서드를 사용합니다.
-	
-	// 비트코인 채굴할때. 
-	// 	D3D11_USAGE_STAGING
-	// GPU에서 CPU로의 데이터 전송(복사)을 지원하는 리소스입니다.
 
 	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
 
@@ -118,15 +133,13 @@ void URenderer::InputAssembler1Init()
 	D3D11_SUBRESOURCE_DATA Data;
 	Data.pSysMem = &Vertexs[0];
 
-	// GPU에 xxx 크기의 버퍼 만들어주세요는 모두 아래의 함수로 만듭니다.
+	// GPU에 xxx 크기의 버퍼 만들어줘
 	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&BufferInfo, &Data, &VertexBuffer))
 	{
 		MSGASSERT("버텍스 버퍼 생성에 실패했습니다.");
 		return;
 	}
 
-	// 인풋 레이아웃 이라는 것을 만들어야 한다.
-	// 버텍스 쉐이더가 있어야 인풋레이아웃 이라는 것을 만들수 있다.
 }
 
 void URenderer::InputAssembler1Setting()
@@ -134,14 +147,6 @@ void URenderer::InputAssembler1Setting()
 	UINT VertexSize = sizeof(EngineVertex);
 	// 이 버텍스 버퍼가 10개짜리인데 3번째 버텍스 부터 세팅해줘.
 	UINT Offset = 0;
-
-	// 한번에 여러개의 버텍스 버퍼를 세팅할수 있다.
-	// 버텍스버퍼포인터 1차원 배열을 넣어주는데.
-	// 0번슬롯부터 1개 사용하겠다.
-	// 버텍스 하나의 크기는 VertexSize
-	// Offset부터 버텍스를 사용하겠다.
-
-
 
 	ID3D11Buffer* ArrBuffer[1];
 	ArrBuffer[0] = VertexBuffer.Get();
@@ -152,12 +157,6 @@ void URenderer::InputAssembler1Setting()
 
 void URenderer::InputAssembler1LayOut()
 {
-	//const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs,
-	//UINT NumElements,
-	//const void* pShaderBytecodeWithInputSignature, <= 쉐이더 중간 컴파일 코드 넣어달라는 겁니다
-	//SIZE_T BytecodeLength,
-	//ID3D11InputLayout** ppInputLayout
-
 	std::vector<D3D11_INPUT_ELEMENT_DESC> InputLayOutData;
 
 
@@ -218,11 +217,6 @@ void URenderer::VertexShaderInit()
 
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
 
-	// 쉐이더 코드를 그냥 문자열로 만들어서 컴파일 할수도 있다.
-	//std::string ShaderCode = "struct EngineVertex \	{ \		float4 COLOR : COLOR; \		float4 OSITION : POSITION; \	}; \	struct VertexShaderOutPut \	{ \		float4 SVPOSITION : V_POSITION; \		float4 COLOR : COLOR; \	}; \	VertexShaderOutPut VertexToWorldEngineVertex _Vertex) \	{ \		VertexShaderOutPut OutPut; \		utPut.SVPOSITION = _Vertex.POSITION; \		OutPut.COLOR = _Vertex.COLOR; \
-	//	return OutPut; \	} 
-	// D3DCompile()
-
 	// 버전을 만든다.
 	std::string version = "vs_5_0";
 
@@ -233,24 +227,12 @@ void URenderer::VertexShaderInit()
 	Flag0 = D3D10_SHADER_DEBUG;
 #endif
 
-	// 행렬을 집어넣게 될것이다.
-	// 조금 느려진다고하는 하는데 느낀적은 없습니다.
 	// Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 	Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
-	// [1][0][0][0]
-	// [0][1][0][0]
-	// [0][0][1][0]
-	// [100][100][0][1]
-
-	// [1][0][0][100]
-	// [0][1][0][100]
-	// [0][0][1][0]
-	// [0][0][0][1]
-
 	D3DCompileFromFile(
 		WPath.c_str(),
-		nullptr, // Define TEST 등으로 전처리기를 넣을수.
+		nullptr, 
 		nullptr,
 		"VertexToWorld",
 		version.c_str(),
@@ -291,10 +273,6 @@ void URenderer::RasterizerInit()
 {
 	D3D11_RASTERIZER_DESC Desc = {};
 
-	// FXAA 느려 다이렉트가 직접 만든것들은 다 느려요.
-	// Desc.AntialiasedLineEnable = true;
-	// Desc.DepthClipEnable = true;
-
 	// Face컬링 
 	// None이면 시계방향 반시계방향 다 출력
 	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
@@ -306,8 +284,8 @@ void URenderer::RasterizerInit()
 
 	UEngineCore::Device.GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
 
-	ViewPortInfo.Height = 720.0f;
-	ViewPortInfo.Width = 1280.0f;
+	ViewPortInfo.Height = 768.0f;
+	ViewPortInfo.Width = 1366.0f;
 	ViewPortInfo.TopLeftX = 0.0f;
 	ViewPortInfo.TopLeftY = 0.0f;
 	ViewPortInfo.MinDepth = 0.0f;
@@ -352,8 +330,6 @@ void URenderer::InputAssembler2Setting()
 {
 	int Offset = 0;
 
-	// DXGI_FORMAT_R8_UINT; <= 옛날에는 아꼈다.
-	// DXGI_FORMAT_R16_UINT; <= 옛날에는 아꼈다.
 	UEngineCore::Device.GetContext()->IASetIndexBuffer(IndexBuffer.Get(), DXGI_FORMAT_R32_UINT, Offset);
 
 	UEngineCore::Device.GetContext()->IASetPrimitiveTopology(Topology);
