@@ -38,6 +38,12 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
     return OutPut;
 }
 
+// 텍스처 1장과 
+Texture2D ImageTexture : register(t0);
+// 샘플러 1개가 필요합니다.
+SamplerState ImageSampler : register(s0);
+
+
 float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
 {
 	
