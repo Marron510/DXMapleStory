@@ -362,14 +362,11 @@ void URenderer::RasterizerInit()
 {
 	D3D11_RASTERIZER_DESC Desc = {};
 
-	// Face컬링 
-	// None이면 시계방향 반시계방향 다 출력
 	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
 
 	// 면에 색깔이 보인다.
 	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 	// 면에 뼈대만 보인다.
-	// Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_WIREFRAME;
 
 	UEngineCore::Device.GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
 
@@ -439,7 +436,6 @@ void URenderer::PixelShaderInit()
 
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
 
-	// 버전을 만든다.
 	std::string version = "ps_5_0";
 
 	int Flag0 = 0;
@@ -453,7 +449,7 @@ void URenderer::PixelShaderInit()
 
 	D3DCompileFromFile(
 		WPath.c_str(),
-		nullptr, // Define TEST 등으로 전처리기를 넣을수.
+		nullptr, 
 		nullptr,
 		"PixelToWorld",
 		version.c_str(),
@@ -490,8 +486,6 @@ void URenderer::PixelShaderSetting()
 
 void URenderer::OutPutMergeSetting()
 {
-	// 배열 넣어줄수 있다. 
-	// 0번이면 sv_target0
 	ID3D11RenderTargetView* RTV = UEngineCore::Device.GetRTV();
 
 	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
