@@ -1,6 +1,7 @@
 struct EngineVertex
 {
     float4 POSITION : POSITION;
+    float4 UV : TEXCOORD;
     float4 COLOR : COLOR;
 };
 
@@ -8,7 +9,7 @@ struct EngineVertex
 struct VertexShaderOutPut
 {
     float4 SVPOSITION : SV_POSITION; 
-    float4 NEWPOSITION : POSITION; 
+    float4 UV : TEXCOORD; // 
     float4 COLOR : COLOR;
 };
 
@@ -33,28 +34,19 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
     VertexShaderOutPut OutPut;
 	// _Vertex 0.5, 0.5
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
-    OutPut.NEWPOSITION = _Vertex.POSITION;
+    OutPut.UV = _Vertex.UV;
     OutPut.COLOR = _Vertex.COLOR;
     return OutPut;
 }
 
-// 텍스처 1장과 
+// 텍스처 1장
 Texture2D ImageTexture : register(t0);
-// 샘플러 1개가 필요합니다.
+// 샘플러 1개
 SamplerState ImageSampler : register(s0);
 
 
 float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
 {
 	
-    if (_Vertex.NEWPOSITION.x < 0)
-    {
-        return float4(1.0f, 0.0f, 0.0f, 1.0f);
-    }
-    else
-    {
-        return float4(0.0f, 1.0f, 0.0f, 1.0f);
-    }
-	
-    return _Vertex.COLOR;
+    return ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
 }

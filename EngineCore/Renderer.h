@@ -4,6 +4,7 @@
 struct EngineVertex
 {
 	float4 POSITION;
+	float4 TEXCOORD;
 	float4 COLOR;
 };
 
@@ -33,7 +34,8 @@ private:
 
 public:
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TextureSettingView = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
 	void ShaderResInit();

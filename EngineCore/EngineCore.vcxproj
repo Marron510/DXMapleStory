@@ -210,11 +210,10 @@
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib" />
-    <Library Include="ThirdParty\DirectxTex\Release\DirectXTex.lib" />
+    <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl" />
+    <Library Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -120,16 +120,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib">
-      <Filter>ThirdParty\DirectxTex\Debug</Filter>
-    </Library>
-    <Library Include="ThirdParty\DirectxTex\Release\DirectXTex.lib">
-      <Filter>ThirdParty\DirectxTex\Release</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl">
       <Filter>ThirdParty\DirectxTex\Inc</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib">
+      <Filter>ThirdParty\DirectxTex\Debug</Filter>
+    </Library>
   </ItemGroup>
 </Project>
