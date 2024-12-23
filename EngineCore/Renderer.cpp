@@ -2,10 +2,8 @@
 #include "Renderer.h"
 #include <EngineBase/EngineString.h>
 #include <EngineCore/EngineCamera.h>
+#include <EngineCore/EngineTexture.h>
 
-#include "ThirdParty/DirectxTex/Inc/DirectXTex.h"
-
-#pragma comment(lib, "DirectXTex.lib")
 
 URenderer::URenderer()
 {
@@ -17,6 +15,19 @@ URenderer::~URenderer()
 	VSShaderCodeBlob = nullptr;
 	VSErrorCodeBlob = nullptr;
 
+}
+
+
+void URenderer::SetTexture(std::string_view _Value)
+{
+	std::string UpperName = UEngineString::ToUpper(_Value);
+
+	Texture = UEngineTexture::Find(UpperName);
+
+	if (nullptr == Texture)
+	{
+		MSGASSERT("존재하지 않는 텍스처를 사용하려고 했습니다.");
+	}
 }
 
 void URenderer::SetOrder(int _Order)
@@ -53,71 +64,21 @@ void URenderer::ShaderResInit()
 		MSGASSERT("상수버퍼 생성에 실패했습니다..");
 		return;
 	}
-	UEngineDirectory CurDir;
-	CurDir.MoveParentToDirectory("MapleResources");
-	UEngineFile File = CurDir.GetFile("Player.png");
-	
-	std::string Str = File.GetPathToString();
-	std::string Ext = File.GetExtension();
-	std::wstring wLoadPath = UEngineString::AnsiToUnicode(Str.c_str());
-
-	std::string UpperExt = UEngineString::ToUpper(Ext.c_str());
-
-
-
-	DirectX::TexMetadata Metadata;
-	DirectX::ScratchImage ImageData;
-
-	if (UpperExt == ".DDS")
-	{
-		if (S_OK != DirectX::LoadFromDDSFile(wLoadPath.c_str(), DirectX::DDS_FLAGS_NONE, &Metadata, ImageData))
-		{
-			MSGASSERT("DDS 파일 로드에 실패했습니다.");
-			return;
-		}
-	}
-	else if (UpperExt == ".TGA")
-	{
-		if (S_OK != DirectX::LoadFromTGAFile(wLoadPath.c_str(), DirectX::TGA_FLAGS_NONE, &Metadata, ImageData))
-		{
-			MSGASSERT("TGA 파일 로드에 실패했습니다.");
-			return;
-		}
-	}
-	else
-	{
-		if (S_OK != DirectX::LoadFromWICFile(wLoadPath.c_str(), DirectX::WIC_FLAGS_NONE, &Metadata, ImageData))
-		{
-			MSGASSERT(UpperExt + "파일 로드에 실패했습니다.");
-			return;
-		}
-	}
-
-	// 
-	if (S_OK != DirectX::CreateShaderResourceView(
-		UEngineCore::Device.GetDevice(),
-		ImageData.GetImages(),
-		ImageData.GetImageCount(),
-		ImageData.GetMetadata(),
-		&SRV
-	))
-	{
-		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다..");
-		return;
-	}
 
 	D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
+	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER; // 0~1사이만 유효
+	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER; // y
+	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP; // z // 3중 
 
-	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
-	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
-	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+	SampInfo.BorderColor[0] = 0.0f;
+	SampInfo.BorderColor[1] = 0.0f;
+	SampInfo.BorderColor[2] = 0.0f;
+	SampInfo.BorderColor[3] = 0.0f;
 
 	UEngineCore::Device.GetDevice()->CreateSamplerState(&SampInfo, &SamplerState);
-
-
-	// ImageData.GetImages()
-
 }
+
+
 
 void URenderer::ShaderResSetting()
 {
@@ -125,11 +86,8 @@ void URenderer::ShaderResSetting()
 
 	D3D11_MAPPED_SUBRESOURCE Data = {};
 
-	// 이 데이터를 사용하는 랜더링 랜더링 잠깐 정지
-	// 잠깐 그래픽카드야 멈 그래픽카드에 있는 상수버퍼 수정해야 해.
 	UEngineCore::Device.GetContext()->Map(TransformConstBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &Data);
 
-	// Data.pData 그래픽카드와 연결된 주소값.
 	if (nullptr == Data.pData)
 	{
 		MSGASSERT("그래픽카드가 수정을 거부했습니다.");
@@ -140,13 +98,12 @@ void URenderer::ShaderResSetting()
 
 	UEngineCore::Device.GetContext()->Unmap(TransformConstBuffer.Get(), 0);
 
-	// 같은 상수버퍼를 
 	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
 
 	UEngineCore::Device.GetContext()->VSSetConstantBuffers(0, 1, ArrPtr);
 
 
-	ID3D11ShaderResourceView* ArrSRV[16] = { SRV.Get() };
+	ID3D11ShaderResourceView* ArrSRV[16] = { Texture->GetSRV() };
 	UEngineCore::Device.GetContext()->PSSetShaderResources(0, 1, ArrSRV);
 
 	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
@@ -181,8 +138,6 @@ void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 void URenderer::InputAssembler1Init()
 {
-	// 버텍스 버퍼를 그래픽카드에게 만들어 달라고 요청
-	// CPU
 	std::vector<EngineVertex> Vertexs;
 	Vertexs.resize(4);
 
@@ -196,25 +151,20 @@ void URenderer::InputAssembler1Init()
 	D3D11_BUFFER_DESC BufferInfo = {0};
 
 	BufferInfo.ByteWidth = sizeof(EngineVertex) * static_cast<int>(Vertexs.size());
-	// 용도는 버텍스 버퍼
 	BufferInfo.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	// CPU에서 수정할수 있어?
 	BufferInfo.CPUAccessFlags = 0;
-
 	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
 
 
-	// 초기값
-	D3D11_SUBRESOURCE_DATA Data;
+
+	D3D11_SUBRESOURCE_DATA Data; // 초기값 넣어주는 용도의 구조체
 	Data.pSysMem = &Vertexs[0];
 
-	// GPU에 xxx 크기의 버퍼 만들어줘
-	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&BufferInfo, &Data, &VertexBuffer))
+	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&BufferInfo, &Data, VertexBuffer.GetAddressOf()))
 	{
 		MSGASSERT("버텍스 버퍼 생성에 실패했습니다.");
 		return;
 	}
-
 }
 
 void URenderer::InputAssembler1Setting()
@@ -243,7 +193,6 @@ void URenderer::InputAssembler1LayOut()
 		Desc.AlignedByteOffset = 0;
 		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA;
 
-		// 인스턴싱을 설명할때 이야기 하겠습니다.
 		Desc.SemanticIndex = 0;
 		Desc.InstanceDataStepRate = 0;
 		InputLayOutData.push_back(Desc);
@@ -257,7 +206,6 @@ void URenderer::InputAssembler1LayOut()
 		Desc.AlignedByteOffset = 16;
 		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA;
 
-		// 인스턴싱을 설명할때 이야기 하겠습니다.
 		Desc.SemanticIndex = 0;
 		Desc.InstanceDataStepRate = 0;
 		InputLayOutData.push_back(Desc);
@@ -271,7 +219,6 @@ void URenderer::InputAssembler1LayOut()
 		Desc.AlignedByteOffset = 32;
 		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA;
 
-		// 인스턴싱을 설명할때 이야기 하겠습니다.
 		Desc.SemanticIndex = 0;
 		Desc.InstanceDataStepRate = 0;
 		InputLayOutData.push_back(Desc);
@@ -316,7 +263,6 @@ void URenderer::VertexShaderInit()
 	Flag0 = D3D10_SHADER_DEBUG;
 #endif
 
-	// Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 	Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
 	D3DCompileFromFile(
@@ -370,8 +316,8 @@ void URenderer::RasterizerInit()
 
 	UEngineCore::Device.GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
 
-	ViewPortInfo.Height = 768.0f;
 	ViewPortInfo.Width = 1366.0f;
+	ViewPortInfo.Height = 768.0f;
 	ViewPortInfo.TopLeftX = 0.0f;
 	ViewPortInfo.TopLeftY = 0.0f;
 	ViewPortInfo.MinDepth = 0.0f;
