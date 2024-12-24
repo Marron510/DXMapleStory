@@ -34,12 +34,14 @@ public:
 
 	ENGINEAPI static UEngineGraphicDevice Device;
 
+	ENGINEAPI static UEngineWindow MainWindow;
+
 	ENGINEAPI static FVector GetScreenScale();
+
 
 protected:
 
 private:
-	ENGINEAPI static UEngineWindow MainWindow;
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;
 	static UEngineInitData Data;
