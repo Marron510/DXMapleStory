@@ -27,6 +27,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowPos = { 100, 100 };
 	_Data.WindowSize = { 1366, 768 };
 
+
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("MapleResources"))
@@ -35,7 +36,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			return;
 		}
 		Dir.Append("Image");
-		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 		for (size_t i = 0; i < ImageFiles.size(); i++)
 		{
 			std::string FilePath = ImageFiles[i].GetPathToString();
@@ -45,9 +46,9 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineSprite::CreateSpriteToMeta("Player.png");
 
+
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
 	UEngineCore::OpenLevel("Titlelevel");
-
 }
 
 void UMapleContentsCore::EngineTick(float _DeltaTime)

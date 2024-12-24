@@ -78,4 +78,7 @@ void UEngineTexture::ResLoad()
 		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다..");
 		return;
 	}
+
+	Size.X = static_cast<float>(Metadata.width);
+	Size.Y = static_cast<float>(Metadata.height);
 }
