@@ -29,7 +29,7 @@ void ATitleGameMode::Tick(float _DeltaTime)
 
 	Logo->GetRenderer()->SetSpriteData(Index);
 
-	Time -= 0.0001;
+	Time -= _DeltaTime;
 
 	if (0.0f >= Time)
 	{
