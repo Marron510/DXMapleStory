@@ -5,10 +5,10 @@
 ATitleLogo::ATitleLogo()
 {
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	LogoRenderer->SetSprite("Player_Test.png");
 
-	SetActorRelativeScale3D({ 200.0f, 100.0f, 1.0f });
-
-	SetActorLocation({ 200.0f, 100.0f, 1.0f });
+	SetActorRelativeScale3D({ 600.0f, 600.0f, 1.0f });
+	// SetActorLocation({ 200.0f, 100.0f, 1.0f });
 }
 
 ATitleLogo::~ATitleLogo()

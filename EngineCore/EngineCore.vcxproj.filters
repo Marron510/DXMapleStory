@@ -149,11 +149,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
-      <Filter>ThirdParty\DirectxTex\Debug</Filter>
-    </Library>
-    <Library Include="..\..\GM2\DX\GM2DX\EngineCore\ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
+    <CopyFileToFolders Include="..\..\GM2\DX\GM2DX\EngineCore\ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
       <Filter>ThirdParty\DirectxTex\Release</Filter>
-    </Library>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
+      <Filter>ThirdParty\DirectxTex\Debug</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

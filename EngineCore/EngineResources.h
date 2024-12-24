@@ -3,7 +3,7 @@
 #include <EngineBase/EnginePath.h>
 #include <EngineBase/EngineString.h>
 
-template<typename ResType>
+
 class UEngineResources : public UObject
 {
 public:
@@ -26,17 +26,15 @@ public:
 		return UEngineString::ToUpper(_Name);
 	}
 
+
+	template<typename ResType>
 	static std::shared_ptr<ResType> Find(std::string_view _Name)
 	{
-		void* Ptr = &ResMap;
-
-		if (false == ResMap.contains(_Name.data()))
-		{
-			return nullptr;
-		}
-
-		return ResMap[_Name.data()];
+		const type_info& Info = typeid(ResType);
+		return std::dynamic_pointer_cast<ResType>(Find(Info.name(), _Name.data()));
 	}
+
+	static std::shared_ptr<UEngineResources> Find(std::string_view _ResName, std::string_view _Name);
 
 	static bool Contains(std::string_view _Name)
 	{
@@ -48,28 +46,22 @@ public:
 		ResMap.clear();
 	}
 
-
-	ENGINEAPI static std::shared_ptr<ResType> MakeRes(std::string_view _Name, std::string_view _Path)
+	template<typename ResType>
+	ENGINEAPI static void PushRes(std::shared_ptr<UEngineResources> _Res, std::string_view _Name, std::string_view _Path)
 	{
-		std::string UpperName = UEngineString::ToUpper(_Name);
-
-		std::shared_ptr<ResType> NewRes = std::make_shared<ResType>();
-		NewRes->SetName(UpperName);
-		NewRes->Path = _Path;
-		ResMap.insert({ UpperName, NewRes});
-
-		void* Ptr = &ResMap;
-
-		return NewRes;
+		const type_info& Info = typeid(ResType);
+		PushRes(_Res, Info.name(), _Name, _Path);
 	}
+
+	ENGINEAPI static void PushRes(std::shared_ptr<UEngineResources> _Res, const std::string_view _Info, std::string_view _Name, std::string_view _Path);
+
 
 protected:
 	UEnginePath Path;
 
 private:
-
-
-	static std::map<std::string, std::shared_ptr<ResType>> ResMap;
+	
+	ENGINEAPI static inline std::map<std::string, std::map<std::string, std::shared_ptr<UEngineResources>>> ResMap;
 };
 
 
