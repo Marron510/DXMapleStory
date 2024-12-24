@@ -9,7 +9,7 @@ ATitleGameMode::ATitleGameMode()
 	{
 		std::shared_ptr<ATitleLogo> Logo = GetWorld()->SpawnActor<ATitleLogo>();
 		Logo->SetActorLocation({ 300.0f, 0.0f, 0.0f });
-		Logo->GetRenderer()->SetSpriteData({ 0.0f, 0.0f }, { 0.5f, 0.5f });
+		Logo->GetRenderer()->SetSpriteData({ 0.3f, 0.3f }, { 0.33f, 0.33f });
 	}
 
 	{
@@ -27,8 +27,5 @@ ATitleGameMode::~ATitleGameMode()
 
 void ATitleGameMode::Tick(float _DeltaTime)
 {
-	// 부모 호출
 	AActor::Tick(_DeltaTime);
-
-
 }
