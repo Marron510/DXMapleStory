@@ -85,6 +85,8 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string_vie
 			SpriteData.CuttingSize.Y = static_cast<float>(atof(Number.c_str()));
 		}
 
+		SpriteData.CuttingPos.Y = TexSize.Y - SpriteData.CuttingPos.Y - SpriteData.CuttingSize.Y;
+
 		SpriteData.CuttingPos.X /= TexSize.X;
 		SpriteData.CuttingPos.Y /= TexSize.Y;
 		SpriteData.CuttingSize.X /= TexSize.X;
