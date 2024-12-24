@@ -9,7 +9,7 @@ struct EngineVertex
 struct VertexShaderOutPut
 {
     float4 SVPOSITION : SV_POSITION; 
-    float4 UV : TEXCOORD; // 
+    float4 UV : TEXCOORD; 
     float4 COLOR : COLOR;
 };
 
@@ -38,7 +38,7 @@ cbuffer FSpriteData : register(b1)
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
-	// _Vertex 0.5, 0.5
+    
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
   
     OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
@@ -55,7 +55,6 @@ SamplerState ImageSampler : register(s0);
 
 float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
 {
-	// ImageTexture.Load({0,0));
     float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
     return Color;
 }
