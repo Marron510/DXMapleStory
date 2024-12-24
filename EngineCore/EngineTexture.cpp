@@ -41,8 +41,6 @@ void UEngineTexture::ResLoad()
 	std::wstring wLoadPath = UEngineString::AnsiToUnicode(Str.c_str());
 	std::string UpperExt = UEngineString::ToUpper(Ext.c_str());
 
-	DirectX::TexMetadata Metadata;
-	DirectX::ScratchImage ImageData;
 
 	if (UpperExt == ".DDS")
 	{

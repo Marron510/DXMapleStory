@@ -9,12 +9,13 @@ ATitleGameMode::ATitleGameMode()
 	{
 		std::shared_ptr<ATitleLogo> Logo = GetWorld()->SpawnActor<ATitleLogo>();
 		Logo->SetActorLocation({ 300.0f, 0.0f, 0.0f });
-		Logo->GetRenderer()->SetSpriteData({ 0.3f, 0.3f }, { 0.33f, 0.33f });
+		Logo->GetRenderer()->SetSpriteData(0);
 	}
 
 	{
 		std::shared_ptr<ATitleLogo> Logo = GetWorld()->SpawnActor<ATitleLogo>();
 		Logo->SetActorLocation({ -300.0f, 0.0f, 0.0f });
+		Logo->GetRenderer()->SetSpriteData(3);
 	}
 
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();

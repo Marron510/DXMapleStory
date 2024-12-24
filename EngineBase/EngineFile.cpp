@@ -130,3 +130,10 @@ void UEngineFile::Close()
 	}
 }
 
+std::string UEngineFile::GetAllFileText()
+{
+	UEngineSerializer Ser;
+	Read(Ser);
+
+	return reinterpret_cast<const char*>(Ser.GetDataPtr());
+}

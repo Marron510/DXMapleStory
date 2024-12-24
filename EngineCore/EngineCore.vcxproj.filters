@@ -44,6 +44,9 @@
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Object\Component\Contents</Filter>
     </ClCompile>
+    <ClCompile Include="EngineSprite.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
       <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSprite.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
