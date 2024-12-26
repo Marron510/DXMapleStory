@@ -56,6 +56,30 @@ public:
 	}
 };
 
+
+class FQuat
+{
+public:
+	union
+	{
+		struct
+		{
+			float X;
+			float Y;
+			float Z;
+			float W;
+		};
+
+		float Arr2D[1][4];
+		float Arr1D[4];
+		DirectX::XMVECTOR DirectVector;
+
+	};
+
+	class FVector QuaternionToEulerDeg() const;
+	class FVector QuaternionToEulerRad() const;
+};
+
 class FVector
 {
 public:
@@ -440,6 +464,12 @@ public:
 		return Stream;
 	}
 
+	FQuat DegAngleToQuaternion()
+	{
+		FQuat Result;
+		Result.DirectVector = DirectX::XMQuaternionRotationRollPitchYawFromVector(DirectVector);
+		return Result;
+	}
 };
 
 using float4 = FVector;
@@ -612,6 +642,20 @@ public:
 		Arr2D[2][2] = cosf(_Angle);
 	}
 
+	FMatrix InverseReturn()
+	{
+		FMatrix Result;
+
+		Result.DirectMatrix = DirectX::XMMatrixInverse(nullptr, DirectMatrix);
+
+		return Result;
+	}
+
+	void Decompose(FVector& _Scale, FQuat& _RotQuaternion, FVector& _Pos)
+	{
+		DirectX::XMMatrixDecompose(&_Scale.DirectVector, &_RotQuaternion.DirectVector, &_Pos.DirectVector, DirectMatrix);
+	}
+
 	void RotationZDeg(float _Angle)
 	{
 		RotationZRad(_Angle * UEngineMath::D2R);
@@ -642,18 +686,27 @@ enum class ECollisionType
 
 struct FTransform
 {
-	// transformupdate는 
-	// 아래의 값들을 다 적용해서
-	// WVP를 만들어내는 함수이다.
 	float4 Scale;
 	float4 Rotation;
 	float4 Location;
+
+	float4 RelativeScale;
+	float4 RelativeRotation;
+	FQuat RelativeQuat;
+	float4 RelativeLocation;
+
+	// 월드
+	float4 WorldScale;
+	float4 WorldRotation;
+	FQuat WorldQuat;
+	float4 WorldLocation;
 
 	float4x4 ScaleMat;
 	float4x4 RotationMat;
 	float4x4 LocationMat;
 	float4x4 RevolveMat;
 	float4x4 ParentMat;
+	float4x4 LocalWorld;
 	float4x4 World;
 	float4x4 View;
 	float4x4 Projection;
@@ -666,7 +719,9 @@ struct FTransform
 	}
 
 public:
-	ENGINEAPI void TransformUpdate();
+	ENGINEAPI void TransformUpdate(bool _IsAbsolut = false);
+
+	ENGINEAPI void Decompose();
 
 private:
 	friend class CollisionFunctionInit;
