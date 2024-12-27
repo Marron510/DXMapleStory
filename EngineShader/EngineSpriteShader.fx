@@ -68,6 +68,13 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
     return OutPut;
 }
 
+cbuffer MatColor : register(b1)
+{
+    float4 Albedo;
+};
+
+
+
 // 텍스처 1장
 Texture2D ImageTexture : register(t0);
 // 샘플러 1개
