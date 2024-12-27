@@ -7,6 +7,14 @@ struct FSpriteData
 {
 	float4 CuttingPos = { 0.0f, 0.0f };
 	float4 CuttingSize = { 1.0f, 1.0f };
+	float4 Pivot = { 0.5f, 0.5f };
+};
+
+struct FSpritePivot
+{
+	float4 Center = { 0.0f,  0.0f };
+	float4 Bottom = { 0.0f,  0.5f };
+	float4 Top = { 0.0f, -0.5f };
 };
 
 // Ό³Έν :

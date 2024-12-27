@@ -31,7 +31,7 @@ public:
 
 	IDXGIAdapter* GetHighPerFormanceAdapter();
 
-	void Release();
+	ENGINEAPI void Release();
 
 	void RenderStart();
 
