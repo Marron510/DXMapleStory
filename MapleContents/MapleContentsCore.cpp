@@ -45,6 +45,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	}
 
 	UEngineSprite::CreateSpriteToMeta("Player.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("Walk.png", ".sdata");
 
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
