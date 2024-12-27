@@ -13,18 +13,20 @@ ATitleLogo::ATitleLogo()
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
 
 	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 0, 0.1f);
+
+
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 4.0f;
+		Animation->AutoScaleRatio = 1.0f;
 	}
 
-	LogoRenderer->CreateAnimation("Move", "Player.png", 1, 4, 0.3f);
+	LogoRenderer->CreateAnimation("Move", "Player.png", 0, 3, 0.7f);
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Move");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 4.0f;
+		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	LogoRenderer->ChangeAnimation("Idle");
