@@ -53,7 +53,7 @@ CollisionFunctionInit Inst = CollisionFunctionInit();
 
 FVector FQuat::QuaternionToEulerDeg() const
 {
-	return QuaternionToEulerRad() * UEngineMath::PI2;
+	return QuaternionToEulerRad() * UEngineMath::R2D;
 }
 
 FVector FQuat::QuaternionToEulerRad() const
@@ -241,6 +241,11 @@ ENGINEAPI void FTransform::Decompose()
 	World.Decompose(WorldScale, WorldQuat, WorldLocation);
 
 	LocalWorld.Decompose(RelativeScale, RelativeQuat, RelativeLocation);
+
+	/*Scale = RelativeScale;
+	Quat = RelativeQuat;
+	Rotation = RelativeQuat.QuaternionToEulerDeg();
+	Location = RelativeLocation;*/
 }
 
 void FTransform::TransformUpdate(bool _IsAbsolut /*= false*/)
@@ -263,5 +268,6 @@ void FTransform::TransformUpdate(bool _IsAbsolut /*= false*/)
 		World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
 	}
 
+	Decompose();
 }
 

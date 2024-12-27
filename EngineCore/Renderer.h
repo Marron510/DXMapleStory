@@ -1,16 +1,16 @@
 #pragma once
 #include "SceneComponent.h"
 #include "EngineSprite.h"
+#include "RenderUnit.h"
 
 struct EngineVertex
 {
 	float4 POSITION;
-	float4 TEXCOORD;
+	float4 TEXCOORD; 
 	float4 COLOR;
 };
 
 
-// 설명 :
 class URenderer : public USceneComponent
 {
 	friend class UEngineCamera;
@@ -26,27 +26,27 @@ public:
 	URenderer& operator=(const URenderer& _Other) = delete;
 	URenderer& operator=(URenderer&& _Other) noexcept = delete;
 
-	void SetOrder(int _Order) override;
+	ENGINEAPI void SetOrder(int _Order) override;
 
-	void SetTexture(std::string_view _Value);
+	ENGINEAPI void SetSprite(std::string_view _Value);
+	ENGINEAPI void SetSprite(UEngineSprite* _Sprite);
 
 	ENGINEAPI void SetSpriteData(size_t _Index);
 
 protected:
 	ENGINEAPI void BeginPlay() override;
+	ENGINEAPI virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
 
 private:
-	virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
 
 public:
 	FSpriteData SpriteData;
 
-	std::shared_ptr<class UEngineSprite> Sprite = nullptr;
+	class UEngineSprite* Sprite = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr; // 샘플러 스테이트
 	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr; // 상수버퍼
 	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstBuffer = nullptr; // 스프라이트용 상수버퍼
-
 	void ShaderResInit();
 	void ShaderResSetting();
 
@@ -57,7 +57,7 @@ public:
 	void InputAssembler1LayOut();
 
 	Microsoft::WRL::ComPtr<ID3DBlob> VSShaderCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3DBlob> VSErrorCodeBlob = nullptr; // 중간 컴파일 결과물
+	Microsoft::WRL::ComPtr<ID3DBlob> VSErrorCodeBlob = nullptr; 
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader = nullptr;
 	void VertexShaderInit();
 	void VertexShaderSetting();
@@ -74,11 +74,13 @@ public:
 	void RasterizerSetting();
 
 	Microsoft::WRL::ComPtr<ID3DBlob> PSShaderCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr; // 중간 컴파일 결과물
+	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
 	void PixelShaderInit();
 	void PixelShaderSetting();
 
 	void OutPutMergeSetting();
+
+	std::vector<URenderUnit> Units;
 };
 

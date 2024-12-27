@@ -37,6 +37,8 @@ public:
 		return SpriteDatas[_Index];
 	}
 
+	ENGINEAPI FVector GetSpriteScaleToReal(size_t _Index);
+
 protected:
 
 private:
