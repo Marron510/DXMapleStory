@@ -12,10 +12,11 @@ ATitleLogo::ATitleLogo()
 
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
 
-	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 3, 0.7f);
+	LogoRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
 	LogoRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
 	LogoRenderer->CreateAnimation("Tornado", "Leaf_Tornado.png", 0, 8, 0.3f);
 	LogoRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
+
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");

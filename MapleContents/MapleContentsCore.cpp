@@ -44,7 +44,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 		}
 	}
 
-	UEngineSprite::CreateSpriteToMeta("Player.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("Idle.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Walk.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Leaf_Tornado.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Rolling.png", ".sdata");
