@@ -1,0 +1,324 @@
+fileFormatVersion: 2
+guid: b21aa853b78f8cf4c977a28eb679718d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Leaf_Tornado_0
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 321
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad7c44551185910448afbcb483c52740
+      internalID: 76801407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Tornado_1
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 321
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 104ab4ff166b3264c870d0b639a8df5b
+      internalID: -744976861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Tornado_2
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 321
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c537031aa77349c41a0845c17518b5fa
+      internalID: 622703780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Tornado_3
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 321
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d681c33bba9da44972eca07f2b3793
+      internalID: 1073103117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Tornado_4
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 322
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da100235c70bd1f4d948cdce79d82b65
+      internalID: 1203903531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Tornado_5
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 35
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c30599b9e2c8f48b97f0cedd9997f3
+      internalID: -603355297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Tornado_6
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 32
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10045956e825ae4292788316383ab77
+      internalID: -1443088132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Tornado_7
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 26
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd7ed2299ed042e46999cef2ff4e6285
+      internalID: 1618337364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Tornado_8
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 32
+        width: 240
+        height: 240
+      alignment: 9
+      pivot: {x: 0.53, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3d21b3e5725b054c951b9441d52ac32
+      internalID: -981099190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 30761145a289ec4448fea5f7f4d8998e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Leaf_Tornado_0: 76801407
+      Leaf_Tornado_1: -744976861
+      Leaf_Tornado_2: 622703780
+      Leaf_Tornado_3: 1073103117
+      Leaf_Tornado_4: 1203903531
+      Leaf_Tornado_5: -603355297
+      Leaf_Tornado_6: -1443088132
+      Leaf_Tornado_7: 1618337364
+      Leaf_Tornado_8: -981099190
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

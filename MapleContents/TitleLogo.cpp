@@ -13,20 +13,25 @@ ATitleLogo::ATitleLogo()
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
 
 	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 3, 0.7f);
-
+	LogoRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
+	LogoRenderer->CreateAnimation("Tornado", "Leaf_Tornado.png", 8, 1.0f);
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
+		Animation->AutoScaleRatio = 3.0f;
 	}
-
-	LogoRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Walk");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
+		Animation->AutoScaleRatio = 3.0f;
+	}
+
+	{
+		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Tornado");
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 3.0f;
 	}
 
 	LogoRenderer->ChangeAnimation("Idle");
@@ -60,7 +65,7 @@ void ATitleLogo::Tick(float _DeltaTime)
 	if (UEngineInput::IsPress('A'))
 	{
 		LogoRenderer->ChangeAnimation("Walk");
-		AddRelativeLocation(FVector{ -100.0f * _DeltaTime, 0.0f, 0.0f });
+		AddRelativeLocation(FVector{ -300.0f * _DeltaTime, 0.0f, 0.0f });
 	}
 	if (UEngineInput::IsUp('A'))
 	{
@@ -68,7 +73,7 @@ void ATitleLogo::Tick(float _DeltaTime)
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		AddRelativeLocation(FVector{ 100.0f * _DeltaTime, 0.0f, 0.0f });
+		AddRelativeLocation(FVector{ 300.0f * _DeltaTime, 0.0f, 0.0f });
 		//AddActorRotation(FVector{ 0.0f, 360.0f * _DeltaTime, 0.0f  });
 	}
 
@@ -89,8 +94,8 @@ void ATitleLogo::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('E'))
 	{
-		//LogoRenderer->ChangeAnimation("Move");
-		// Child->AddRelativeLocation(FVector{ 100.0f * _DeltaTime, 0.0f , 0.0f });
+		LogoRenderer->ChangeAnimation("Tornado");
+		
 	}
 
 	if (UEngineInput::IsPress('R'))
