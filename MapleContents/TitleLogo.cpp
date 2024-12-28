@@ -14,24 +14,32 @@ ATitleLogo::ATitleLogo()
 
 	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 3, 0.7f);
 	LogoRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
-	LogoRenderer->CreateAnimation("Tornado", "Leaf_Tornado.png", 8, 1.0f);
+	LogoRenderer->CreateAnimation("Tornado", "Leaf_Tornado.png", 0, 8, 0.3f);
+	LogoRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 3.0f;
+		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Walk");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 3.0f;
+		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Tornado");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 3.0f;
+		Animation->AutoScaleRatio = 1.0f;
+	}
+
+
+	{
+		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Rolling");
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	LogoRenderer->ChangeAnimation("Idle");
@@ -100,6 +108,6 @@ void ATitleLogo::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('R'))
 	{
-		// Child->SetWorldLocation(FVector{ 100.0f, 0.0f , 0.0f });
+		LogoRenderer->ChangeAnimation("Rolling");
 	}
 }
