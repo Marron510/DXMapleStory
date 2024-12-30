@@ -18,6 +18,10 @@
 #include "Shorn.h"
 #include "Joy.h"
 #include "OldMan.h"
+#include "Duglas.h"
+#include "Manyu.h"
+#include "Elbis.h"
+
 
 #include "Player.h"
 
@@ -96,6 +100,23 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	{
 		std::shared_ptr<class AJoy> Joy = GetWorld()->SpawnActor<AJoy>();
 		Joy->SetActorLocation(FVector{ 300.0f, -230.0f });
+	}
+
+	{
+		std::shared_ptr<class ADuglas> Duglas = GetWorld()->SpawnActor<ADuglas>();
+		Duglas->SetActorLocation(FVector{ 800.0f, -130.0f });
+	}
+
+
+	{
+		std::shared_ptr<class AElbis> Elbis = GetWorld()->SpawnActor<AElbis>();
+		Elbis->SetActorLocation(FVector{ 580.0f, -110.0f });
+	}
+
+
+	{
+		std::shared_ptr<class AManyu> Manyu = GetWorld()->SpawnActor<AManyu>();
+		Manyu->SetActorLocation(FVector{ 600.0f, -230.0f });
 	}
 
 

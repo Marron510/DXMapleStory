@@ -44,6 +44,15 @@
     <ClCompile Include="OldMan.cpp">
       <Filter>Character\NPC\Villager</Filter>
     </ClCompile>
+    <ClCompile Include="Duglas.cpp">
+      <Filter>Character\NPC\Interactive</Filter>
+    </ClCompile>
+    <ClCompile Include="Elbis.cpp">
+      <Filter>Character\NPC\Interactive</Filter>
+    </ClCompile>
+    <ClCompile Include="Manyu.cpp">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -89,6 +98,15 @@
     <ClInclude Include="OldMan.h">
       <Filter>Character\NPC\Villager</Filter>
     </ClInclude>
+    <ClInclude Include="Duglas.h">
+      <Filter>Character\NPC\Interactive</Filter>
+    </ClInclude>
+    <ClInclude Include="Elbis.h">
+      <Filter>Character\NPC\Interactive</Filter>
+    </ClInclude>
+    <ClInclude Include="Manyu.h">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -132,6 +150,9 @@
     </Filter>
     <Filter Include="Character\NPC\Villager">
       <UniqueIdentifier>{08d4e995-4fc3-492a-ae7a-3d430a38adbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\NPC\Interactive">
+      <UniqueIdentifier>{714c7a45-c469-4598-9e7d-bc8d9e1ca662}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

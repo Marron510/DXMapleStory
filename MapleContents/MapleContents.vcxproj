@@ -183,6 +183,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Duglas.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Elbis.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FirePriest.cpp">
       <SubType>
       </SubType>
@@ -192,6 +200,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Joy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Manyu.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -242,6 +254,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Duglas.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Elbis.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FirePriest.h">
       <SubType>
       </SubType>
@@ -251,6 +271,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Joy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Manyu.h">
       <SubType>
       </SubType>
     </ClInclude>
