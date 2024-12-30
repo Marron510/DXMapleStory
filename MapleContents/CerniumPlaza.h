@@ -22,8 +22,12 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> Plaza;
+	std::shared_ptr<class USpriteRenderer> Smithy;
+	std::shared_ptr<class USpriteRenderer> Potion;
 	std::shared_ptr<class USpriteRenderer> BuildingLeft_0;
 	std::shared_ptr<class USpriteRenderer> BuildingLeft_1;
+	std::shared_ptr<class USpriteRenderer> BuildingRight_0;
+	std::shared_ptr<class USpriteRenderer> BuildingRight_1;
 	
 
 };

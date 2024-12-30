@@ -7,8 +7,13 @@
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/imgui.h>
 #include <EnginePlatform/EngineInput.h>
+
+
 #include "CerniumPlaza.h"
+
+#include "DawnPriest.h"
 #include "Player.h"
+
 
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
@@ -20,6 +25,12 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	
 	// 깃발
 
+	//프리스트
+	{
+		DawnPriest = GetWorld()->SpawnActor<ADawnPriest>();
+		DawnPriest->SetActorLocation(FVector{ 0.0f, -230.0f });
+	}
+	
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
@@ -41,6 +52,25 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	Camera->;
+	if (UEngineInput::IsPress('A'))
+	{
+		Camera->AddRelativeLocation(FVector{ -300.0f * _DeltaTime, 0.0f, 0.0f });
+	}
+
+	if (UEngineInput::IsPress('D'))
+	{
+		Camera->AddRelativeLocation(FVector{ 300.0f * _DeltaTime, 0.0f, 0.0f });
+	}
+
+
+	if (UEngineInput::IsPress('W'))
+	{
+		Camera->AddRelativeLocation(FVector{  0.0f, 300.0f * _DeltaTime, 0.0f });
+	}
+
+	if (UEngineInput::IsPress('S'))
+	{
+		Camera->AddRelativeLocation(FVector{ 0.0f, -300.0f * _DeltaTime, 0.0f });
+	}
 
 }

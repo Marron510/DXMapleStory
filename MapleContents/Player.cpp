@@ -101,12 +101,12 @@ void APlayer::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('W'))
 	{
-		AddRelativeLocation(FVector{ 0.0f, 100.0f * _DeltaTime, 0.0f });
+		AddRelativeLocation(FVector{ 0.0f, 300.0f * _DeltaTime, 0.0f });
 	}
 
 	if (UEngineInput::IsPress('S'))
 	{
-		AddRelativeLocation(FVector{ 0.0f, -100.0f * _DeltaTime, 0.0f });
+		AddRelativeLocation(FVector{ 0.0f, -300.0f * _DeltaTime, 0.0f });
 	}
 
 	if (UEngineInput::IsPress('Q'))

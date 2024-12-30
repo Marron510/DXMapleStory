@@ -23,6 +23,9 @@
     <ClCompile Include="Seren.cpp">
       <Filter>Character\BossSeren</Filter>
     </ClCompile>
+    <ClCompile Include="DawnPriest.cpp">
+      <Filter>Character\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="Seren.h">
       <Filter>Character\BossSeren</Filter>
+    </ClInclude>
+    <ClInclude Include="DawnPriest.h">
+      <Filter>Character\NPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +87,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{09264ebb-8fd3-4917-bec8-e9c058c80244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\NPC">
+      <UniqueIdentifier>{50479b4c-3277-422b-b9fe-d80c41feab5d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
