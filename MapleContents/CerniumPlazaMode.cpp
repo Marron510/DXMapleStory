@@ -12,6 +12,13 @@
 #include "CerniumPlaza.h"
 
 #include "DawnPriest.h"
+#include "FirePriest.h"
+#include "Hate.h"
+#include "Shirine.h"
+#include "Shorn.h"
+#include "Joy.h"
+#include "OldMan.h"
+
 #include "Player.h"
 
 
@@ -27,10 +34,73 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 
 	//프리스트
 	{
-		DawnPriest = GetWorld()->SpawnActor<ADawnPriest>();
-		DawnPriest->SetActorLocation(FVector{ 0.0f, -230.0f });
+		std::shared_ptr<class ADawnPriest> DawnPriest = GetWorld()->SpawnActor<ADawnPriest>();
+		DawnPriest->SetActorLocation(FVector{ -1500.0f, -230.0f });
+		DawnPriest->SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
 	}
+
+	{
+		std::shared_ptr<class ADawnPriest> DawnPriest = GetWorld()->SpawnActor<ADawnPriest>();
+		DawnPriest->SetActorLocation(FVector{ -1430.0f, -150.0f });
+		DawnPriest->SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+	}
+
+	{
+		std::shared_ptr<class ADawnPriest> DawnPriest = GetWorld()->SpawnActor<ADawnPriest>();
+		DawnPriest->SetActorLocation(FVector{ -1600.0f, -180.0f });
+		DawnPriest->SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+	}
+
+	{
+		std::shared_ptr<class AFirePriest> FirePriest = GetWorld()->SpawnActor<AFirePriest>();
+		FirePriest->SetActorLocation(FVector{ 1500.0f, -230.0f });
+	}
+
+	{
+		std::shared_ptr<class AFirePriest> FirePriest = GetWorld()->SpawnActor<AFirePriest>();
+		FirePriest->SetActorLocation(FVector{ 1430.0f, -150.0f });
+	}
+
+	{
+		std::shared_ptr<class AFirePriest> FirePriest = GetWorld()->SpawnActor<AFirePriest>();
+		FirePriest->SetActorLocation(FVector{ 1600.0f, -180.0f });
+	}
+
+	// 마을주민 왼쪽
+
+	{
+		std::shared_ptr<class AHate> Hate = GetWorld()->SpawnActor<AHate>();
+		Hate->SetActorLocation(FVector{ -1090.0f, -130.0f });
+		Hate->SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+	}
+
+	{
+		std::shared_ptr<class AShirine> Shirine = GetWorld()->SpawnActor<AShirine>();
+		Shirine->SetActorLocation(FVector{ -1190.0f, -130.0f });
+		Shirine->SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+	}
+
+	{
+		std::shared_ptr<class AShorn> Shorn = GetWorld()->SpawnActor<AShorn>();
+		Shorn->SetActorLocation(FVector{ -1290.0f, -130.0f });
+		Shorn->SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+	}
+
+	{
+		std::shared_ptr<class AOldMan> OldMan = GetWorld()->SpawnActor<AOldMan>();
+		OldMan->SetActorLocation(FVector{ -550.0f, -230.0f });
+	}
+
+	// 마을주민 오른쪽
 	
+	{
+		std::shared_ptr<class AJoy> Joy = GetWorld()->SpawnActor<AJoy>();
+		Joy->SetActorLocation(FVector{ 300.0f, -230.0f });
+	}
+
+
+
+
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();

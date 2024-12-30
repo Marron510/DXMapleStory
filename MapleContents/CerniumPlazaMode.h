@@ -23,8 +23,6 @@ private:
 	std::shared_ptr<class APlayer> Player;
 
 
-	//NPC
-	std::shared_ptr<class ADawnPriest> DawnPriest;
 	std::shared_ptr<class ACerniumPlaza> Plaza;
 	std::shared_ptr<class ACameraActor> Camera;
 };

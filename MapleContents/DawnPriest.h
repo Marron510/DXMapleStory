@@ -21,6 +21,6 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	std::shared_ptr<class USpriteRenderer> ADawnPriestenderer;
+	std::shared_ptr<class USpriteRenderer> DawnPriestrenderer;
 };
 

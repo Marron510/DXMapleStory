@@ -24,7 +24,25 @@
       <Filter>Character\BossSeren</Filter>
     </ClCompile>
     <ClCompile Include="DawnPriest.cpp">
-      <Filter>Character\NPC</Filter>
+      <Filter>Character\NPC\Priest</Filter>
+    </ClCompile>
+    <ClCompile Include="FirePriest.cpp">
+      <Filter>Character\NPC\Priest</Filter>
+    </ClCompile>
+    <ClCompile Include="Hate.cpp">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClCompile>
+    <ClCompile Include="Shirine.cpp">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClCompile>
+    <ClCompile Include="Shorn.cpp">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClCompile>
+    <ClCompile Include="Joy.cpp">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClCompile>
+    <ClCompile Include="OldMan.cpp">
+      <Filter>Character\NPC\Villager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,7 +69,25 @@
       <Filter>Character\BossSeren</Filter>
     </ClInclude>
     <ClInclude Include="DawnPriest.h">
-      <Filter>Character\NPC</Filter>
+      <Filter>Character\NPC\Priest</Filter>
+    </ClInclude>
+    <ClInclude Include="FirePriest.h">
+      <Filter>Character\NPC\Priest</Filter>
+    </ClInclude>
+    <ClInclude Include="Hate.h">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClInclude>
+    <ClInclude Include="Shirine.h">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClInclude>
+    <ClInclude Include="Shorn.h">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClInclude>
+    <ClInclude Include="Joy.h">
+      <Filter>Character\NPC\Villager</Filter>
+    </ClInclude>
+    <ClInclude Include="OldMan.h">
+      <Filter>Character\NPC\Villager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +126,12 @@
     </Filter>
     <Filter Include="Character\NPC">
       <UniqueIdentifier>{50479b4c-3277-422b-b9fe-d80c41feab5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\NPC\Priest">
+      <UniqueIdentifier>{8ea9da69-7b21-48bc-b0b4-c70000658e2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\NPC\Villager">
+      <UniqueIdentifier>{08d4e995-4fc3-492a-ae7a-3d430a38adbb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

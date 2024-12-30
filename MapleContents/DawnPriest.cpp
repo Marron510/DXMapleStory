@@ -11,18 +11,18 @@ ADawnPriest::ADawnPriest()
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
 
-	ADawnPriestenderer = CreateDefaultSubObject<USpriteRenderer>();
-	ADawnPriestenderer->SetupAttachment(RootComponent);
+	DawnPriestrenderer = CreateDefaultSubObject<USpriteRenderer>();
+	DawnPriestrenderer->SetupAttachment(RootComponent);
 
-	ADawnPriestenderer->CreateAnimation("DawnPriest", "DawnPriest", 0, 7, 0.2f);
+	DawnPriestrenderer->CreateAnimation("DawnPriest", "DawnPriest", 0, 7, 0.2f);
 
 	{
-		USpriteRenderer::FrameAnimation* Animation = ADawnPriestenderer->FindAnimation("DawnPriest");
+		USpriteRenderer::FrameAnimation* Animation = DawnPriestrenderer->FindAnimation("DawnPriest");
 		Animation->IsAutoScale = true;
 		Animation->AutoScaleRatio = 1.0f;
 	}
 
-	ADawnPriestenderer->ChangeAnimation("DawnPriest");
+	DawnPriestrenderer->ChangeAnimation("DawnPriest");
 
 }
 

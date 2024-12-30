@@ -183,7 +183,23 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FirePriest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Hate.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Joy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MapleContentsCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="OldMan.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -199,6 +215,14 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Seren.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Shirine.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Shorn.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -218,13 +242,37 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FirePriest.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Hate.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Joy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MapleContentsCore.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="OldMan.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="Seren.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Shirine.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Shorn.h">
       <SubType>
       </SubType>
     </ClInclude>
