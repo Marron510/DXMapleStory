@@ -73,6 +73,17 @@ cbuffer MatColor : register(b1)
     float4 Albedo;
 };
 
+struct OutTargetColor
+{
+    float4 Target0 : SV_Target0;
+    float4 Target1 : SV_Target1;
+    float4 Target2 : SV_Target2;
+    float4 Target3 : SV_Target3;
+    float4 Target4 : SV_Target4;
+    float4 Target5 : SV_Target5;
+    float4 Target6 : SV_Target6;
+    float4 Target7 : SV_Target7;
+};
 
 
 // 텍스처 1장
@@ -85,4 +96,6 @@ float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
 {
     float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
     return Color;
+	
+	// return float4(1.0f, 0.0f, 0.0f, 1.0f);
 }

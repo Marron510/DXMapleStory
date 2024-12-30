@@ -19,6 +19,7 @@ void USpriteRenderer::BeginPlay()
 {
 	URenderer::BeginPlay();
 	SetMesh("Rect");
+	SetBlend("AlphaBlend");
 }
 
 

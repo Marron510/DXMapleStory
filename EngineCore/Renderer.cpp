@@ -5,7 +5,7 @@
 #include <EngineCore/EngineTexture.h>
 #include <EngineCore/Mesh.h>
 #include "EngineVertex.h"
-
+#include "EngineBlend.h"
 
 
 URenderer::URenderer()
@@ -478,6 +478,11 @@ void URenderer::PixelShaderSetting()
 
 void URenderer::OutPutMergeSetting()
 {
+	if (nullptr != Blend)
+	{
+		Blend->Setting();
+	}
+
 	ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRTV();
 
 	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
@@ -500,5 +505,17 @@ void URenderer::SetMesh(std::string_view _Name)
 	if (nullptr == Mesh)
 	{
 		MSGASSERT("존재하지 않는 매쉬를 세팅할수 없습니다.\n");
+	}
+}
+
+void URenderer::SetBlend(std::string_view _Name)
+{
+	std::shared_ptr<UEngineBlend> FindBlend = UEngineBlend::Find<UEngineBlend>(_Name);
+
+	Blend = FindBlend.get();
+
+	if (nullptr == Blend)
+	{
+		MSGASSERT("존재하지 않는 Blend를 세팅할수 없습니다.\n");
 	}
 }
