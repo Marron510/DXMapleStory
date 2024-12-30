@@ -79,5 +79,8 @@
     <Filter Include="GameMode\CerniumGameMode">
       <UniqueIdentifier>{f5528e3f-9fad-468a-80fc-4d7bd02a2ec0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{09264ebb-8fd3-4917-bec8-e9c058c80244}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

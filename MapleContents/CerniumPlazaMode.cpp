@@ -6,18 +6,30 @@
 #include <EngineCore/EngineGUIWindow.h>
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/imgui.h>
-
+#include <EnginePlatform/EngineInput.h>
+#include "CerniumPlaza.h"
 #include "Player.h"
 
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
+	
+	// ¸Ê
+	{
+		Plaza= GetWorld()->SpawnActor<ACerniumPlaza>();
+	}
+	
+	// ±ê¹ß
+
+	// ÇÃ·¹ÀÌ¾î
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->GetRenderer()->SetSpriteData(0);
+		Player->SetActorLocation(FVector{ 0.0f, -230.0f });
 	}
-	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 
+	Camera = GetWorld()->GetMainCamera();
+	Camera->SetActorLocation({ 0.0f, 0.0f, -10.0f, 1.0f });
+
+	
 }
 
 ACerniumPlazaMode::~ACerniumPlazaMode()
@@ -28,5 +40,7 @@ ACerniumPlazaMode::~ACerniumPlazaMode()
 void ACerniumPlazaMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	
+
+	Camera->;
+
 }

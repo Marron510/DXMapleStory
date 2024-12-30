@@ -49,6 +49,18 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineSprite::CreateSpriteToMeta("Leaf_Tornado.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Rolling.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Jump.png", ".sdata");
+	
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image/Cernium");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
 
 	// 주인공 APawn 상속 받기
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Title");

@@ -21,6 +21,10 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
+	std::shared_ptr<class USpriteRenderer> Plaza;
+	std::shared_ptr<class USpriteRenderer> BuildingLeft_0;
+	std::shared_ptr<class USpriteRenderer> BuildingLeft_1;
+	
 
 };
 

@@ -21,5 +21,7 @@ protected:
 
 private:
 	std::shared_ptr<class APlayer> Player;
+	std::shared_ptr<class ACerniumPlaza> Plaza;
+	std::shared_ptr<class ACameraActor> Camera;
 };
 
