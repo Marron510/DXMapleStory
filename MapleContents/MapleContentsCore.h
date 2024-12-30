@@ -18,7 +18,7 @@ public:
 
 protected:
 	void EngineStart(UEngineInitData& _Data);
-	void EngineTick(float _DeltaTime);
+	void EngineTick(float _DeltaTime) override;
 	void EngineEnd();
 private:
 

@@ -14,19 +14,24 @@ APlayer::APlayer()
 
 	PlayerRenderer = CreateDefaultSubObject<USpriteRenderer>();
 
+	PlayerRenderer->SetupAttachment(RootComponent);
+
 	PlayerRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
 	PlayerRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
 	PlayerRenderer->CreateAnimation("Tornado", "Leaf_Tornado.png", 0, 8, 0.1f, false);
 	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
+	PlayerRenderer->CreateAnimation("Jump", "Jump.png", 0, 0, 0.1f);
 
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Idle");
+		Animation->IsAutoScale = true;
 		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Walk");
+		Animation->IsAutoScale = true;
 		Animation->AutoScaleRatio = 1.0f;
 	}
 
@@ -43,9 +48,15 @@ APlayer::APlayer()
 		Animation->AutoScaleRatio = 1.0f;
 	}
 
+	{
+		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Jump");
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 1.0f;
+	}
+
 	PlayerRenderer->ChangeAnimation("Idle");
 
-	PlayerRenderer->SetupAttachment(RootComponent);
+	
 
 }
 
@@ -68,20 +79,20 @@ void APlayer::Tick(float _DeltaTime)
 		AddRelativeLocation(FVector{ -300.0f * _DeltaTime, 0.0f, 0.0f });
 		SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
 	}
-
 	if (UEngineInput::IsUp('A'))
 	{
 		PlayerRenderer->ChangeAnimation("Idle");
+		SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
 	}
-
+	
 	if (UEngineInput::IsPress('D'))
 	{
 		PlayerRenderer->ChangeAnimation("Walk");
+		
 		AddRelativeLocation(FVector{ 300.0f * _DeltaTime, 0.0f, 0.0f });
 		SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
-		
 	}
-
+	
 	if (UEngineInput::IsUp('D'))
 	{
 		PlayerRenderer->ChangeAnimation("Idle");
@@ -103,6 +114,12 @@ void APlayer::Tick(float _DeltaTime)
 		AddActorRotation(FVector{ 0.0f, 0.0f , 360.0f * _DeltaTime });
 	}
 
+	if (UEngineInput::IsPress('C'))
+	{
+		PlayerRenderer->ChangeAnimation("Jump");
+
+	}
+	
 	if (UEngineInput::IsPress('E'))
 	{
 		PlayerRenderer->ChangeAnimation("Tornado");

@@ -26,10 +26,7 @@ protected:
 private:
 	Microsoft::WRL::ComPtr<ID3D11BlendState> State = nullptr;
 	FVector BlendFactor = FVector(0.0f, 0.0f, 0.0f, 0.0f);
-	// 비트가 1인 부분만 
 	UINT Mask = 0xFFFFFFFF;
-	//            255 255 255 255
-	//            R   G   B   A
 
 };
 

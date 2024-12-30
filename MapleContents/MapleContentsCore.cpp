@@ -48,6 +48,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineSprite::CreateSpriteToMeta("Walk.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Leaf_Tornado.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Rolling.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("Jump.png", ".sdata");
 
 	// 주인공 APawn 상속 받기
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Title");
@@ -57,10 +58,10 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 void UMapleContentsCore::EngineTick(float _DeltaTime)
 {
-
+	IContentsCore::EngineTick(_DeltaTime);
 }
 
 void UMapleContentsCore::EngineEnd()
 {
-
+	IContentsCore::EngineEnd();
 }

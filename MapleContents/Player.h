@@ -15,6 +15,11 @@ public:
 	APlayer& operator=(const APlayer& _Other) = delete;
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
 
+	std::shared_ptr<class USpriteRenderer> GetRenderer()
+	{
+		return PlayerRenderer;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -22,5 +27,7 @@ protected:
 private:
 	std::shared_ptr<class USpriteRenderer> PlayerRenderer;
 
+
+	bool bIsGround = false;
 };
 
