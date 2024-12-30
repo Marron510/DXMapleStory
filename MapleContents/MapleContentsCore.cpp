@@ -6,7 +6,7 @@
 #include <EngineCore/EngineSprite.h>
 
 #include "TitleGameMode.h"
-
+#include "CerniumPlazaMode.h"
 
 CreateContentsCoreDefine(UMapleContentsCore);
 
@@ -50,8 +50,9 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineSprite::CreateSpriteToMeta("Rolling.png", ".sdata");
 
 	// 주인공 APawn 상속 받기
-	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
-	UEngineCore::OpenLevel("Titlelevel");
+	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Title");
+	UEngineCore::CreateLevel<ACerniumPlazaMode, APawn>("Plaza");
+	UEngineCore::OpenLevel("Plaza");
 }
 
 void UMapleContentsCore::EngineTick(float _DeltaTime)

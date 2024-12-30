@@ -171,6 +171,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CerniumPlaza.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CerniumPlazaMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MapleContentsCore.cpp">
       <SubType>
       </SubType>
@@ -186,16 +194,32 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="Seren.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleGameMode.cpp" />
     <ClCompile Include="TitleLogo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CerniumPlaza.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CerniumPlazaMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MapleContentsCore.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="Seren.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleGameMode.h" />
     <ClInclude Include="TitleLogo.h" />
   </ItemGroup>

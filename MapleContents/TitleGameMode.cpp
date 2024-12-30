@@ -7,7 +7,7 @@
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/imgui.h>
 
-class TestWindow : public UEngineGUIWindow
+class TitleGUI : public UEngineGUIWindow
 {
 public:
 	void OnGUI() override
@@ -21,17 +21,16 @@ public:
 
 ATitleGameMode::ATitleGameMode()
 {
-	{
+	/*{
 		Logo = GetWorld()->SpawnActor<ATitleLogo>();
-		//Logo->SetActorLocation({ 300.0f, 0.0f, 0.0f });
 		Logo->GetRenderer()->SetSpriteData(0);
 	}
-
+*/
 
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 
-	UEngineGUI::CreateGUIWindow<TestWindow>("TestWindow");
+	UEngineGUI::CreateGUIWindow<TitleGUI>("TestWindow");
 
 }
 

@@ -14,6 +14,15 @@
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>GameMode\TitleGameMode</Filter>
     </ClCompile>
+    <ClCompile Include="CerniumPlaza.cpp">
+      <Filter>Map\Cernium</Filter>
+    </ClCompile>
+    <ClCompile Include="CerniumPlazaMode.cpp">
+      <Filter>GameMode\CerniumGameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Seren.cpp">
+      <Filter>Character\BossSeren</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -28,6 +37,15 @@
     </ClInclude>
     <ClInclude Include="TitleGameMode.h">
       <Filter>GameMode\TitleGameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="CerniumPlaza.h">
+      <Filter>Map\Cernium</Filter>
+    </ClInclude>
+    <ClInclude Include="CerniumPlazaMode.h">
+      <Filter>GameMode\CerniumGameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="Seren.h">
+      <Filter>Character\BossSeren</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
