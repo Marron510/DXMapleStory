@@ -1,7 +1,8 @@
 #include "PreCompile.h"
 #include "CerniumPlaza.h"
-#include <EngineCore/SpriteRenderer.h>
 
+
+#include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
 

@@ -53,6 +53,12 @@
     <ClCompile Include="Manyu.cpp">
       <Filter>Character\NPC\Villager</Filter>
     </ClCompile>
+    <ClCompile Include="MainHallMode.cpp">
+      <Filter>GameMode\BossSerenMode</Filter>
+    </ClCompile>
+    <ClCompile Include="MainHall.cpp">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -107,6 +113,12 @@
     <ClInclude Include="Manyu.h">
       <Filter>Character\NPC\Villager</Filter>
     </ClInclude>
+    <ClInclude Include="MainHallMode.h">
+      <Filter>GameMode\BossSerenMode</Filter>
+    </ClInclude>
+    <ClInclude Include="MainHall.h">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -153,6 +165,12 @@
     </Filter>
     <Filter Include="Character\NPC\Interactive">
       <UniqueIdentifier>{714c7a45-c469-4598-9e7d-bc8d9e1ca662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMode\BossSerenMode">
+      <UniqueIdentifier>{682c327c-a9b5-4b89-bf0d-f2a2b30e277e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\BossSerenMap">
+      <UniqueIdentifier>{0745de5a-eda5-4e57-8f41-0f67d9f65bea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -203,6 +203,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MainHall.cpp" />
+    <ClCompile Include="MainHallMode.cpp" />
     <ClCompile Include="Manyu.cpp">
       <SubType>
       </SubType>
@@ -274,6 +276,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MainHall.h" />
+    <ClInclude Include="MainHallMode.h" />
     <ClInclude Include="Manyu.h">
       <SubType>
       </SubType>

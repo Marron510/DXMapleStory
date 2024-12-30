@@ -4,8 +4,6 @@
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineGUIWindow.h>
-#include <EngineCore/EngineGUI.h>
-#include <EngineCore/imgui.h>
 #include <EnginePlatform/EngineInput.h>
 
 
@@ -37,6 +35,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	// 깃발
 
 	//프리스트
+
 	{
 		std::shared_ptr<class ADawnPriest> DawnPriest = GetWorld()->SpawnActor<ADawnPriest>();
 		DawnPriest->SetActorLocation(FVector{ -1500.0f, -230.0f });
@@ -120,7 +119,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	}
 
 
-
+	
 
 	// 플레이어
 	{
