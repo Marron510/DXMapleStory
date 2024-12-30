@@ -3,7 +3,9 @@
 #include <EngineBase/EngineString.h>
 #include <EngineCore/EngineCamera.h>
 #include <EngineCore/EngineTexture.h>
+#include <EngineCore/Mesh.h>
 #include "EngineVertex.h"
+
 
 
 URenderer::URenderer()
@@ -12,9 +14,6 @@ URenderer::URenderer()
 
 URenderer::~URenderer()
 {
-	VertexBuffer = nullptr;
-	VSShaderCodeBlob = nullptr;
-	VSErrorCodeBlob = nullptr;
 
 }
 
@@ -55,9 +54,9 @@ ENGINEAPI void URenderer::BeginPlay()
 
 	SetOrder(0);
 
-	InputAssembler1Init();
+	//InputAssembler1Init();
 	VertexShaderInit();
-	InputAssembler2Init();
+	//InputAssembler2Init();
 	RasterizerInit();
 	PixelShaderInit();
 	ShaderResInit();
@@ -72,7 +71,7 @@ void URenderer::ShaderResInit()
 		BufferInfo.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
 		BufferInfo.Usage = D3D11_USAGE_DYNAMIC;
 
-		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, nullptr, TransformConstBuffer.GetAddressOf()))
+		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, nullptr, &TransformConstBuffer))
 		{
 			MSGASSERT("상수버퍼 생성에 실패했습니다..");
 			return;
@@ -86,7 +85,7 @@ void URenderer::ShaderResInit()
 		BufferInfo.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
 		BufferInfo.Usage = D3D11_USAGE_DYNAMIC;
 
-		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, nullptr, SpriteConstBuffer.GetAddressOf()))
+		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, nullptr, &SpriteConstBuffer))
 		{
 			MSGASSERT("상수버퍼 생성에 실패했습니다..");
 			return;
@@ -162,6 +161,13 @@ void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
 
+	if (nullptr == Mesh)
+	{
+		MSGASSERT("매쉬가 세팅되지 않아서 랜더링을 할수 없습니다.");
+		return;
+	}
+
+
 	ShaderResSetting();
 
 	InputAssembler1Setting();
@@ -176,49 +182,49 @@ void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 
 
-void URenderer::InputAssembler1Init()
-{
-	std::vector<EngineVertex> Vertexs;
-	Vertexs.resize(4);
-
-	Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {0.0f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f} };
-	Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {1.0f, 0.0f} , {0.0f, 1.0f, 0.0f, 1.0f} };
-	Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 1.0f} , {0.0f, 0.0f, 1.0f, 1.0f} };
-	Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f} , {1.0f, 1.0f, 1.0f, 1.0f} };
-
-
-
-	D3D11_BUFFER_DESC BufferInfo = {0};
-
-	BufferInfo.ByteWidth = sizeof(EngineVertex) * static_cast<int>(Vertexs.size());
-	BufferInfo.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	BufferInfo.CPUAccessFlags = 0;
-	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
-
-
-
-	D3D11_SUBRESOURCE_DATA Data; // 초기값 넣어주는 용도의 구조체
-	Data.pSysMem = &Vertexs[0];
-
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, VertexBuffer.GetAddressOf()))
-	{
-		MSGASSERT("버텍스 버퍼 생성에 실패했습니다.");
-		return;
-	}
-}
+//void URenderer::InputAssembler1Init()
+//{
+//	std::vector<EngineVertex> Vertexs;
+//	Vertexs.resize(4);
+//
+//	Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {0.0f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f} };
+//	Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {1.0f, 0.0f} , {0.0f, 1.0f, 0.0f, 1.0f} };
+//	Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 1.0f} , {0.0f, 0.0f, 1.0f, 1.0f} };
+//	Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f} , {1.0f, 1.0f, 1.0f, 1.0f} };
+//
+//
+//
+//	D3D11_BUFFER_DESC BufferInfo = {0};
+//
+//	BufferInfo.ByteWidth = sizeof(EngineVertex) * static_cast<int>(Vertexs.size());
+//	BufferInfo.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+//	BufferInfo.CPUAccessFlags = 0;
+//	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
+//
+//
+//
+//	D3D11_SUBRESOURCE_DATA Data; // 초기값 넣어주는 용도의 구조체
+//	Data.pSysMem = &Vertexs[0];
+//
+//	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, VertexBuffer.GetAddressOf()))
+//	{
+//		MSGASSERT("버텍스 버퍼 생성에 실패했습니다.");
+//		return;
+//	}
+//}
 
 void URenderer::InputAssembler1Setting()
 {
-	UINT VertexSize = sizeof(EngineVertex);
-	// 이 버텍스 버퍼가 10개짜리인데 3번째 버텍스 부터 세팅해줘.
-	UINT Offset = 0;
-
-	ID3D11Buffer* ArrBuffer[1];
-	ArrBuffer[0] = VertexBuffer.Get();
-
-	UEngineCore::GetDevice().GetContext()->IASetVertexBuffers(0, 1, ArrBuffer, &VertexSize, &Offset);
+	Mesh->GetVertexBuffer()->Setting();
 	UEngineCore::GetDevice().GetContext()->IASetInputLayout(InputLayOut.Get());
+	//UINT VertexSize = sizeof(EngineVertex);
+	//// 이 버텍스 버퍼가 10개짜리인데 3번째 버텍스 부터 세팅해줘.
+	//UINT Offset = 0;
+	//ID3D11Buffer* ArrBuffer[1];
+	//ArrBuffer[0] = VertexBuffer.Get();
+	//UEngineCore::GetDevice().GetContext()->IASetVertexBuffers(0, 1, ArrBuffer, &VertexSize, &Offset);
 }
+
 
 void URenderer::InputAssembler1LayOut()
 {
@@ -349,12 +355,9 @@ void URenderer::RasterizerInit()
 	D3D11_RASTERIZER_DESC Desc = {};
 
 	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
-
-	// 면에 색깔이 보인다.
 	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
-	// 면에 뼈대만 보인다.
 
-	UEngineCore::GetDevice().GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
+	UEngineCore::GetDevice().GetDevice()->CreateRasterizerState(&Desc, &RasterizerState);
 
 	ViewPortInfo.Width = 1366.0f;
 	ViewPortInfo.Height = 768.0f;
@@ -371,38 +374,41 @@ void URenderer::RasterizerSetting()
 	UEngineCore::GetDevice().GetContext()->RSSetState(RasterizerState.Get());
 }
 
-void URenderer::InputAssembler2Init()
-{
-	std::vector<unsigned int> Indexs;
-
-	Indexs.push_back(0);
-	Indexs.push_back(1);
-	Indexs.push_back(2);
-
-	Indexs.push_back(1);
-	Indexs.push_back(3);
-	Indexs.push_back(2);
-
-
-	D3D11_BUFFER_DESC BufferInfo = { 0 };
-	BufferInfo.ByteWidth = sizeof(unsigned int) * static_cast<int>(Indexs.size());
-	BufferInfo.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	BufferInfo.CPUAccessFlags = 0;
-	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
-	D3D11_SUBRESOURCE_DATA Data;
-	Data.pSysMem = &Indexs[0];
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, &IndexBuffer))
-	{
-		MSGASSERT("인덱스 버퍼 생성에 실패했습니다.");
-		return;
-	}
-}
+//void URenderer::InputAssembler2Init()
+//{
+//	std::vector<unsigned int> Indexs;
+//
+//	Indexs.push_back(0);
+//	Indexs.push_back(1);
+//	Indexs.push_back(2);
+//
+//	Indexs.push_back(1);
+//	Indexs.push_back(3);
+//	Indexs.push_back(2);
+//
+//
+//	D3D11_BUFFER_DESC BufferInfo = { 0 };
+//	BufferInfo.ByteWidth = sizeof(unsigned int) * static_cast<int>(Indexs.size());
+//	BufferInfo.BindFlags = D3D11_BIND_INDEX_BUFFER;
+//	BufferInfo.CPUAccessFlags = 0;
+//	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
+//	D3D11_SUBRESOURCE_DATA Data;
+//	Data.pSysMem = &Indexs[0];
+//	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, &IndexBuffer))
+//	{
+//		MSGASSERT("인덱스 버퍼 생성에 실패했습니다.");
+//		return;
+//	}
+//}
 
 void URenderer::InputAssembler2Setting()
 {
-	int Offset = 0;
+	Mesh->GetIndexBuffer()->Setting();
 
-	UEngineCore::GetDevice().GetContext()->IASetIndexBuffer(IndexBuffer.Get(), DXGI_FORMAT_R32_UINT, Offset);
+	// int Offset = 0;
+	//// DXGI_FORMAT_R8_UINT; <= 옛날에는 아꼈다.
+	//// DXGI_FORMAT_R16_UINT; <= 옛날에는 아꼈다.
+	//UEngineCore::GetDevice().GetContext()->IASetIndexBuffer(IndexBuffer.Get(), DXGI_FORMAT_R32_UINT, Offset);
 
 	UEngineCore::GetDevice().GetContext()->IASetPrimitiveTopology(Topology);
 }
@@ -483,4 +489,16 @@ void URenderer::OutPutMergeSetting()
 void URenderer::SetSpriteData(size_t _Index)
 {
 	SpriteData = Sprite->GetSpriteData(_Index);
+}
+
+void URenderer::SetMesh(std::string_view _Name)
+{
+	std::shared_ptr<UMesh> FindMesh = UMesh::Find<UMesh>(_Name);
+
+	Mesh = FindMesh.get();
+
+	if (nullptr == Mesh)
+	{
+		MSGASSERT("존재하지 않는 매쉬를 세팅할수 없습니다.\n");
+	}
 }

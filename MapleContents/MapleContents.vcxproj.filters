@@ -1,26 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PreCompile.cpp" />
-    <ClCompile Include="MapleContentsCore.cpp" />
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="TitleLogo.cpp" />
+    <ClCompile Include="MapleContentsCore.cpp">
+      <Filter>MapleCore</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Map\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Character\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="MapleContentsCore.h" />
     <ClInclude Include="TitleGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h" />
+    <ClInclude Include="MapleContentsCore.h">
+      <Filter>MapleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Map\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Character\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
       <UniqueIdentifier>{92f12854-d757-4585-b1e1-122fc25acaf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{048fc560-2586-4d9e-b3cb-cc7fd134eab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleCore">
+      <UniqueIdentifier>{5e777e68-3c88-4a38-9dd0-f6498ede2132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Title">
+      <UniqueIdentifier>{bb750516-f6b6-4fc3-a9db-c1ba2760708e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Cernium">
+      <UniqueIdentifier>{998a4195-f7bf-4116-846c-58154b071a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character">
+      <UniqueIdentifier>{f5b8b423-f48e-4b7e-b817-5d0c9f974ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Player">
+      <UniqueIdentifier>{1fc3bce7-a15c-45c8-b3c2-c3207aea3d20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\BossSeren">
+      <UniqueIdentifier>{7badf3a1-c460-478e-9c53-200422656419}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
