@@ -17,23 +17,23 @@
 
 ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 {
-	/*{
+	{
 		Noon = GetWorld()->SpawnActor<ANoon>();
-	}*/
+	}
 
 	/*{
 		SunSet = GetWorld()->SpawnActor<ASunSet>();
-	}*/
+	}
 
-	/*{
+	{
 		MidNight = GetWorld()->SpawnActor<AMidNight>();
-	}*/
+	}
 
 	{
 		Dawn = GetWorld()->SpawnActor<ADawn>();
-	}
+	}*/
 
-
+	
 	// Ä«¸Þ¶ó
 	{
 		Camera = GetWorld()->GetMainCamera();
@@ -83,4 +83,15 @@ void ATheBoundaryOfTheWorld::Tick(float _DeltaTime)
 	{
 		Camera->AddRelativeLocation(FVector{ 0.0f, -300.0f * _DeltaTime, 0.0f });
 	}
+}
+
+
+
+void ATheBoundaryOfTheWorld::ChangeMapState()
+{
+	if (UEngineInput::IsPress('P'))
+	{
+
+	}
+	
 }

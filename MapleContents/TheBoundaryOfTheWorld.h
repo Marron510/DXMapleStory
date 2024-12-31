@@ -18,6 +18,7 @@ public:
 
 	void Tick(float _DeltaTime);
 
+	void ChangeMapState();
 protected:
 
 private:

@@ -18,7 +18,7 @@ ANoon::ANoon()
 		Noon_Sky->SetSprite("01_NoonImage", 0);
 		Noon_Sky->SetupAttachment(RootComponent);
 		Noon_Sky->SetScale3D({ 1832.0f , 952.0f });
-		Noon_Sky->SetRelativeLocation({ 0.0f, -500.0f });
+		Noon_Sky->SetRelativeLocation({ 0.0f, -480.0f });
 	}
 
 	{
@@ -59,7 +59,7 @@ ANoon::ANoon()
 		Noon_Castle->SetSprite("01_NoonImage", 4);
 		Noon_Castle->SetupAttachment(RootComponent);
 		Noon_Castle->SetScale3D({ 584.0f , 74.0f });
-		Noon_Castle->SetRelativeLocation({ -50.0f, -54.0f });
+		Noon_Castle->SetRelativeLocation({ -50.0f, -34.0f });
 	}
 
 	{
@@ -124,7 +124,7 @@ ANoon::ANoon()
 		Noon_Floor->SetSprite("01_NoonImage", 11);
 		Noon_Floor->SetupAttachment(RootComponent);
 		Noon_Floor->SetScale3D({ 1832.0f , 952.0f });
-		Noon_Floor->SetRelativeLocation({ 0.0f, -440.0f });
+		Noon_Floor->SetRelativeLocation({ 0.0f, -410.0f });
 	}
 
 	{
