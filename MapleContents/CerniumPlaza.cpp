@@ -173,6 +173,38 @@ ACerniumPlaza::ACerniumPlaza()
 		BuildingRight_1->SetRelativeLocation({ 1830, -310 });
 	}
 
+	{
+		DawnPriestFlag = CreateDefaultSubObject<USpriteRenderer>();
+		DawnPriestFlag->SetSprite("Cernium", 5);
+		DawnPriestFlag->SetupAttachment(RootComponent);
+		DawnPriestFlag->SetScale3D({ 178.0f , 324.0f });
+		DawnPriestFlag->SetRelativeLocation({ -1700, -182 });
+	}
+
+	{
+		FirePriestFlag = CreateDefaultSubObject<USpriteRenderer>();
+		FirePriestFlag->SetSprite("Cernium", 6);
+		FirePriestFlag->SetupAttachment(RootComponent);
+		FirePriestFlag->SetScale3D({ 180.0f , 331.0f });
+		FirePriestFlag->SetRelativeLocation({ 1700, -182 });
+	}
+
+	{
+		Tree0 = CreateDefaultSubObject<USpriteRenderer>();
+		Tree0->SetSprite("Cernium", 7);
+		Tree0->SetupAttachment(RootComponent);
+		Tree0->SetScale3D({ 209.0f , 189.0f });
+		Tree0->SetRelativeLocation({ -1860, -182 });
+	}
+
+	{
+		Tree1 = CreateDefaultSubObject<USpriteRenderer>();
+		Tree1->SetSprite("Cernium", 7);
+		Tree1->SetupAttachment(RootComponent);
+		Tree1->SetScale3D({ 209.0f , 189.0f });
+		Tree1->SetRelativeLocation({ 1890, -182 });
+	}
+
 }
 
 

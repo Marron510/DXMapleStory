@@ -235,7 +235,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/MainHall");
+		Dir.Append("Image");
+		Dir.Append("Phase1/MainHall");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -243,6 +244,9 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 	// 세렌 이미지
 	UEngineSprite::CreateSpriteToMeta("NoonSerenStand.png", ".sdata");
+
+
+
 
 	// 주인공 APawn 상속 받기
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Title");

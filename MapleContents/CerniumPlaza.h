@@ -43,6 +43,11 @@ private:
 	std::shared_ptr<class USpriteRenderer> BuildingRight_0;
 	std::shared_ptr<class USpriteRenderer> BuildingRight_1;
 	
+	// Object
+	std::shared_ptr<class USpriteRenderer> DawnPriestFlag;
+	std::shared_ptr<class USpriteRenderer> FirePriestFlag;
+	std::shared_ptr<class USpriteRenderer> Tree0;
+	std::shared_ptr<class USpriteRenderer> Tree1;
 
 };
 
