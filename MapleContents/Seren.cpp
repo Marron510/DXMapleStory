@@ -66,6 +66,8 @@ ASeren::ASeren()
 	}
 #pragma endregion
 	// 세렌 석양 애니메이션
+
+
 	{
 		SerenRender->CreateAnimation("SunSetSerenFirstAttack", "SunSetSerenFirstAttack", 0, 38, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenSecondAttack", "SunSetSerenSecondAttack", 0, 36, 0.06f, false);

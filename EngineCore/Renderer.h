@@ -3,6 +3,13 @@
 #include "EngineSprite.h"
 #include "RenderUnit.h"
 
+
+struct FUVValue
+{
+	float4 PlusUVValue;
+};
+
+
 class URenderer : public USceneComponent
 {
 	friend class UEngineCamera;
@@ -20,9 +27,13 @@ public:
 
 	ENGINEAPI void SetOrder(int _Order) override;
 
+	ENGINEAPI void SetTexture(std::string_view _Value);
+
 	ENGINEAPI void SetTexture(UEngineTexture* _Value);
 
 	ENGINEAPI void SetSpriteData(UEngineSprite* _Sprite, size_t _Index);
+
+	ENGINEAPI void AddUVPlusValue(float4 _Value);
 
 	ENGINEAPI void SetMesh(std::string_view _Name);
 
@@ -39,10 +50,12 @@ public:
 	class UEngineBlend* Blend = nullptr;
 
 	FSpriteData SpriteData;
+	FUVValue UVValueData;
 	UEngineTexture* Texture = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr; // 샘플러 스테이트
 	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr; // 상수버퍼
 	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstBuffer = nullptr; // 스프라이트용 상수버퍼
+	Microsoft::WRL::ComPtr<ID3D11Buffer> UVValue = nullptr; // 상수버퍼
 	void ShaderResInit();
 	void ShaderResSetting();
 
