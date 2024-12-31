@@ -109,6 +109,7 @@ public:
 		RootComponent->AddRotation(_Value);
 	}
 
+	void AttachToActor(AActor* _Parent);
 
 protected:
 	std::shared_ptr<class USceneComponent> RootComponent = nullptr;
