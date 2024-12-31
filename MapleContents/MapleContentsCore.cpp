@@ -302,8 +302,107 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
+
 	// 세렌 이미지
-	UEngineSprite::CreateSpriteToMeta("NoonSerenStand.png", ".sdata");
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("01_SerenNoon/NoonSerenStand");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("01_SerenNoon/NoonSerenRush");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("01_SerenNoon/NoonSerenSting");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("01_SerenNoon/NoonSerenEightLaser");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("01_SerenNoon/NoonSerenStunLaser");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("01_SerenNoon/NoonSerenHit");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("01_SerenNoon/NoonSerenDie");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
 
 
 
