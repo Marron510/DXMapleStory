@@ -121,6 +121,10 @@ public:
 		return RootComponent->GetTransformRef();
 	}
 
+	ENGINEAPI FVector GetActorUpVector();
+	ENGINEAPI FVector GetActorRightVector();
+	ENGINEAPI FVector GetActorForwardVector();
+
 protected:
 	std::shared_ptr<class USceneComponent> RootComponent = nullptr;
 
