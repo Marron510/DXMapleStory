@@ -45,12 +45,13 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 		}
 	}
 
+	// 플레이어
 	UEngineSprite::CreateSpriteToMeta("Idle.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Walk.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Leaf_Tornado.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Rolling.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Jump.png", ".sdata");
-	UEngineSprite::CreateSpriteToMeta("NoonSerenStand.png", ".sdata");
+
 
 	// 세르니움 이미지
 #pragma region 
@@ -222,6 +223,9 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
+
+	UEngineSprite::CreateSpriteToMeta("Flag.png", ".sdata");
+
 #pragma endregion
 	// 보스 맵 이미지
 	{
@@ -238,7 +242,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 
 	// 세렌 이미지
-	
+	UEngineSprite::CreateSpriteToMeta("NoonSerenStand.png", ".sdata");
 
 	// 주인공 APawn 상속 받기
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Title");

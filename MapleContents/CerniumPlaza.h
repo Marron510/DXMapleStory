@@ -21,9 +21,23 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
+	// 광장
 	std::shared_ptr<class USpriteRenderer> Plaza;
+	// 깃발
+	std::shared_ptr<class USpriteRenderer> Flag0;
+	std::shared_ptr<class USpriteRenderer> Flag1;
+	std::shared_ptr<class USpriteRenderer> Flag2;
+	std::shared_ptr<class USpriteRenderer> Flag3;
+	std::shared_ptr<class USpriteRenderer> Flag4;
+	std::shared_ptr<class USpriteRenderer> Flag5;
+	
+	// 대장간
 	std::shared_ptr<class USpriteRenderer> Smithy;
+
+	// 포션상점
 	std::shared_ptr<class USpriteRenderer> Potion;
+
+	// 마을 건물
 	std::shared_ptr<class USpriteRenderer> BuildingLeft_0;
 	std::shared_ptr<class USpriteRenderer> BuildingLeft_1;
 	std::shared_ptr<class USpriteRenderer> BuildingRight_0;

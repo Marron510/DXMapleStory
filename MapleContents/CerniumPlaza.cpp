@@ -36,6 +36,97 @@ ACerniumPlaza::ACerniumPlaza()
 	}
 
 	{
+		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+		RootComponent = Default;
+
+		Flag0 = CreateDefaultSubObject<USpriteRenderer>();
+
+		Flag0->SetupAttachment(RootComponent);
+		Flag0->CreateAnimation("Flag", "Flag.png", 0, 6, 0.1f);
+		USpriteRenderer::FrameAnimation* Animation = Flag0->FindAnimation("Flag");
+		Flag0->ChangeAnimation("Flag");
+		Flag0->SetRelativeLocation({ -334.0f, 374.0f });
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 1.0f;
+	}
+	{
+		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+		RootComponent = Default;
+
+		Flag1 = CreateDefaultSubObject<USpriteRenderer>();
+
+		Flag1->SetupAttachment(RootComponent);
+		Flag1->CreateAnimation("Flag", "Flag.png", 0, 6, 0.1f);
+		USpriteRenderer::FrameAnimation* Animation = Flag1->FindAnimation("Flag");
+		Flag1->ChangeAnimation("Flag");
+		Flag1->SetRelativeLocation({ -800.0f, 484.0f });
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 1.0f;
+	}
+
+	{
+		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+		RootComponent = Default;
+
+		Flag2 = CreateDefaultSubObject<USpriteRenderer>();
+
+		Flag2->SetupAttachment(RootComponent);
+		Flag2->CreateAnimation("Flag", "Flag.png", 0, 6, 0.1f);
+		USpriteRenderer::FrameAnimation* Animation = Flag2->FindAnimation("Flag");
+		Flag2->ChangeAnimation("Flag");
+		Flag2->SetRelativeLocation({ -1302.0f, 638.0f });
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 1.0f;
+	}
+
+
+	{
+		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+		RootComponent = Default;
+
+		Flag3 = CreateDefaultSubObject<USpriteRenderer>();
+
+		Flag3->SetupAttachment(RootComponent);
+		Flag3->CreateAnimation("Flag", "Flag.png", 0, 6, 0.1f);
+		USpriteRenderer::FrameAnimation* Animation = Flag3->FindAnimation("Flag");
+		Flag3->ChangeAnimation("Flag");
+		Flag3->SetRelativeLocation({ 364.0f, 374.0f });
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 1.0f;
+	}
+	{
+		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+		RootComponent = Default;
+
+		Flag4 = CreateDefaultSubObject<USpriteRenderer>();
+
+		Flag4->SetupAttachment(RootComponent);
+		Flag4->CreateAnimation("Flag", "Flag.png", 0, 6, 0.1f);
+		USpriteRenderer::FrameAnimation* Animation = Flag4->FindAnimation("Flag");
+		Flag4->ChangeAnimation("Flag");
+		Flag4->SetRelativeLocation({ 840.0f, 484.0f });
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 1.0f;
+	}
+
+	{
+		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+		RootComponent = Default;
+
+		Flag5 = CreateDefaultSubObject<USpriteRenderer>();
+
+		Flag5->SetupAttachment(RootComponent);
+		Flag5->CreateAnimation("Flag", "Flag.png", 0, 6, 0.1f);
+		USpriteRenderer::FrameAnimation* Animation = Flag5->FindAnimation("Flag");
+		Flag5->ChangeAnimation("Flag");
+		Flag5->SetRelativeLocation({ 1328.0f, 638.0f });
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 1.0f;
+	}
+
+
+
+	{
 		BuildingLeft_0 = CreateDefaultSubObject<USpriteRenderer>();
 		BuildingLeft_0->SetSprite("Cernium", 1);
 		BuildingLeft_0->SetupAttachment(RootComponent);
