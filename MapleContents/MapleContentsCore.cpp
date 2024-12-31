@@ -8,6 +8,7 @@
 #include "TitleGameMode.h"
 #include "CerniumPlazaMode.h"
 #include "MainHallMode.h"
+#include "TheBoundaryOfTheWorld.h"
 
 CreateContentsCoreDefine(UMapleContentsCore);
 
@@ -241,6 +242,35 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
+	// 정오 맵 이미지
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("Phase2_MapImage/01_NoonImage");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	// 석양 맵 이미지
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("Phase2_MapImage/02_SunSetImage");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
 
 	// 세렌 이미지
 	UEngineSprite::CreateSpriteToMeta("NoonSerenStand.png", ".sdata");
@@ -252,8 +282,9 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Title");
 	UEngineCore::CreateLevel<ACerniumPlazaMode, APawn>("Plaza");
 	UEngineCore::CreateLevel<AMainHallMode, APawn>("MainHall");
+	UEngineCore::CreateLevel<ATheBoundaryOfTheWorld, APawn>("TheBoundaryOfTheWorld");
 
-	UEngineCore::OpenLevel("MainHall");
+	UEngineCore::OpenLevel("TheBoundaryOfTheWorld");
 }
 
 void UMapleContentsCore::EngineTick(float _DeltaTime)

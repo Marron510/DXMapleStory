@@ -59,6 +59,21 @@
     <ClCompile Include="MainHall.cpp">
       <Filter>Map\BossSerenMap</Filter>
     </ClCompile>
+    <ClCompile Include="Noon.cpp">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClCompile>
+    <ClCompile Include="SunSet.cpp">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClCompile>
+    <ClCompile Include="MidNight.cpp">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Dawn.cpp">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClCompile>
+    <ClCompile Include="TheBoundaryOfTheWorld.cpp">
+      <Filter>GameMode\BossSerenMode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -118,6 +133,21 @@
     </ClInclude>
     <ClInclude Include="MainHall.h">
       <Filter>Map\BossSerenMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Noon.h">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClInclude>
+    <ClInclude Include="SunSet.h">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClInclude>
+    <ClInclude Include="MidNight.h">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Dawn.h">
+      <Filter>Map\BossSerenMap</Filter>
+    </ClInclude>
+    <ClInclude Include="TheBoundaryOfTheWorld.h">
+      <Filter>GameMode\BossSerenMode</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

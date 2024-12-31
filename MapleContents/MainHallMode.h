@@ -21,9 +21,16 @@ public:
 protected:
 
 private:
+	// 플레이어
 	std::shared_ptr<class APlayer> Player;
-	
+
+	// 세렌
+	std::shared_ptr<class ASeren> Seren;
+
+	// 맵
 	std::shared_ptr<class AMainHall> MainHall;
+
+	// 카메라
 	std::shared_ptr<class ACameraActor> Camera;
 };
 

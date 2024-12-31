@@ -1,20 +1,24 @@
-#include "PreCompile.h"
-#include "MainHallMode.h"
+#include "Precompile.h"
+#include "TheBoundaryOfTheWorld.h"
+
 
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineInput.h>
 
-#include "MainHall.h"
-
+#include "Noon.h"
+#include "SunSet.h"
+#include "MidNight.h"
+#include "Dawn.h"
 
 #include "Seren.h"
 #include "Player.h"
 
-AMainHallMode::AMainHallMode()
+
+ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 {
 	{
-		MainHall = GetWorld()->SpawnActor<AMainHall>();
+		Noon = GetWorld()->SpawnActor<ANoon>();
 	}
 
 	// 카메라
@@ -22,28 +26,30 @@ AMainHallMode::AMainHallMode()
 		Camera = GetWorld()->GetMainCamera();
 		Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 	}
-
 	// 세렌
 	{
 		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ 50.0f, -185.0f });
+		Seren->SetActorLocation(FVector{ 50.0f, -85.0f });
 	}
 
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->SetActorLocation(FVector{ 0.0f, -275.0f });
+		Player->SetActorLocation(FVector{ 0.0f, -170.0f });
 	}
 
+
 }
 
-AMainHallMode::~AMainHallMode()
+ATheBoundaryOfTheWorld::~ATheBoundaryOfTheWorld()
 {
+
 }
 
-void AMainHallMode::Tick(float _DeltaTime)
+void ATheBoundaryOfTheWorld::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
 	if (UEngineInput::IsPress('A'))
 	{
 		Camera->AddRelativeLocation(FVector{ -300.0f * _DeltaTime, 0.0f, 0.0f });
@@ -64,6 +70,4 @@ void AMainHallMode::Tick(float _DeltaTime)
 	{
 		Camera->AddRelativeLocation(FVector{ 0.0f, -300.0f * _DeltaTime, 0.0f });
 	}
-
-
 }

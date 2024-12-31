@@ -179,6 +179,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Dawn.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DawnPriest.cpp">
       <SubType>
       </SubType>
@@ -213,6 +217,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MidNight.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Noon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="OldMan.cpp">
       <SubType>
       </SubType>
@@ -240,6 +252,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="SunSet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TheBoundaryOfTheWorld.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleGameMode.cpp" />
     <ClCompile Include="TitleLogo.cpp" />
   </ItemGroup>
@@ -249,6 +269,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="CerniumPlazaMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Dawn.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -286,6 +310,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MidNight.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Noon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="OldMan.h">
       <SubType>
       </SubType>
@@ -301,6 +333,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Shorn.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SunSet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TheBoundaryOfTheWorld.h">
       <SubType>
       </SubType>
     </ClInclude>
