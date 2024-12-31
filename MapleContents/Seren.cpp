@@ -16,49 +16,54 @@ ASeren::ASeren()
 
 	SerenRender->SetupAttachment(RootComponent);
 
-	SerenRender->CreateAnimation("NoonSerenStand", "NoonSerenStand", 0, 14, 0.09f);
-	SerenRender->CreateAnimation("NoonSerenRush", "NoonSerenRush", 0, 35, 0.072f, false);
-	SerenRender->CreateAnimation("NoonSerenSting", "NoonSerenSting", 0, 20, 0.07f, false);
-	SerenRender->CreateAnimation("NoonSerenStunLaser", "NoonSerenStunLaser", 0, 21, 0.13f, false);
-	SerenRender->CreateAnimation("NoonSerenEightLaser", "NoonSerenEightLaser", 0, 27, 0.11f, false);
-	SerenRender->CreateAnimation("NoonSerenHit", "NoonSerenHit", 0, 0, 0.09f, false);
-	SerenRender->CreateAnimation("NoonSerenDie", "NoonSerenDie", 0, 37, 0.1f, false);
-	{
-		USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStand");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-	{
-		USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenRush");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-	{
-		USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenSting");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-	{
-		USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStunLaser");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-	{
-		USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenEightLaser");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-	{
-		USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenHit");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-	{
-		USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenDie");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
+	// 정오 스킬 애니메이션 
+#pragma region
 
+	{
+		SerenRender->CreateAnimation("NoonSerenStand", "NoonSerenStand", 0, 14, 0.09f);
+		SerenRender->CreateAnimation("NoonSerenRush", "NoonSerenRush", 0, 35, 0.072f, false);
+		SerenRender->CreateAnimation("NoonSerenSting", "NoonSerenSting", 0, 20, 0.07f, false);
+		SerenRender->CreateAnimation("NoonSerenStunLaser", "NoonSerenStunLaser", 0, 21, 0.13f, false);
+		SerenRender->CreateAnimation("NoonSerenEightLaser", "NoonSerenEightLaser", 0, 27, 0.11f, false);
+		SerenRender->CreateAnimation("NoonSerenHit", "NoonSerenHit", 0, 0, 0.09f, false);
+		SerenRender->CreateAnimation("NoonSerenDie", "NoonSerenDie", 0, 37, 0.1f, false);
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStand");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenRush");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenSting");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStunLaser");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenEightLaser");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenHit");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenDie");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+	}
+#pragma endregion
 
 	SerenRender->ChangeAnimation("NoonSerenRush");
 
@@ -80,6 +85,6 @@ void ASeren::Tick(float _DeltaTime)
 	
 	if (UEngineInput::IsPress('U'))
 	{
-		SerenRender->ChangeAnimation("");
+		SerenRender->ChangeAnimation("NoonSerenDie");
 	}
 }
