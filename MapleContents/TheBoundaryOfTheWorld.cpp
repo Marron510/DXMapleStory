@@ -42,7 +42,7 @@ ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 	// 세렌
 	{
 		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ 50.0f, -65.0f });
+		Seren->SetActorLocation(FVector{ 50.0f, -435.0f });
 	}
 
 	// 플레이어

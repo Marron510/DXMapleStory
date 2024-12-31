@@ -228,7 +228,9 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineSprite::CreateSpriteToMeta("Flag.png", ".sdata");
 
 #pragma endregion
+
 	// 보스 맵 이미지
+#pragma region
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("MapleResources"))
@@ -301,10 +303,12 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
-
+#pragma endregion
 
 	// 세렌 이미지
 
+	// 세렌 정오
+#pragma region
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("MapleResources"))
@@ -403,6 +407,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
+#pragma endregion
 
 
 
