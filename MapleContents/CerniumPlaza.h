@@ -46,8 +46,15 @@ private:
 	// Object
 	std::shared_ptr<class USpriteRenderer> DawnPriestFlag;
 	std::shared_ptr<class USpriteRenderer> FirePriestFlag;
-	std::shared_ptr<class USpriteRenderer> Tree0;
-	std::shared_ptr<class USpriteRenderer> Tree1;
+	std::shared_ptr<class USpriteRenderer> Tree_0;
+	std::shared_ptr<class USpriteRenderer> Tree_1;
+	std::shared_ptr<class USpriteRenderer> FootHold_Left_0;
+	std::shared_ptr<class USpriteRenderer> FootHold_Left_1;
+	std::shared_ptr<class USpriteRenderer> FootHold_Mid;
+	std::shared_ptr<class USpriteRenderer> FootHold_Right;
+	std::shared_ptr<class USpriteRenderer> BigTree_Left;
+	std::shared_ptr<class USpriteRenderer> BigTree_Right;
+
 
 };
 
