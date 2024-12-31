@@ -409,6 +409,62 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 #pragma endregion
 
+	// 세렌 석양
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("02_SerenSunSet/SunSetSerenFirstAttack");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("02_SerenSunSet/SunSetSerenSecondAttack");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("02_SerenSunSet/SunSetSerenThirdAttack");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("02_SerenSunSet/SunSetSerenDie");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
 
 
 

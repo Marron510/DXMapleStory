@@ -27,6 +27,7 @@ ASeren::ASeren()
 		SerenRender->CreateAnimation("NoonSerenEightLaser", "NoonSerenEightLaser", 0, 27, 0.11f, false);
 		SerenRender->CreateAnimation("NoonSerenHit", "NoonSerenHit", 0, 0, 0.09f, false);
 		SerenRender->CreateAnimation("NoonSerenDie", "NoonSerenDie", 0, 37, 0.1f, false);
+
 		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStand");
 			Animation->IsAutoScale = true;
@@ -64,9 +65,39 @@ ASeren::ASeren()
 		}
 	}
 #pragma endregion
+	// 세렌 석양 애니메이션
+	{
+		SerenRender->CreateAnimation("SunSetSerenFirstAttack", "SunSetSerenFirstAttack", 0, 38, 0.06f, false);
+		SerenRender->CreateAnimation("SunSetSerenSecondAttack", "SunSetSerenSecondAttack", 0, 36, 0.06f, false);
+		SerenRender->CreateAnimation("SunSetSerenThirdAttack", "SunSetSerenThirdAttack", 0, 39, 0.06f, false);
+		SerenRender->CreateAnimation("SunSetSerenDie", "SunSetSerenDie", 0, 36, 0.06f, false);
 
-	SerenRender->ChangeAnimation("NoonSerenRush");
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenFirstAttack");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
 
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenSecondAttack");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenThirdAttack");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+
+		{
+			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenDie");
+			Animation->IsAutoScale = true;
+			Animation->AutoScaleRatio = 1.0f;
+		}
+	}
+
+	SerenRender->ChangeAnimation("NoonSerenStand");
 }
 
 ASeren::~ASeren()
@@ -85,6 +116,6 @@ void ASeren::Tick(float _DeltaTime)
 	
 	if (UEngineInput::IsPress('U'))
 	{
-		SerenRender->ChangeAnimation("NoonSerenDie");
+		SerenRender->ChangeAnimation("SunSetSerenSecondAttack");
 	}
 }
