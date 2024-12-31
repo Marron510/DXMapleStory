@@ -89,6 +89,14 @@ ASunSet::ASunSet()
 	}
 
 	{
+		std::shared_ptr<class USpriteRenderer> SunSet_Cloud_RightBack = CreateDefaultSubObject<USpriteRenderer>();
+		SunSet_Cloud_RightBack->SetSprite("02_SunSetImage", 8);
+		SunSet_Cloud_RightBack->SetupAttachment(RootComponent);
+		SunSet_Cloud_RightBack->SetScale3D({ 1440.0f , 440.0f });
+		SunSet_Cloud_RightBack->SetRelativeLocation({ 1000.0f, 100.0f });
+	}
+
+	{
 		std::shared_ptr<class USpriteRenderer> SunSet_Cloud_LeftBot = CreateDefaultSubObject<USpriteRenderer>();
 		SunSet_Cloud_LeftBot->SetSprite("02_SunSetImage", 7);
 		SunSet_Cloud_LeftBot->SetupAttachment(RootComponent);
@@ -101,7 +109,7 @@ ASunSet::ASunSet()
 		SunSet_Cloud_RightBot->SetSprite("02_SunSetImage", 7);
 		SunSet_Cloud_RightBot->SetupAttachment(RootComponent);
 		SunSet_Cloud_RightBot->SetScale3D({ 1068.0f , 466.0f });
-		SunSet_Cloud_RightBot->SetRelativeLocation({ 650.0f, -250.0f });
+		SunSet_Cloud_RightBot->SetRelativeLocation({ 650.0f, -200.0f });
 	}
 	{
 		std::shared_ptr<class USpriteRenderer> SunSet_Cliff1 = CreateDefaultSubObject<USpriteRenderer>();
@@ -143,6 +151,23 @@ ASunSet::ASunSet()
 		SunSet_Stone2->SetScale3D({ 312.0f , 114.0f });
 		SunSet_Stone2->SetRelativeLocation({ 300.0f, -246.0f });
 	}
+	
+	{
+		std::shared_ptr<class USpriteRenderer> SunSet_Fog_BottomLeft = CreateDefaultSubObject<USpriteRenderer>();
+		SunSet_Fog_BottomLeft->SetSprite("02_SunSetImage", 14);
+		SunSet_Fog_BottomLeft->SetupAttachment(RootComponent);
+		SunSet_Fog_BottomLeft->SetScale3D({ 1040.0f , 366.0f });
+		SunSet_Fog_BottomLeft->SetRelativeLocation({ -500.0f, -446.0f });
+	}
+
+	{
+		std::shared_ptr<class USpriteRenderer> SunSet_Fog_BottomRight = CreateDefaultSubObject<USpriteRenderer>();
+		SunSet_Fog_BottomRight->SetSprite("02_SunSetImage", 14);
+		SunSet_Fog_BottomRight->SetupAttachment(RootComponent);
+		SunSet_Fog_BottomRight->SetScale3D({ 1040.0f , 366.0f });
+		SunSet_Fog_BottomRight->SetRelativeLocation({ 500.0f, -446.0f });
+	}
+
 }
 
 ASunSet::~ASunSet()
