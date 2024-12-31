@@ -275,6 +275,27 @@ void ACerniumPlaza::BeginPlay()
 void ACerniumPlaza::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 }

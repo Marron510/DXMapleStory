@@ -253,7 +253,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<ACerniumPlazaMode, APawn>("Plaza");
 	UEngineCore::CreateLevel<AMainHallMode, APawn>("MainHall");
 
-	UEngineCore::OpenLevel("Plaza");
+	UEngineCore::OpenLevel("MainHall");
 }
 
 void UMapleContentsCore::EngineTick(float _DeltaTime)
