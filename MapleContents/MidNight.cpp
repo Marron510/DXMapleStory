@@ -107,7 +107,7 @@ AMidNight::AMidNight()
 		std::shared_ptr<class USpriteRenderer> MidNight_Cloud_RightBot = CreateDefaultSubObject<USpriteRenderer>();
 		MidNight_Cloud_RightBot->SetSprite("03_MidnightImage", 7);
 		MidNight_Cloud_RightBot->SetupAttachment(RootComponent);
-		MidNight_Cloud_RightBot->SetScale3D({ 1068.0f , 466.0f });
+		MidNight_Cloud_RightBot->SetScale3D({ 1116.0f , 466.0f });
 		MidNight_Cloud_RightBot->SetRelativeLocation({ 650.0f, -200.0f });
 	}
 	{

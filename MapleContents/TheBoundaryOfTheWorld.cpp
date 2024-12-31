@@ -25,10 +25,13 @@ ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 		SunSet = GetWorld()->SpawnActor<ASunSet>();
 	}*/
 
-	{
+	/*{
 		MidNight = GetWorld()->SpawnActor<AMidNight>();
-	}
+	}*/
 
+	{
+		Dawn = GetWorld()->SpawnActor<ADawn>();
+	}
 
 
 	// 카메라
@@ -39,13 +42,13 @@ ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 	// 세렌
 	{
 		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ 50.0f, -85.0f });
+		Seren->SetActorLocation(FVector{ 50.0f, -65.0f });
 	}
 
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->SetActorLocation(FVector{ 0.0f, -170.0f });
+		Player->SetActorLocation(FVector{ 0.0f, -150.0f });
 	}
 
 
