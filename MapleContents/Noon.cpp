@@ -133,6 +133,7 @@ ANoon::ANoon()
 		Noon_Stone1->SetupAttachment(RootComponent);
 		Noon_Stone1->SetScale3D({ 176.0f , 130.0f });
 		Noon_Stone1->SetRelativeLocation({ -340.0f, -246.0f });
+		Noon_Stone1->SetOrder(1);
 	}
 
 
@@ -142,6 +143,7 @@ ANoon::ANoon()
 		Noon_Stone2->SetupAttachment(RootComponent);
 		Noon_Stone2->SetScale3D({ 304.0f , 114.0f });
 		Noon_Stone2->SetRelativeLocation({ 300.0f, -246.0f });
+		Noon_Stone2->SetOrder(1);
 	}
 
 	{

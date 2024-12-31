@@ -140,6 +140,7 @@ AMidNight::AMidNight()
 		MidNight_Stone1->SetupAttachment(RootComponent);
 		MidNight_Stone1->SetScale3D({ 180.0f , 130.0f });
 		MidNight_Stone1->SetRelativeLocation({ -340.0f, -246.0f });
+		MidNight_Stone1->SetOrder(1);
 	}
 
 
@@ -149,6 +150,7 @@ AMidNight::AMidNight()
 		MidNight_Stone2->SetupAttachment(RootComponent);
 		MidNight_Stone2->SetScale3D({ 312.0f , 114.0f });
 		MidNight_Stone2->SetRelativeLocation({ 300.0f, -246.0f });
+		MidNight_Stone2->SetOrder(1);
 	}
 
 	{

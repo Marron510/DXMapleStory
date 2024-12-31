@@ -141,6 +141,7 @@ ASunSet::ASunSet()
 		SunSet_Stone1->SetupAttachment(RootComponent);
 		SunSet_Stone1->SetScale3D({ 180.0f , 130.0f });
 		SunSet_Stone1->SetRelativeLocation({ -340.0f, -246.0f });
+		SunSet_Stone1->SetOrder(1);
 	}
 
 
@@ -150,6 +151,7 @@ ASunSet::ASunSet()
 		SunSet_Stone2->SetupAttachment(RootComponent);
 		SunSet_Stone2->SetScale3D({ 312.0f , 114.0f });
 		SunSet_Stone2->SetRelativeLocation({ 300.0f, -246.0f });
+		SunSet_Stone2->SetOrder(1);
 	}
 	
 	{

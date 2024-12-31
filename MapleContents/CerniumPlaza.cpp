@@ -250,6 +250,7 @@ ACerniumPlaza::ACerniumPlaza()
 		BigTree_Left->SetupAttachment(RootComponent);
 		BigTree_Left->SetScale3D({ 342.0f , 1245.0f });
 		BigTree_Left->SetRelativeLocation({ -2180, -420 });
+		BigTree_Left->SetOrder(1);
 	}
 
 	{
@@ -258,6 +259,7 @@ ACerniumPlaza::ACerniumPlaza()
 		BigTree_Right->SetupAttachment(RootComponent);
 		BigTree_Right->SetScale3D({ 342.0f , 1245.0f });
 		BigTree_Right->SetRelativeLocation({ 2200, -420 });
+		BigTree_Right->SetOrder(1);
 	}
 
 }
