@@ -73,7 +73,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Smithy");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Smithy");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -85,7 +86,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Potion");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Potion");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -97,7 +99,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/DawnPriest");
+		Dir.Append("Image");
+		Dir.Append("Cernium/DawnPriest");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -109,7 +112,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/FirePriest");
+		Dir.Append("Image");
+		Dir.Append("Cernium/FirePriest");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -121,7 +125,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Shorn");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Shorn");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -133,7 +138,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Shirine");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Shirine");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -145,7 +151,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Hate");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Hate");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -157,7 +164,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/OldMan");
+		Dir.Append("Image");
+		Dir.Append("Cernium/OldMan");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -169,7 +177,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Joy");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Joy");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -181,7 +190,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Manyu");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Manyu");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -193,7 +203,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Duglas");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Duglas");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -206,7 +217,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Elbis");
+		Dir.Append("Image");
+		Dir.Append("Cernium/Elbis");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -233,7 +245,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<ACerniumPlazaMode, APawn>("Plaza");
 	UEngineCore::CreateLevel<AMainHallMode, APawn>("MainHall");
 
-	UEngineCore::OpenLevel("MainHall");
+	UEngineCore::OpenLevel("Plaza");
 }
 
 void UMapleContentsCore::EngineTick(float _DeltaTime)
