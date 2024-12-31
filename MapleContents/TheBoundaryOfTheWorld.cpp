@@ -17,13 +17,13 @@
 
 ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 {
-	//{
-	//	Noon = GetWorld()->SpawnActor<ANoon>();
-	//}
-
 	{
-		SunSet = GetWorld()->SpawnActor<ASunSet>();
+		Noon = GetWorld()->SpawnActor<ANoon>();
 	}
+
+	/*{
+		SunSet = GetWorld()->SpawnActor<ASunSet>();
+	}*/
 
 
 	// Ä«¸Þ¶ó

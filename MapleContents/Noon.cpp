@@ -143,6 +143,23 @@ ANoon::ANoon()
 		Noon_Stone2->SetScale3D({ 304.0f , 114.0f });
 		Noon_Stone2->SetRelativeLocation({ 300.0f, -246.0f });
 	}
+
+	{
+		std::shared_ptr<class USpriteRenderer> Noon_Fog_BottomLeft = CreateDefaultSubObject<USpriteRenderer>();
+		Noon_Fog_BottomLeft->SetSprite("01_NoonImage", 14);
+		Noon_Fog_BottomLeft->SetupAttachment(RootComponent);
+		Noon_Fog_BottomLeft->SetScale3D({ 1056.0f , 410.0f });
+		Noon_Fog_BottomLeft->SetRelativeLocation({ -600.0f, -476.0f });
+	}
+
+
+	{
+		std::shared_ptr<class USpriteRenderer> Noon_Fog_BottomRight = CreateDefaultSubObject<USpriteRenderer>();
+		Noon_Fog_BottomRight->SetSprite("01_NoonImage", 14);
+		Noon_Fog_BottomRight->SetupAttachment(RootComponent);
+		Noon_Fog_BottomRight->SetScale3D({ 1056.0f , 410.0f });
+		Noon_Fog_BottomRight->SetRelativeLocation({ 600.0f, -476.0f });
+	}
 }
 
 ANoon::~ANoon()
