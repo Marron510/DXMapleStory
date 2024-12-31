@@ -272,6 +272,20 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
+	// 자정 맵 이미지
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Phase2");
+		Dir.Append("Phase2_MapImage/03_MidnightImage");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
 	// 세렌 이미지
 	UEngineSprite::CreateSpriteToMeta("NoonSerenStand.png", ".sdata");
 

@@ -30,7 +30,7 @@ private:
 	// ¸Ê
 	std::shared_ptr<class ANoon> Noon;
 	std::shared_ptr<class ASunSet> SunSet;
-	//std::shared_ptr<class AMidNight> MidNight;
+	std::shared_ptr<class AMidNight> MidNight;
 	//std::shared_ptr<class ADawn> Dawn;
 
 	// Ä«¸Þ¶ó
