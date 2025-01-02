@@ -220,6 +220,7 @@
     <ClInclude Include="EngineBlend.h" />
     <ClInclude Include="EngineCamera.h" />
     <ClInclude Include="EngineCore.h" />
+    <ClInclude Include="EngineEnums.h" />
     <ClInclude Include="EngineGraphicDevice.h" />
     <ClInclude Include="EngineGUI.h" />
     <ClInclude Include="EngineGUIWindow.h" />

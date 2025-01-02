@@ -197,6 +197,9 @@
     <ClInclude Include="EngineBlend.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="EngineEnums.h">
+      <Filter>Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Interface">
@@ -255,6 +258,9 @@
     </Filter>
     <Filter Include="GUI\IMGUI\CPP">
       <UniqueIdentifier>{f01a1c1f-139b-451c-acc2-00fba5d743c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{12790e32-caed-4303-81af-f7d934adc2bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
