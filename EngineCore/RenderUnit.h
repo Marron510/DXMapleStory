@@ -1,7 +1,10 @@
 #pragma once
+#include "EngineShaderResources.h"
+#include "Mesh.h"
+#include "EngineMaterial.h"
+#include "EngineEnums.h"
 
-// 설명 : 랜더링의 최소단위
-//        Draw를 하는 애는 이녀석을 기반으로 할것이다.
+
 class URenderUnit
 {
 public:
@@ -9,15 +12,37 @@ public:
 	URenderUnit();
 	~URenderUnit();
 
-	// delete Function
-	URenderUnit(const URenderUnit& _Other) = delete;
-	URenderUnit(URenderUnit&& _Other) noexcept = delete;
-	URenderUnit& operator=(const URenderUnit& _Other) = delete;
-	URenderUnit& operator=(URenderUnit&& _Other) noexcept = delete;
+	URenderer* ParentRenderer = nullptr;
 
-protected:
+	// 매쉬(육체) 
+	std::shared_ptr<UMesh> Mesh;
+	// 머티리얼(피부)
+	std::shared_ptr<UEngineMaterial> Material;
+
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayOut;
+
+	ENGINEAPI void SetMesh(std::string_view _Name);
+	ENGINEAPI void SetMaterial(std::string_view _Name);
+
+	ENGINEAPI virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
+
+	ENGINEAPI void MaterialResourcesCheck();
+
+	template<typename Data>
+	ENGINEAPI void ConstantBufferLinkData(std::string_view _Name, Data& _Data)
+	{
+		ConstantBufferLinkData(_Name, reinterpret_cast<void*>(&_Data));
+	}
+
+	ENGINEAPI void ConstantBufferLinkData(std::string_view Name, void* _Data);
+
+	ENGINEAPI void SetTexture(std::string_view _Name, std::string_view _ResName);
+	ENGINEAPI void SetSampler(std::string_view Name, std::string_view _ResName);
 
 private:
+	std::map<EShaderType, UEngineShaderResources> Resources;
+
+	void InputLayOutCreate();
 
 };
 

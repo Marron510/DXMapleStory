@@ -1,9 +1,8 @@
 #pragma once
-
 #include <EngineBase/Object.h>
 #include <EngineBase/EngineDebug.h>
 
-// 설명 :
+
 class ULevel : public UObject
 {
 public:
@@ -23,7 +22,6 @@ public:
 
 	void Tick(float _DeltaTime);
 	void Render(float _DeltaTime);
-
 
 	std::shared_ptr<class ACameraActor> GetMainCamera()
 	{
@@ -51,7 +49,6 @@ public:
 	template<typename ActorType>
 	std::shared_ptr<ActorType> SpawnActor()
 	{
-
 		static_assert(std::is_base_of_v<AActor, ActorType>, "액터를 상속받지 않은 클래스를 SpawnActor하려고 했습니다.");
 
 		if (false == std::is_base_of_v<AActor, ActorType>)
@@ -69,13 +66,11 @@ public:
 		ActorType* NewPtr = reinterpret_cast<ActorType*>(ActorMemory);
 		std::shared_ptr<ActorType> NewActor(NewPtr = new(ActorMemory) ActorType());
 
-
 		BeginPlayList.push_back(NewActor);
 
 		return NewActor;
 	}
 
-	//                           0              100그룹
 	void ChangeRenderGroup(int _CameraOrder, int _PrevGroupOrder, std::shared_ptr<class URenderer> _Renderer);
 
 protected:
@@ -86,6 +81,5 @@ private:
 	std::list<std::shared_ptr<class AActor>> AllActorList;
 
 	std::map<int, std::shared_ptr<class ACameraActor>> Cameras;
-
 };
 

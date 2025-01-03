@@ -5,7 +5,6 @@
 #include "SceneComponent.h"
 #include "EngineEnums.h"
 
-
 // 설명 :
 class UEngineCamera : public USceneComponent
 {
@@ -61,9 +60,12 @@ private:
 
 	EProjectionType Type = EProjectionType::Orthographic;
 
+	D3D11_VIEWPORT ViewPortInfo;
+
+
+
 	FVector ProjectionScale = { 0.0f, 0.0f };
 
-	// 내가 바라보는 랜더러의 그룹은 카메라가 가진다.
 	std::map<int, std::list<std::shared_ptr<class URenderer>>> Renderers;
 
 	void ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer);

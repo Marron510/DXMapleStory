@@ -37,7 +37,7 @@ void UEngineBlend::ResCreate(const D3D11_BLEND_DESC& _Value)
 		MSGASSERT("블랜드 스테이트 생성에 실패했습니다");
 		return;
 	}
-	
+
 }
 
 void UEngineBlend::Setting()

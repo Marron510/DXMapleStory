@@ -1,9 +1,14 @@
 #pragma once
 #include <EngineBase/EngineMath.h>
+#include "EngineInputLayOutInfo.h"
 
-struct EngineVertex
+
+struct FEngineVertex
 {
+	friend class EngineVertexInit;
+	static UEngineInputLayOutInfo Info;
+
 	float4 POSITION;
-	float4 TEXCOORD; // UV값이라고 불리는 존재로 텍스처가 매핑되는 비율을 지정해줍니다.
+	float4 TEXCOORD; 
 	float4 COLOR;
 };

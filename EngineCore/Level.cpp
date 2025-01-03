@@ -8,7 +8,6 @@
 #include "EngineGUI.h"
 
 
-
 std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int _Order)
 {
 	std::shared_ptr<ACameraActor> Camera = std::make_shared<ACameraActor>();
@@ -27,6 +26,7 @@ std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int _Order)
 ULevel::ULevel()
 {
 	SpawnCamera(0);
+
 }
 
 ULevel::~ULevel()
@@ -37,6 +37,7 @@ ULevel::~ULevel()
 
 	Cameras.clear();
 }
+
 void ULevel::LevelChangeStart()
 {
 
@@ -52,7 +53,7 @@ void ULevel::Tick(float _DeltaTime)
 {
 	std::list<std::shared_ptr<class AActor>>::iterator StartIter = BeginPlayList.begin();
 	std::list<std::shared_ptr<class AActor>>::iterator EndIter = BeginPlayList.end();
-	for ( ; StartIter != EndIter; )
+	for (; StartIter != EndIter; )
 	{
 		std::shared_ptr<AActor> CurActor = *StartIter;
 
@@ -67,6 +68,7 @@ void ULevel::Tick(float _DeltaTime)
 		CurActor->BeginPlay();
 		AllActorList.push_back(CurActor);
 	}
+
 
 	for (std::shared_ptr<AActor> CurActor : AllActorList)
 	{
@@ -89,9 +91,10 @@ void ULevel::Render(float _DeltaTime)
 		UEngineGUI::GUIRender();
 	}
 
-	UEngineCore::Device.RenderEnd();
-}
 
+
+	UEngineCore::GetDevice().RenderEnd();
+}
 
 
 

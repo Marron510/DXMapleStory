@@ -59,16 +59,19 @@ private:
 
 	// 랜더링 그려라 관련
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> Context = nullptr;
-
 	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain = nullptr;
-
 	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
-
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RTV = nullptr;
+	std::shared_ptr<class UEngineTexture> DepthTex;
+
 	ENGINEAPI void DefaultResourcesInit();
 
 	ENGINEAPI void MeshInit();
 	ENGINEAPI void BlendInit();
+	ENGINEAPI void ShaderInit();
+	ENGINEAPI void MaterialInit();
+	ENGINEAPI void RasterizerStateInit();
+	ENGINEAPI void TextureInit();
 };
 

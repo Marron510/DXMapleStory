@@ -33,8 +33,8 @@ FVector ACameraActor::ScreenMousePosToWorldPosWithOutPos()
 
 FVector ACameraActor::ScreenMousePosToWorldPos()
 {
-	FVector Size = UEngineCore::MainWindow.GetWindowSize();
-	FVector MousePos = UEngineCore::MainWindow.GetMousePos();
+	FVector Size = UEngineCore::GetMainWindow().GetWindowSize();
+	FVector MousePos = UEngineCore::GetMainWindow().GetMousePos();
 
 	float4x4 Mat;
 	Mat.ViewPort(Size.X, Size.Y, 0.0f, 0.0f, 0.0f, 1.0f);
@@ -46,7 +46,5 @@ FVector ACameraActor::ScreenMousePosToWorldPos()
 	MousePos = MousePos * CameraTransform.View.InverseReturn();
 
 	return MousePos;
-	// 마우스 좌표가 100, 100
-	// 크기 이동 회전 공전 부모 * view * 투영 * viewport
 }
 

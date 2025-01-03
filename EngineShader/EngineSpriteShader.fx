@@ -60,7 +60,7 @@ cbuffer FUVValue : register(b2)
 };
 
 
-VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
+VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
 	
@@ -77,11 +77,6 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
     OutPut.COLOR = _Vertex.COLOR;
     return OutPut;
 }
-
-cbuffer MatColor : register(b1)
-{
-    float4 Albedo;
-};
 
 struct OutTargetColor
 {
@@ -101,11 +96,17 @@ Texture2D ImageTexture : register(t0);
 // »ùÇÃ·¯ 1°³
 SamplerState ImageSampler : register(s0);
 
+cbuffer ResultColor : register(b0)
+{
+    float4 PlusColor;
+    float4 MulColor;
+};
 
-float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
+
+float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
     float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+    Color += PlusColor;
+    Color *= MulColor;
     return Color;
-	
-	// return float4(1.0f, 0.0f, 0.0f, 1.0f);
 }

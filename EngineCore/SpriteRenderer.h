@@ -2,6 +2,19 @@
 #include "Renderer.h"
 #include <EngineBase/EngineDelegate.h>
 
+struct FUVValue
+{
+	float4 PlusUVValue;
+};
+
+
+struct ResultColor
+{
+public:
+	float4 PlusColor;
+	float4 MulColor;
+};
+
 // Ό³Έν :
 class USpriteRenderer : public URenderer
 {
@@ -19,8 +32,6 @@ public:
 		float CurTime = 0.0f;
 		bool Loop = true;
 		bool IsEnd = false;
-		bool IsAutoScale = true;
-		float AutoScaleRatio = 1.0f;
 
 		void Reset()
 		{
@@ -41,8 +52,6 @@ public:
 	USpriteRenderer& operator=(const USpriteRenderer& _Other) = delete;
 	USpriteRenderer& operator=(USpriteRenderer&& _Other) noexcept = delete;
 
-
-
 	int GetCurIndex()
 	{
 		return CurIndex;
@@ -52,9 +61,6 @@ public:
 	{
 		return CurAnimation->CurIndex;
 	}
-
-	FVector SetSpriteScale(float _Ratio = 1.0f, int _CurIndex = 0);
-
 
 	ENGINEAPI void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);
 
@@ -90,8 +96,22 @@ public:
 		CurAnimationSpeed = 1.0f;
 	}
 
+	void SetAutoScale(bool _Value)
+	{
+		IsAutoScale = _Value;
+	}
+
+	void SetAutoScaleRatio(float _Scale)
+	{
+		AutoScaleRatio = _Scale;
+	}
+
 
 	void SetSprite(UEngineSprite* _Sprite);
+
+	ResultColor ColorData;
+	FUVValue UVValue;
+	FSpriteData SpriteData;
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
@@ -100,12 +120,15 @@ protected:
 
 
 private:
+	URenderUnit* MainUnit;
+
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
 	UEngineSprite* Sprite = nullptr;
-
+	bool IsAutoScale = true;
+	float AutoScaleRatio = 1.0f;
 };
 

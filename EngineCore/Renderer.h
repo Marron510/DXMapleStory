@@ -3,13 +3,6 @@
 #include "EngineSprite.h"
 #include "RenderUnit.h"
 
-
-struct FUVValue
-{
-	float4 PlusUVValue;
-};
-
-
 class URenderer : public USceneComponent
 {
 	friend class UEngineCamera;
@@ -25,70 +18,17 @@ public:
 	URenderer& operator=(const URenderer& _Other) = delete;
 	URenderer& operator=(URenderer&& _Other) noexcept = delete;
 
-	ENGINEAPI void SetOrder(int _Order) override;
-
-	ENGINEAPI void SetTexture(std::string_view _Value);
-
-	ENGINEAPI void SetTexture(UEngineTexture* _Value);
-
-	ENGINEAPI void SetSpriteData(UEngineSprite* _Sprite, size_t _Index);
-
-	ENGINEAPI void AddUVPlusValue(float4 _Value);
-
-	ENGINEAPI void SetMesh(std::string_view _Name);
-
-	ENGINEAPI void SetBlend(std::string_view _Name);
-
-protected:
+	ENGINEAPI void SetOrder(int _Order);
 	ENGINEAPI void BeginPlay() override;
 	ENGINEAPI virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
+	ENGINEAPI URenderUnit& GetRenderUnit(UINT  _Index = 0);
+	ENGINEAPI URenderUnit& CreateRenderUnit();
+	ENGINEAPI void SetMesh(std::string_view _Name, UINT _Index = 0);
+	ENGINEAPI void SetMaterial(std::string_view _Name, UINT _Index = 0);
 
 private:
 
 public:
-	class UMesh* Mesh = nullptr;
-	class UEngineBlend* Blend = nullptr;
-
-	FSpriteData SpriteData;
-	FUVValue UVValueData;
-	UEngineTexture* Texture = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr; // 샘플러 스테이트
-	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr; // 상수버퍼
-	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstBuffer = nullptr; // 스프라이트용 상수버퍼
-	Microsoft::WRL::ComPtr<ID3D11Buffer> UVValue = nullptr; // 상수버퍼
-	void ShaderResInit();
-	void ShaderResSetting();
-
-	// Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayOut = nullptr;
-	// void InputAssembler1Init();
-	void InputAssembler1Setting();
-	void InputAssembler1LayOut();
-
-	Microsoft::WRL::ComPtr<ID3DBlob> VSShaderCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3DBlob> VSErrorCodeBlob = nullptr; // 중간 컴파일 결과물
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader = nullptr;
-	void VertexShaderInit();
-	void VertexShaderSetting();
-
-
-	D3D11_PRIMITIVE_TOPOLOGY Topology = D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	// void InputAssembler2Init();
-	void InputAssembler2Setting();
-
-	D3D11_VIEWPORT ViewPortInfo;
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState> RasterizerState = nullptr;
-	void RasterizerInit();
-	void RasterizerSetting();
-
-	Microsoft::WRL::ComPtr<ID3DBlob> PSShaderCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr; // 중간 컴파일 결과물
-	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
-	void PixelShaderInit();
-	void PixelShaderSetting();
-
-	void OutPutMergeSetting();
-
 	std::vector<URenderUnit> Units;
 };
 
