@@ -31,6 +31,8 @@ void USpriteRenderer::SetSprite(std::string_view _Name, size_t _Index)
 
 	GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(_Index)->GetName());
 	SpriteData = Sprite->GetSpriteData(_Index);
+
+	CurIndex = _Index;
 }
 
 void USpriteRenderer::BeginPlay()
@@ -60,6 +62,8 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
 		SpriteData = Sprite->GetSpriteData(CurIndex);
 	}
+
+	DebugCheck();
 
 	if (true == IsAutoScale)
 	{

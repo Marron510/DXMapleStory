@@ -109,6 +109,15 @@ public:
 		IsDebugValue = true;
 	}
 
+	void DebugCheck()
+	{
+		if (true == IsDebugValue)
+		{
+		}
+	}
+
+
+
 	void DebugOff()
 	{
 		IsDebugValue = false;

@@ -14,18 +14,14 @@ ACerniumPlaza::ACerniumPlaza()
 	
 	{
 		Plaza = CreateDefaultSubObject<USpriteRenderer>();
-		Plaza->SetupAttachment(RootComponent);
 		Plaza->SetSprite("Cernium", 0);
-		Plaza->SetAutoScale(false);
-		Plaza->SetScale3D({ 4830.0f , 1590.0f });
+		Plaza->SetupAttachment(RootComponent);
 		Plaza->SetRelativeLocation({ 0, -390 });
-		Plaza->SetOrder(0.1);
 	}
 
 
 	// 깃발
 	{
-		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 		RootComponent = Default;
 
 		Flag0 = CreateDefaultSubObject<USpriteRenderer>();
@@ -37,7 +33,6 @@ ACerniumPlaza::ACerniumPlaza()
 		Flag0->SetRelativeLocation({ -334.0f, 374.0f });
 	}
 	{
-		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 		RootComponent = Default;
 
 		Flag1 = CreateDefaultSubObject<USpriteRenderer>();
@@ -50,7 +45,6 @@ ACerniumPlaza::ACerniumPlaza()
 	}
 
 	{
-		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 		RootComponent = Default;
 
 		Flag2 = CreateDefaultSubObject<USpriteRenderer>();
@@ -64,7 +58,6 @@ ACerniumPlaza::ACerniumPlaza()
 
 
 	{
-		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 		RootComponent = Default;
 
 		Flag3 = CreateDefaultSubObject<USpriteRenderer>();
@@ -76,7 +69,6 @@ ACerniumPlaza::ACerniumPlaza()
 		Flag3->SetRelativeLocation({ 364.0f, 374.0f });
 	}
 	{
-		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 		RootComponent = Default;
 
 		Flag4 = CreateDefaultSubObject<USpriteRenderer>();
@@ -89,7 +81,6 @@ ACerniumPlaza::ACerniumPlaza()
 	}
 
 	{
-		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 		RootComponent = Default;
 
 		Flag5 = CreateDefaultSubObject<USpriteRenderer>();
@@ -104,7 +95,6 @@ ACerniumPlaza::ACerniumPlaza()
 	// 왼쪽 건물
 
 	{
-		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 		RootComponent = Default;
 
 		Smithy = CreateDefaultSubObject<USpriteRenderer>();
@@ -119,25 +109,20 @@ ACerniumPlaza::ACerniumPlaza()
 	{
 		BuildingLeft_0 = CreateDefaultSubObject<USpriteRenderer>();
 		BuildingLeft_0->SetSprite("Cernium", 1);
-		BuildingLeft_0->SetAutoScale(false);
 		BuildingLeft_0->SetupAttachment(RootComponent);
-		BuildingLeft_0->SetScale3D({ 478.0f , 678.0f });
 		BuildingLeft_0->SetRelativeLocation({ -1370, -150 });
 	}
 	
 	{
 		BuildingLeft_1 = CreateDefaultSubObject<USpriteRenderer>();
 		BuildingLeft_1->SetSprite("Cernium", 2);
-		BuildingLeft_1->SetAutoScale(false);
 		BuildingLeft_1->SetupAttachment(RootComponent);
-		BuildingLeft_1->SetScale3D({ 1200.0f , 1200.0f });
 		BuildingLeft_1->SetRelativeLocation({ -1850, -333 });
 	}
 
 	// 오른쪽 건물
 
 	{
-		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 		RootComponent = Default;
 
 		Potion = CreateDefaultSubObject<USpriteRenderer>();
@@ -152,18 +137,14 @@ ACerniumPlaza::ACerniumPlaza()
 	{
 		BuildingRight_0 = CreateDefaultSubObject<USpriteRenderer>();
 		BuildingRight_0->SetSprite("Cernium", 3);
-		BuildingRight_0->SetAutoScale(false);
 		BuildingRight_0->SetupAttachment(RootComponent);
-		BuildingRight_0->SetScale3D({ 478.0f , 678.0f });
 		BuildingRight_0->SetRelativeLocation({ 1400, -150 });
 	}
 
 	{
 		BuildingRight_1 = CreateDefaultSubObject<USpriteRenderer>();
 		BuildingRight_1->SetSprite("Cernium", 4);
-		BuildingRight_1->SetAutoScale(false);
 		BuildingRight_1->SetupAttachment(RootComponent);
-		BuildingRight_1->SetScale3D({ 1200.0f , 1200.0f });
 		BuildingRight_1->SetRelativeLocation({ 1830, -310 });
 	}
 
@@ -172,36 +153,28 @@ ACerniumPlaza::ACerniumPlaza()
 	{
 		DawnPriestFlag = CreateDefaultSubObject<USpriteRenderer>();
 		DawnPriestFlag->SetSprite("Cernium", 5);
-		DawnPriestFlag->SetAutoScale(false);
 		DawnPriestFlag->SetupAttachment(RootComponent);
-		DawnPriestFlag->SetScale3D({ 178.0f , 324.0f });
 		DawnPriestFlag->SetRelativeLocation({ -1700, -182 });
 	}
 
 	{
 		FirePriestFlag = CreateDefaultSubObject<USpriteRenderer>();
 		FirePriestFlag->SetSprite("Cernium", 6);
-		FirePriestFlag->SetAutoScale(false);
 		FirePriestFlag->SetupAttachment(RootComponent);
-		FirePriestFlag->SetScale3D({ 180.0f , 331.0f });
 		FirePriestFlag->SetRelativeLocation({ 1700, -182 });
 	}
 
 	{
 		Tree_0 = CreateDefaultSubObject<USpriteRenderer>();
 		Tree_0->SetSprite("Cernium", 7);
-		Tree_0->SetAutoScale(false);
 		Tree_0->SetupAttachment(RootComponent);
-		Tree_0->SetScale3D({ 209.0f , 189.0f });
 		Tree_0->SetRelativeLocation({ -1860, -182 });
 	}
 
 	{
 		Tree_1 = CreateDefaultSubObject<USpriteRenderer>();
 		Tree_1->SetSprite("Cernium", 7);
-		Tree_1->SetAutoScale(false);
 		Tree_1->SetupAttachment(RootComponent);
-		Tree_1->SetScale3D({ 209.0f , 189.0f });
 		Tree_1->SetRelativeLocation({ 1890, -182 });
 	}
 
@@ -209,45 +182,35 @@ ACerniumPlaza::ACerniumPlaza()
 	{
 		FootHold_Left_0 = CreateDefaultSubObject<USpriteRenderer>();
 		FootHold_Left_0->SetSprite("Cernium", 8);
-		FootHold_Left_0->SetAutoScale(false);
 		FootHold_Left_0->SetupAttachment(RootComponent);
-		FootHold_Left_0->SetScale3D({ 114.0f , 144.0f });
 		FootHold_Left_0->SetRelativeLocation({ 422, 255 });
 	}
 
 	{
 		FootHold_Left_1 = CreateDefaultSubObject<USpriteRenderer>();
 		FootHold_Left_1->SetSprite("Cernium", 8);
-		FootHold_Left_1->SetAutoScale(false);
 		FootHold_Left_1->SetupAttachment(RootComponent);
-		FootHold_Left_1->SetScale3D({ 114.0f , 144.0f });
 		FootHold_Left_1->SetRelativeLocation({ 818, 405 });
 	}
 
 	{
 		FootHold_Mid = CreateDefaultSubObject<USpriteRenderer>();
 		FootHold_Mid->SetSprite("Cernium", 9);
-		FootHold_Mid->SetAutoScale(false);
 		FootHold_Mid->SetupAttachment(RootComponent);
-		FootHold_Mid->SetScale3D({ 161.0f , 94.0f });
 		FootHold_Mid->SetRelativeLocation({ 954, 404 });
 	}
 
 	{
 		FootHold_Right = CreateDefaultSubObject<USpriteRenderer>();
 		FootHold_Right->SetSprite("Cernium", 10);
-		FootHold_Right->SetAutoScale(false);
 		FootHold_Right->SetupAttachment(RootComponent);
-		FootHold_Right->SetScale3D({ 116.0f , 144.0f });
 		FootHold_Right->SetRelativeLocation({ -782, 405 });
 	}
 
 	{
 		BigTree_Left = CreateDefaultSubObject<USpriteRenderer>();
 		BigTree_Left->SetSprite("Cernium", 11);
-		BigTree_Left->SetAutoScale(false);
 		BigTree_Left->SetupAttachment(RootComponent);
-		BigTree_Left->SetScale3D({ 342.0f , 1245.0f });
 		BigTree_Left->SetRelativeLocation({ -2180, -420 });
 		BigTree_Left->SetOrder(1);
 	}
@@ -255,9 +218,7 @@ ACerniumPlaza::ACerniumPlaza()
 	{
 		BigTree_Right = CreateDefaultSubObject<USpriteRenderer>();
 		BigTree_Right->SetSprite("Cernium", 12);
-		BigTree_Right->SetAutoScale(false);
 		BigTree_Right->SetupAttachment(RootComponent);
-		BigTree_Right->SetScale3D({ 342.0f , 1245.0f });
 		BigTree_Right->SetRelativeLocation({ 2200, -420 });
 		BigTree_Right->SetOrder(1);
 	}
