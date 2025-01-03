@@ -17,8 +17,6 @@ AOldMan::AOldMan()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = OldManrenderer->FindAnimation("OldMan");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	OldManrenderer->ChangeAnimation("OldMan");

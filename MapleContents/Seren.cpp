@@ -30,38 +30,12 @@ ASeren::ASeren()
 
 		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStand");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenRush");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenSting");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStunLaser");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenEightLaser");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenHit");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenDie");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
 		}
 	}
 #pragma endregion
@@ -76,27 +50,9 @@ ASeren::ASeren()
 
 		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenFirstAttack");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenSecondAttack");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenThirdAttack");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
-
-		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenDie");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 	}
 
 	SerenRender->ChangeAnimation("NoonSerenStand");

@@ -16,8 +16,6 @@ AJoy::AJoy()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = Joyrenderer->FindAnimation("Joy");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	Joyrenderer->ChangeAnimation("Joy");

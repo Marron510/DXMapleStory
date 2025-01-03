@@ -18,8 +18,6 @@ AManyu::AManyu()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = Manyurenderer->FindAnimation("Manyu");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	Manyurenderer->ChangeAnimation("Manyu");

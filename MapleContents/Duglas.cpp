@@ -17,8 +17,6 @@ ADuglas::ADuglas()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = Duglasrenderer->FindAnimation("Duglas");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	Duglasrenderer->ChangeAnimation("Duglas");

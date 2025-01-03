@@ -18,8 +18,6 @@ AHate::AHate()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = Haterenderer->FindAnimation("Hate");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	Haterenderer->ChangeAnimation("Hate");

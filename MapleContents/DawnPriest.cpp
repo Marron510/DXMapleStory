@@ -18,8 +18,6 @@ ADawnPriest::ADawnPriest()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = DawnPriestrenderer->FindAnimation("DawnPriest");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	DawnPriestrenderer->ChangeAnimation("DawnPriest");

@@ -33,8 +33,6 @@ ACerniumPlaza::ACerniumPlaza()
 		USpriteRenderer::FrameAnimation* Animation = Flag0->FindAnimation("Flag");
 		Flag0->ChangeAnimation("Flag");
 		Flag0->SetRelativeLocation({ -334.0f, 374.0f });
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 	{
 		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
@@ -47,8 +45,6 @@ ACerniumPlaza::ACerniumPlaza()
 		USpriteRenderer::FrameAnimation* Animation = Flag1->FindAnimation("Flag");
 		Flag1->ChangeAnimation("Flag");
 		Flag1->SetRelativeLocation({ -800.0f, 484.0f });
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	{
@@ -62,8 +58,6 @@ ACerniumPlaza::ACerniumPlaza()
 		USpriteRenderer::FrameAnimation* Animation = Flag2->FindAnimation("Flag");
 		Flag2->ChangeAnimation("Flag");
 		Flag2->SetRelativeLocation({ -1302.0f, 638.0f });
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 
@@ -78,8 +72,6 @@ ACerniumPlaza::ACerniumPlaza()
 		USpriteRenderer::FrameAnimation* Animation = Flag3->FindAnimation("Flag");
 		Flag3->ChangeAnimation("Flag");
 		Flag3->SetRelativeLocation({ 364.0f, 374.0f });
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 	{
 		std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
@@ -92,8 +84,6 @@ ACerniumPlaza::ACerniumPlaza()
 		USpriteRenderer::FrameAnimation* Animation = Flag4->FindAnimation("Flag");
 		Flag4->ChangeAnimation("Flag");
 		Flag4->SetRelativeLocation({ 840.0f, 484.0f });
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	{
@@ -107,8 +97,6 @@ ACerniumPlaza::ACerniumPlaza()
 		USpriteRenderer::FrameAnimation* Animation = Flag5->FindAnimation("Flag");
 		Flag5->ChangeAnimation("Flag");
 		Flag5->SetRelativeLocation({ 1328.0f, 638.0f });
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	// ¿ÞÂÊ °Ç¹°
@@ -124,8 +112,6 @@ ACerniumPlaza::ACerniumPlaza()
 		USpriteRenderer::FrameAnimation* Animation = Smithy->FindAnimation("Smithy");
 		Smithy->ChangeAnimation("Smithy");
 		Smithy->SetRelativeLocation({ -1100.0f, -130.0f });
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	{
@@ -157,8 +143,6 @@ ACerniumPlaza::ACerniumPlaza()
 		USpriteRenderer::FrameAnimation* Animation = Potion->FindAnimation("Potion");
 		Potion->ChangeAnimation("Potion");
 		Potion->SetRelativeLocation({ 1160.0f, -130.0f });
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	{

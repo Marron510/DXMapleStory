@@ -17,8 +17,6 @@ AElbis::AElbis()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = Elbisrenderer->FindAnimation("Elbis");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	Elbisrenderer->ChangeAnimation("Elbis");

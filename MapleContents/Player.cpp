@@ -25,33 +25,10 @@ APlayer::APlayer()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Idle");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-
-	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Walk");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-
-	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Tornado");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-
-
-	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Rolling");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
-	}
-
-	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Jump");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	PlayerRenderer->ChangeAnimation("Idle");

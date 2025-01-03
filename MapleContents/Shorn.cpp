@@ -18,8 +18,6 @@ AShorn::AShorn()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = Shornrenderer->FindAnimation("Shorn");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	Shornrenderer->ChangeAnimation("Shorn");

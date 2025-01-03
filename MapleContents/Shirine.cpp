@@ -18,8 +18,6 @@ AShirine::AShirine()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = Shirinerenderer->FindAnimation("Shirine");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	Shirinerenderer->ChangeAnimation("Shirine");
