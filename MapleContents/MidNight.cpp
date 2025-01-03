@@ -8,7 +8,7 @@
 
 AMidNight::AMidNight()
 {
-	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+	/*std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 
 	RootComponent = Default;
 
@@ -167,7 +167,7 @@ AMidNight::AMidNight()
 		MidNight_Fog_BottomRight->SetupAttachment(RootComponent);
 		MidNight_Fog_BottomRight->SetScale3D({ 972.0f , 366.0f });
 		MidNight_Fog_BottomRight->SetRelativeLocation({ 600.0f, -400.0f });
-	}
+	}*/
 }
 
 AMidNight::~AMidNight()

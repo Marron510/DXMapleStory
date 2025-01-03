@@ -1,11 +1,8 @@
 #include "PreCompile.h"
 #include "EngineCore.h"
-
 #include <EngineBase/EngineDebug.h>
-
 #include <EnginePlatform/EngineWindow.h>
 #include <EnginePlatform/EngineInput.h>
-
 #include "IContentsCore.h"
 #include "EngineResources.h"
 #include "EngineConstantBuffer.h"
@@ -23,13 +20,14 @@ UEngineWindow& UEngineCore::GetMainWindow()
 	return MainWindow;
 }
 
-
 UEngineGraphicDevice UEngineCore::Device;
+
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
 std::shared_ptr<IContentsCore> UEngineCore::Core;
 UEngineInitData UEngineCore::Data;
 UEngineTimer UEngineCore::Timer;
+
 
 std::shared_ptr<class ULevel> UEngineCore::NextLevel;
 std::shared_ptr<class ULevel> UEngineCore::CurLevel = nullptr;
@@ -62,7 +60,6 @@ void UEngineCore::LoadContents(std::string_view _DllName)
 	Dir.MoveParentToDirectory("Build");
 	Dir.Move("bin/x64");
 
-	// 빌드 상황에 따라서 경로 변경
 #ifdef _DEBUG
 	Dir.Move("Debug");
 #else
@@ -105,7 +102,7 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 
 	LoadContents(_DllName);
 
-	// 윈도우와는 무관합니다.
+
 	UEngineWindow::WindowMessageLoop(
 		[]()
 		{
@@ -124,13 +121,14 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 		{
 			EngineEnd();
 		});
-
-
-
 }
 
 std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view _Name)
 {
+	// 만들기만 하고 보관을 안하면 앤 그냥 지워집니다. <= 
+
+	// 만들면 맵에 넣어서 레퍼런스 카운트를 증가시킵니다.
+	// UObject의 기능이었습니다.
 	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
 	Ptr->SetName(_Name);
 
@@ -163,7 +161,7 @@ void UEngineCore::EngineFrame()
 		}
 
 		CurLevel = NextLevel;
-		
+
 		CurLevel->LevelChangeStart();
 		NextLevel = nullptr;
 		Timer.TimeStart();
@@ -175,17 +173,18 @@ void UEngineCore::EngineFrame()
 
 	CurLevel->Tick(DeltaTime);
 	CurLevel->Render(DeltaTime);
+	// GUI랜더링은 기존 랜더링이 다 끝나고 해주는게 좋다.
 
 }
-
-
 
 void UEngineCore::EngineEnd()
 {
 
 	UEngineGUI::Release();
 
+	// 리소스 정리도 여기서 할겁니다.
 	Device.Release();
+
 	UEngineResources::Release();
 	UEngineConstantBuffer::Release();
 

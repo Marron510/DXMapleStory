@@ -22,6 +22,7 @@ void AActor::BeginPlay()
 	{
 		ActorComponent->BeginPlay();
 	}
+
 }
 
 void AActor::Tick(float _DeltaTime)
@@ -36,7 +37,6 @@ void AActor::Tick(float _DeltaTime)
 		ActorComponent->ComponentTick(_DeltaTime);
 	}
 }
-
 
 void AActor::AttachToActor(AActor* _Parent)
 {

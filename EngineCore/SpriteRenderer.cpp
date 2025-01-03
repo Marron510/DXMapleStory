@@ -75,6 +75,7 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 {
 	URenderer::ComponentTick(_DeltaTime);
 
+	// 애니메이션 진행시키는 코드를 ComponentTick으로 옮겼다. 
 	if (nullptr != CurAnimation)
 	{
 		CurAnimation->IsEnd = false;
@@ -88,6 +89,7 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 
 		float CurFrameTime = Times[CurAnimation->CurIndex];
 
+		//                           0.1 0.1 0.1
 		if (CurAnimation->CurTime > CurFrameTime)
 		{
 
@@ -99,6 +101,7 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 				CurAnimation->Events[CurIndex]();
 			}
 
+			// 애니메이션 앤드
 			if (CurAnimation->CurIndex >= Indexs.size())
 			{
 				CurAnimation->IsEnd = true;

@@ -1,17 +1,17 @@
 #pragma once
 #include <wrl.h>
-#include <d3d11_4.h> // directx 11 버전4용 헤더
-#include <d3dcompiler.h> // 쉐이더 컴파일러용 인터페이스 쉐이더는 추후 설명
+#include <d3d11_4.h>
+#include <d3dcompiler.h>
 #include <EnginePlatform/EngineWindow.h>
+#include <memory>
 
-// 라이브러리들
+
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler") 
 #pragma comment(lib, "dxguid")
 
 #pragma comment(lib, "DXGI") 
 
-// 설명 :
 class UEngineGraphicDevice
 {
 public:
@@ -55,15 +55,20 @@ public:
 protected:
 
 private:
+
 	Microsoft::WRL::ComPtr<ID3D11Device> Device = nullptr;
 
-	// 랜더링 그려라 관련
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> Context = nullptr;
+
 	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain = nullptr;
+
 	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
+
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RTV = nullptr;
+
 	std::shared_ptr<class UEngineTexture> DepthTex;
+
 
 	ENGINEAPI void DefaultResourcesInit();
 

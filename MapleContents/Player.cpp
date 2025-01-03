@@ -25,9 +25,17 @@ APlayer::APlayer()
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Idle");
+	}
+	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Walk");
+	}	
+	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Tornado");
+	} 
+	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Rolling");
+	}
+	{
 		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Jump");
 	}
 

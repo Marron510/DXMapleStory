@@ -9,7 +9,7 @@
 
 ASunSet::ASunSet()
 {
-	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+	/*std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 
 	RootComponent = Default;
 
@@ -168,7 +168,7 @@ ASunSet::ASunSet()
 		SunSet_Fog_BottomRight->SetupAttachment(RootComponent);
 		SunSet_Fog_BottomRight->SetScale3D({ 1040.0f , 366.0f });
 		SunSet_Fog_BottomRight->SetRelativeLocation({ 500.0f, -446.0f });
-	}
+	}*/
 
 }
 

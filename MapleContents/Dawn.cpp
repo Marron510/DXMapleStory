@@ -8,7 +8,7 @@
 
 ADawn::ADawn()
 {
-	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+	/*std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 
 	RootComponent = Default;
 
@@ -167,7 +167,7 @@ ADawn::ADawn()
 		Dawn_Fog_BottomRight->SetupAttachment(RootComponent);
 		Dawn_Fog_BottomRight->SetScale3D({ 972.0f , 366.0f });
 		Dawn_Fog_BottomRight->SetRelativeLocation({ 600.0f, -400.0f });
-	}
+	}*/
 }
 
 ADawn::~ADawn()

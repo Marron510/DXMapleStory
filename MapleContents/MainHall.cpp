@@ -8,7 +8,7 @@
 
 AMainHall::AMainHall()
 {
-	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+	/*std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
 
 
@@ -68,7 +68,7 @@ AMainHall::AMainHall()
 		MainHall_Pillar_Right->SetRelativeLocation({ 505, -250 });
 	}
 
-
+*/
 
 
 }

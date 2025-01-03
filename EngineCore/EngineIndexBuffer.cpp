@@ -54,7 +54,7 @@ void UEngineIndexBuffer::ResCreate(const void* _InitData, size_t _Size, size_t _
 
 	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
 	{
-		MSGASSERT("버텍스 버퍼 생성에 실패했습니다.");
+		MSGASSERT("인덱스 버퍼 생성에 실패했습니다.");
 		return;
 	}
 }

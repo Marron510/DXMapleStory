@@ -9,7 +9,7 @@
 
 ANoon::ANoon()
 {
-	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+	/*std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	
 	RootComponent = Default;
 
@@ -161,7 +161,7 @@ ANoon::ANoon()
 		Noon_Fog_BottomRight->SetupAttachment(RootComponent);
 		Noon_Fog_BottomRight->SetScale3D({ 1056.0f , 410.0f });
 		Noon_Fog_BottomRight->SetRelativeLocation({ 600.0f, -476.0f });
-	}
+	}*/
 }
 
 ANoon::~ANoon()

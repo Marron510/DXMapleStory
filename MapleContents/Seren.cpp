@@ -30,11 +30,23 @@ ASeren::ASeren()
 
 		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStand");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenRush");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenSting");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStunLaser");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenEightLaser");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenHit");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenDie");
 		}
 	}
@@ -50,12 +62,19 @@ ASeren::ASeren()
 
 		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenFirstAttack");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenSecondAttack");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenThirdAttack");
+		}
+		{
 			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenDie");
-	}
+		}
 
-	SerenRender->ChangeAnimation("NoonSerenStand");
+		SerenRender->ChangeAnimation("NoonSerenStand");
+	}
 }
 
 ASeren::~ASeren()
