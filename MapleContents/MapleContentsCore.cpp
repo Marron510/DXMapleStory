@@ -49,12 +49,15 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	// 플레이어
 	UEngineSprite::CreateSpriteToMeta("Idle.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Walk.png", ".sdata");
-	UEngineSprite::CreateSpriteToMeta("Leaf_Tornado.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("LeafTornado.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Rolling.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("StrikeDualShot.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Jump.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Charge.png", ".sdata");
-
+	UEngineSprite::CreateSpriteToMeta("Wrath.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("Unicorn.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("LegendarySpear.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("Prone.png", ".sdata");
 
 	// 세르니움 이미지
 #pragma region 

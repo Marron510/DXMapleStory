@@ -52,8 +52,7 @@ private:
 	std::shared_ptr<class USpriteRenderer> FootHold_Left_1;
 	std::shared_ptr<class USpriteRenderer> FootHold_Mid;
 	std::shared_ptr<class USpriteRenderer> FootHold_Right;
-	std::shared_ptr<class USpriteRenderer> BigTree_Left;
-	std::shared_ptr<class USpriteRenderer> BigTree_Right;
+	
 
 
 };

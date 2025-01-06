@@ -25,5 +25,9 @@ private:
 
 	std::shared_ptr<class ACerniumPlaza> Plaza;
 	std::shared_ptr<class ACameraActor> Camera;
+
+	std::shared_ptr<class USpriteRenderer> BigTree_Left;
+	std::shared_ptr<class USpriteRenderer> BigTree_Right;
+
 };
 

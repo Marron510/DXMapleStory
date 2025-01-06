@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fd84b7ad14dd7ed408c54fb1044d5c64
+guid: 139b1e5f9ab173b46bf3b8edeefe8e9d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,199 +110,265 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Charge_0
+      name: LegendarySpear_0
       rect:
         serializedVersion: 2
-        x: 39
-        y: 500
-        width: 230
-        height: 208
+        x: 18
+        y: 341
+        width: 258
+        height: 259
       alignment: 9
-      pivot: {x: 0.52, y: 0.31}
+      pivot: {x: 0.568, y: 0.36045784}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f0c55073eb0bfe48b8150f3a766b9cf
-      internalID: 1634401697
+      spriteID: bab12deda0344d34d8e57811d03f82da
+      internalID: 430168305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_2
+      name: LegendarySpear_1
       rect:
         serializedVersion: 2
-        x: 327
-        y: 500
-        width: 230
-        height: 208
+        x: 300
+        y: 326
+        width: 259
+        height: 274
       alignment: 9
-      pivot: {x: 0.52, y: 0.31}
+      pivot: {x: 0.571, y: 0.39607617}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 056602aa8f73aee4ebd7243d4dc5d935
-      internalID: -12881110
+      spriteID: 954ca9f47e305724db7bb2cf85810413
+      internalID: 1848159427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_4
+      name: LegendarySpear_2
       rect:
         serializedVersion: 2
-        x: 598
-        y: 500
-        width: 230
-        height: 208
+        x: 599
+        y: 430
+        width: 180
+        height: 170
       alignment: 9
-      pivot: {x: 0.52, y: 0.31}
+      pivot: {x: 0.695, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2c7e64ff1f995f488edfefdacada5d8
-      internalID: -1890483564
+      spriteID: db4fa9bb75126f746b0cdcf3a638446f
+      internalID: 1251713066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_6
+      name: LegendarySpear_3
       rect:
         serializedVersion: 2
-        x: 898
-        y: 500
-        width: 230
-        height: 208
+        x: 814
+        y: 432
+        width: 180
+        height: 168
       alignment: 9
-      pivot: {x: 0.52, y: 0.31}
+      pivot: {x: 0.695, y: 0.46}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92ea50ab2d64a60458bb6c2f8296b7ef
-      internalID: 20091438
+      spriteID: d44aed1b987986944be489bf41b4efc2
+      internalID: -1840761136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_8
+      name: LegendarySpear_4
       rect:
         serializedVersion: 2
-        x: 29
-        y: 259
-        width: 230
-        height: 208
+        x: 1025
+        y: 430
+        width: 180
+        height: 170
       alignment: 9
-      pivot: {x: 0.52, y: 0.31}
+      pivot: {x: 0.695, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd56dac762b17d14b8bfcc291ffbea53
-      internalID: -1773657241
+      spriteID: d6ea2ba467993a2479999f681b9a0848
+      internalID: 2053546917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_9
+      name: LegendarySpear_5
       rect:
         serializedVersion: 2
-        x: 324
-        y: 258
-        width: 230
-        height: 208
+        x: 1252
+        y: 430
+        width: 180
+        height: 170
       alignment: 9
-      pivot: {x: 0.52, y: 0.31}
+      pivot: {x: 0.695, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 473c61bac7647d944a8e9fe2f1739f70
-      internalID: 1266952563
+      spriteID: 3cc29dd69e4f2b949bc37196e0631dc1
+      internalID: -1082518067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_10
+      name: LegendarySpear_6
       rect:
         serializedVersion: 2
-        x: 640
-        y: 279
-        width: 116
-        height: 144
+        x: 1463
+        y: 430
+        width: 180
+        height: 170
       alignment: 9
-      pivot: {x: 0.37, y: 0.18}
+      pivot: {x: 0.695, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80ad2bcf85cd85a44bae853c7bdbc3a1
-      internalID: 1352210499
+      spriteID: 357c79c23ddad7b459a25fca3cfeae2d
+      internalID: 1724739790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_11
+      name: LegendarySpear_7
       rect:
         serializedVersion: 2
-        x: 916
-        y: 281
-        width: 116
-        height: 144
+        x: 1678
+        y: 430
+        width: 180
+        height: 170
       alignment: 9
-      pivot: {x: 0.37, y: 0.18}
+      pivot: {x: 0.695, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 843749cee33c8ab42b03b6cf9de5286e
-      internalID: -49489947
+      spriteID: 701bde4c07a956d4897dbea475936ed3
+      internalID: 1616401820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_14
+      name: LegendarySpear_8
       rect:
         serializedVersion: 2
-        x: 49
-        y: 85
-        width: 158
-        height: 103
+        x: 35
+        y: 76
+        width: 190
+        height: 199
       alignment: 9
-      pivot: {x: 0.739, y: 0}
+      pivot: {x: 0.40327293, y: 0.338351}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39f89b752e435fe46824340494429fd7
-      internalID: 885288930
+      spriteID: 79a42c59c30a1a24f895e57d6c389b89
+      internalID: 516777490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LegendarySpear_9
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 70
+        width: 274
+        height: 204
+      alignment: 9
+      pivot: {x: 0.226842, y: 0.3688297}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad46d5e9788d8ae4ebbf31cd2d359311
+      internalID: -938058063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LegendarySpear_10
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 95
+        width: 234
+        height: 156
+      alignment: 9
+      pivot: {x: 0.38296142, y: 0.3476606}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a8614870c543d14eb8f98782f71037f
+      internalID: 1160342329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LegendarySpear_11
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 93
+        width: 226
+        height: 179
+      alignment: 9
+      pivot: {x: 0.5170406, y: 0.290329}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e5862442607da4e8c32f4c9fdc7c5d
+      internalID: 1087207428
       vertices: []
       indices: 
       edges: []
@@ -311,7 +377,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ea7b924ff565c7847b3c518c2d230ece
+    spriteID: 0255928cdd876a34db42e30dc80d23cb
     internalID: 0
     vertices: []
     indices: 
@@ -321,21 +387,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Charge_0: 1634401697
-      Charge_1: 2101801312
-      Charge_10: 1352210499
-      Charge_11: -49489947
-      Charge_12: -1411202048
-      Charge_13: 1543673398
-      Charge_14: 885288930
-      Charge_2: -12881110
-      Charge_3: 2015851550
-      Charge_4: -1890483564
-      Charge_5: -1467542937
-      Charge_6: 20091438
-      Charge_7: -469364865
-      Charge_8: -1773657241
-      Charge_9: 1266952563
+      LegendarySpear_0: 430168305
+      LegendarySpear_1: 1848159427
+      LegendarySpear_10: 1160342329
+      LegendarySpear_11: 1087207428
+      LegendarySpear_2: 1251713066
+      LegendarySpear_3: -1840761136
+      LegendarySpear_4: 2053546917
+      LegendarySpear_5: -1082518067
+      LegendarySpear_6: 1724739790
+      LegendarySpear_7: 1616401820
+      LegendarySpear_8: 516777490
+      LegendarySpear_9: -938058063
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
