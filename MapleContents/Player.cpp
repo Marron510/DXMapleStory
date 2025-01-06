@@ -21,6 +21,7 @@ APlayer::APlayer()
 	PlayerRenderer->CreateAnimation("Tornado", "Leaf_Tornado.png", 0, 8, 0.1f, false);
 	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
 	PlayerRenderer->CreateAnimation("Jump", "Jump.png", 0, 0, 0.1f);
+	PlayerRenderer->CreateAnimation("StrikeDualShot", "StrikeDualShot.png", 0, 6, 0.076f);
 
 
 	{
@@ -114,6 +115,11 @@ void APlayer::Tick(float _DeltaTime)
 	if (UEngineInput::IsPress('R'))
 	{
 		PlayerRenderer->ChangeAnimation("Rolling");
+	}
+
+	if (UEngineInput::IsPress('T'))
+	{
+		PlayerRenderer->ChangeAnimation("StrikeDualShot");
 	}
 
 }
