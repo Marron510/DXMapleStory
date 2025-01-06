@@ -26,7 +26,8 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> PlayerRenderer;
-
+	std::shared_ptr<class USpriteRenderer> SkillRenderer;
+	std::shared_ptr<class USpriteRenderer> SubSkillRenderer;
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 
 	bool bIsGround = false;

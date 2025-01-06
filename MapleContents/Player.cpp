@@ -14,13 +14,26 @@ APlayer::APlayer()
 
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
+	SkillRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	PlayerRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SubSkillRenderer = CreateDefaultSubObject<USpriteRenderer>();
 
+	SkillRenderer->SetupAttachment(RootComponent);
 	PlayerRenderer->SetupAttachment(RootComponent);
+	SubSkillRenderer->SetupAttachment(RootComponent);
 
+	// 엔릴
+	SkillRenderer->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.05f,false);
+	// 리프
+	SubSkillRenderer->CreateAnimation("LeafTornadoDown", "LeafTornadoDown", 0, 11, 0.05f, false);
+	SkillRenderer->CreateAnimation("LeafTornadoUp", "LeafTornadoUp", 0, 11, 0.072f, false);
+	// None
+	SkillRenderer->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.2f, false);
+	SubSkillRenderer->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.2f, false);
+	
 	PlayerRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
 	PlayerRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
-	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.1f, false);
+	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.09f, false);
 	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
 	PlayerRenderer->CreateAnimation("Jump", "Jump.png", 0, 0, 0.1f);
 	PlayerRenderer->CreateAnimation("StrikeDualShot", "StrikeDualShot.png", 0, 6, 0.076f);
@@ -33,9 +46,12 @@ APlayer::APlayer()
 
 
 	PlayerRenderer->ChangeAnimation("Idle");
-
 	
 
+	SkillRenderer->ChangeAnimation("None");
+	SubSkillRenderer->ChangeAnimation("None");
+
+	PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -3.5f });
 }
 
 APlayer::~APlayer()
@@ -50,6 +66,14 @@ void APlayer::BeginPlay()
 void APlayer::Tick(float _DeltaTime)
 {
 	APawn::Tick(_DeltaTime);
+	
+
+	if (true == PlayerRenderer->IsCurAnimationEnd())
+	{
+		SkillRenderer->ChangeAnimation("None");
+		PlayerRenderer->ChangeAnimation("Idle");
+		SubSkillRenderer->ChangeAnimation("None");
+	}
 
 	if (UEngineInput::IsPress(VK_LEFT))
 	{
@@ -134,7 +158,6 @@ void APlayer::Tick(float _DeltaTime)
 		{
 			PlayerRenderer->ChangeAnimation("Rolling");
 		}
-		
 	}
 
 	if (UEngineInput::IsPress('R'))
@@ -142,22 +165,31 @@ void APlayer::Tick(float _DeltaTime)
 		PlayerRenderer->ChangeAnimation("Unicorn");
 	}
 
-	if (UEngineInput::IsPress('A'))
+	if (UEngineInput::IsDown('A'))
 	{
+		SkillRenderer->ChangeAnimation("WrathOfEnril");
 		PlayerRenderer->ChangeAnimation("Wrath");
-	}
-	
-	if (UEngineInput::IsPress('S'))
-	{
-		PlayerRenderer->ChangeAnimation("StrikeDualShot");
+		
+		SkillRenderer->SetRelativeLocation(FVector{ -200.0f, -200.0f, -3.1f });
+		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -3.5f });
 	}
 
-	if (UEngineInput::IsPress('D'))
+		
+	if (UEngineInput::IsDown('S'))
 	{
-		if (false== bIsGround)
-		{
-			PlayerRenderer->ChangeAnimation("Tornado");
-		}
+		PlayerRenderer->ChangeAnimation("StrikeDualShot");
+
+	}
+
+	if (UEngineInput::IsDown('D'))
+	{
+		SkillRenderer->ChangeAnimation("LeafTornadoUp");
+		SubSkillRenderer->ChangeAnimation("LeafTornadoDown");
+		PlayerRenderer->ChangeAnimation("Tornado");
+
+		SkillRenderer->SetRelativeLocation(FVector{ 25.0f, -390.0f, -3.1f });
+		SubSkillRenderer->SetRelativeLocation(FVector{ 25.0f, -390.0f, -3.6f });
+		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -3.5f });
 	}
 
 	if (UEngineInput::IsPress('F'))
