@@ -62,7 +62,7 @@ APlayer::APlayer()
 	SkillRenderer->ChangeAnimation("None");
 	SubSkillRenderer->ChangeAnimation("None");
 
-	PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -3.5f });
+	PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
 }
 
 APlayer::~APlayer()
@@ -170,8 +170,8 @@ void APlayer::Tick(float _DeltaTime)
 			SubSkillRenderer->ChangeAnimation("RollingMoonSult");
 			PlayerRenderer->ChangeAnimation("Rolling");
 
-			SubSkillRenderer->SetRelativeLocation(FVector{ 0.0f, -100.0f, -3.6f });
-			PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -3.5f });
+			SubSkillRenderer->SetRelativeLocation(FVector{ 0.0f, -100.0f, -0.11f });
+			PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
 		}
 	}
 
@@ -185,8 +185,8 @@ void APlayer::Tick(float _DeltaTime)
 		SubSkillRenderer->ChangeAnimation("WrathOfEnril");
 		PlayerRenderer->ChangeAnimation("Wrath");
 		
-		SubSkillRenderer->SetRelativeLocation(FVector{ -250.0f, -194.0f, -3.6f });
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -3.5f });
+		SubSkillRenderer->SetRelativeLocation(FVector{ -250.0f, -194.0f, -0.11f });
+		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
 	}
 
 		
@@ -196,9 +196,9 @@ void APlayer::Tick(float _DeltaTime)
 		SubSkillRenderer->ChangeAnimation("StrikeDualShot");
 		SkillRenderer->ChangeAnimation("StrikeDualShot_Back");
 
-		SkillRenderer->SetRelativeLocation(FVector{ 20.0f, -60.0f, -3.1f });
-		SubSkillRenderer->SetRelativeLocation(FVector{ 40.0f, -80.0f, -3.6f });
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -3.5f });
+		SkillRenderer->SetRelativeLocation(FVector{ 20.0f, -60.0f, -0.01f });
+		SubSkillRenderer->SetRelativeLocation(FVector{ 40.0f, -80.0f, -0.11f });
+		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
 	}
 
 	if (UEngineInput::IsDown('D'))
@@ -207,9 +207,9 @@ void APlayer::Tick(float _DeltaTime)
 		SubSkillRenderer->ChangeAnimation("LeafTornadoDown");
 		PlayerRenderer->ChangeAnimation("Tornado");
 
-		SkillRenderer->SetRelativeLocation(FVector{ 0.0f, -390.0f, -3.1f });
-		SubSkillRenderer->SetRelativeLocation(FVector{ 25.0f, -390.0f, -3.6f });
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -3.5f });
+		SkillRenderer->SetRelativeLocation(FVector{ 0.0f, -390.0f, -0.01f });
+		SubSkillRenderer->SetRelativeLocation(FVector{ 25.0f, -390.0f, -0.11f });
+		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
 	}
 
 	if (UEngineInput::IsPress('F'))
