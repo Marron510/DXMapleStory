@@ -17,8 +17,6 @@ ASeren::ASeren()
 	SerenRender->SetupAttachment(RootComponent);
 
 	// 정오 스킬 애니메이션 
-#pragma region
-
 	{
 		SerenRender->CreateAnimation("NoonSerenStand", "NoonSerenStand", 0, 14, 0.09f);
 		SerenRender->CreateAnimation("NoonSerenRush", "NoonSerenRush", 0, 35, 0.072f, false);
@@ -27,54 +25,17 @@ ASeren::ASeren()
 		SerenRender->CreateAnimation("NoonSerenEightLaser", "NoonSerenEightLaser", 0, 27, 0.11f, false);
 		SerenRender->CreateAnimation("NoonSerenHit", "NoonSerenHit", 0, 0, 0.09f, false);
 		SerenRender->CreateAnimation("NoonSerenDie", "NoonSerenDie", 0, 37, 0.1f, false);
-
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStand");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenRush");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenSting");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenStunLaser");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenEightLaser");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenHit");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("NoonSerenDie");
-		}
 	}
-#pragma endregion
+	
 	// 세렌 석양 애니메이션
-
-
 	{
 		SerenRender->CreateAnimation("SunSetSerenFirstAttack", "SunSetSerenFirstAttack", 0, 38, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenSecondAttack", "SunSetSerenSecondAttack", 0, 36, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenThirdAttack", "SunSetSerenThirdAttack", 0, 39, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenDie", "SunSetSerenDie", 0, 36, 0.06f, false);
-
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenFirstAttack");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenSecondAttack");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenThirdAttack");
-		}
-		{
-			USpriteRenderer::FrameAnimation* Animation = SerenRender->FindAnimation("SunSetSerenDie");
-		}
-
-		SerenRender->ChangeAnimation("NoonSerenStand");
 	}
+
+	SerenRender->ChangeAnimation("NoonSerenStand");
 }
 
 ASeren::~ASeren()

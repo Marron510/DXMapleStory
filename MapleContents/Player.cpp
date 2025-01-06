@@ -22,23 +22,9 @@ APlayer::APlayer()
 	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
 	PlayerRenderer->CreateAnimation("Jump", "Jump.png", 0, 0, 0.1f);
 	PlayerRenderer->CreateAnimation("StrikeDualShot", "StrikeDualShot.png", 0, 6, 0.076f);
+	PlayerRenderer->CreateAnimation("Charge", "Charge.png", 0, 3, 1.0f);
 
 
-	{
-		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Idle");
-	}
-	{
-		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Walk");
-	}	
-	{
-		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Tornado");
-	} 
-	{
-		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Rolling");
-	}
-	{
-		USpriteRenderer::FrameAnimation* Animation = PlayerRenderer->FindAnimation("Jump");
-	}
 
 	PlayerRenderer->ChangeAnimation("Idle");
 
@@ -120,6 +106,11 @@ void APlayer::Tick(float _DeltaTime)
 	if (UEngineInput::IsPress('T'))
 	{
 		PlayerRenderer->ChangeAnimation("StrikeDualShot");
+	}
+	
+	if (UEngineInput::IsPress('U'))
+	{
+		PlayerRenderer->ChangeAnimation("Charge");
 	}
 
 }

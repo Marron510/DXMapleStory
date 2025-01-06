@@ -15,7 +15,6 @@ public:
 	float4 MulColor;
 };
 
-// 설명 :
 class USpriteRenderer : public URenderer
 {
 public:
@@ -68,7 +67,6 @@ public:
 
 	ENGINEAPI void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop = true);
 
-	// 내가 Idle인데 Idle 바꾸라고 했다. 
 	ENGINEAPI void ChangeAnimation(std::string_view _AnimationName, bool _Force = false);
 
 	ENGINEAPI void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
@@ -81,6 +79,8 @@ public:
 	}
 
 	ENGINEAPI void SetSprite(std::string_view _Name, size_t _CurIndex = 0);
+
+	ENGINEAPI void SetTexture(std::string_view _Name, bool AutoScale = false, float _Ratio = 1.0f);
 
 	bool IsCurAnimationEnd()
 	{

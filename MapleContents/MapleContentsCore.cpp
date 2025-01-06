@@ -53,6 +53,7 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineSprite::CreateSpriteToMeta("Rolling.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("StrikeDualShot.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Jump.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("Charge.png", ".sdata");
 
 
 	// 세르니움 이미지

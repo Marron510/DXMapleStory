@@ -140,18 +140,6 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 
 void URenderUnit::Render(class UEngineCamera* _Camera, float _DeltaTime)
 {
-	// ¿’«≤æÓº¿∫Ì∑Ø 
-
-	// Ω¶¿Ã¥ı ∏Æº“Ω∫
-
-	//	ShaderResSetting();
-
-	//for (std::pair<EShaderType, UEngineShaderResources>& ShaderRes : Resources)
-	//{
-	//	UEngineShaderResources& Res = ShaderRes.second;
-	//	Res.Setting();
-	//}
-
 
 	for (std::pair<const EShaderType, UEngineShaderResources>& Pair : Resources)
 	{
@@ -177,12 +165,7 @@ void URenderUnit::Render(class UEngineCamera* _Camera, float _DeltaTime)
 	Material->GetPixelShader()->Setting();
 
 	//	OutPutMergeSetting();
-	// ∑£¥ı≈∏∞Ÿ¿Ã∂Û¥¬ ∞Õ¿ª πŸ≤∞Ã¥œ¥Ÿ.
 	Material->GetBlend()->Setting();
-	ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRTV();
-	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
-	ArrRtv[0] = RTV; // SV_Target0
-	UEngineCore::GetDevice().GetContext()->OMSetRenderTargets(1, &ArrRtv[0], nullptr);
 
 	UEngineCore::GetDevice().GetContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);
 }
