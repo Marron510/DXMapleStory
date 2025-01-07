@@ -32,5 +32,6 @@ private:
 
 	bool bIsGround = false;
 	bool bIsCharge = false;
+	bool bIsSkillOn = false;
 };
 

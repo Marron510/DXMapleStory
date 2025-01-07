@@ -77,6 +77,11 @@ void APlayer::BeginPlay()
 void APlayer::Tick(float _DeltaTime)
 {
 	APawn::Tick(_DeltaTime);
+
+	if (true)
+	{
+
+	}
 	
 
 	if (true == PlayerRenderer->IsCurAnimationEnd())
