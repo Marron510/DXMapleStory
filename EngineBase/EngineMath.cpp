@@ -1,18 +1,21 @@
 #include "PreCompile.h"
 #include "EngineMath.h"
 
-const FVector FVector::ZERO = { 0.0f, 0.0f };
-const FVector FVector::LEFT = { -1.0f, 0.0f };
-const FVector FVector::RIGHT = { 1.0f, 0.0f };
-const FVector FVector::UP = { 0.0f, 1.0f };
-const FVector FVector::DOWN = { 0.0f, -1.0f };
-const FVector FVector::FORWARD = { 0.0f, 0.0f, 1.0f };
-const FVector FVector::BACK = { 0.0f, 0.0f , -1.0f };
+
+
+template<>
+FQuat TVector<float>::DegAngleToQuaternion()
+{
+	FQuat Result;
+	Result.DirectVector = DirectX::XMQuaternionRotationRollPitchYawFromVector(DirectVector);
+	return Result;
+}
 
 const FIntPoint FIntPoint::LEFT = { -1, 0 };
 const FIntPoint FIntPoint::RIGHT = { 1, 0 };
 const FIntPoint FIntPoint::UP = { 0, -1 };
 const FIntPoint FIntPoint::DOWN = { 0, 1 };
+
 
 
 const UColor UColor::WHITE = { 255, 255, 255, 0 };
@@ -35,6 +38,10 @@ public:
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::CirCle)][static_cast<int>(ECollisionType::CirCle)] = FTransform::CirCleToCirCle;
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Rect)][static_cast<int>(ECollisionType::CirCle)] = FTransform::RectToCirCle;
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::CirCle)][static_cast<int>(ECollisionType::Rect)] = FTransform::CirCleToRect;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::OBB2D)] = FTransform::OBB2DToOBB2D;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::Rect)] = FTransform::OBB2DToRect;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::CirCle)] = FTransform::OBB2DToSphere;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::Point)] = FTransform::OBB2DToPoint;
 
 	}
 };
@@ -72,19 +79,12 @@ FVector FQuat::QuaternionToEulerRad() const
 		result.X = asinf(sinp);
 	}
 
-	// 이걸 사용했을대 
 	float sinyCosp = 2.0f * (W * Y + X * Z);
 	float cosyCosp = 1.0f - 2.0f * (X * X + Y * Y);
 	result.Y = atan2f(sinyCosp, cosyCosp);
 
-	// 0, 45 0 => 쿼터니온으로 바꾼다.
-	// SetActorRoation(쿼터니온);
-	// FQuat GetActorRoation();
-	// FQuat => 각도 -180 , 275, - 180
-
 	return result;
 }
-
 
 bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)
 {
@@ -107,39 +107,21 @@ bool FTransform::PointToRect(const FTransform& _Left, const FTransform& _Right)
 
 bool FTransform::CirCleToCirCle(const FTransform& _Left, const FTransform& _Right)
 {
-	FVector Len = _Left.Location - _Right.Location;
 
-	if (Len.Length() < _Left.Scale.hX() + _Right.Scale.hX())
-	{
-		return true;
-	}
-
-	return false;
+	FCollisionData LeftCol = _Left.GetCollisionData();
+	FCollisionData RightCol = _Right.GetCollisionData();
+	LeftCol.OBB.Center.z = 0.0f;
+	RightCol.OBB.Center.z = 0.0f;
+	return LeftCol.Sphere.Intersects(RightCol.Sphere);
 }
 
 bool FTransform::RectToRect(const FTransform& _Left, const FTransform& _Right)
 {
-
-	if (_Left.ZAxisCenterLeft() > _Right.ZAxisCenterRight())
-	{
-		return false;
-	}
-
-	if (_Left.ZAxisCenterRight() < _Right.ZAxisCenterLeft())
-	{
-		return false;
-	}
-
-	if (_Left.ZAxisCenterTop() > _Right.ZAxisCenterBottom())
-	{
-		return false;
-	}
-
-	if (_Left.ZAxisCenterBottom() < _Right.ZAxisCenterTop())
-	{
-		return false;
-	}
-	return true;
+	FCollisionData LeftCol = _Left.GetCollisionData();
+	FCollisionData RightCol = _Right.GetCollisionData();
+	LeftCol.OBB.Center.z = 0.0f;
+	RightCol.OBB.Center.z = 0.0f;
+	return LeftCol.AABB.Intersects(RightCol.AABB);
 }
 
 bool FTransform::RectToCirCle(const FTransform& _Left, const FTransform& _Right)
@@ -148,39 +130,56 @@ bool FTransform::RectToCirCle(const FTransform& _Left, const FTransform& _Right)
 }
 
 
+
 bool FTransform::CirCleToRect(const FTransform& _Left, const FTransform& _Right)
 {
-	FTransform WTransform = _Right;
-	WTransform.Scale.X += _Left.Scale.X;
+	FCollisionData LeftCol = _Left.GetCollisionData();
+	FCollisionData RightCol = _Right.GetCollisionData();
+	LeftCol.OBB.Center.z = 0.0f;
+	RightCol.OBB.Center.z = 0.0f;
+	return LeftCol.Sphere.Intersects(RightCol.AABB);
 
-	FTransform HTransform = _Right;
-	HTransform.Scale.Y += _Left.Scale.X;
 
-	if (true == PointToRect(_Left, WTransform) || true == PointToRect(_Left, HTransform))
-	{
-		return true;
-	}
-
-	FVector ArrPoint[4];
-
-	ArrPoint[0] = _Right.ZAxisCenterLeftTop();
-	ArrPoint[1] = _Right.ZAxisCenterLeftBottom();
-	ArrPoint[2] = _Right.ZAxisCenterRightTop();
-	ArrPoint[3] = _Right.ZAxisCenterRightBottom();
-
-	FTransform PointCirCle;
-	PointCirCle.Scale = _Left.Scale;
-	for (size_t i = 0; i < 4; i++)
-	{
-		PointCirCle.Location = ArrPoint[i];
-		if (true == PointToCirCle(_Left, PointCirCle))
-		{
-			return true;
-		}
-	}
-
-	return false;
 }
+
+bool FTransform::OBB2DToOBB2D(const FTransform& _Left, const FTransform& _Right)
+{
+	FCollisionData LeftCol = _Left.GetCollisionData();
+	FCollisionData RightCol = _Right.GetCollisionData();
+	LeftCol.OBB.Center.z = 0.0f;
+	RightCol.OBB.Center.z = 0.0f;
+	return LeftCol.OBB.Intersects(RightCol.OBB);
+}
+
+bool FTransform::OBB2DToRect(const FTransform& _Left, const FTransform& _Right)
+{
+	FCollisionData LeftCol = _Left.GetCollisionData();
+	FCollisionData RightCol = _Right.GetCollisionData();
+	LeftCol.OBB.Center.z = 0.0f;
+	RightCol.OBB.Center.z = 0.0f;
+	return LeftCol.OBB.Intersects(RightCol.AABB);
+}
+
+bool FTransform::OBB2DToSphere(const FTransform& _Left, const FTransform& _Right)
+{
+	FCollisionData LeftCol = _Left.GetCollisionData();
+	FCollisionData RightCol = _Right.GetCollisionData();
+	LeftCol.OBB.Center.z = 0.0f;
+	RightCol.OBB.Center.z = 0.0f;
+	return LeftCol.OBB.Intersects(RightCol.Sphere);
+}
+
+bool FTransform::OBB2DToPoint(const FTransform& _Left, const FTransform& _Right)
+{
+	// ??
+	FCollisionData LeftCol = _Left.GetCollisionData();
+	FCollisionData RightCol = _Right.GetCollisionData();
+	LeftCol.OBB.Center.z = 0.0f;
+	RightCol.OBB.Center.z = 0.0f;
+	RightCol.OBB.Extents = { 0.0f, 0.0f, 0.0f };
+	return LeftCol.OBB.Intersects(RightCol.AABB);
+}
+
 
 FVector FVector::Transform(const FVector& _Vector, const class FMatrix& _Matrix)
 {
@@ -201,6 +200,7 @@ FVector FVector::TransformNormal(const FVector& _Vector, const class FMatrix& _M
 	return Copy * _Matrix;
 }
 
+template<>
 FVector FVector::operator*(const class FMatrix& _Matrix) const
 {
 	FVector Result;
@@ -208,7 +208,6 @@ FVector FVector::operator*(const class FMatrix& _Matrix) const
 	Result.Y = Arr2D[0][0] * _Matrix.Arr2D[0][1] + Arr2D[0][1] * _Matrix.Arr2D[1][1] + Arr2D[0][2] * _Matrix.Arr2D[2][1] + Arr2D[0][3] * _Matrix.Arr2D[3][1];
 	Result.Z = Arr2D[0][0] * _Matrix.Arr2D[0][2] + Arr2D[0][1] * _Matrix.Arr2D[1][2] + Arr2D[0][2] * _Matrix.Arr2D[2][2] + Arr2D[0][3] * _Matrix.Arr2D[3][2];
 	Result.W = Arr2D[0][0] * _Matrix.Arr2D[0][3] + Arr2D[0][1] * _Matrix.Arr2D[1][3] + Arr2D[0][2] * _Matrix.Arr2D[2][3] + Arr2D[0][3] * _Matrix.Arr2D[3][3];
-
 
 	return Result;
 }
@@ -232,11 +231,6 @@ ENGINEAPI void FTransform::Decompose()
 	World.Decompose(WorldScale, WorldQuat, WorldLocation);
 
 	LocalWorld.Decompose(RelativeScale, RelativeQuat, RelativeLocation);
-
-	/*Scale = RelativeScale;
-	Quat = RelativeQuat;
-	Rotation = RelativeQuat.QuaternionToEulerDeg();
-	Location = RelativeLocation;*/
 }
 
 void FTransform::TransformUpdate(bool _IsAbsolut /*= false*/)
@@ -254,11 +248,13 @@ void FTransform::TransformUpdate(bool _IsAbsolut /*= false*/)
 	}
 	else
 	{
-		//      크         자             이            공           부
 		LocalWorld = ScaleMat * RotationMat * LocationMat;
 		World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
 	}
 
 	Decompose();
+
+
+
 }
 

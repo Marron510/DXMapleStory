@@ -7,6 +7,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/TimeEventComponent.h>
 
+
 APlayer::APlayer()
 {
 	
@@ -74,9 +75,23 @@ APlayer::~APlayer()
 {
 }
 
+
+
 void APlayer::BeginPlay()
 {
 	APawn::BeginPlay();
+
+	
+
+	//FSM.CreateState(ECharacterState::UseSkill, std::bind(&APlayer::UseSkill, this, std::placeholders::_1),
+	//	[this]()
+	//	{
+	//		//PlayerRenderer->ChangeAnimation("Run");
+	//	}
+	//);
+
+
+	FSM.ChangeState(ECharacterState::Idle);
 
 }
 void APlayer::Tick(float _DeltaTime)
@@ -241,5 +256,6 @@ void APlayer::Tick(float _DeltaTime)
 	}
 
 
-	//FSM.Update(_DeltaTime);
+	FSM.Update(_DeltaTime);
 }
+

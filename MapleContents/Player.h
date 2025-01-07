@@ -1,8 +1,10 @@
 #pragma once
 #include <EngineCore/Pawn.h>
 #include <EngineBase/FSMStateManager.h>
+#include "EventCharacter.h"
 
-class APlayer : public APawn
+
+class APlayer : public APawn, public AEventCharacter
 {
 public:
 	// constrcuter destructer
@@ -14,6 +16,13 @@ public:
 	APlayer(APlayer&& _Other) noexcept = delete;
 	APlayer& operator=(const APlayer& _Other) = delete;
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
+
+
+	
+
+
+
+
 
 	std::shared_ptr<class USpriteRenderer> GetRenderer()
 	{
@@ -35,5 +44,15 @@ private:
 	bool bIsGround = false;
 	bool bIsCharge = false;
 	bool bIsSkillOn = false;
+
+	void StateInit();
+
+
+
+
+	void Idle(float _DeltaTIme);
+	void Walk(float _DeltaTIme);
+	void Jump(float _DeltaTIme);
+	void UseSkill(float _DeltaTIme);
 };
 

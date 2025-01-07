@@ -125,10 +125,6 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 
 std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view _Name)
 {
-	// 만들기만 하고 보관을 안하면 앤 그냥 지워집니다. <= 
-
-	// 만들면 맵에 넣어서 레퍼런스 카운트를 증가시킵니다.
-	// UObject의 기능이었습니다.
 	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
 	Ptr->SetName(_Name);
 
@@ -173,8 +169,8 @@ void UEngineCore::EngineFrame()
 
 	CurLevel->Tick(DeltaTime);
 	CurLevel->Render(DeltaTime);
-	// GUI랜더링은 기존 랜더링이 다 끝나고 해주는게 좋다.
 
+	CurLevel->Release(DeltaTime);
 }
 
 void UEngineCore::EngineEnd()
@@ -182,7 +178,6 @@ void UEngineCore::EngineEnd()
 
 	UEngineGUI::Release();
 
-	// 리소스 정리도 여기서 할겁니다.
 	Device.Release();
 
 	UEngineResources::Release();

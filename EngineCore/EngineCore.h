@@ -8,7 +8,6 @@
 #include <memory>
 
 
-// Ό³Έν :
 class UEngineCore
 {
 public:

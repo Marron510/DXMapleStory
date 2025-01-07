@@ -6,73 +6,79 @@
       <Filter>MapleCore</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <Filter>Map\Title</Filter>
+      <Filter>Map\01_Title</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Character\Player</Filter>
+      <Filter>Character\01_Player</Filter>
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
-      <Filter>GameMode\TitleGameMode</Filter>
+      <Filter>GameMode\01_TitleGameMode</Filter>
     </ClCompile>
     <ClCompile Include="CerniumPlaza.cpp">
-      <Filter>Map\Cernium</Filter>
+      <Filter>Map\02_Cernium</Filter>
     </ClCompile>
     <ClCompile Include="CerniumPlazaMode.cpp">
-      <Filter>GameMode\CerniumGameMode</Filter>
+      <Filter>GameMode\02_CerniumGameMode</Filter>
     </ClCompile>
     <ClCompile Include="Seren.cpp">
-      <Filter>Character\BossSeren</Filter>
+      <Filter>Character\02_BossSeren</Filter>
     </ClCompile>
     <ClCompile Include="DawnPriest.cpp">
-      <Filter>Character\NPC\Priest</Filter>
+      <Filter>Character\03_NPC\Priest</Filter>
     </ClCompile>
     <ClCompile Include="FirePriest.cpp">
-      <Filter>Character\NPC\Priest</Filter>
+      <Filter>Character\03_NPC\Priest</Filter>
     </ClCompile>
     <ClCompile Include="Hate.cpp">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClCompile>
     <ClCompile Include="Shirine.cpp">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClCompile>
     <ClCompile Include="Shorn.cpp">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClCompile>
     <ClCompile Include="Joy.cpp">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClCompile>
     <ClCompile Include="OldMan.cpp">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClCompile>
     <ClCompile Include="Duglas.cpp">
-      <Filter>Character\NPC\Interactive</Filter>
+      <Filter>Character\03_NPC\Interactive</Filter>
     </ClCompile>
     <ClCompile Include="Elbis.cpp">
-      <Filter>Character\NPC\Interactive</Filter>
+      <Filter>Character\03_NPC\Interactive</Filter>
     </ClCompile>
     <ClCompile Include="Manyu.cpp">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClCompile>
     <ClCompile Include="MainHallMode.cpp">
-      <Filter>GameMode\BossSerenMode</Filter>
+      <Filter>GameMode\03_BossSerenMode</Filter>
     </ClCompile>
     <ClCompile Include="MainHall.cpp">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClCompile>
     <ClCompile Include="Noon.cpp">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClCompile>
     <ClCompile Include="SunSet.cpp">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClCompile>
     <ClCompile Include="MidNight.cpp">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClCompile>
     <ClCompile Include="Dawn.cpp">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClCompile>
     <ClCompile Include="TheBoundaryOfTheWorld.cpp">
-      <Filter>GameMode\BossSerenMode</Filter>
+      <Filter>GameMode\03_BossSerenMode</Filter>
+    </ClCompile>
+    <ClCompile Include="EventCharacter.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_state.cpp">
+      <Filter>Character\01_Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,73 +87,76 @@
       <Filter>MapleCore</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>Map\Title</Filter>
+      <Filter>Map\01_Title</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Character\Player</Filter>
+      <Filter>Character\01_Player</Filter>
     </ClInclude>
     <ClInclude Include="TitleGameMode.h">
-      <Filter>GameMode\TitleGameMode</Filter>
+      <Filter>GameMode\01_TitleGameMode</Filter>
     </ClInclude>
     <ClInclude Include="CerniumPlaza.h">
-      <Filter>Map\Cernium</Filter>
+      <Filter>Map\02_Cernium</Filter>
     </ClInclude>
     <ClInclude Include="CerniumPlazaMode.h">
-      <Filter>GameMode\CerniumGameMode</Filter>
+      <Filter>GameMode\02_CerniumGameMode</Filter>
     </ClInclude>
     <ClInclude Include="Seren.h">
-      <Filter>Character\BossSeren</Filter>
+      <Filter>Character\02_BossSeren</Filter>
     </ClInclude>
     <ClInclude Include="DawnPriest.h">
-      <Filter>Character\NPC\Priest</Filter>
+      <Filter>Character\03_NPC\Priest</Filter>
     </ClInclude>
     <ClInclude Include="FirePriest.h">
-      <Filter>Character\NPC\Priest</Filter>
+      <Filter>Character\03_NPC\Priest</Filter>
     </ClInclude>
     <ClInclude Include="Hate.h">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClInclude>
     <ClInclude Include="Shirine.h">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClInclude>
     <ClInclude Include="Shorn.h">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClInclude>
     <ClInclude Include="Joy.h">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClInclude>
     <ClInclude Include="OldMan.h">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClInclude>
     <ClInclude Include="Duglas.h">
-      <Filter>Character\NPC\Interactive</Filter>
+      <Filter>Character\03_NPC\Interactive</Filter>
     </ClInclude>
     <ClInclude Include="Elbis.h">
-      <Filter>Character\NPC\Interactive</Filter>
+      <Filter>Character\03_NPC\Interactive</Filter>
     </ClInclude>
     <ClInclude Include="Manyu.h">
-      <Filter>Character\NPC\Villager</Filter>
+      <Filter>Character\03_NPC\Villager</Filter>
     </ClInclude>
     <ClInclude Include="MainHallMode.h">
-      <Filter>GameMode\BossSerenMode</Filter>
+      <Filter>GameMode\03_BossSerenMode</Filter>
     </ClInclude>
     <ClInclude Include="MainHall.h">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClInclude>
     <ClInclude Include="Noon.h">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClInclude>
     <ClInclude Include="SunSet.h">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClInclude>
     <ClInclude Include="MidNight.h">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClInclude>
     <ClInclude Include="Dawn.h">
-      <Filter>Map\BossSerenMap</Filter>
+      <Filter>Map\03_BossSerenMap</Filter>
     </ClInclude>
     <ClInclude Include="TheBoundaryOfTheWorld.h">
-      <Filter>GameMode\BossSerenMode</Filter>
+      <Filter>GameMode\03_BossSerenMode</Filter>
+    </ClInclude>
+    <ClInclude Include="EventCharacter.h">
+      <Filter>Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -160,46 +169,46 @@
     <Filter Include="MapleCore">
       <UniqueIdentifier>{5e777e68-3c88-4a38-9dd0-f6498ede2132}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Map\Title">
-      <UniqueIdentifier>{bb750516-f6b6-4fc3-a9db-c1ba2760708e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Map\Cernium">
-      <UniqueIdentifier>{998a4195-f7bf-4116-846c-58154b071a1a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Character">
       <UniqueIdentifier>{f5b8b423-f48e-4b7e-b817-5d0c9f974ed2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Character\Player">
-      <UniqueIdentifier>{1fc3bce7-a15c-45c8-b3c2-c3207aea3d20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Character\BossSeren">
-      <UniqueIdentifier>{7badf3a1-c460-478e-9c53-200422656419}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameMode\TitleGameMode">
-      <UniqueIdentifier>{732f226e-c726-49f2-88c1-216abdc75c54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameMode\CerniumGameMode">
-      <UniqueIdentifier>{f5528e3f-9fad-468a-80fc-4d7bd02a2ec0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{09264ebb-8fd3-4917-bec8-e9c058c80244}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Character\NPC">
+    <Filter Include="Character\01_Player">
+      <UniqueIdentifier>{1fc3bce7-a15c-45c8-b3c2-c3207aea3d20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\03_NPC">
       <UniqueIdentifier>{50479b4c-3277-422b-b9fe-d80c41feab5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Character\NPC\Priest">
+    <Filter Include="Character\03_NPC\Priest">
       <UniqueIdentifier>{8ea9da69-7b21-48bc-b0b4-c70000658e2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Character\NPC\Villager">
+    <Filter Include="Character\03_NPC\Villager">
       <UniqueIdentifier>{08d4e995-4fc3-492a-ae7a-3d430a38adbb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Character\NPC\Interactive">
+    <Filter Include="Character\03_NPC\Interactive">
       <UniqueIdentifier>{714c7a45-c469-4598-9e7d-bc8d9e1ca662}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameMode\BossSerenMode">
+    <Filter Include="Character\02_BossSeren">
+      <UniqueIdentifier>{7badf3a1-c460-478e-9c53-200422656419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMode\01_TitleGameMode">
+      <UniqueIdentifier>{732f226e-c726-49f2-88c1-216abdc75c54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMode\02_CerniumGameMode">
+      <UniqueIdentifier>{f5528e3f-9fad-468a-80fc-4d7bd02a2ec0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMode\03_BossSerenMode">
       <UniqueIdentifier>{682c327c-a9b5-4b89-bf0d-f2a2b30e277e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Map\BossSerenMap">
+    <Filter Include="Map\01_Title">
+      <UniqueIdentifier>{bb750516-f6b6-4fc3-a9db-c1ba2760708e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\02_Cernium">
+      <UniqueIdentifier>{998a4195-f7bf-4116-846c-58154b071a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\03_BossSerenMap">
       <UniqueIdentifier>{0745de5a-eda5-4e57-8f41-0f67d9f65bea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
