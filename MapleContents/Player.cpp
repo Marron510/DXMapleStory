@@ -67,7 +67,7 @@ APlayer::APlayer()
 	SkillRenderer->ChangeAnimation("None");
 	SubSkillRenderer->ChangeAnimation("None");
 
-	PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
+	PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
 }
 
 APlayer::~APlayer()

@@ -86,6 +86,12 @@
     <ClCompile Include="WrathOfEnril.cpp">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
+    <ClCompile Include="LeafTornadoFront.cpp">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClCompile>
+    <ClCompile Include="LeafTornadoBack.cpp">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -170,6 +176,12 @@
     <ClInclude Include="WrathOfEnril.h">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
+    <ClInclude Include="LeafTornadoFront.h">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClInclude>
+    <ClInclude Include="LeafTornadoBack.h">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -183,9 +195,6 @@
     </Filter>
     <Filter Include="Character">
       <UniqueIdentifier>{f5b8b423-f48e-4b7e-b817-5d0c9f974ed2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{09264ebb-8fd3-4917-bec8-e9c058c80244}</UniqueIdentifier>
     </Filter>
     <Filter Include="Character\01_Player">
       <UniqueIdentifier>{1fc3bce7-a15c-45c8-b3c2-c3207aea3d20}</UniqueIdentifier>

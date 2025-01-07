@@ -119,7 +119,7 @@ void APlayer::Idle(float _DeltaTime)
 
 	if (UEngineInput::IsDown('D'))
 	{
-		// FSM.ChangeState(ECharacterState::UseSkill);
+		FSM.ChangeState(ECharacterState::UseSkill);
 	}
 
 	if (UEngineInput::IsPress('G'))
@@ -326,8 +326,8 @@ void APlayer::UseSkill(float _DeltaTime)
 			SubSkillRenderer->ChangeAnimation("RollingMoonSult");
 			PlayerRenderer->ChangeAnimation("Rolling");
 
-			SubSkillRenderer->SetRelativeLocation(FVector{ 0.0f, -100.0f, -0.11f });
-			PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
+			SubSkillRenderer->SetRelativeLocation(FVector{ 0.0f, -100.0f, PlayerZPos -0.1f });
+			PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
 		}
 	}
 
@@ -339,7 +339,7 @@ void APlayer::UseSkill(float _DeltaTime)
 	if (UEngineInput::IsPress('A'))
 	{
 		PlayerRenderer->ChangeAnimation("Wrath");
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
+		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
 
 		TimeEventComponent->AddEndEvent(0.86f, [this]()
 			{
@@ -355,20 +355,22 @@ void APlayer::UseSkill(float _DeltaTime)
 		SubSkillRenderer->ChangeAnimation("StrikeDualShot");
 		SkillRenderer->ChangeAnimation("StrikeDualShot_Back");
 
-		SkillRenderer->SetRelativeLocation(FVector{ 20.0f, -60.0f, -0.01f });
-		SubSkillRenderer->SetRelativeLocation(FVector{ 40.0f, -80.0f, -0.11f });
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
+		SkillRenderer->SetRelativeLocation(FVector{ 20.0f, -60.0f, PlayerZPos -0.1f });
+		SubSkillRenderer->SetRelativeLocation(FVector{ 40.0f, -80.0f, PlayerZPos + 0.1f});
+		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
 	}
 
-	if (UEngineInput::IsDown('D'))
+	if (UEngineInput::IsPress('D'))
 	{
-		SkillRenderer->ChangeAnimation("LeafTornadoUp");
-		SubSkillRenderer->ChangeAnimation("LeafTornadoDown");
 		PlayerRenderer->ChangeAnimation("Tornado");
 
-		SkillRenderer->SetRelativeLocation(FVector{ 0.0f, -390.0f, -0.01f });
-		SubSkillRenderer->SetRelativeLocation(FVector{ 25.0f, -390.0f, -0.11f });
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, -0.1f });
+		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
+
+		TimeEventComponent->AddEndEvent(0.87f, [this]()
+			{
+				FSM.ChangeState(ECharacterState::Idle);
+			}, false
+		);
 	}
 
 	if (UEngineInput::IsPress('F'))

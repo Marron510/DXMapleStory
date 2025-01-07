@@ -36,6 +36,10 @@ private:
 
 	UFSMStateManager FSM;
 
+	float PlayerZPos = -4.0f;
+
+
+
 	bool bIsGround = false;
 	bool bIsCharge = false;
 	bool bIsSkillOn = false;

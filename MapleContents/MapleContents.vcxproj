@@ -211,6 +211,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="LeafTornadoBack.cpp" />
+    <ClCompile Include="LeafTornadoFront.cpp" />
     <ClCompile Include="MainHall.cpp" />
     <ClCompile Include="MainHallMode.cpp" />
     <ClCompile Include="Manyu.cpp">
@@ -317,6 +319,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="LeafTornadoBack.h" />
+    <ClInclude Include="LeafTornadoFront.h" />
     <ClInclude Include="MainHall.h" />
     <ClInclude Include="MainHallMode.h" />
     <ClInclude Include="Manyu.h">

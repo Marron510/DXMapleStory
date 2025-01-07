@@ -21,7 +21,7 @@ ADawnPriest::ADawnPriest()
 	}
 
 	DawnPriestrenderer->ChangeAnimation("DawnPriest");
-	
+
 
 }
 

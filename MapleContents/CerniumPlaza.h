@@ -53,7 +53,9 @@ private:
 	std::shared_ptr<class USpriteRenderer> FootHold_Mid;
 	std::shared_ptr<class USpriteRenderer> FootHold_Right;
 	
-
+	float BackMap = -1.0f;
+	float BackImage = -2.0f;
+	float Building = -3.0f;
 
 };
 

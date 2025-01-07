@@ -26,7 +26,8 @@ private:
 	// 플레이어 스킬
 
 	std::shared_ptr<class AWrathOfEnril> WrathOfEnril;
-
+	std::shared_ptr<class ALeafTornadoFront> LeafTornadoFront;
+	std::shared_ptr<class ALeafTornadoBack> LeafTornadoBack;
 
 
 

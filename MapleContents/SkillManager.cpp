@@ -5,9 +5,6 @@
 
 ASkillManager::ASkillManager()
 {
-	
-	SkillRender = CreateDefaultSubObject<USpriteRenderer>();
-	RootComponent = SkillRender;
 }
 
 ASkillManager::~ASkillManager()

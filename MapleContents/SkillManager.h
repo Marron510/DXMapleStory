@@ -27,7 +27,14 @@ public:
 
 protected:
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
-	std::shared_ptr<class USpriteRenderer> SkillRender = nullptr;
+
+	std::shared_ptr<class USpriteRenderer> SkillRenderFront = nullptr;
+	std::shared_ptr<class USpriteRenderer> SkillRenderBack = nullptr;
+
+
+	float FrontSkillZPos = -4.1f;
+	float BackSkillZPos = -3.9f;
+
 private:
 
 };
