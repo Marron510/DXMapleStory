@@ -138,11 +138,6 @@ void APlayer::Walk(float _DeltaTime)
 	}
 
 
-	/*if (UEngineInput::IsPress(VK_UP))
-	{
-		AddRelativeLocation(FVector{ 0.0f, 300.0f * _DeltaTime, 0.0f });
-	}*/
-
 	// 이동 중 스킬 사용
 	{
 		if (UEngineInput::IsDown('A'))
@@ -198,16 +193,17 @@ void APlayer::UseSkill(float _DeltaTime)
 	}
 
 
-	if (UEngineInput::IsDown('S'))
+	if (UEngineInput::IsPress('S'))
 	{
 		PlayerRenderer->ChangeAnimation("StrikeDualShot");
-		SubSkillRenderer->ChangeAnimation("StrikeDualShot");
-		SkillRenderer->ChangeAnimation("StrikeDualShot_Back");
 
-		SkillRenderer->SetRelativeLocation(FVector{ 20.0f, -60.0f, PlayerZPos -0.1f });
-		SubSkillRenderer->SetRelativeLocation(FVector{ 40.0f, -80.0f, PlayerZPos + 0.1f});
 		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
 	}
+	if (UEngineInput::IsUp('S'))
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+	}
+
 
 	if (UEngineInput::IsPress('D'))
 	{

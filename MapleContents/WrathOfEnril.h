@@ -25,5 +25,10 @@ protected:
 private:
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 	std::shared_ptr<class USpriteRenderer> WrathOfEnril;
+
+	
+
+	float FrontSkillZPos = -4.1f;
+	float BackSkillZPos = -3.9f;
 };
 

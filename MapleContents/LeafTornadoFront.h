@@ -25,5 +25,8 @@ protected:
 private:
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 	std::shared_ptr<class USpriteRenderer> LeafTornadoFront;
+
+	float FrontSkillZPos = -4.5f;
+	float BackSkillZPos = -3.9f;
 };
 

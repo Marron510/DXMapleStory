@@ -27,8 +27,7 @@ public:
 
 protected:
 
-	float FrontSkillZPos = -4.1f;
-	float BackSkillZPos = -3.9f;
+	
 
 private:
 

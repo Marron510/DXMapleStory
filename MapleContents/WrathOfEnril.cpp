@@ -10,8 +10,11 @@
 
 AWrathOfEnril::AWrathOfEnril()
 {
+	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
+	RootComponent = Default;
+
 	WrathOfEnril = CreateDefaultSubObject<USpriteRenderer>();
-	RootComponent = WrathOfEnril;
+	WrathOfEnril->SetupAttachment(RootComponent);
 
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 	WrathOfEnril->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.1f, false);
@@ -37,7 +40,7 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 	if (UEngineInput::IsPress('A'))
 	{
 		WrathOfEnril->ChangeAnimation("WrathOfEnril");
-		WrathOfEnril->SetRelativeLocation(FVector{ -250.0f, -194.0f, FrontSkillZPos });
+		WrathOfEnril->SetRelativeLocation(FVector{ -200.0f, -194.0f, BackSkillZPos });
 		
 		TimeEventComponent->AddEndEvent(0.86f, [this]()
 			{

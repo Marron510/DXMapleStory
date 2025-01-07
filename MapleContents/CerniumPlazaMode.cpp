@@ -26,7 +26,7 @@
 #include "WrathOfEnril.h"
 #include "LeafTornadoFront.h"
 #include "LeafTornadoBack.h"
-
+#include "StrikeDualShot.h"
 
 
 ACerniumPlazaMode::ACerniumPlazaMode()
@@ -149,13 +149,6 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	}
 
 
-	
-	// 플레이어 스킬
-	{
-		LeafTornadoBack = GetWorld()->SpawnActor<ALeafTornadoBack>();
-		LeafTornadoFront = GetWorld()->SpawnActor<ALeafTornadoFront>();
-		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
-	}
 
 	// 플레이어
 	{
@@ -164,17 +157,28 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	}
 	
 	
+	// 플레이어 스킬
+	{
+		LeafTornadoBack = GetWorld()->SpawnActor<ALeafTornadoBack>();
+		LeafTornadoFront = GetWorld()->SpawnActor<ALeafTornadoFront>();
+		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
+		StrikeDualShot = GetWorld()->SpawnActor<AStrikeDualShot>();
+	}
 
-
+	{
+		WrathOfEnril->AttachToActor(Player.get());
+		LeafTornadoBack->AttachToActor(Player.get());
+		LeafTornadoFront->AttachToActor(Player.get());
+		StrikeDualShot->AttachToActor(Player.get());
+	}
 	
+	StrikeDualShot->AddRelativeLocation({0.0f, 230.0f, -0.2f});
 
-	WrathOfEnril->AttachToActor(Player.get());
-	LeafTornadoFront->AttachToActor(Player.get());
-	LeafTornadoBack->AttachToActor(Player.get());
-	
+
 	Camera = GetWorld()->GetMainCamera();
+	Camera->AddRelativeLocation(FVector{ 0.0f, 230.0f , -1000.0f});
 	Camera->AttachToActor(Player.get());
-	Camera->AddRelativeLocation({ 0.0f, 230.0f , -1000.0f});
+
 
 }
 

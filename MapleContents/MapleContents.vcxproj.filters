@@ -92,6 +92,9 @@
     <ClCompile Include="LeafTornadoBack.cpp">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
+    <ClCompile Include="StrikeDualShot.cpp">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -180,6 +183,9 @@
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
     <ClInclude Include="LeafTornadoBack.h">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClInclude>
+    <ClInclude Include="StrikeDualShot.h">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
   </ItemGroup>
