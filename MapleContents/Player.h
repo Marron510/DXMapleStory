@@ -47,12 +47,10 @@ private:
 
 	void StateInit();
 
-
-
-
-	void Idle(float _DeltaTIme);
-	void Walk(float _DeltaTIme);
-	void Jump(float _DeltaTIme);
-	void UseSkill(float _DeltaTIme);
+	void Idle(float _DeltaTime);
+	void Prone(float _DeltaTime);
+	void Walk(float _DeltaTime);
+	void Jump(float _DeltaTime);
+	void UseSkill(float _DeltaTime);
 };
 
