@@ -72,39 +72,6 @@ void APlayer::Idle(float _DeltaTime)
 
 	// 제자리 스킬 사용
 	
-	if (UEngineInput::IsDown('Q'))
-	{
-		FSM.ChangeState(ECharacterState::UseSkill);
-
-		TimeEventComponent->AddEndEvent(1.0f, [this]()
-			{
-				bIsCharge = true;
-			}, false
-		);
-
-		TimeEventComponent->AddEndEvent(2.0f, [this]()
-			{
-				bIsCharge = false;
-			}, false
-		);
-	}
-
-	if (UEngineInput::IsDown('W'))
-	{
-
-		if (true == bIsCharge && true == bIsGround)
-		{
-			FSM.ChangeState(ECharacterState::UseSkill);
-			PlayerRenderer->AddRelativeLocation(FVector{ 0.0f, 50.0f, 0.0f });
-		}
-
-	}
-
-
-	if (UEngineInput::IsPress('R'))
-	{
-		//FSM.ChangeState(ECharacterState::UseSkill);
-	}
 
 	if (UEngineInput::IsDown('A'))
 	{
@@ -120,16 +87,6 @@ void APlayer::Idle(float _DeltaTime)
 	if (UEngineInput::IsDown('D'))
 	{
 		FSM.ChangeState(ECharacterState::UseSkill);
-	}
-
-	if (UEngineInput::IsPress('G'))
-	{
-		FSM.ChangeState(ECharacterState::UseSkill);
-	}
-
-	if (UEngineInput::IsPress('H'))
-	{
-		//FSM.ChangeState(ECharacterState::UseSkill);
 	}
 }
 
@@ -186,56 +143,8 @@ void APlayer::Walk(float _DeltaTime)
 		AddRelativeLocation(FVector{ 0.0f, 300.0f * _DeltaTime, 0.0f });
 	}*/
 
-	// 엎드리기
-
-	if (UEngineInput::IsPress(VK_DOWN))
-	{
-		FSM.ChangeState(ECharacterState::Prone);
-	}
-
 	// 이동 중 스킬 사용
 	{
-		if (UEngineInput::IsDown('Q'))
-		{
-			FSM.ChangeState(ECharacterState::UseSkill);
-
-			TimeEventComponent->AddEndEvent(1.0f, [this]()
-				{
-					bIsCharge = true;
-				}, false
-			);
-
-			TimeEventComponent->AddEndEvent(2.0f, [this]()
-				{
-					bIsCharge = false;
-				}, false
-			);
-		}
-
-		if (UEngineInput::IsDown('W'))
-		{
-
-			if (true == bIsCharge && true == bIsGround)
-			{
-				FSM.ChangeState(ECharacterState::UseSkill);
-				PlayerRenderer->AddRelativeLocation(FVector{ 0.0f, 50.0f, 0.0f });
-			}
-
-		}
-
-		if (UEngineInput::IsPress('E'))
-		{
-			if (false == bIsGround)
-			{
-				FSM.ChangeState(ECharacterState::UseSkill);
-			}
-		}
-
-		if (UEngineInput::IsPress('R'))
-		{
-			//FSM.ChangeState(ECharacterState::UseSkill);
-		}
-
 		if (UEngineInput::IsDown('A'))
 		{
 			FSM.ChangeState(ECharacterState::UseSkill);
@@ -252,23 +161,6 @@ void APlayer::Walk(float _DeltaTime)
 			FSM.ChangeState(ECharacterState::UseSkill);
 		}
 
-		if (UEngineInput::IsPress('F'))
-		{
-			if (false == bIsGround)
-			{
-				//FSM.ChangeState(ECharacterState::UseSkill);
-			}
-		}
-
-		if (UEngineInput::IsPress('G'))
-		{
-			FSM.ChangeState(ECharacterState::UseSkill);
-		}
-
-		if (UEngineInput::IsPress('H'))
-		{
-			//FSM.ChangeState(ECharacterState::UseSkill);
-		}
 	}
 
 
@@ -292,49 +184,6 @@ void APlayer::Jump(float _DeltaTime)
 void APlayer::UseSkill(float _DeltaTime)
 {
 	
-	if (UEngineInput::IsDown('Q'))
-	{
-		PlayerRenderer->ChangeAnimation("Charge");
-
-		TimeEventComponent->AddEndEvent(1.0f, [this]()
-			{
-				bIsCharge = true;
-			}, false
-		);
-
-		TimeEventComponent->AddEndEvent(2.0f, [this]()
-			{
-				bIsCharge = false;
-			}, false
-		);
-	}
-
-	if (UEngineInput::IsDown('W'))
-	{
-
-		if (true == bIsCharge && true == bIsGround)
-		{
-			PlayerRenderer->AddRelativeLocation(FVector{ 0.0f, 50.0f, 0.0f });
-		}
-
-	}
-
-	if (UEngineInput::IsPress('E'))
-	{
-		if (false == bIsGround)
-		{
-			SubSkillRenderer->ChangeAnimation("RollingMoonSult");
-			PlayerRenderer->ChangeAnimation("Rolling");
-
-			SubSkillRenderer->SetRelativeLocation(FVector{ 0.0f, -100.0f, PlayerZPos -0.1f });
-			PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
-		}
-	}
-
-	if (UEngineInput::IsPress('R'))
-	{
-		PlayerRenderer->ChangeAnimation("Unicorn");
-	}
 
 	if (UEngineInput::IsPress('A'))
 	{
@@ -373,21 +222,4 @@ void APlayer::UseSkill(float _DeltaTime)
 		);
 	}
 
-	if (UEngineInput::IsPress('F'))
-	{
-		if (false == bIsGround)
-		{
-
-		}
-	}
-
-	if (UEngineInput::IsPress('G'))
-	{
-		PlayerRenderer->ChangeAnimation("LegendarySpear");
-	}
-
-	if (UEngineInput::IsPress('H'))
-	{
-		PlayerRenderer->ChangeAnimation("Jump");
-	}
 }

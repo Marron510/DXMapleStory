@@ -23,6 +23,7 @@ protected:
 	
 	
 private:
-
+	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
+	std::shared_ptr<class USpriteRenderer> LeafTornadoBack;
 };
 

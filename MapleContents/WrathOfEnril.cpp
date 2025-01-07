@@ -10,14 +10,14 @@
 
 AWrathOfEnril::AWrathOfEnril()
 {
-	SkillRenderFront = CreateDefaultSubObject<USpriteRenderer>();
-	RootComponent = SkillRenderFront;
+	WrathOfEnril = CreateDefaultSubObject<USpriteRenderer>();
+	RootComponent = WrathOfEnril;
 
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
-	SkillRenderFront->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.1f, false);
-	SkillRenderFront->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
-	SkillRenderFront->ChangeAnimation("None");
-	SkillRenderFront->SetRelativeLocation({ 0.0f, 0.0f, 0.0f });
+	WrathOfEnril->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.1f, false);
+	WrathOfEnril->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
+	WrathOfEnril->ChangeAnimation("None");
+	WrathOfEnril->SetRelativeLocation({ 0.0f, 0.0f, 0.0f });
 }
 
 AWrathOfEnril::~AWrathOfEnril()
@@ -36,12 +36,12 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('A'))
 	{
-		SkillRenderFront->ChangeAnimation("WrathOfEnril");
-		SkillRenderFront->SetRelativeLocation(FVector{ -250.0f, -194.0f, FrontSkillZPos });
+		WrathOfEnril->ChangeAnimation("WrathOfEnril");
+		WrathOfEnril->SetRelativeLocation(FVector{ -250.0f, -194.0f, FrontSkillZPos });
 		
 		TimeEventComponent->AddEndEvent(0.86f, [this]()
 			{
-				SkillRenderFront->ChangeAnimation("None");
+				WrathOfEnril->ChangeAnimation("None");
 			}, false
 		);
 	}

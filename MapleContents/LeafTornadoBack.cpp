@@ -12,12 +12,12 @@ ALeafTornadoBack::ALeafTornadoBack()
 {
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
-	SkillRenderBack = CreateDefaultSubObject<USpriteRenderer>();
-	RootComponent = SkillRenderBack;
+	LeafTornadoBack = CreateDefaultSubObject<USpriteRenderer>();
+	RootComponent = LeafTornadoBack;
 
-	SkillRenderBack->CreateAnimation("LeafTornadoUp", "LeafTornadoUp", 0, 11, 0.072f, false);
-	SkillRenderBack->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
-	SkillRenderBack->ChangeAnimation("None");
+	LeafTornadoBack->CreateAnimation("LeafTornadoUp", "LeafTornadoUp", 0, 11, 0.072f, false);
+	LeafTornadoBack->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
+	LeafTornadoBack->ChangeAnimation("None");
 }
 
 ALeafTornadoBack::~ALeafTornadoBack()
@@ -36,13 +36,13 @@ void ALeafTornadoBack::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('D'))
 	{
-		SkillRenderBack->ChangeAnimation("LeafTornadoUp");
+		LeafTornadoBack->ChangeAnimation("LeafTornadoUp");
 
-		SkillRenderBack->SetRelativeLocation(FVector{ 0.0f, -390.0f, BackSkillZPos });
+		LeafTornadoBack->SetRelativeLocation(FVector{ 0.0f, -390.0f, BackSkillZPos });
 	
 		TimeEventComponent->AddEndEvent(0.87f, [this]()
 			{
-				SkillRenderBack->ChangeAnimation("None");
+				LeafTornadoBack->ChangeAnimation("None");
 			}, false
 		);
 

@@ -152,8 +152,9 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	
 	// 플레이어 스킬
 	{
+		LeafTornadoBack = GetWorld()->SpawnActor<ALeafTornadoBack>();
+		LeafTornadoFront = GetWorld()->SpawnActor<ALeafTornadoFront>();
 		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
-	
 	}
 
 	// 플레이어
@@ -163,13 +164,11 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	}
 	
 	
-	LeafTornadoBack = GetWorld()->SpawnActor<ALeafTornadoBack>();
-	LeafTornadoFront = GetWorld()->SpawnActor<ALeafTornadoFront>();
+
 
 	
 
 	WrathOfEnril->AttachToActor(Player.get());
-
 	LeafTornadoFront->AttachToActor(Player.get());
 	LeafTornadoBack->AttachToActor(Player.get());
 	
