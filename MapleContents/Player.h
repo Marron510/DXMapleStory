@@ -1,7 +1,7 @@
 #pragma once
 #include <EngineCore/Pawn.h>
+#include <EngineBase/FSMStateManager.h>
 
-// Ό³Έν :
 class APlayer : public APawn
 {
 public:
@@ -29,6 +29,8 @@ private:
 	std::shared_ptr<class USpriteRenderer> SkillRenderer;
 	std::shared_ptr<class USpriteRenderer> SubSkillRenderer;
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
+
+	UFSMStateManager FSM;
 
 	bool bIsGround = false;
 	bool bIsCharge = false;

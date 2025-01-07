@@ -9,14 +9,19 @@
 
 APlayer::APlayer()
 {
+	
+	
+	
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
-
+	
+	// 타임이벤터
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
-
-	SkillRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	
+	// 플레이어, 스킬 렌더러
+	SkillRenderer = CreateDefaultSubObject<USpriteRenderer>(); // 플레이어 뒤
 	PlayerRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SubSkillRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SubSkillRenderer = CreateDefaultSubObject<USpriteRenderer>(); // 플레이어 앞
 
 	SkillRenderer->SetupAttachment(RootComponent);
 	PlayerRenderer->SetupAttachment(RootComponent);
@@ -234,4 +239,7 @@ void APlayer::Tick(float _DeltaTime)
 	{
 		PlayerRenderer->ChangeAnimation("Jump");
 	}
+
+
+	//FSM.Update(_DeltaTime);
 }

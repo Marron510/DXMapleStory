@@ -35,8 +35,11 @@
     <ClInclude Include="EngineDelegate.h">
       <Filter>Event</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\GM2\API\EngineBase\FSMStateManager.h">
+    <ClInclude Include="FSMStateManager.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineRandom.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,8 +74,11 @@
     <ClCompile Include="EngineDelegate.cpp">
       <Filter>Event</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\GM2\API\EngineBase\FSMStateManager.cpp">
+    <ClCompile Include="FSMStateManager.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineRandom.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
