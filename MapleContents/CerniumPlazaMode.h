@@ -20,16 +20,29 @@ public:
 protected:
 
 private:
+	// 플레이어
 	std::shared_ptr<class APlayer> Player;
 
+	// 플레이어 스킬
 
+	std::shared_ptr<class AWrathOfEnril> WrathOfEnril;
+
+
+
+
+
+	// 맵
 	std::shared_ptr<class ACerniumPlaza> Plaza;
-	std::shared_ptr<class ACameraActor> Camera;
-
 	std::shared_ptr<class AManyu> Manyu;
-
 	std::shared_ptr<class USpriteRenderer> BigTree_Left;
 	std::shared_ptr<class USpriteRenderer> BigTree_Right;
+
+	// 카메라
+	std::shared_ptr<class ACameraActor> Camera;
+
+	
+
+
 
 };
 

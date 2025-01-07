@@ -1,6 +1,12 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+enum class ESkillState
+{
+	WrathOfEnril,
+	None,
+};
+
 class ASkillManager : public AActor
 {
 public:
@@ -16,11 +22,12 @@ public:
 	ASkillManager& operator=(ASkillManager&& _Other) noexcept = delete;
 
 	
-	void BeginPlay() override;
-	void Tick(float _DeltaTime) override;
+	virtual void BeginPlay();
+	virtual void Tick(float _DeltaTime);
 
 protected:
-
+	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
+	std::shared_ptr<class USpriteRenderer> SkillRender = nullptr;
 private:
 
 };

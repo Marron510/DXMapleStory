@@ -18,11 +18,6 @@ public:
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
 
 
-	
-
-
-
-
 
 	std::shared_ptr<class USpriteRenderer> GetRenderer()
 	{

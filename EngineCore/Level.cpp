@@ -94,6 +94,26 @@ void ULevel::Render(float _DeltaTime)
 		Camera.second->GetCameraComponent()->Render(_DeltaTime);
 	}
 
+	{
+		std::shared_ptr<class ACameraActor> Camera = GetMainCamera();
+
+		for (std::pair<const std::string, std::list<std::shared_ptr<UCollision>>>& Group : Collisions)
+		{
+			std::list<std::shared_ptr<UCollision>>& List = Group.second;
+
+			for (std::shared_ptr<UCollision>& _Collision : List)
+			{
+				if (false == _Collision->IsActive())
+				{
+					continue;
+				}
+
+				_Collision->DebugRender(Camera->GetCameraComponent().get(), _DeltaTime);
+			}
+		}
+	}
+
+
 	if (true == UEngineWindow::IsApplicationOn())
 	{
 		UEngineGUI::GUIRender();
@@ -122,28 +142,71 @@ void ULevel::ChangeRenderGroup(int _CameraOrder, int _PrevGroupOrder, std::share
 
 void ULevel::CreateCollisionProfile(std::string_view _ProfileName)
 {
-	Collisions[_ProfileName];
+	std::string UpperName = UEngineString::ToUpper(_ProfileName);
+
+	Collisions[UpperName];
+}
+
+void ULevel::LinkCollisionProfile(std::string_view _LeftProfileName, std::string_view _RightProfileName)
+{
+	std::string LeftUpperName = UEngineString::ToUpper(_LeftProfileName);
+	std::string RightUpperName = UEngineString::ToUpper(_RightProfileName);
+
+	CollisionLinks[LeftUpperName].push_back(RightUpperName);
+}
+
+void ULevel::PushCollisionProfileEvent(std::shared_ptr<class URenderer> _Renderer)
+{
+
 }
 
 void ULevel::ChangeCollisionProfileName(std::string_view _ProfileName, std::string_view _PrevProfileName, std::shared_ptr<UCollision> _Collision)
 {
-	if (false == Collisions.contains(_ProfileName))
+	if (false == Collisions.contains(_ProfileName.data()))
 	{
 		MSGASSERT("존재하지 않는 콜리전 그룹에 랜더러를 집어넣으려고 했습니다.");
 		return;
 	}
 
+	std::string PrevUpperName = UEngineString::ToUpper(_PrevProfileName);
+
 	if (_PrevProfileName != "")
 	{
-		std::list<std::shared_ptr<UCollision>>& PrevCollisionGroup = Collisions[_PrevProfileName];
+		std::list<std::shared_ptr<UCollision>>& PrevCollisionGroup = Collisions[PrevUpperName];
 		PrevCollisionGroup.remove(_Collision);
 	}
 
+	std::string UpperName = UEngineString::ToUpper(_ProfileName);
 
-	std::list<std::shared_ptr<UCollision>>& CollisionGroup = Collisions[_ProfileName];
+	std::list<std::shared_ptr<UCollision>>& CollisionGroup = Collisions[UpperName];
 	CollisionGroup.push_back(_Collision);
 }
 
+void ULevel::Collision(float _DeltaTime)
+{
+	// Monster Player 충돌체크 해야 한다.
+
+	for (std::pair<const std::string, std::list<std::string>>& Links : CollisionLinks)
+	{
+		const std::string& LeftProfile = Links.first;
+
+		std::list<std::string>& LinkSecond = Links.second;
+
+		for (std::string& RightProfile : LinkSecond)
+		{
+			std::list<std::shared_ptr<class UCollision>>& LeftList = CheckCollisions[LeftProfile];
+			std::list<std::shared_ptr<class UCollision>>& RightList = Collisions[RightProfile];
+
+			for (std::shared_ptr<class UCollision>& LeftCollision : LeftList)
+			{
+				for (std::shared_ptr<class UCollision>& RightCollision : RightList)
+				{
+					LeftCollision->CollisionEventCheck(RightCollision);
+				}
+			}
+		}
+	}
+}
 
 void ULevel::Release(float _DeltaTime)
 {
@@ -154,7 +217,7 @@ void ULevel::Release(float _DeltaTime)
 
 	{
 		// 충돌체 릴리즈
-		for (std::pair<const std::string_view, std::list<std::shared_ptr<UCollision>>>& Group : Collisions)
+		for (std::pair<const std::string, std::list<std::shared_ptr<UCollision>>>& Group : Collisions)
 		{
 			std::list<std::shared_ptr<UCollision>>& List = Group.second;
 

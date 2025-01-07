@@ -22,6 +22,9 @@
 
 
 #include "Player.h"
+#include "SkillManager.h"
+#include "WrathOfEnril.h"
+
 
 
 ACerniumPlazaMode::ACerniumPlazaMode()
@@ -148,7 +151,12 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		Player = GetWorld()->SpawnActor<APlayer>();
 		Player->SetActorLocation(FVector{ 0.0f, -230.0f , -3.5f });
 	}
-
+	
+	// 플레이어 스킬
+	{
+		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
+		WrathOfEnril->AttachToActor(Player.get());
+	}
 
 
 	Camera = GetWorld()->GetMainCamera();

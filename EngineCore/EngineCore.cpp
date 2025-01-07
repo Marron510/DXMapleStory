@@ -171,6 +171,7 @@ void UEngineCore::EngineFrame()
 	CurLevel->Render(DeltaTime);
 
 	CurLevel->Release(DeltaTime);
+	CurLevel->Collision(DeltaTime);
 }
 
 void UEngineCore::EngineEnd()

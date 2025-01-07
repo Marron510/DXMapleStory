@@ -28,8 +28,7 @@ APlayer::APlayer()
 	PlayerRenderer->SetupAttachment(RootComponent);
 	SubSkillRenderer->SetupAttachment(RootComponent);
 
-	// 엔릴
-	SubSkillRenderer->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.0607f,false);
+	
 	// 리프
 	SubSkillRenderer->CreateAnimation("LeafTornadoDown", "LeafTornadoDown", 0, 11, 0.05f, false);
 	SkillRenderer->CreateAnimation("LeafTornadoUp", "LeafTornadoUp", 0, 11, 0.072f, false);
