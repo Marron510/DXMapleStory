@@ -150,8 +150,10 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	}
 
 
+
 	Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
+	Camera->AttachToActor(Player.get());
+	Camera->AddRelativeLocation({ 0.0f, 230.0f , -1000.0f});
 
 }
 
@@ -163,26 +165,4 @@ ACerniumPlazaMode::~ACerniumPlazaMode()
 void ACerniumPlazaMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-
-	if (UEngineInput::IsPress(VK_LEFT))
-	{
-		Camera->AddRelativeLocation(FVector{ -300.0f * _DeltaTime, 0.0f, 0.0f });
-	}
-
-	if (UEngineInput::IsPress(VK_RIGHT))
-	{
-		Camera->AddRelativeLocation(FVector{ 300.0f * _DeltaTime, 0.0f, 0.0f });
-	}
-
-
-	if (UEngineInput::IsPress(VK_UP))
-	{
-		Camera->AddRelativeLocation(FVector{  0.0f, 300.0f * _DeltaTime, 0.0f });
-	}
-
-	//if (UEngineInput::IsPress(VK_DOWN))
-	//{
-	//	Camera->AddRelativeLocation(FVector{ 0.0f, -300.0f * _DeltaTime, 0.0f });
-	//}
-
 }

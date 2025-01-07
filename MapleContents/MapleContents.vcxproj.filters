@@ -80,6 +80,12 @@
     <ClCompile Include="Player_state.cpp">
       <Filter>Character\01_Player</Filter>
     </ClCompile>
+    <ClCompile Include="SkillManager.cpp">
+      <Filter>SKill\01_SkillManager</Filter>
+    </ClCompile>
+    <ClCompile Include="WrathOfEnril.cpp">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -158,6 +164,12 @@
     <ClInclude Include="EventCharacter.h">
       <Filter>Character</Filter>
     </ClInclude>
+    <ClInclude Include="SkillManager.h">
+      <Filter>SKill\01_SkillManager</Filter>
+    </ClInclude>
+    <ClInclude Include="WrathOfEnril.h">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -210,6 +222,15 @@
     </Filter>
     <Filter Include="Map\03_BossSerenMap">
       <UniqueIdentifier>{0745de5a-eda5-4e57-8f41-0f67d9f65bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SKill">
+      <UniqueIdentifier>{18114a76-cda4-4ba5-ba69-2b24dcb4e844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SKill\01_SkillManager">
+      <UniqueIdentifier>{7e28856d-e9e9-4714-94fb-498056cf3bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SKill\02_PlayerSKill">
+      <UniqueIdentifier>{55d10af9-dd5a-4fd7-8f59-27218ee38156}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
