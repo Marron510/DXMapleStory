@@ -45,7 +45,7 @@ APlayer::APlayer()
 	PlayerRenderer->CreateAnimation("HighKick", "HighKick", 0, 0, 0.6f, false);
 
 
-
+	//
 	PlayerRenderer->ChangeAnimation("Idle");
 	
 	PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, static_cast<float>(EMapleZEnum::Player) });
