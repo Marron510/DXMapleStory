@@ -7,6 +7,7 @@ class ULevel : public UObject
 {
 public:
 	friend class UCollision;
+	friend class UEngineCore;
 
 	// constrcuter destructer
 	ENGINEAPI ULevel();
@@ -20,6 +21,16 @@ public:
 
 	void LevelChangeStart();
 	void LevelChangeEnd();
+
+	class AGameMode* GetGameMode()
+	{
+		return GameMode;
+	}
+
+	class APawn* GetMainPawn()
+	{
+		return MainPawn;
+	}
 
 
 	void Tick(float _DeltaTime);
@@ -88,6 +99,10 @@ public:
 protected:
 
 private:
+	class AGameMode* GameMode = nullptr;
+
+	class APawn* MainPawn = nullptr;
+
 	std::list<std::shared_ptr<class AActor>> BeginPlayList;
 
 	std::list<std::shared_ptr<class AActor>> AllActorList;
@@ -99,5 +114,7 @@ private:
 	std::map<std::string, std::list<std::shared_ptr<class UCollision>>> CheckCollisions;
 
 	std::map<std::string, std::list<std::string>> CollisionLinks;
+
+	ENGINEAPI void InitLevel(AGameMode* _GameMode, APawn* _Pawn);
 };
 

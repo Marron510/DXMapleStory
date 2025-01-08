@@ -1,22 +1,27 @@
 #pragma once
-class ChargeDrive
+#include "SkillManager.h"
+
+class AChargeDrive : public ASkillManager
 {
 public:
 	// 持失切 社瑚切
-	ChargeDrive();
-	~ChargeDrive();
+	AChargeDrive();
+	~AChargeDrive();
 
 	// delete funcion
 
-	ChargeDrive(const ChargeDrive& _Other) = delete;
-	ChargeDrive(ChargeDrive&& _Other) noexcept = delete;
-	ChargeDrive& operator=(const ChargeDrive& _Other) = delete;
-	ChargeDrive& operator=(ChargeDrive&& _Other) noexcept = delete;
+	AChargeDrive(const AChargeDrive& _Other) = delete;
+	AChargeDrive(AChargeDrive&& _Other) noexcept = delete;
+	AChargeDrive& operator=(const AChargeDrive& _Other) = delete;
+	AChargeDrive& operator=(AChargeDrive&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 
 protected:
 
 private:
-
+	std::shared_ptr<class USpriteRenderer> ChargeDrive_Front;
+	std::shared_ptr<class USpriteRenderer> ChargeDrive_Back;
 };
 

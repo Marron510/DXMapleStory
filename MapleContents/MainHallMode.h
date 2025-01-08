@@ -1,8 +1,8 @@
 #pragma once
 
-#include <EngineCore/Actor.h>
+#include <EngineCore/GameMode.h>
 
-class AMainHallMode : public AActor
+class AMainHallMode : public AGameMode
 {
 public:
 	// 持失切 社瑚切

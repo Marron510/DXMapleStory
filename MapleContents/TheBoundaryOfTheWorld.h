@@ -1,8 +1,8 @@
 #pragma once
 
-#include <EngineCore/Actor.h>
+#include <EngineCore/GameMode.h>
 
-class ATheBoundaryOfTheWorld : public AActor
+class ATheBoundaryOfTheWorld : public AGameMode
 {
 public:
 	// 持失切 社瑚切

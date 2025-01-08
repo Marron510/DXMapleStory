@@ -29,7 +29,7 @@
 #include "LeafTornado.h"
 #include "StrikeDualShot.h"
 #include "RollingMoonSult.h"
-
+#include "ChargeDrive.h"
 
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
@@ -133,6 +133,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
 		StrikeDualShot = GetWorld()->SpawnActor<AStrikeDualShot>();
 		RollingMoonSult = GetWorld()->SpawnActor<ARollingMoonSult>();
+		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
 	}
 	
 	// 플레이어
@@ -141,19 +142,18 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		Player->AddRelativeLocation(FVector{ 0.0f, -230.0f});
 	}
 	
-	{
 		LeafTornadoFront->AttachToActor(Player.get());
 		WrathOfEnril->AttachToActor(Player.get());
 		StrikeDualShot->AttachToActor(Player.get());
 		RollingMoonSult->AttachToActor(Player.get());
-	}
+		ChargeDrive->AttachToActor(Player.get());
 
-	{
-		Camera = GetWorld()->GetMainCamera();
-		Camera->AddRelativeLocation(FVector{ 0.0f, 230.0f , -1000.0f });
-		Camera->AttachToActor(Player.get());
-		Camera->GetCameraComponent()->SetZSort(0, true);
-	}
+	
+	Camera = GetWorld()->GetMainCamera();
+	Camera->AddRelativeLocation(FVector{ 0.0f, 230.0f , -1000.0f });
+	Camera->AttachToActor(Player.get());
+	Camera->GetCameraComponent()->SetZSort(0, true);
+	
 
 
 

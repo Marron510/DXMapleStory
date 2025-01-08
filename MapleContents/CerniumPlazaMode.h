@@ -1,7 +1,7 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include <EngineCore/GameMode.h>
 
-class ACerniumPlazaMode : public AActor
+class ACerniumPlazaMode : public AGameMode
 {
 public:
 	// 持失切 社瑚切
@@ -29,6 +29,7 @@ private:
 	std::shared_ptr<class ALeafTornado> LeafTornadoFront;
 	std::shared_ptr<class AStrikeDualShot> StrikeDualShot;
 	std::shared_ptr<class ARollingMoonSult> RollingMoonSult;
+	std::shared_ptr<class AChargeDrive> ChargeDrive;
 
 
 

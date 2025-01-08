@@ -6,8 +6,8 @@ class AGameMode : public AActor
 {
 public:
 	// constrcuter destructer
-	AGameMode();
-	~AGameMode();
+	ENGINEAPI AGameMode();
+	ENGINEAPI ~AGameMode();
 
 	// delete Function
 	AGameMode(const AGameMode& _Other) = delete;
@@ -20,4 +20,3 @@ protected:
 private:
 
 };
-

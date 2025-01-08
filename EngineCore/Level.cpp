@@ -4,10 +4,10 @@
 #include "Actor.h"
 #include "Renderer.h"
 #include "Collision.h"
-#include "CameraActor.h"
 
 #include "EngineCore.h"
 #include "EngineCamera.h"
+#include "CameraActor.h"
 #include "EngineGUI.h"
 
 
@@ -75,6 +75,13 @@ void ULevel::Tick(float _DeltaTime)
 		StartIter = BeginPlayList.erase(StartIter);
 
 		CurActor->BeginPlay();
+		
+		if (nullptr != CurActor->Parent)
+		{
+			continue;
+		}
+
+
 		AllActorList.push_back(CurActor);
 	}
 
@@ -232,6 +239,8 @@ void ULevel::Release(float _DeltaTime)
 
 			for (; StartIter != EndIter; )
 			{
+				
+
 				if (false == (*StartIter)->IsDestroy())
 				{
 					++StartIter;
@@ -251,6 +260,12 @@ void ULevel::Release(float _DeltaTime)
 
 		for (; StartIter != EndIter; )
 		{
+			if (nullptr != (*StartIter)->Parent)
+			{
+				StartIter = List.erase(StartIter);
+				continue;
+			}
+
 			if (false == (*StartIter)->IsDestroy())
 			{
 				++StartIter;
@@ -260,4 +275,12 @@ void ULevel::Release(float _DeltaTime)
 			StartIter = List.erase(StartIter);
 		}
 	}
+}
+
+void ULevel::InitLevel(AGameMode* _GameMode, APawn* _Pawn)
+{
+	GameMode = _GameMode;
+
+	MainPawn = _Pawn;
+
 }

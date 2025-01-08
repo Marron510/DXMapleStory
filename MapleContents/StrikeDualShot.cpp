@@ -30,7 +30,7 @@ AStrikeDualShot::AStrikeDualShot()
 	StrikeDaulShotBack->ChangeAnimation("None");
 	
 	StrikeDaulShotFront->SetRelativeLocation(FVector{ 40.0f, -80.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
-	StrikeDaulShotBack->SetRelativeLocation(FVector{ 40.0f, -40.0f, static_cast<float>(EMapleZEnum::Player_Skill_Back) });
+	StrikeDaulShotBack->SetRelativeLocation(FVector{ 40.0f, -50.0f, static_cast<float>(EMapleZEnum::Player_Skill_Back) });
 }
 
 AStrikeDualShot::~AStrikeDualShot()
