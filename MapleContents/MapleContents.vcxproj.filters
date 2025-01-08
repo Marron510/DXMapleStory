@@ -98,6 +98,9 @@
     <ClCompile Include="ChargeDrive.cpp">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
+    <ClCompile Include="HighKick.cpp">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -195,6 +198,9 @@
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
     <ClInclude Include="ChargeDrive.h">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClInclude>
+    <ClInclude Include="HighKick.h">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
   </ItemGroup>

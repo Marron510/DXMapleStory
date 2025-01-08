@@ -42,7 +42,7 @@ APlayer::APlayer()
 	PlayerRenderer->CreateAnimation("Unicorn", "Unicorn.png", 0, 4, 0.14f, false);
 	PlayerRenderer->CreateAnimation("LegendarySpear", "LegendarySpear.png", 0, 11, 0.046f, false);
 	PlayerRenderer->CreateAnimation("ProneAttack", "Prone.png", 0, 1, 0.1f, false);
-
+	PlayerRenderer->CreateAnimation("HighKick", "HighKick", 0, 0, 0.6f, false);
 
 
 

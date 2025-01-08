@@ -30,6 +30,7 @@
 #include "StrikeDualShot.h"
 #include "RollingMoonSult.h"
 #include "ChargeDrive.h"
+#include "HighKick.h"
 
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
@@ -134,6 +135,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		StrikeDualShot = GetWorld()->SpawnActor<AStrikeDualShot>();
 		RollingMoonSult = GetWorld()->SpawnActor<ARollingMoonSult>();
 		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
+		HighKick = GetWorld()->SpawnActor<AHighKick>();
 	}
 	
 	// 플레이어
@@ -147,7 +149,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		StrikeDualShot->AttachToActor(Player.get());
 		RollingMoonSult->AttachToActor(Player.get());
 		ChargeDrive->AttachToActor(Player.get());
-
+		HighKick->AttachToActor(Player.get());
 	
 	Camera = GetWorld()->GetMainCamera();
 	Camera->AddRelativeLocation(FVector{ 0.0f, 230.0f , -1000.0f });

@@ -182,5 +182,15 @@ void APlayer::UseSkill(float _DeltaTime)
 
 	// 차지 드라이브
 	if (UEngineInput::IsPress('Q')) { PlayerRenderer->ChangeAnimation("Charge"); }
-
+	
+	// 하이킥 데몰리션
+	if (UEngineInput::IsPress('W')) {
+		PlayerRenderer->ChangeAnimation("HighKick");
+		
+		if (true == PlayerRenderer->IsCurAnimationEnd())
+		{
+			AddActorLocation(FVector(0.0f, 5.0f));
+		}
+		
+	}
 }

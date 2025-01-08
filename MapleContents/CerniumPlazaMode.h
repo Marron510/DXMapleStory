@@ -30,6 +30,7 @@ private:
 	std::shared_ptr<class AStrikeDualShot> StrikeDualShot;
 	std::shared_ptr<class ARollingMoonSult> RollingMoonSult;
 	std::shared_ptr<class AChargeDrive> ChargeDrive;
+	std::shared_ptr<class AHighKick> HighKick;
 
 
 
