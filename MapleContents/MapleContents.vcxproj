@@ -179,6 +179,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ChargeDrive.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Dawn.cpp">
       <SubType>
       </SubType>
@@ -246,6 +250,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="RollingMoonSult.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Seren.cpp">
       <SubType>
       </SubType>
@@ -284,6 +292,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="CerniumPlazaMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ChargeDrive.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -345,6 +357,10 @@
     </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="RollingMoonSult.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Seren.h">
       <SubType>
       </SubType>

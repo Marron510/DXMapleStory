@@ -3,15 +3,13 @@
 
 #include <EnginePlatform/EngineInput.h>
 
-#include <Enginecore/TimeEventComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
+#include "MapleEnum.h"
 
 AStrikeDualShot::AStrikeDualShot()
 {
-	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
-
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
 	
@@ -31,8 +29,8 @@ AStrikeDualShot::AStrikeDualShot()
 	StrikeDaulShotFront->ChangeAnimation("None");
 	StrikeDaulShotBack->ChangeAnimation("None");
 	
-	StrikeDaulShotFront->SetRelativeLocation(FVector{ 40.0f, -320.0f, FrontSkillZPos });
-	StrikeDaulShotBack->SetRelativeLocation(FVector{ 40.0f, -280.0f, BackSkillZPos });
+	StrikeDaulShotFront->SetRelativeLocation(FVector{ 40.0f, -80.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
+	StrikeDaulShotBack->SetRelativeLocation(FVector{ 40.0f, -40.0f, static_cast<float>(EMapleZEnum::Player_Skill_Back) });
 }
 
 AStrikeDualShot::~AStrikeDualShot()

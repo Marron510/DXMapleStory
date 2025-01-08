@@ -92,6 +92,12 @@
     <ClCompile Include="StrikeDualShot.cpp">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
+    <ClCompile Include="RollingMoonSult.cpp">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeDrive.cpp">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -184,6 +190,12 @@
     </ClInclude>
     <ClInclude Include="MapleEnum.h">
       <Filter>MapleGobal</Filter>
+    </ClInclude>
+    <ClInclude Include="RollingMoonSult.h">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeDrive.h">
+      <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -56,12 +56,6 @@ void APlayer::Idle(float _DeltaTime)
 
 	if (UEngineInput::IsPress(VK_LEFT)){ FSM.ChangeState(ECharacterState::Walk);}
 	if (UEngineInput::IsPress(VK_RIGHT)) { FSM.ChangeState(ECharacterState::Walk); }
-
-	/*if (UEngineInput::IsPress(VK_UP))
-	{
-		AddRelativeLocation(FVector{ 0.0f, 300.0f * _DeltaTime, 0.0f });
-	}*/
-
 	if (UEngineInput::IsPress(VK_DOWN)){ FSM.ChangeState(ECharacterState::Prone); }
 
 
@@ -71,23 +65,16 @@ void APlayer::Idle(float _DeltaTime)
 
 
 	// 제자리 스킬 사용
-	
 
-	if (UEngineInput::IsDown('A'))
-	{
-		FSM.ChangeState(ECharacterState::UseSkill);
-	}
+	if (UEngineInput::IsPress('A')) { FSM.ChangeState(ECharacterState::UseSkill); }
 
+	if (UEngineInput::IsPress('S')) { FSM.ChangeState(ECharacterState::UseSkill); }
 
-	if (UEngineInput::IsDown('S'))
-	{
-		FSM.ChangeState(ECharacterState::UseSkill);
-	}
+	if (UEngineInput::IsPress('D')) { FSM.ChangeState(ECharacterState::UseSkill); }
 
-	if (UEngineInput::IsDown('D'))
-	{
-		FSM.ChangeState(ECharacterState::UseSkill);
-	}
+	if (UEngineInput::IsPress('E')) { FSM.ChangeState(ECharacterState::UseSkill); }
+
+	if (UEngineInput::IsPress('Q')) { FSM.ChangeState(ECharacterState::UseSkill); }
 }
 
 
@@ -97,6 +84,8 @@ void APlayer::Prone(float _DeltaTime)
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 	}
+
+	if (UEngineInput::IsPress('Q')) { FSM.ChangeState(ECharacterState::UseSkill); }
 }
 
 
@@ -104,12 +93,14 @@ void APlayer::Walk(float _DeltaTime)
 {
 
 	// 이동
-	// 
-	// 왼쪽 이동
+	
+	
 	{
+		// 왼쪽 이동
+
 		if (UEngineInput::IsPress(VK_LEFT))
 		{
-			AddRelativeLocation(FVector{ -300.0f * _DeltaTime, 0.0f, 0.0f });
+			AddRelativeLocation(FVector{ -PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
 			SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
 		}
 
@@ -125,7 +116,7 @@ void APlayer::Walk(float _DeltaTime)
 
 		if (UEngineInput::IsPress(VK_RIGHT))
 		{
-			AddRelativeLocation(FVector{ 300.0f * _DeltaTime, 0.0f, 0.0f });
+			AddRelativeLocation(FVector{ PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
 			SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
 		}
 
@@ -140,22 +131,15 @@ void APlayer::Walk(float _DeltaTime)
 
 	// 이동 중 스킬 사용
 	{
-		if (UEngineInput::IsDown('A'))
-		{
-			FSM.ChangeState(ECharacterState::UseSkill);
-		}
+		if (UEngineInput::IsPress('A')) { FSM.ChangeState(ECharacterState::UseSkill); }
 
+		if (UEngineInput::IsPress('S')) { FSM.ChangeState(ECharacterState::UseSkill); }
 
-		if (UEngineInput::IsDown('S'))
-		{
-			FSM.ChangeState(ECharacterState::UseSkill);
-		}
+		if (UEngineInput::IsPress('D')) { FSM.ChangeState(ECharacterState::UseSkill); }
 
-		if (UEngineInput::IsDown('D'))
-		{
-			FSM.ChangeState(ECharacterState::UseSkill);
-		}
+		if (UEngineInput::IsPress('E')) { FSM.ChangeState(ECharacterState::UseSkill); }
 
+		if (UEngineInput::IsPress('Q')) { FSM.ChangeState(ECharacterState::UseSkill); }
 	}
 
 
@@ -179,34 +163,24 @@ void APlayer::Jump(float _DeltaTime)
 void APlayer::UseSkill(float _DeltaTime)
 {
 	// 스킬 애니메이션이 끝나면 Idle 전환
-	if (true == PlayerRenderer->IsCurAnimationEnd())
-	{
-		PlayerRenderer->ChangeAnimation("Idle");
-	}
-
-
+	if (true == PlayerRenderer->IsCurAnimationEnd()) { FSM.ChangeState(ECharacterState::Idle); }
 
 	// 레쓰 오브 엔릴
-	if (UEngineInput::IsPress('A'))
-	{
-		PlayerRenderer->ChangeAnimation("Wrath");
-	}
+	if (UEngineInput::IsPress('A')) { PlayerRenderer->ChangeAnimation("Wrath"); }
 
 	// 스트라이크 듀얼 샷
-	if (UEngineInput::IsPress('S'))
-	{
-		PlayerRenderer->ChangeAnimation("StrikeDualShot");
-	}
+	if (UEngineInput::IsPress('S')) { PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+	
 	// 스듀는 바로 캐릭터 Idle 전환
-	if (UEngineInput::IsUp('S'))
-	{
-		FSM.ChangeState(ECharacterState::Idle);
-	}
+	if (UEngineInput::IsUp('S')) { FSM.ChangeState(ECharacterState::Idle); }
 
 	// 리프 토네이도 
-	if (UEngineInput::IsPress('D'))
-	{
-		PlayerRenderer->ChangeAnimation("Tornado");
-	}
+	if (UEngineInput::IsPress('D')) { PlayerRenderer->ChangeAnimation("Tornado"); }
+
+	// 롤링 어썰트
+	if (UEngineInput::IsPress('E')) { PlayerRenderer->ChangeAnimation("Rolling"); }
+
+	// 차지 드라이브
+	if (UEngineInput::IsPress('Q')) { PlayerRenderer->ChangeAnimation("Charge"); }
 
 }

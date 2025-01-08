@@ -30,17 +30,12 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> PlayerRenderer;
-	std::shared_ptr<class USpriteRenderer> SkillRenderer;
-	std::shared_ptr<class USpriteRenderer> SubSkillRenderer;
+
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
-
-
-
 	
 	UFSMStateManager FSM;
 
-	float PlayerZPos = -4.0f;
-
+	float PlayerSpeed = 900.0f;
 
 
 	bool bIsGround = false;

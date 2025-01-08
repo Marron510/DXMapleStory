@@ -28,7 +28,7 @@ private:
 	std::shared_ptr<class AWrathOfEnril> WrathOfEnril;
 	std::shared_ptr<class ALeafTornado> LeafTornadoFront;
 	std::shared_ptr<class AStrikeDualShot> StrikeDualShot;
-
+	std::shared_ptr<class ARollingMoonSult> RollingMoonSult;
 
 
 

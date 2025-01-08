@@ -3,10 +3,10 @@
 
 #include <EnginePlatform/EngineInput.h>
 
-#include <Enginecore/TimeEventComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
+#include "MapleEnum.h"
 
 AWrathOfEnril::AWrathOfEnril()
 {
@@ -16,12 +16,12 @@ AWrathOfEnril::AWrathOfEnril()
 	WrathOfEnril = CreateDefaultSubObject<USpriteRenderer>();
 	WrathOfEnril->SetupAttachment(RootComponent);
 
-	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 	WrathOfEnril->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.0614f, false);
 	WrathOfEnril->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	WrathOfEnril->ChangeAnimation("None");
 
-	WrathOfEnril->SetRelativeLocation(FVector{ -230.0f, -420.0f, FrontSkillZPos });
+	WrathOfEnril->SetRelativeLocation(FVector{ -230.0f, -220.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front)});
+
 }
 
 AWrathOfEnril::~AWrathOfEnril()

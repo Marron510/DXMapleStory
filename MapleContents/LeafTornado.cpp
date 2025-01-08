@@ -3,15 +3,13 @@
 
 #include <EnginePlatform/EngineInput.h>
 
-#include <Enginecore/TimeEventComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
+#include "MapleEnum.h"
 
 ALeafTornado::ALeafTornado()
 {
-	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
-
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
 
@@ -30,8 +28,8 @@ ALeafTornado::ALeafTornado()
 	LeafTornadoFront->ChangeAnimation("None");
 	LeafTornadoBack->ChangeAnimation("None");
 
-	LeafTornadoFront->SetRelativeLocation(FVector{ 25.0f, -600.0f, FrontSkillZPos });
-	LeafTornadoBack->SetRelativeLocation(FVector{ 0.0f, -640.0f, BackSkillZPos});
+	LeafTornadoFront->SetRelativeLocation(FVector{ 25.0f, -400.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
+	LeafTornadoBack->SetRelativeLocation(FVector{ 0.0f, -440.0f, static_cast<float>(EMapleZEnum::Player_Skill_Back) });
 }
 
 ALeafTornado::~ALeafTornado()
