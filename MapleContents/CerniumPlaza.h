@@ -16,14 +16,55 @@ public:
 	ACerniumPlaza& operator=(ACerniumPlaza&& _Other) noexcept = delete;
 
 
+	std::shared_ptr<class USpriteRenderer> GetPlaza_BackRender()
+	{
+		return Plaza_Back;
+	}
+
+	std::shared_ptr<class USpriteRenderer> GetPlaza_MidRender()
+	{
+		return Plaza_Mid;
+	}
+	
+	std::shared_ptr<class USpriteRenderer> GetFlag0Render()
+	{
+		return Flag0;
+	}
+	
+	std::shared_ptr<class USpriteRenderer> GetFlag1Render()
+	{
+		return Flag1;
+	}
+	
+	std::shared_ptr<class USpriteRenderer> GetFlag2Render()
+	{
+		return Flag2;
+	}
+	
+	std::shared_ptr<class USpriteRenderer> GetFlag3Render()
+	{
+		return Flag3;
+	}
+	
+	std::shared_ptr<class USpriteRenderer> GetFlag4Render()
+	{
+		return Flag4;
+	}
+
+	std::shared_ptr<class USpriteRenderer> GetFlag5Render()
+	{
+		return Flag5;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
 private:
 	// ±§¿Â
-	std::shared_ptr<class USpriteRenderer> Plaza_Front;
 	std::shared_ptr<class USpriteRenderer> Plaza_Back;
+	std::shared_ptr<class USpriteRenderer> Plaza_Mid;
+	std::shared_ptr<class USpriteRenderer> Plaza_Front;
 	// ±Íπﬂ
 	std::shared_ptr<class USpriteRenderer> Flag0;
 	std::shared_ptr<class USpriteRenderer> Flag1;
@@ -57,5 +98,9 @@ private:
 	std::shared_ptr<class USpriteRenderer> BigTree_Left;
 	std::shared_ptr<class USpriteRenderer> BigTree_Right;
 	
+
+	
+
+
 };
 

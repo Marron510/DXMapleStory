@@ -15,7 +15,11 @@ public:
 	ACerniumPlazaMode& operator=(const ACerniumPlazaMode& _Other) = delete;
 	ACerniumPlazaMode& operator=(ACerniumPlazaMode&& _Other) noexcept = delete;
 
+	void BeginPlay();
 	void Tick(float _DeltaTime);
+
+	void UpdateSpriteLocation(float _DeltaTime);
+	void UpdateSpriteLocation(std::shared_ptr<class USpriteRenderer>& Sprite, float _DeltaTime);
 
 protected:
 
@@ -44,8 +48,8 @@ private:
 	std::shared_ptr<class ACameraActor> Camera;
 
 	
-
-
-
+	FVector PlazaRenderScale = FVector{ 4830.0f ,1590.0f , 8000};
+	float SpeedMultiplier = 0.0f;
+	FVector PreviousPlayerLocation = FVector{0.0f, 0.0f, 0.0f};
 };
 

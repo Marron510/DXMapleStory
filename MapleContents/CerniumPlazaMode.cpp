@@ -145,21 +145,18 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		//Player->setcolimage
 	}
 	
-		LeafTornadoFront->AttachToActor(Player.get());
-		WrathOfEnril->AttachToActor(Player.get());
-		StrikeDualShot->AttachToActor(Player.get());
-		RollingMoonSult->AttachToActor(Player.get());
-		ChargeDrive->AttachToActor(Player.get());
-		HighKick->AttachToActor(Player.get());
+	LeafTornadoFront->AttachToActor(Player.get());
+	WrathOfEnril->AttachToActor(Player.get());
+	StrikeDualShot->AttachToActor(Player.get());
+	RollingMoonSult->AttachToActor(Player.get());
+	ChargeDrive->AttachToActor(Player.get());
+	HighKick->AttachToActor(Player.get());
 	
 	Camera = GetWorld()->GetMainCamera();
 	Camera->AddRelativeLocation(FVector{ 0.0f, 230.0f , -1000.0f });
 	Camera->AttachToActor(Player.get());
 	Camera->GetCameraComponent()->SetZSort(0, true);
 	
-
-	
-
 }
 
 ACerniumPlazaMode::~ACerniumPlazaMode()
@@ -167,7 +164,82 @@ ACerniumPlazaMode::~ACerniumPlazaMode()
 
 }
 
+void ACerniumPlazaMode::BeginPlay()
+{
+	AGameMode::BeginPlay();
+	
+	
+}
+
 void ACerniumPlazaMode::Tick(float _DeltaTime)
 {
-	AActor::Tick(_DeltaTime);
+	AGameMode::Tick(_DeltaTime);
+
+
+	UpdateSpriteLocation(_DeltaTime);
 }
+
+
+void ACerniumPlazaMode::UpdateSpriteLocation(float _DeltaTime)
+{
+	
+	std::shared_ptr<class USpriteRenderer> Plaza_Back = Plaza->GetPlaza_BackRender();
+	std::shared_ptr<class USpriteRenderer> Plaza_Mid = Plaza->GetPlaza_MidRender();
+	std::shared_ptr<class USpriteRenderer> Flag0 = Plaza->GetFlag0Render();
+	std::shared_ptr<class USpriteRenderer> Flag1 = Plaza->GetFlag1Render();
+	std::shared_ptr<class USpriteRenderer> Flag2 = Plaza->GetFlag2Render();
+	std::shared_ptr<class USpriteRenderer> Flag3 = Plaza->GetFlag3Render();
+	std::shared_ptr<class USpriteRenderer> Flag4 = Plaza->GetFlag4Render();
+	std::shared_ptr<class USpriteRenderer> Flag5 = Plaza->GetFlag5Render();
+
+	UpdateSpriteLocation(Plaza_Back, _DeltaTime);
+	UpdateSpriteLocation(Plaza_Mid, _DeltaTime);
+	UpdateSpriteLocation(Flag0, _DeltaTime);
+	UpdateSpriteLocation(Flag1, _DeltaTime);
+	UpdateSpriteLocation(Flag2, _DeltaTime);
+	UpdateSpriteLocation(Flag3, _DeltaTime);
+	UpdateSpriteLocation(Flag4, _DeltaTime);
+	UpdateSpriteLocation(Flag5, _DeltaTime);
+}
+
+void ACerniumPlazaMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& Sprite, float _DeltaTime)
+	{
+		if (nullptr == Sprite)
+		{
+			MSGASSERT("존재하지 않는 스프라이트를 이동시키려고 했습니다.");
+			return;
+		}
+
+		FVector CurrentPlayerLocation = Player.get()->GetActorLocation();
+		FVector Velocity = (CurrentPlayerLocation - PreviousPlayerLocation) / _DeltaTime;
+		PreviousPlayerLocation = CurrentPlayerLocation;
+		FVector CurrentLocation = Sprite->GetRelativeLocation();
+
+
+		switch (static_cast<EMapleZEnum>(static_cast<int>(CurrentLocation.Z)))
+		{
+		case EMapleZEnum::BackGround_Back:
+			SpeedMultiplier = 0.012f;
+			break;
+		case EMapleZEnum::BackGround_Mid:
+			SpeedMultiplier = 0.014f;
+			break;
+		case EMapleZEnum::Object_Front:
+			SpeedMultiplier = 0.012f;
+			break;
+		default:
+			SpeedMultiplier = 0.0f;
+			break;
+		}
+
+		if (true == UEngineInput::IsPress(VK_LEFT))
+		{
+			CurrentLocation.X -= SpeedMultiplier;
+		}
+		if (true == UEngineInput::IsPress(VK_RIGHT))
+		{
+			CurrentLocation.X += SpeedMultiplier;
+		}
+
+		Sprite->SetRelativeLocation(CurrentLocation);
+	};

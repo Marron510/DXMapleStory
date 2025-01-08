@@ -17,15 +17,23 @@ ACerniumPlaza::ACerniumPlaza()
 		Plaza_Front = CreateDefaultSubObject<USpriteRenderer>();
 		Plaza_Front->SetSprite("Cernium", 0);
 		Plaza_Front->SetupAttachment(RootComponent);
-		Plaza_Front->SetRelativeLocation({ 0.0f, -390.0f, static_cast<float>(EMapleZEnum::BackGround_Mid)});
+		Plaza_Front->SetRelativeLocation({ 0.0f, -390.0f, static_cast<float>(EMapleZEnum::BackGround_Front)});
 	}
+
+	{
+		Plaza_Mid = CreateDefaultSubObject<USpriteRenderer>();
+		Plaza_Mid->SetSprite("Cernium", 14);
+		Plaza_Mid->SetupAttachment(RootComponent);
+		Plaza_Mid->SetRelativeLocation({ 0.0f, -390.0f, static_cast<float>(EMapleZEnum::BackGround_Mid) });
+	}
+
 	{
 		Plaza_Back = CreateDefaultSubObject<USpriteRenderer>();
 		Plaza_Back->SetSprite("Cernium", 13);
 		Plaza_Back->SetupAttachment(RootComponent);
 		Plaza_Back->SetRelativeLocation({ 0.0f, -390.0f, static_cast<float>(EMapleZEnum::BackGround_Back) });
 	}
-
+	
 	// ±ê¹ß
 	{
 		Flag0 = CreateDefaultSubObject<USpriteRenderer>();
@@ -226,62 +234,6 @@ void ACerniumPlaza::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	auto UpdateSpriteLocation = [this](std::shared_ptr<USpriteRenderer>& Sprite) {
-		if (!Sprite) return;
 
-		FVector CurrentLocation = Sprite->GetRelativeLocation();
 
-		float SpeedMultiplier = 0.0f;
-		switch (static_cast<EMapleZEnum>(static_cast<int>(CurrentLocation.Z)))
-		{
-		case EMapleZEnum::BackGround_Back:
-			SpeedMultiplier = 0.1f;
-			break;
-		case EMapleZEnum::BackGround_Mid:
-			SpeedMultiplier = 0.0f;
-			break;
-		case EMapleZEnum::BackGround_Front:
-			SpeedMultiplier = 0.0f;
-			break;
-		default:
-			SpeedMultiplier = 0.0f; 
-			break;
-		}
-
-		if (true == UEngineInput::IsPress(VK_LEFT))
-		{
-			CurrentLocation.X -= SpeedMultiplier;
-		}
-		if (true == UEngineInput::IsPress(VK_RIGHT))
-		{
-			CurrentLocation.X += SpeedMultiplier;
-		}
-
-		Sprite->SetRelativeLocation(CurrentLocation);
-		};
-
-	UpdateSpriteLocation(Plaza_Front);
-	UpdateSpriteLocation(Plaza_Back);
-	UpdateSpriteLocation(Flag0);
-	UpdateSpriteLocation(Flag1);
-	UpdateSpriteLocation(Flag2);
-	UpdateSpriteLocation(Flag3);
-	UpdateSpriteLocation(Flag4);
-	UpdateSpriteLocation(Flag5);
-	UpdateSpriteLocation(Smithy);
-	UpdateSpriteLocation(Potion);
-	UpdateSpriteLocation(BuildingLeft_0);
-	UpdateSpriteLocation(BuildingLeft_1);
-	UpdateSpriteLocation(BuildingRight_0);
-	UpdateSpriteLocation(BuildingRight_1);
-	UpdateSpriteLocation(Tree_0);
-	UpdateSpriteLocation(Tree_1);
-	UpdateSpriteLocation(DawnPriestFlag);
-	UpdateSpriteLocation(FirePriestFlag);
-	UpdateSpriteLocation(FootHold_Left_0);
-	UpdateSpriteLocation(FootHold_Left_1);
-	UpdateSpriteLocation(FootHold_Mid);
-	UpdateSpriteLocation(FootHold_Right);
-	UpdateSpriteLocation(BigTree_Left);
-	UpdateSpriteLocation(BigTree_Right);
 }
