@@ -178,44 +178,35 @@ void APlayer::Jump(float _DeltaTime)
 
 void APlayer::UseSkill(float _DeltaTime)
 {
-	
+	// 스킬 애니메이션이 끝나면 Idle 전환
+	if (true == PlayerRenderer->IsCurAnimationEnd())
+	{
+		PlayerRenderer->ChangeAnimation("Idle");
+	}
 
+
+
+	// 레쓰 오브 엔릴
 	if (UEngineInput::IsPress('A'))
 	{
 		PlayerRenderer->ChangeAnimation("Wrath");
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
-
-		TimeEventComponent->AddEndEvent(0.86f, [this]()
-			{
-				FSM.ChangeState(ECharacterState::Idle);
-			}, false
-		);
 	}
 
-
+	// 스트라이크 듀얼 샷
 	if (UEngineInput::IsPress('S'))
 	{
 		PlayerRenderer->ChangeAnimation("StrikeDualShot");
-
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
 	}
+	// 스듀는 바로 캐릭터 Idle 전환
 	if (UEngineInput::IsUp('S'))
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 	}
 
-
+	// 리프 토네이도 
 	if (UEngineInput::IsPress('D'))
 	{
 		PlayerRenderer->ChangeAnimation("Tornado");
-
-		PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, PlayerZPos });
-
-		TimeEventComponent->AddEndEvent(0.87f, [this]()
-			{
-				FSM.ChangeState(ECharacterState::Idle);
-			}, false
-		);
 	}
 
 }

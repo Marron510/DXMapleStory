@@ -1,12 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
-enum class ESkillState
-{
-	WrathOfEnril,
-	None,
-};
-
 class ASkillManager : public AActor
 {
 public:

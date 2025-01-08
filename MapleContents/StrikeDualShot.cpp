@@ -7,25 +7,33 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
+
 AStrikeDualShot::AStrikeDualShot()
 {
+	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
-
-	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
-
+	
 	StrikeDaulShotFront = CreateDefaultSubObject<USpriteRenderer>();
+	StrikeDaulShotBack = CreateDefaultSubObject<USpriteRenderer>();
+
+
 	StrikeDaulShotFront->SetupAttachment(RootComponent);
+	StrikeDaulShotBack->SetupAttachment(RootComponent);
 
-	// ½ºµà
-	StrikeDaulShotFront->CreateAnimation("StrikeDualShot", "StrikeDualShot", 0, 10, 0.05f, false);
-	//SkillRenderer->CreateAnimation("StrikeDualShot_Back", "StrikeDualShot_Back", 0, 6, 0.077f, false);
-
+	StrikeDaulShotFront->CreateAnimation("StrikeDualShotFront", "StrikeDualShot", 0, 10, 0.032f);
 	StrikeDaulShotFront->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
+	
+	StrikeDaulShotBack->CreateAnimation("StrikeDualShotBack", "StrikeDualShot_Back", 0, 6, 0.0457f);
+	StrikeDaulShotBack->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
+	
 	StrikeDaulShotFront->ChangeAnimation("None");
+	StrikeDaulShotBack->ChangeAnimation("None");
+	
+	StrikeDaulShotFront->SetRelativeLocation(FVector{ 40.0f, -320.0f, FrontSkillZPos });
+	StrikeDaulShotBack->SetRelativeLocation(FVector{ 40.0f, -280.0f, BackSkillZPos });
 }
-
 
 AStrikeDualShot::~AStrikeDualShot()
 {
@@ -41,15 +49,21 @@ void AStrikeDualShot::Tick(float _DeltaTime)
 {
 	ASkillManager::Tick(_DeltaTime);
 
-	if (UEngineInput::IsPress('S'))
-	{
-		StrikeDaulShotFront->ChangeAnimation("StrikeDualShot");
-		StrikeDaulShotFront->SetRelativeLocation(FVector{ -200.0f, -194.0f, BackSkillZPos - 0.1f});
-	}
-
-	if (UEngineInput::IsPress('S'))
+	if (false == UEngineInput::IsPressTime('S') && true == StrikeDaulShotFront->IsCurAnimationEnd())
 	{
 		StrikeDaulShotFront->ChangeAnimation("None");
-	}
-}
+		StrikeDaulShotBack->ChangeAnimation("None");
 
+		StrikeDaulShotFront->SetActive(false);
+		StrikeDaulShotBack->SetActive(false);
+	}
+
+	if (UEngineInput::IsPress('S'))
+	{
+		StrikeDaulShotFront->ChangeAnimation("StrikeDualShotFront");
+		StrikeDaulShotBack->ChangeAnimation("StrikeDualShotBack");
+		StrikeDaulShotFront->SetActive(true);
+		StrikeDaulShotBack->SetActive(true);
+	}
+
+}

@@ -86,10 +86,7 @@
     <ClCompile Include="WrathOfEnril.cpp">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
-    <ClCompile Include="LeafTornadoFront.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClCompile>
-    <ClCompile Include="LeafTornadoBack.cpp">
+    <ClCompile Include="LeafTornado.cpp">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
     <ClCompile Include="StrikeDualShot.cpp">
@@ -179,14 +176,14 @@
     <ClInclude Include="WrathOfEnril.h">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
-    <ClInclude Include="LeafTornadoFront.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClInclude>
-    <ClInclude Include="LeafTornadoBack.h">
+    <ClInclude Include="LeafTornado.h">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
     <ClInclude Include="StrikeDualShot.h">
       <Filter>SKill\02_PlayerSKill</Filter>
+    </ClInclude>
+    <ClInclude Include="MapleEnum.h">
+      <Filter>MapleGobal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +243,9 @@
     </Filter>
     <Filter Include="SKill\02_PlayerSKill">
       <UniqueIdentifier>{55d10af9-dd5a-4fd7-8f59-27218ee38156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal">
+      <UniqueIdentifier>{054291ee-8c48-445b-8bbd-fcc79e029def}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

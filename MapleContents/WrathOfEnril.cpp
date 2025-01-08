@@ -17,10 +17,11 @@ AWrathOfEnril::AWrathOfEnril()
 	WrathOfEnril->SetupAttachment(RootComponent);
 
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
-	WrathOfEnril->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.1f, false);
+	WrathOfEnril->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.0614f, false);
 	WrathOfEnril->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	WrathOfEnril->ChangeAnimation("None");
-	WrathOfEnril->SetRelativeLocation({ 0.0f, 0.0f, 0.0f });
+
+	WrathOfEnril->SetRelativeLocation(FVector{ -230.0f, -420.0f, FrontSkillZPos });
 }
 
 AWrathOfEnril::~AWrathOfEnril()
@@ -37,15 +38,15 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 {
 	ASkillManager::Tick(_DeltaTime);
 
+	if (true == WrathOfEnril->IsCurAnimationEnd())
+	{
+		WrathOfEnril->ChangeAnimation("None");
+		WrathOfEnril->SetActive(false);
+	}
+
 	if (UEngineInput::IsPress('A'))
 	{
 		WrathOfEnril->ChangeAnimation("WrathOfEnril");
-		WrathOfEnril->SetRelativeLocation(FVector{ -200.0f, -194.0f, BackSkillZPos });
-		
-		TimeEventComponent->AddEndEvent(0.86f, [this]()
-			{
-				WrathOfEnril->ChangeAnimation("None");
-			}, false
-		);
+		WrathOfEnril->SetActive(true);
 	}
 }

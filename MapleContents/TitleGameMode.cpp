@@ -13,9 +13,16 @@ public:
 	void OnGUI() override
 	{
 		ImGui::Button("WindowButton");
+		
+		if (true == ImGui::Button("FreeCameraOn"))
+		{
+			GetWorld()->GetMainCamera()->FreeCameraSwitch();
+		}
 		ImGui::SameLine(); // ÇÑ°£ ¶ç±â
 		ImGui::Text("test");
 	}
+	
+	
 };
 
 
