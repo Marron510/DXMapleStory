@@ -89,6 +89,11 @@ public:
 		return Transform;
 	}
 
+	float4 GetRelativeLocation()
+	{
+		return Transform.Location;
+	}
+
 	ENGINEAPI void SetupAttachment(std::shared_ptr<USceneComponent> _Parent);
 
 	void SetupAttachment(USceneComponent* _Parent);

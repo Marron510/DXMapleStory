@@ -7,6 +7,8 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 #include "MapleEnum.h"
+#include "ChargeDrive.h"
+
 AHighKick::AHighKick()
 {
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
@@ -19,7 +21,7 @@ AHighKick::AHighKick()
 	HighKick->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	HighKick->ChangeAnimation("None");
 
-	HighKick->SetRelativeLocation(FVector{ 0.0f, -60.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
+	HighKick->SetRelativeLocation(FVector{ 0.0f, -200.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
 }
 
 AHighKick::~AHighKick()
@@ -36,6 +38,9 @@ void AHighKick::BeginPlay()
 void AHighKick::Tick(float _DeltaTime)
 {
 	ASkillManager::Tick(_DeltaTime);
+
+	
+
 
 	if (true == HighKick->IsCurAnimationEnd())
 	{

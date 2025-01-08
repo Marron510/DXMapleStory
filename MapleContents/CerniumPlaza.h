@@ -22,7 +22,8 @@ protected:
 
 private:
 	// ±§¿Â
-	std::shared_ptr<class USpriteRenderer> Plaza;
+	std::shared_ptr<class USpriteRenderer> Plaza_Front;
+	std::shared_ptr<class USpriteRenderer> Plaza_Back;
 	// ±Íπﬂ
 	std::shared_ptr<class USpriteRenderer> Flag0;
 	std::shared_ptr<class USpriteRenderer> Flag1;

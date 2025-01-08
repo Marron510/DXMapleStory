@@ -134,14 +134,15 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
 		StrikeDualShot = GetWorld()->SpawnActor<AStrikeDualShot>();
 		RollingMoonSult = GetWorld()->SpawnActor<ARollingMoonSult>();
-		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
 		HighKick = GetWorld()->SpawnActor<AHighKick>();
+		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
 	}
 	
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
 		Player->AddRelativeLocation(FVector{ 0.0f, -230.0f});
+		//Player->setcolimage
 	}
 	
 		LeafTornadoFront->AttachToActor(Player.get());
@@ -157,7 +158,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	Camera->GetCameraComponent()->SetZSort(0, true);
 	
 
-
+	
 
 }
 

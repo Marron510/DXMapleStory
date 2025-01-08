@@ -184,13 +184,8 @@ void APlayer::UseSkill(float _DeltaTime)
 	if (UEngineInput::IsPress('Q')) { PlayerRenderer->ChangeAnimation("Charge"); }
 	
 	// ÇÏÀÌÅ± µ¥¸ô¸®¼Ç
-	if (UEngineInput::IsPress('W')) {
-		PlayerRenderer->ChangeAnimation("HighKick");
-		
-		if (true == PlayerRenderer->IsCurAnimationEnd())
-		{
-			AddActorLocation(FVector(0.0f, 5.0f));
-		}
-		
+	{
+		if (UEngineInput::IsPress('W')) { PlayerRenderer->ChangeAnimation("HighKick"); }
+		if (UEngineInput::IsDown('W')) { AddActorLocation(FVector(0.0f, 50.0f)); }
 	}
 }

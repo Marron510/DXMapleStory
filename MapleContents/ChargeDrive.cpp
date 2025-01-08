@@ -54,6 +54,7 @@ void AChargeDrive::Tick(float _DeltaTime)
 		ChargeDrive_Back->ChangeAnimation("None");
 		ChargeDrive_Front->SetActive(false);
 		ChargeDrive_Back->SetActive(false);
+		
 	}
 
 	if (UEngineInput::IsPress('Q'))

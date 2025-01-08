@@ -35,13 +35,12 @@ private:
 	
 	UFSMStateManager FSM;
 
-	float PlayerSpeed = 900.0f;
+	float PlayerSpeed = 300.0f;
 
 
 	bool bIsGround = false;
 	bool bIsCharge = false;
-	bool bIsSkillOn = false;
-
+	bool bIsHighKick = false;
 	void StateInit();
 
 	void Idle(float _DeltaTime);
