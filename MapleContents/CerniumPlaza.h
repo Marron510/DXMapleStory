@@ -1,5 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EnginePlatform/EngineWinImage.h>
+
 
 class ACerniumPlaza : public AActor
 {
@@ -56,6 +58,7 @@ public:
 		return Flag5;
 	}
 
+	
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -100,7 +103,7 @@ private:
 	
 
 	
-
+	
 
 };
 

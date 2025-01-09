@@ -38,6 +38,7 @@ private:
 
 
 
+
 	// ¸Ê
 	std::shared_ptr<class ACerniumPlaza> Plaza;
 	std::shared_ptr<class AManyu> Manyu;

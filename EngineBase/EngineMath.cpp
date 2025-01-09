@@ -20,6 +20,9 @@ const FIntPoint FIntPoint::DOWN = { 0, 1 };
 
 const UColor UColor::WHITE = { 255, 255, 255, 0 };
 const UColor UColor::BLACK = { 0, 0, 0, 0 };
+const UColor UColor::RED= { 255, 0, 0, 0 };
+
+
 
 FIntPoint FVector::ConvertToPoint() const
 {

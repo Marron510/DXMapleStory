@@ -4,9 +4,13 @@
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineGUIWindow.h>
+
+#include <EnginePlatform/EngineWinImage.h>
 #include <EnginePlatform/EngineInput.h>
+
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/EngineCamera.h>
+#include <EngineCore/Collision.h>
 
 #include "CerniumPlaza.h"
 #include "MapleEnum.h"
@@ -34,8 +38,11 @@
 
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
+	GetWorld()->CreateCollisionProfile("Monster");
+	GetWorld()->CreateCollisionProfile("Player");
 
-	
+	GetWorld()->LinkCollisionProfile("Player", "Monster");
+
 	// ¸Ê
 	{
 		Plaza= GetWorld()->SpawnActor<ACerniumPlaza>();
@@ -141,8 +148,8 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	// ÇÃ·¹ÀÌ¾î
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->AddRelativeLocation(FVector{ 0.0f, -230.0f});
-		//Player->setcolimage
+		Player->AddRelativeLocation(FVector{ 0.0f, 0.0f});
+		Player->SetColImage("99_Cernium_Col.png");
 	}
 	
 	LeafTornadoFront->AttachToActor(Player.get());
@@ -157,6 +164,9 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	Camera->AttachToActor(Player.get());
 	Camera->GetCameraComponent()->SetZSort(0, true);
 	
+
+	
+
 }
 
 ACerniumPlazaMode::~ACerniumPlazaMode()
@@ -177,6 +187,10 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 
 
 	UpdateSpriteLocation(_DeltaTime);
+
+	FVector CurrentPlayerLocation = Player.get()->GetActorLocation();
+	
+	
 }
 
 
@@ -219,13 +233,13 @@ void ACerniumPlazaMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& S
 		switch (static_cast<EMapleZEnum>(static_cast<int>(CurrentLocation.Z)))
 		{
 		case EMapleZEnum::BackGround_Back:
-			SpeedMultiplier = 0.012f;
+			SpeedMultiplier = 0.2f;
 			break;
 		case EMapleZEnum::BackGround_Mid:
-			SpeedMultiplier = 0.014f;
+			SpeedMultiplier = 0.22f;
 			break;
 		case EMapleZEnum::Object_Front:
-			SpeedMultiplier = 0.012f;
+			SpeedMultiplier = 0.2f;
 			break;
 		default:
 			SpeedMultiplier = 0.0f;

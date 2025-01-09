@@ -112,11 +112,11 @@ void USpriteRenderer::RenderTransUpdate(UEngineCamera* _Camera)
 
 	if (true == IsBillboard)
 	{
-		RendererTrans.View.ArrVector[0] = { 1.0f, 0.0f, 0.0f, 0.0f };
-		RendererTrans.View.ArrVector[1] = { 0.0f, 1.0f, 0.0f, 0.0f };
-		RendererTrans.View.ArrVector[2] = { 0.0f, 0.0f, 1.0f, 0.0f };
+		FMatrix Bill = CameraTrans.View;
+		Bill.ArrVector[3] = FVector(0.0f, 0.0f, 0.0f, 1.0f);
+		Bill.Transpose();
 
-		// CurWorld = RendererTrans.ScaleMat * RendererTrans.LocationMat * RendererTrans.ParentMat;
+		CurWorld = RendererTrans.ScaleMat * Bill * RendererTrans.LocationMat * RendererTrans.RevolveMat * RendererTrans.ParentMat;
 	}
 
 	RendererTrans.Projection = CameraTrans.Projection;

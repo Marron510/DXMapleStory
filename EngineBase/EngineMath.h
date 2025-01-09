@@ -959,8 +959,9 @@ public:
 class UColor
 {
 public:
-	static const UColor WHITE;
-	static const UColor BLACK;
+	 static const UColor WHITE;
+	 static const UColor BLACK;
+	 static const UColor RED;
 
 	union
 	{
@@ -974,19 +975,19 @@ public:
 		};
 	};
 
-	UColor(unsigned long _Value)
+	ENGINEAPI UColor(unsigned long _Value)
 		:Color(_Value)
 	{
 
 	}
 
-	bool operator==(const UColor& _Other)
+	ENGINEAPI bool operator==(const UColor& _Other) const
 	{
 		return R == _Other.R && G == _Other.G && B == _Other.B;
 	}
 
 
-	UColor(unsigned char _R, unsigned char _G, unsigned char _B, unsigned char _A)
+	ENGINEAPI UColor(unsigned char _R, unsigned char _G, unsigned char _B, unsigned char _A)
 		:R(_R), G(_G), B(_B), A(_A)
 	{
 

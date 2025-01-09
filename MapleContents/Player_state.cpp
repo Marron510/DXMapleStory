@@ -100,7 +100,8 @@ void APlayer::Walk(float _DeltaTime)
 
 		if (UEngineInput::IsPress(VK_LEFT))
 		{
-			AddRelativeLocation(FVector{ -PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
+			
+			AddActorLocation(FVector{ -PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
 			SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
 		}
 
@@ -116,7 +117,7 @@ void APlayer::Walk(float _DeltaTime)
 
 		if (UEngineInput::IsPress(VK_RIGHT))
 		{
-			AddRelativeLocation(FVector{ PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
+			AddActorLocation(FVector{ PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
 			SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
 		}
 

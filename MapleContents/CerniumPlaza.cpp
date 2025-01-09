@@ -218,6 +218,10 @@ ACerniumPlaza::ACerniumPlaza()
 		BigTree_Right->SetupAttachment(RootComponent);
 		BigTree_Right->SetRelativeLocation({ 2200, -420, static_cast<float>(EMapleZEnum::Front_Object3) });
 	}
+
+
+	
+
 }
 
 

@@ -15,6 +15,7 @@ public:
 	float4 MulColor;
 };
 
+// 설명 :
 class USpriteRenderer : public URenderer
 {
 public:
@@ -67,6 +68,7 @@ public:
 
 	ENGINEAPI void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop = true);
 
+	// 내가 Idle인데 Idle 바꾸라고 했다. 
 	ENGINEAPI void ChangeAnimation(std::string_view _AnimationName, bool _Force = false);
 
 	ENGINEAPI void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
@@ -117,6 +119,7 @@ public:
 		IsBillboard = false;
 	}
 
+
 	void SetSprite(UEngineSprite* _Sprite);
 
 	ResultColor ColorData;
@@ -130,7 +133,6 @@ protected:
 	ENGINEAPI void RenderTransUpdate(UEngineCamera* _Camera) override;
 
 private:
-
 	bool IsBillboard = false;
 
 	URenderUnit* MainUnit;

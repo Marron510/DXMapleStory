@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/Pawn.h>
 #include <EngineBase/FSMStateManager.h>
+#include <EnginePlatform/EngineWinImage.h>
 #include "EventCharacter.h"
 
 
@@ -23,20 +24,29 @@ public:
 	{
 		return PlayerRenderer;
 	}
+	void SetColImage(std::string_view _ColImageName);
+
 
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+
+
 private:
 	std::shared_ptr<class USpriteRenderer> PlayerRenderer;
+
+	std::shared_ptr<class UCollision> Collision;
 
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 	
 	UFSMStateManager FSM;
 
-	float PlayerSpeed = 300.0f;
+	// ÄÝ¸®Àü
+	UEngineWinImage ColImage;
 
+	float PlayerSpeed = 300.0f;
+	FVector GravityForce = FVector::DOWN;
 
 	bool bIsGround = false;
 	bool bIsCharge = false;
@@ -48,5 +58,8 @@ private:
 	void Walk(float _DeltaTime);
 	void Jump(float _DeltaTime);
 	void UseSkill(float _DeltaTime);
+
+	void Gravity(float _DeltaTime);
+	void PlayerGroundCheck(FVector _MovePos);
 };
 
