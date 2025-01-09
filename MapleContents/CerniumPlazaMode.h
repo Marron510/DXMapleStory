@@ -43,6 +43,9 @@ private:
 	std::shared_ptr<class USpriteRenderer> BigTree_Left;
 	std::shared_ptr<class USpriteRenderer> BigTree_Right;
 
+	float MapSizeHalfX = 2415.0f;
+	float MapSizeHalfY = 795.0f;
+
 	// Ä«¸Þ¶ó
 	std::shared_ptr<class ACameraActor> Camera;
 

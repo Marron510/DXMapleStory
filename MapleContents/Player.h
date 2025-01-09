@@ -48,9 +48,11 @@ private:
 
 	float PlayerSpeed = 300.0f;
 	FVector GravityForce = FVector::DOWN;
+	FVector JumpPower = FVector(0.0f, 400.0f);
 
 	bool bIsGround = false;
 	bool bIsCharge = false;
+	bool bIsJumpEnd = false;
 	bool bIsHighKick = false;
 	void StateInit();
 

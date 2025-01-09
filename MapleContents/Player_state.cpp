@@ -68,7 +68,7 @@ void APlayer::Idle(float _DeltaTime)
 
 	// 제자리에서 점프 사용
 
-	if (UEngineInput::IsPress('C')) { FSM.ChangeState(ECharacterState::Jump); }
+	if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::Jump); }
 
 
 	// 제자리 스킬 사용
@@ -146,6 +146,10 @@ void APlayer::Walk(float _DeltaTime)
 		}
 	}
 
+	// 점프
+		
+		if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::Jump); }
+		
 
 	// 이동 중 스킬 사용
 	{
@@ -165,15 +169,31 @@ void APlayer::Walk(float _DeltaTime)
 
 void APlayer::Jump(float _DeltaTime)
 {
+	bIsGround = false;
 	PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 
-	// 점프 로직
+	// 1. Idle에서 점프 로직
 
-	// 제자리 점프
-	if (UEngineInput::IsPress('C'))
+	if (true == UEngineInput::IsDown('C'))
 	{
-		//
+		AddActorLocation(JumpPower * _DeltaTime);
+	}
+	
+	//// 2. 오른쪽으로 움직이면서 Idle에서 점프 로직
+	//if (true == UEngineInput::IsPress(VK_RIGHT) && true == UEngineInput::IsDown('C'))
+	//{
+	//	AddActorLocation(FVector(PlayerSpeed * _DeltaTime, JumpPower.Y * _DeltaTime));
+	//}
+	//// 2. 왼쪽으로 움직이면서 Idle에서 점프 로직
+	//if (true == UEngineInput::IsPress(VK_LEFT) && true == UEngineInput::IsDown('C'))
+	//{
+	//	AddActorLocation(FVector(-PlayerSpeed * _DeltaTime, JumpPower.Y * _DeltaTime));
+	//}
+	// 제자리 점프
+	if (true == bIsGround)
+	{
+		FSM.ChangeState(ECharacterState::Idle);
 	}
 
 	// 점프 스킬 사용
@@ -210,6 +230,6 @@ void APlayer::UseSkill(float _DeltaTime)
 	// 하이킥 데몰리션
 	{
 		if (UEngineInput::IsPress('W')) { PlayerRenderer->ChangeAnimation("HighKick"); }
-		if (UEngineInput::IsDown('W')) { AddActorLocation(FVector(0.0f, 50.0f)); }
+		if (UEngineInput::IsDown('W')) { AddActorLocation(FVector(0.0f, 200.0f)); }
 	}
 }

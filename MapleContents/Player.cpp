@@ -117,7 +117,7 @@ void APlayer::Gravity(float _DeltaTime)
 	if (false == bIsGround)
 	{
 		AddActorLocation(GravityForce * _DeltaTime);
-		GravityForce += FVector::DOWN * _DeltaTime * 100.0f;
+		GravityForce += FVector::DOWN * 16.0f;
 	}
 	else
 	{
@@ -131,10 +131,10 @@ void APlayer::PlayerGroundCheck(FVector _MovePos)
 {
 	bIsGround = false;
 
-	FVector NextPos = GetActorLocation() + _MovePos;
+	FVector NextPos = GetActorLocation() - _MovePos;
 
 	NextPos.X = floorf(NextPos.X);
-	NextPos.Y = -floorf(NextPos.Y);
+	NextPos.Y = floorf(-NextPos.Y);
 
 	UColor Color = ColImage.GetColor(NextPos, UColor(255, 255, 255, 0));
 
@@ -145,7 +145,7 @@ void APlayer::PlayerGroundCheck(FVector _MovePos)
 		bIsGround = false;
 	}
 
-	else if (Color == UColor(0, 0, 0, 0))
+	else if (Color == UColor(0, 0, 0, 0) || Color == UColor(255, 0, 0, 0))
 	{
 		bIsGround = true;
 	}
