@@ -175,13 +175,19 @@ void APlayer::Jump(float _DeltaTime)
 	Gravity(_DeltaTime);
 
 	// 1. Idle에서 점프 로직
-
-	if (true == UEngineInput::IsDown('C'))
-	{
-
-	}
-
 	AddActorLocation(JumpPower * _DeltaTime);
+	// 
+	if (UEngineInput::IsPress(VK_LEFT))
+	{
+		AddActorLocation(FVector{ -PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
+		SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
+	}
+	
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		AddActorLocation(FVector{ PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
+		SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+	}
 
 	//// 2. 오른쪽으로 움직이면서 Idle에서 점프 로직
 	//if (true == UEngineInput::IsPress(VK_RIGHT) && true == UEngineInput::IsDown('C'))
