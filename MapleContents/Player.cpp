@@ -117,7 +117,7 @@ void APlayer::Gravity(float _DeltaTime)
 	if (false == bIsGround)
 	{
 		AddActorLocation(GravityForce * _DeltaTime);
-		GravityForce += FVector::DOWN * 16.0f;
+		GravityForce += FVector::DOWN * 1600.0f *_DeltaTime;
 	}
 	else
 	{
