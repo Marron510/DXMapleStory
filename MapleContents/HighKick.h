@@ -23,5 +23,7 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> HighKick;
+
+	std::shared_ptr<class UCollision> Collision;
 };
 

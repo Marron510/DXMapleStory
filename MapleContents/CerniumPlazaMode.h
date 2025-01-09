@@ -37,8 +37,6 @@ private:
 	std::shared_ptr<class AHighKick> HighKick;
 
 
-
-
 	// ¸Ê
 	std::shared_ptr<class ACerniumPlaza> Plaza;
 	std::shared_ptr<class AManyu> Manyu;

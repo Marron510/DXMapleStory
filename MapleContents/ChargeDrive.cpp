@@ -5,6 +5,7 @@
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/Collision.h>
 
 #include "MapleEnum.h"
 
@@ -30,6 +31,18 @@ AChargeDrive::AChargeDrive()
 
 	ChargeDrive_Front->SetRelativeLocation(FVector{ 0.0f, -30.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
 	ChargeDrive_Back->SetRelativeLocation(FVector{ 0.0f, -50.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) - 50.0f});
+
+	Collision = CreateDefaultSubObject<UCollision>();
+	Collision->SetupAttachment(RootComponent);
+	Collision->SetCollisionProfileName("Player");
+
+	Collision->SetScale3D({ 160.0f, 120.0f });
+	Collision->SetRelativeLocation(FVector{ -20.0f, 60.0f , static_cast<float>(EMapleZEnum::Player) });
+	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
+		{
+			_Other->GetActor()->Destroy();
+			UEngineDebug::OutPutString("Destroy");
+		});
 }
 
 AChargeDrive::~AChargeDrive()
@@ -52,15 +65,19 @@ void AChargeDrive::Tick(float _DeltaTime)
 	{
 		ChargeDrive_Front->ChangeAnimation("None");
 		ChargeDrive_Back->ChangeAnimation("None");
+		Collision->SetActive(false);
 		ChargeDrive_Front->SetActive(false);
 		ChargeDrive_Back->SetActive(false);
 		
 	}
 
-	if (UEngineInput::IsPress('Q'))
+
+
+	if (true == UEngineInput::IsPress('Q'))
 	{
 		ChargeDrive_Front->ChangeAnimation("ChargeDrive_Front");
 		ChargeDrive_Back->ChangeAnimation("ChargeDrive_Back");
+		Collision->SetActive(true);
 		ChargeDrive_Front->SetActive(true);
 		ChargeDrive_Back->SetActive(true);
 	}

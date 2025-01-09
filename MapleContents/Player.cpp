@@ -2,12 +2,12 @@
 #include "Player.h"
 
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineWinImage.h>>
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
-
 #include "MapleEnum.h"
 
 APlayer::APlayer()
@@ -23,8 +23,10 @@ APlayer::APlayer()
 	
 	// 플레이어
 	PlayerRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	
 
 	PlayerRenderer->SetupAttachment(RootComponent);
+	PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, static_cast<float>(EMapleZEnum::Player) });
 	PlayerRenderer->BillboardOn();
 	
 
@@ -34,7 +36,7 @@ APlayer::APlayer()
 	Collision->SetCollisionProfileName("Player");
 
 	Collision->SetScale3D({ 46.0f, 60.0f });
-	Collision->SetRelativeLocation(FVector{ 0.0f, 30.0f });
+	Collision->SetRelativeLocation(FVector{ 0.0f, 30.0f, static_cast<float>(EMapleZEnum::Player) });
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
 			_Other->GetActor()->Destroy();
@@ -47,6 +49,8 @@ APlayer::APlayer()
 	PlayerRenderer->CreateAnimation("Prone", "Prone.png", 0, 0, 0.046f, false);
 	PlayerRenderer->CreateAnimation("ProneAttack", "Prone.png", 0, 1, 0.1f, false);
 	PlayerRenderer->CreateAnimation("Jump", "Jump.png", 0, 0, 0.1f);
+
+
 
 	// 스킬
 	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.08f, false);
@@ -63,7 +67,6 @@ APlayer::APlayer()
 	//
 	PlayerRenderer->ChangeAnimation("Idle");
 	
-	PlayerRenderer->SetRelativeLocation(FVector{ 0.0f, 0.0f, static_cast<float>(EMapleZEnum::Player) });
 }
 
 APlayer::~APlayer()
@@ -86,8 +89,8 @@ void APlayer::BeginPlay()
 void APlayer::Tick(float _DeltaTime)
 {
 	APawn::Tick(_DeltaTime);
-	PlayerGroundCheck(GravityForce * _DeltaTime);
-	Gravity(_DeltaTime);
+	/*PlayerGroundCheck(GravityForce * _DeltaTime);
+	Gravity(_DeltaTime);*/
 	FSM.Update(_DeltaTime);
 
 }
@@ -114,7 +117,7 @@ void APlayer::Gravity(float _DeltaTime)
 	if (false == bIsGround)
 	{
 		AddActorLocation(GravityForce * _DeltaTime);
-		GravityForce += FVector::DOWN * _DeltaTime * 400.0f;
+		GravityForce += FVector::DOWN * _DeltaTime * 100.0f;
 	}
 	else
 	{
@@ -131,7 +134,7 @@ void APlayer::PlayerGroundCheck(FVector _MovePos)
 	FVector NextPos = GetActorLocation() + _MovePos;
 
 	NextPos.X = floorf(NextPos.X);
-	NextPos.Y = floorf(NextPos.Y);
+	NextPos.Y = -floorf(NextPos.Y);
 
 	UColor Color = ColImage.GetColor(NextPos, UColor(255, 255, 255, 0));
 

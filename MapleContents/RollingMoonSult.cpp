@@ -5,6 +5,7 @@
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/Collision.h>
 
 #include "MapleEnum.h"
 
@@ -21,6 +22,19 @@ ARollingMoonSult::ARollingMoonSult()
 	RollingMoonSult->ChangeAnimation("None");
 
 	RollingMoonSult->SetRelativeLocation(FVector{ 0.0f, -100.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front)});
+
+
+	Collision = CreateDefaultSubObject<UCollision>();
+	Collision->SetupAttachment(RootComponent);
+	Collision->SetCollisionProfileName("Player");
+
+	Collision->SetScale3D({ 230.0f, 260.0f });
+	Collision->SetRelativeLocation(FVector{ 0.0f, 36.0f , static_cast<float>(EMapleZEnum::Player) });
+	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
+		{
+			_Other->GetActor()->Destroy();
+			UEngineDebug::OutPutString("Destroy");
+		});
 
 }
 
@@ -41,12 +55,14 @@ void ARollingMoonSult::Tick(float _DeltaTime)
 	if (true == RollingMoonSult->IsCurAnimationEnd())
 	{
 		RollingMoonSult->ChangeAnimation("None");
+		Collision->SetActive(false);
 		RollingMoonSult->SetActive(false);
 	}
 
 	if (UEngineInput::IsPress('E'))
 	{
 		RollingMoonSult->ChangeAnimation("RollingMoonSult");
+		Collision->SetActive(true);
 		RollingMoonSult->SetActive(true);
 	}
 }

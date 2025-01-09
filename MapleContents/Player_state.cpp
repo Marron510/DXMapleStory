@@ -53,10 +53,17 @@ void APlayer::StateInit()
 void APlayer::Idle(float _DeltaTime)
 {
 	// 제자리에서 이동전환
+	PlayerGroundCheck(GravityForce * _DeltaTime);
+	Gravity(_DeltaTime);
+
 
 	if (UEngineInput::IsPress(VK_LEFT)){ FSM.ChangeState(ECharacterState::Walk);}
 	if (UEngineInput::IsPress(VK_RIGHT)) { FSM.ChangeState(ECharacterState::Walk); }
 	if (UEngineInput::IsPress(VK_DOWN)){ FSM.ChangeState(ECharacterState::Prone); }
+	if (UEngineInput::IsPress(VK_UP))
+	{
+		FSM.ChangeState(ECharacterState::Walk);
+	}
 
 
 	// 제자리에서 점프 사용
@@ -80,6 +87,9 @@ void APlayer::Idle(float _DeltaTime)
 
 void APlayer::Prone(float _DeltaTime)
 {
+	PlayerGroundCheck(GravityForce * _DeltaTime);
+	Gravity(_DeltaTime);
+
 	if (UEngineInput::IsUp(VK_DOWN))
 	{
 		FSM.ChangeState(ECharacterState::Idle);
@@ -91,6 +101,8 @@ void APlayer::Prone(float _DeltaTime)
 
 void APlayer::Walk(float _DeltaTime)
 {
+	PlayerGroundCheck(GravityForce * _DeltaTime);
+	Gravity(_DeltaTime);
 
 	// 이동
 	
@@ -127,6 +139,11 @@ void APlayer::Walk(float _DeltaTime)
 			FSM.ChangeState(ECharacterState::Idle);
 			SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
 		}
+
+		if (UEngineInput::IsPress(VK_UP))
+		{
+			AddActorLocation(FVector{ 0.0f, PlayerSpeed *2* _DeltaTime, 0.0f });
+		}
 	}
 
 
@@ -148,6 +165,9 @@ void APlayer::Walk(float _DeltaTime)
 
 void APlayer::Jump(float _DeltaTime)
 {
+	PlayerGroundCheck(GravityForce * _DeltaTime);
+	Gravity(_DeltaTime);
+
 	// 점프 로직
 
 	// 제자리 점프
@@ -163,6 +183,9 @@ void APlayer::Jump(float _DeltaTime)
 
 void APlayer::UseSkill(float _DeltaTime)
 {
+	PlayerGroundCheck(GravityForce * _DeltaTime);
+	Gravity(_DeltaTime);
+
 	// 스킬 애니메이션이 끝나면 Idle 전환
 	if (true == PlayerRenderer->IsCurAnimationEnd()) { FSM.ChangeState(ECharacterState::Idle); }
 

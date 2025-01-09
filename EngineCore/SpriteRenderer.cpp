@@ -53,7 +53,6 @@ void USpriteRenderer::SetTexture(std::string_view _Name, bool AutoScale /*= fals
 	}
 }
 
-
 void USpriteRenderer::BeginPlay()
 {
 	URenderer::BeginPlay();
@@ -82,8 +81,6 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 		SpriteData = Sprite->GetSpriteData(CurIndex);
 	}
 
-	DebugCheck();
-
 	if (true == IsAutoScale && nullptr != Sprite)
 	{
 		FVector Scale = Sprite->GetSpriteScaleToReal(CurIndex);
@@ -107,11 +104,11 @@ void USpriteRenderer::RenderTransUpdate(UEngineCamera* _Camera)
 	// RendererTrans.View = CameraTrans.View;
 
 	RendererTrans.View = CameraTrans.View;
-
 	FMatrix CurWorld = RendererTrans.World;
 
 	if (true == IsBillboard)
 	{
+		
 		FMatrix Bill = CameraTrans.View;
 		Bill.ArrVector[3] = FVector(0.0f, 0.0f, 0.0f, 1.0f);
 		Bill.Transpose();
@@ -191,6 +188,7 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
+
 		if (nullptr != EventAnimation)
 		{
 			if (EventAnimation->Events.contains(CurIndex))
@@ -352,6 +350,8 @@ void USpriteRenderer::SetAnimationEvent(std::string_view _AnimationName, int _Fr
 	ChangeAnimation->Events[_Frame] += _Function;
 
 }
+
+
 
 void USpriteRenderer::SetSprite(UEngineSprite* _Sprite)
 {

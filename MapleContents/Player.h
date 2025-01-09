@@ -35,6 +35,7 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> PlayerRenderer;
+	
 
 	std::shared_ptr<class UCollision> Collision;
 

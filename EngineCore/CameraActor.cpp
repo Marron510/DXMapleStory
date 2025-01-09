@@ -6,6 +6,7 @@
 ACameraActor::ACameraActor()
 {
 	CameraComponent = CreateDefaultSubObject<UEngineCamera>();
+	// 직접 넣어줘야 합니다.
 	RootComponent = CameraComponent;
 }
 
@@ -85,16 +86,13 @@ void ACameraActor::Tick(float _DeltaTime)
 		if (UEngineInput::IsPress(VK_RBUTTON))
 		{
 			AddActorRotation({ -ScreenDir.Y * RotSpeed * _DeltaTime, -ScreenDir.X * RotSpeed * _DeltaTime });
-			// float4 Dir = ScreenMouseDirNormal;
-			// AddWorldRotation({ -Dir.Y, -Dir.X });
 		}
 	}
+
 
 	CameraComponent->CalculateViewAndProjection();
 
 }
-
-
 
 
 FVector ACameraActor::ScreenMousePosToWorldPosWithOutPos()
@@ -117,6 +115,8 @@ FVector ACameraActor::ScreenMousePosToWorldPos()
 	MousePos = MousePos * CameraTransform.View.InverseReturn();
 
 	return MousePos;
+	// 마우스 좌표가 100, 100
+	// 크기 이동 회전 공전 부모 * view * 투영 * viewport
 }
 
 

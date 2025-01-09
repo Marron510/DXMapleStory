@@ -5,6 +5,7 @@
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/Collision.h>
 
 #include "MapleEnum.h"
 #include "ChargeDrive.h"
@@ -22,6 +23,18 @@ AHighKick::AHighKick()
 	HighKick->ChangeAnimation("None");
 
 	HighKick->SetRelativeLocation(FVector{ 0.0f, -200.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
+
+	Collision = CreateDefaultSubObject<UCollision>();
+	Collision->SetupAttachment(RootComponent);
+	Collision->SetCollisionProfileName("Player");
+
+	Collision->SetScale3D({ 200.0f, 180.0f });
+	Collision->SetRelativeLocation(FVector{ 0.0f, 30.0f, static_cast<float>(EMapleZEnum::Player) });
+	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
+		{
+			_Other->GetActor()->Destroy();
+			UEngineDebug::OutPutString("Destroy");
+		});
 }
 
 AHighKick::~AHighKick()
@@ -45,12 +58,14 @@ void AHighKick::Tick(float _DeltaTime)
 	if (true == HighKick->IsCurAnimationEnd())
 	{
 		HighKick->ChangeAnimation("None");
+		Collision->SetActive(false);
 		HighKick->SetActive(false);
 	}
 
 	if (true == UEngineInput::IsPress('W'))
 	{
 		HighKick->ChangeAnimation("HighKickDemolition");
+		Collision->SetActive(true);
 		HighKick->SetActive(true);
 	}
 }

@@ -133,6 +133,7 @@ protected:
 	ENGINEAPI void RenderTransUpdate(UEngineCamera* _Camera) override;
 
 private:
+
 	bool IsBillboard = false;
 
 	URenderUnit* MainUnit;
