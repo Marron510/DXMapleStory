@@ -126,6 +126,19 @@ void APlayer::Gravity(float _DeltaTime)
 
 }
 
+void APlayer::AntiGravity(float _DeltaTime)
+{
+	if (false == bIsGround)
+	{
+		AddActorLocation(-GravityForce * _DeltaTime);
+		GravityForce += FVector::UP * 1600.0f * _DeltaTime;
+	}
+	else
+	{
+		GravityForce = FVector::ZERO;
+	}
+
+}
 
 void APlayer::PlayerGroundCheck(FVector _MovePos)
 {

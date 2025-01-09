@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 
+
 #include <EngineBase/FSMStateManager.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -31,8 +32,14 @@ void APlayer::StateInit()
 			PlayerRenderer->ChangeAnimation("Walk");
 		}
 	);
+	FSM.CreateState(ECharacterState::IdleJump, std::bind(&APlayer::IdleJump, this, std::placeholders::_1),
+		[this]()
+		{
+			PlayerRenderer->ChangeAnimation("Jump");
+		}
+	);
 
-	FSM.CreateState(ECharacterState::Jump, std::bind(&APlayer::Jump, this, std::placeholders::_1),
+	FSM.CreateState(ECharacterState::WalkJump, std::bind(&APlayer::WalkJump, this, std::placeholders::_1),
 		[this]()
 		{
 			PlayerRenderer->ChangeAnimation("Jump");
@@ -68,7 +75,7 @@ void APlayer::Idle(float _DeltaTime)
 
 	// 제자리에서 점프 사용
 
-	if (UEngineInput::IsPress('C')) { FSM.ChangeState(ECharacterState::Jump);  }
+	if (UEngineInput::IsPress('C')) { FSM.ChangeState(ECharacterState::IdleJump);  }
 
 
 	// 제자리 스킬 사용
@@ -99,57 +106,58 @@ void APlayer::Prone(float _DeltaTime)
 }
 
 
+
+
 void APlayer::Walk(float _DeltaTime)
 {
 	PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 
-	// 이동
-	
-	
+	if (UEngineInput::IsPress(VK_LEFT))
 	{
-		// 왼쪽 이동
-
-		if (UEngineInput::IsPress(VK_LEFT))
-		{
-			
-			AddActorLocation(FVector{ -PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
-			SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
-		}
-
-		// 왼쪽 이동 끝
-
-		if (UEngineInput::IsUp(VK_LEFT))
-		{
-			FSM.ChangeState(ECharacterState::Idle);
-			SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
-		}
-
-		// 오른쪽 이동
-
-		if (UEngineInput::IsPress(VK_RIGHT))
-		{
-			AddActorLocation(FVector{ PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
-			SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
-		}
-
-		// 오른쪽 이동 끝
-		if (UEngineInput::IsUp(VK_RIGHT))
-		{
-			FSM.ChangeState(ECharacterState::Idle);
-			SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
-		}
-
-		if (UEngineInput::IsPress(VK_UP))
-		{
-			AddActorLocation(FVector{ 0.0f, PlayerSpeed *2* _DeltaTime, 0.0f });
-		}
+		TargetVelocity = FVector(PlayerSpeed, 0.0f, 0.0f);
+		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
 	}
 
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		TargetVelocity = FVector(PlayerSpeed, 0.0f, 0.0f);
+		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+	}
+
+	CurrentVelocity.X = UEngineMath::Lerp(CurrentVelocity.X, TargetVelocity.X, _DeltaTime * 2.0f);
+
+	// 캐릭터 이동
+	if (UEngineInput::IsPress(VK_LEFT))
+	{
+		AddActorLocation(-CurrentVelocity * _DeltaTime);
+	}
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		AddActorLocation(CurrentVelocity * _DeltaTime);
+	}
+	
+	
+	
 	// 점프
 		
-		if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::Jump); }
+	if (UEngineInput::IsDown('C') && UEngineInput::IsPress(VK_LEFT))
+	{ 
+		bIsJumpRight = false; 
+		FSM.ChangeState(ECharacterState::WalkJump); 
+	}
+
+	if (UEngineInput::IsDown('C') && UEngineInput::IsPress(VK_RIGHT)) 
+	{
+		bIsJumpRight = true; 
+		FSM.ChangeState(ECharacterState::WalkJump);
+	}
 		
+	// 이동이 멈출 때 Idle 상태로 전환
+	if (UEngineInput::IsUp(VK_LEFT) || UEngineInput::IsUp(VK_RIGHT))
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+	}
 
 	// 이동 중 스킬 사용
 	{
@@ -167,53 +175,93 @@ void APlayer::Walk(float _DeltaTime)
 
 }
 
-void APlayer::Jump(float _DeltaTime)
+void APlayer::IdleJump(float _DeltaTime)
 {
-	
 	bIsGround = false;
 	PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 
-	// 1. Idle에서 점프 로직
-	AddActorLocation(JumpPower * _DeltaTime);
-	// 
-	if (UEngineInput::IsPress(VK_LEFT))
+	static FVector JumpVelocity = JumpPower;
+	FVector TargetJumpVelocity = FVector::ZERO;
+
+	if (false == bIsGround)
 	{
-		AddActorLocation(FVector{ -PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
-		SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
-	}
-	
-	if (UEngineInput::IsPress(VK_RIGHT))
-	{
-		AddActorLocation(FVector{ PlayerSpeed * _DeltaTime, 0.0f, 0.0f });
-		SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+		TargetJumpVelocity = JumpPower;
 	}
 
-	//// 2. 오른쪽으로 움직이면서 Idle에서 점프 로직
-	//if (true == UEngineInput::IsPress(VK_RIGHT) && true == UEngineInput::IsDown('C'))
-	//{
-	//	AddActorLocation(FVector(PlayerSpeed * _DeltaTime, JumpPower.Y * _DeltaTime));
-	//}
-	//// 2. 왼쪽으로 움직이면서 Idle에서 점프 로직
-	//if (true == UEngineInput::IsPress(VK_LEFT) && true == UEngineInput::IsDown('C'))
-	//{
-	//	AddActorLocation(FVector(-PlayerSpeed * _DeltaTime, JumpPower.Y * _DeltaTime));
-	//}
-	// 제자리 점프
-	if (true == bIsGround)
+	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
+
+	// 점프 실행
+	AddActorLocation(JumpVelocity * _DeltaTime);
+
+
+	if (true == UEngineInput::IsPress(VK_LEFT))
+	{
+		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	}
+
+	if (true == UEngineInput::IsPress(VK_RIGHT))
+	{
+
+		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+
+	}
+
+	// 착지 시 Idle 상태로 전환
+	if (bIsGround)
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 	}
 
-	// 점프 스킬 사용
+}
+
+void APlayer::WalkJump(float _DeltaTime)
+{
+	bIsGround = false;
+	PlayerGroundCheck(GravityForce * _DeltaTime);
+	Gravity(_DeltaTime);
+
+	JumpVelocity = JumpPower; 
+	TargetJumpVelocity = FVector::ZERO; 
+
+	if (false == bIsGround)
+	{
+		TargetJumpVelocity = JumpPower;
+	}
+
+	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
+
+	// 점프 실행
+	AddActorLocation(JumpVelocity * _DeltaTime);
 
 
+	if (false == bIsJumpRight )
+	{
+		AddActorLocation(FVector(-PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
+		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	}
+
+	else if (true == bIsJumpRight)
+	{
+
+		AddActorLocation(FVector(PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
+		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+
+	}
+
+	// 착지 시 Idle 상태로 전환
+	if (bIsGround)
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+	}
 }
 
 void APlayer::UseSkill(float _DeltaTime)
 {
 	PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
+
+	
 
 	// 스킬 애니메이션이 끝나면 Idle 전환
 	if (true == PlayerRenderer->IsCurAnimationEnd()) { FSM.ChangeState(ECharacterState::Idle); }

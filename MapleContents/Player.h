@@ -46,23 +46,33 @@ private:
 	// 콜리전
 	UEngineWinImage ColImage;
 
-	float PlayerSpeed = 300.0f;
+	float PlayerSpeed = 260.0f;
 	FVector GravityForce = FVector::DOWN;
-	FVector JumpPower = FVector(0.0f, 500.0f);
+	FVector JumpPower = FVector(0.0f, 580.0f);
+	
+	FVector CurrentVelocity = FVector::ZERO; // 현재 이동 속도
+	FVector TargetVelocity = FVector::ZERO;         // 목표 이동 속도
+
+	FVector JumpVelocity = FVector::ZERO;        
+	FVector TargetJumpVelocity = FVector::ZERO;
 
 	bool bIsGround = false;
 	bool bIsCharge = false;
 	bool bIsJumping = false;
+	bool bIsJumpRight = false;
 	bool bIsHighKick = false;
+
 	void StateInit();
 
 	void Idle(float _DeltaTime);
 	void Prone(float _DeltaTime);
 	void Walk(float _DeltaTime);
-	void Jump(float _DeltaTime);
+	void IdleJump(float _DeltaTime);
+	void WalkJump(float _DeltaTime);
 	void UseSkill(float _DeltaTime);
 
 	void Gravity(float _DeltaTime);
+	void AntiGravity(float _DeltaTime);
 	void PlayerGroundCheck(FVector _MovePos);
 };
 
