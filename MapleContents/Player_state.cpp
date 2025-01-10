@@ -103,6 +103,9 @@ void APlayer::Prone(float _DeltaTime)
 	}
 
 	if (UEngineInput::IsPress('Q')) { FSM.ChangeState(ECharacterState::UseSkill); }
+	
+	// 엎드려서 점프
+	if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::IdleJump); }
 }
 
 

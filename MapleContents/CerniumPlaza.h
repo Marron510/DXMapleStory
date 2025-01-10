@@ -105,6 +105,6 @@ private:
 	
 	float MapSizeHalfX = 2415.0f;
 	float MapSizeHalfY = 795.0f;
-
+	float MapSizeDefaultY = 1203.0f;
 };
 
