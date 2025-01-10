@@ -46,22 +46,22 @@ APlayer::APlayer()
 	//상태
 	PlayerRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
 	PlayerRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
-	PlayerRenderer->CreateAnimation("Prone", "Prone.png", 0, 0, 0.046f, false);
-	PlayerRenderer->CreateAnimation("ProneAttack", "Prone.png", 0, 1, 0.1f, false);
+	PlayerRenderer->CreateAnimation("Prone", "Prone.png", 0, 0, 0.046f);
+	PlayerRenderer->CreateAnimation("ProneAttack", "Prone.png", 0, 1, 0.1f);
 	PlayerRenderer->CreateAnimation("Jump", "Jump.png", 0, 0, 0.1f);
 
 
 
 	// 스킬
-	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.08f, false);
+	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.08f);
 	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
 	PlayerRenderer->CreateAnimation("StrikeDualShot", "StrikeDualShot.png", 0, 6, 0.08f);
 	PlayerRenderer->CreateAnimation("Charge", "Charge.png", 0, 8, 0.08f);
-	PlayerRenderer->CreateAnimation("Wrath", "Wrath.png", 0, 4, 0.17f, false);
-	PlayerRenderer->CreateAnimation("Unicorn", "Unicorn.png", 0, 4, 0.14f, false);
-	PlayerRenderer->CreateAnimation("LegendarySpear", "LegendarySpear.png", 0, 11, 0.046f, false);
-	PlayerRenderer->CreateAnimation("ProneAttack", "Prone.png", 0, 1, 0.1f, false);
-	PlayerRenderer->CreateAnimation("HighKick", "HighKick", 0, 0, 0.6f, false);
+	PlayerRenderer->CreateAnimation("Wrath", "Wrath.png", 0, 4, 0.17f);
+	PlayerRenderer->CreateAnimation("Unicorn", "Unicorn.png", 0, 4, 0.14f);
+	PlayerRenderer->CreateAnimation("LegendarySpear", "LegendarySpear.png", 0, 11, 0.046f);
+	PlayerRenderer->CreateAnimation("ProneAttack", "Prone.png", 0, 1, 0.1f);
+	PlayerRenderer->CreateAnimation("HighKick", "HighKick", 0, 0, 0.6f);
 
 
 	//
@@ -80,19 +80,17 @@ void APlayer::BeginPlay()
 	APawn::BeginPlay();
 
 	StateInit();
-
+	
 	FSM.ChangeState(ECharacterState::Idle);
-
 }
 
 
 void APlayer::Tick(float _DeltaTime)
 {
 	APawn::Tick(_DeltaTime);
-	/*PlayerGroundCheck(GravityForce * _DeltaTime);
-	Gravity(_DeltaTime);*/
-	FSM.Update(_DeltaTime);
 
+	
+	FSM.Update(_DeltaTime);
 }
 
 void APlayer::SetColImage(std::string_view _ColImageName)
@@ -117,7 +115,7 @@ void APlayer::Gravity(float _DeltaTime)
 	if (false == bIsGround)
 	{
 		AddActorLocation(GravityForce * _DeltaTime);
-		GravityForce += FVector::DOWN * 1600.0f *_DeltaTime;
+		GravityForce += FVector::DOWN * 600.0f *_DeltaTime;
 	}
 	else
 	{
@@ -126,6 +124,19 @@ void APlayer::Gravity(float _DeltaTime)
 
 }
 
+void APlayer::JumpGravity(float _DeltaTime)
+{
+	if (false == bIsGround)
+	{
+		AddActorLocation(GravityForce * _DeltaTime);
+		GravityForce += FVector::DOWN * 1600.0f * _DeltaTime;
+	}
+	else if (true == bIsGround)
+	{
+		GravityForce = FVector::ZERO;
+	}
+
+}
 
 void APlayer::PlayerGroundCheck(FVector _MovePos)
 {
@@ -138,7 +149,7 @@ void APlayer::PlayerGroundCheck(FVector _MovePos)
 
 	UColor Color = ColImage.GetColor(NextPos, UColor(255, 255, 255, 0));
 
-	int a = 0;
+	
 
 	if (Color == UColor(255, 255, 255, 0 ))
 	{
@@ -147,7 +158,9 @@ void APlayer::PlayerGroundCheck(FVector _MovePos)
 
 	else if (Color == UColor(0, 0, 0, 0) || Color == UColor(255, 0, 0, 0))
 	{
+		FVector Location = GetActorLocation();
 		bIsGround = true;
+		
 	}
 }
 

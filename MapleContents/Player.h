@@ -47,6 +47,7 @@ private:
 	UEngineWinImage ColImage;
 
 	float PlayerSpeed = 260.0f;
+
 	FVector GravityForce = FVector::DOWN;
 	FVector JumpPower = FVector(0.0f, 580.0f);
 	
@@ -61,7 +62,12 @@ private:
 	bool bIsJumping = false;
 	bool bIsJumpRight = false;
 	bool bIsJumpMoveEnd= false;
+	
+	bool bIsLeafUsing = false;
 	bool bIsHighKick = false;
+	
+	bool bIsSkillUsing = false;
+
 
 	void StateInit();
 
@@ -70,9 +76,15 @@ private:
 	void Walk(float _DeltaTime);
 	void IdleJump(float _DeltaTime);
 	void WalkJump(float _DeltaTime);
+	void Air(float _DeltaTime);
+
+
 	void UseSkill(float _DeltaTime);
+	void IdleUseSkill(float _DeltaTime);
+	void AirUseSkill(float _DeltaTime);
 
 	void Gravity(float _DeltaTime);
+	void JumpGravity(float _DeltaTime);
 	void AntiGravity(float _DeltaTime);
 	void PlayerGroundCheck(FVector _MovePos);
 };

@@ -8,6 +8,11 @@
 
 #include "Player.h"
 #include "EventCharacter.h"
+#include "MapleEnum.h"
+
+#include "WrathOfEnril.h"
+
+
 
 
 void APlayer::StateInit()
@@ -45,13 +50,14 @@ void APlayer::StateInit()
 			PlayerRenderer->ChangeAnimation("Jump");
 		}
 	);
-
-	FSM.CreateState(ECharacterState::UseSkill, std::bind(&APlayer::UseSkill, this, std::placeholders::_1),
+	FSM.CreateState(ECharacterState::Air, std::bind(&APlayer::Air, this, std::placeholders::_1),
 		[this]()
 		{
-		
+			PlayerRenderer->ChangeAnimation("Jump");
 		}
 	);
+
+	
 }
 
 
@@ -62,33 +68,29 @@ void APlayer::Idle(float _DeltaTime)
 	// 제자리에서 이동전환
 	PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
+	UseSkill(_DeltaTime);
+	
 
-
-	if (UEngineInput::IsPress(VK_LEFT)){ FSM.ChangeState(ECharacterState::Walk);}
-	if (UEngineInput::IsPress(VK_RIGHT)) { FSM.ChangeState(ECharacterState::Walk); }
-	if (UEngineInput::IsPress(VK_DOWN)){ FSM.ChangeState(ECharacterState::Prone); }
+	if (UEngineInput::IsPress(VK_LEFT)){ FSM.ChangeState(ECharacterState::Walk); return; }
+	if (UEngineInput::IsPress(VK_RIGHT)) { FSM.ChangeState(ECharacterState::Walk); return; }
+	if (UEngineInput::IsPress(VK_DOWN)){ FSM.ChangeState(ECharacterState::Prone); return; }
 	if (UEngineInput::IsPress(VK_UP))
 	{
 		FSM.ChangeState(ECharacterState::Walk);
+
+	}
+	
+	if (false == bIsGround)
+	{
+		FSM.ChangeState(ECharacterState::Air);
 	}
 
 
 	// 제자리에서 점프 사용
 
-	if (UEngineInput::IsPress('C')) { FSM.ChangeState(ECharacterState::IdleJump);  }
+	if (UEngineInput::IsPress('C')) { bIsJumping = true; FSM.ChangeState(ECharacterState::IdleJump); return; }
 
 
-	// 제자리 스킬 사용
-
-	if (UEngineInput::IsPress('A')) { FSM.ChangeState(ECharacterState::UseSkill); }
-
-	if (UEngineInput::IsPress('S')) { FSM.ChangeState(ECharacterState::UseSkill); }
-
-	if (UEngineInput::IsPress('D')) { FSM.ChangeState(ECharacterState::UseSkill); }
-
-	if (UEngineInput::IsPress('E')) { FSM.ChangeState(ECharacterState::UseSkill); }
-
-	if (UEngineInput::IsPress('Q')) { FSM.ChangeState(ECharacterState::UseSkill); }
 }
 
 
@@ -96,13 +98,14 @@ void APlayer::Prone(float _DeltaTime)
 {
 	PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
-
+	UseSkill(_DeltaTime);
 	if (UEngineInput::IsUp(VK_DOWN))
 	{
 		FSM.ChangeState(ECharacterState::Idle);
+		return;
 	}
 
-	if (UEngineInput::IsPress('Q')) { FSM.ChangeState(ECharacterState::UseSkill); }
+
 	
 	// 엎드려서 점프
 	if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::IdleJump); }
@@ -115,6 +118,7 @@ void APlayer::Walk(float _DeltaTime)
 {
 	PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
+	UseSkill(_DeltaTime);
 
 	if (UEngineInput::IsPress(VK_LEFT))
 	{
@@ -130,6 +134,39 @@ void APlayer::Walk(float _DeltaTime)
 
 	CurrentVelocity.X = UEngineMath::Lerp(CurrentVelocity.X, TargetVelocity.X, _DeltaTime * 2.0f);
 
+
+	// 체공
+
+	if (false == bIsGround && true == UEngineInput::IsPress(VK_RIGHT) )
+	{
+		int a = 0;
+	}
+	
+	// 점프
+		
+	if (UEngineInput::IsDown('C') && UEngineInput::IsPress(VK_LEFT))
+	{ 
+		bIsJumpRight = false; 
+		FSM.ChangeState(ECharacterState::WalkJump); 
+		return;
+	}
+
+	if (UEngineInput::IsDown('C') && UEngineInput::IsPress(VK_RIGHT)) 
+	{
+		bIsJumpRight = true; 
+		FSM.ChangeState(ECharacterState::WalkJump);
+		return;
+	}
+		
+	// 이동이 멈출 때 Idle 상태로 전환
+	if (UEngineInput::IsUp(VK_LEFT) || UEngineInput::IsUp(VK_RIGHT))
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+		return;
+	}
+
+	
+
 	// 캐릭터 이동
 	if (UEngineInput::IsPress(VK_LEFT))
 	{
@@ -139,41 +176,6 @@ void APlayer::Walk(float _DeltaTime)
 	{
 		AddActorLocation(CurrentVelocity * _DeltaTime);
 	}
-	
-	
-	
-	// 점프
-		
-	if (UEngineInput::IsDown('C') && UEngineInput::IsPress(VK_LEFT))
-	{ 
-		bIsJumpRight = false; 
-		FSM.ChangeState(ECharacterState::WalkJump); 
-	}
-
-	if (UEngineInput::IsDown('C') && UEngineInput::IsPress(VK_RIGHT)) 
-	{
-		bIsJumpRight = true; 
-		FSM.ChangeState(ECharacterState::WalkJump);
-	}
-		
-	// 이동이 멈출 때 Idle 상태로 전환
-	if (UEngineInput::IsUp(VK_LEFT) || UEngineInput::IsUp(VK_RIGHT))
-	{
-		FSM.ChangeState(ECharacterState::Idle);
-	}
-
-	// 이동 중 스킬 사용
-	{
-		if (UEngineInput::IsPress('A')) { FSM.ChangeState(ECharacterState::UseSkill); }
-
-		if (UEngineInput::IsPress('S')) { FSM.ChangeState(ECharacterState::UseSkill); }
-
-		if (UEngineInput::IsPress('D')) { FSM.ChangeState(ECharacterState::UseSkill); }
-
-		if (UEngineInput::IsPress('E')) { FSM.ChangeState(ECharacterState::UseSkill); }
-
-		if (UEngineInput::IsPress('Q')) { FSM.ChangeState(ECharacterState::UseSkill); }
-	}
 
 
 }
@@ -182,11 +184,13 @@ void APlayer::IdleJump(float _DeltaTime)
 {
 	bIsGround = false;
 	PlayerGroundCheck(GravityForce * _DeltaTime);
-	Gravity(_DeltaTime);
+	JumpGravity(_DeltaTime);
+	UseSkill(_DeltaTime);
 
-	static FVector JumpVelocity = JumpPower;
-	FVector TargetJumpVelocity = FVector::ZERO;
+	JumpVelocity = JumpPower;
+	TargetJumpVelocity = FVector::ZERO;
 
+	
 	if (false == bIsGround)
 	{
 		TargetJumpVelocity = JumpPower;
@@ -194,27 +198,75 @@ void APlayer::IdleJump(float _DeltaTime)
 
 	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
 
-	// 점프 실행
-	AddActorLocation(JumpVelocity * _DeltaTime);
+	if (true == bIsJumping)
+	{
+		// 점프 실행
+		AddActorLocation(JumpVelocity * _DeltaTime);
+	}
+	
 
 
-	if (true == UEngineInput::IsPress(VK_LEFT))
+	if (true == UEngineInput::IsDown(VK_LEFT))
 	{
 		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
 	}
 
-	if (true == UEngineInput::IsPress(VK_RIGHT))
+	if (true == UEngineInput::IsDown(VK_RIGHT))
 	{
 
 		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
 
 	}
+	
+	if (true == bIsLeafUsing)
+	{
+		AddActorLocation(JumpVelocity * 0.8f * _DeltaTime);
+	}
 
 	// 착지 시 Idle 상태로 전환
-	if (0.00001f > TargetJumpVelocity.Y)
+
+
+
+	// 스킬 사용시
+	if (true == bIsSkillUsing && 0.00001f > TargetJumpVelocity.Y)
 	{
-		FSM.ChangeState(ECharacterState::Idle);
+		bIsJumping = false;
+		
+
+		if (true == PlayerRenderer->IsCurAnimationEnd())
+		{
+			AddActorLocation(FVector::UP * 4.0f);
+			bIsSkillUsing = false;
+			bIsLeafUsing = false;
+			FSM.ChangeState(ECharacterState::Idle);
+		}
 	}
+
+	else if (true == bIsSkillUsing && 0.00001f < TargetJumpVelocity.Y)
+		{
+			bIsJumping = true;
+
+			if (true == PlayerRenderer->IsCurAnimationEnd())
+			{
+				AddActorLocation(FVector::UP *4.0f);
+				bIsSkillUsing = false;
+				FSM.ChangeState(ECharacterState::Air);
+				return;
+			}
+		}
+	// 스킬 사용 안할시
+	else if (false == bIsSkillUsing && 0.00001f > TargetJumpVelocity.Y)
+	{
+		AddActorLocation(FVector::UP * 4.0f);
+		FSM.ChangeState(ECharacterState::Idle);
+		return;
+	}
+	
+	//if (0.00001f > TargetJumpVelocity.Y)
+	//{
+	//	AddActorLocation(FVector::UP * 10.0f);
+	//	FSM.ChangeState(ECharacterState::Idle);
+	//}
 
 }
 
@@ -223,7 +275,8 @@ void APlayer::WalkJump(float _DeltaTime)
 	bIsGround = false;
 	//bIsJumpMoveEnd = false;
 	PlayerGroundCheck(GravityForce * _DeltaTime);
-	Gravity(_DeltaTime);
+	JumpGravity(_DeltaTime);
+	UseSkill(_DeltaTime);
 
 	JumpVelocity = JumpPower; 
 	TargetJumpVelocity = FVector::ZERO; 
@@ -239,18 +292,26 @@ void APlayer::WalkJump(float _DeltaTime)
 	AddActorLocation(JumpVelocity * _DeltaTime);
 
 
+
+
+
 	if (false == bIsJumpRight )
 	{
 		AddActorLocation(FVector(-PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
-		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
 	}
 
 	else if (true == bIsJumpRight)
 	{
-
 		AddActorLocation(FVector(PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
+	}
+	
+	if (true == UEngineInput::IsDown(VK_LEFT))
+	{
+		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	}
+	if (true == UEngineInput::IsDown(VK_RIGHT))
+	{
 		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
-
 	}
 
 	// 착지 시 Idle 상태로 전환
@@ -258,42 +319,103 @@ void APlayer::WalkJump(float _DeltaTime)
 	{
 		bIsJumpMoveEnd = true;
 	}
-	if (true == bIsJumpMoveEnd && 0.00001f > TargetJumpVelocity.Y)
+	if (true == bIsJumpMoveEnd && 0.00000000001f > TargetJumpVelocity.Y)
 	{
 		bIsJumpMoveEnd = false;
+		AddActorLocation(FVector::UP * 6.0f);
 		FSM.ChangeState(ECharacterState::Idle);
+		return;
+	}
+
+}
+
+
+void APlayer::Air(float _DeltaTime)
+{
+	PlayerGroundCheck(GravityForce * _DeltaTime);
+	Gravity(_DeltaTime);
+	UseSkill(_DeltaTime);
+
+	if (true == bIsGround )
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+		return;
 	}
 
 }
 
 void APlayer::UseSkill(float _DeltaTime)
 {
-	PlayerGroundCheck(GravityForce * _DeltaTime);
-	Gravity(_DeltaTime);
-
-	
-
-	// 스킬 애니메이션이 끝나면 Idle 전환
-	if (true == PlayerRenderer->IsCurAnimationEnd()) { FSM.ChangeState(ECharacterState::Idle); }
-
 	// 레쓰 오브 엔릴
-	if (UEngineInput::IsPress('A')) { PlayerRenderer->ChangeAnimation("Wrath"); }
+	if (UEngineInput::IsPress('A')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Wrath"); }
 
 	// 스트라이크 듀얼 샷
-	if (UEngineInput::IsPress('S')) { PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
-	
+	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+
 	// 스듀는 바로 캐릭터 Idle 전환
-	if (UEngineInput::IsUp('S')) { FSM.ChangeState(ECharacterState::Idle); }
+	if (UEngineInput::IsUp('S')) { bIsSkillUsing = true; FSM.ChangeState(ECharacterState::Idle); }
 
 	// 리프 토네이도 
-	if (UEngineInput::IsPress('D')) { PlayerRenderer->ChangeAnimation("Tornado"); }
+	if (UEngineInput::IsPress('D')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Tornado");
+	
+	}
 
 	// 롤링 어썰트
-	if (UEngineInput::IsPress('E')) { PlayerRenderer->ChangeAnimation("Rolling"); }
+	if (UEngineInput::IsPress('E')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Rolling"); }
 
 	// 차지 드라이브
-	if (UEngineInput::IsPress('Q')) { PlayerRenderer->ChangeAnimation("Charge"); }
+	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
+
+	// 하이킥 데몰리션
+	{
+		if (UEngineInput::IsPress('W')) { PlayerRenderer->ChangeAnimation("HighKick"); }
+		if (UEngineInput::IsDown('W')) { AddActorLocation(FVector(0.0f, 200.0f)); }
+	}
+}
+
+
+
+void APlayer::IdleUseSkill(float _DeltaTime)
+{
+	// 레쓰 오브 엔릴
+	if (UEngineInput::IsPress('A')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Wrath"); }
+
+	// 스트라이크 듀얼 샷
+	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+
+	// 스듀는 바로 캐릭터 Idle 전환
+	if (UEngineInput::IsUp('S')) { bIsSkillUsing = true; FSM.ChangeState(ECharacterState::Idle); }
+
+	// 차지 드라이브
+	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
+
+	// 하이킥 데몰리션
+	{
+		if (UEngineInput::IsPress('W')) { PlayerRenderer->ChangeAnimation("HighKick"); }
+		if (UEngineInput::IsDown('W')) { AddActorLocation(FVector(0.0f, 200.0f)); }
+	}
+}
+
+void APlayer::AirUseSkill(float _DeltaTime)
+{
+	// 레쓰 오브 엔릴
+	if (UEngineInput::IsPress('A')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Wrath"); }
+
+	// 스트라이크 듀얼 샷
+	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+
+	// 스듀는 바로 캐릭터 Idle 전환
+	if (UEngineInput::IsUp('S')) { bIsSkillUsing = true; FSM.ChangeState(ECharacterState::Air); }
+
+	// 리프 토네이도 
+	if (UEngineInput::IsPress('D')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Tornado");
+	bIsLeafUsing = true;
 	
+	}
+
+	// 롤링 어썰트
+	if (UEngineInput::IsPress('E')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Rolling"); }
+
 	// 하이킥 데몰리션
 	{
 		if (UEngineInput::IsPress('W')) { PlayerRenderer->ChangeAnimation("HighKick"); }

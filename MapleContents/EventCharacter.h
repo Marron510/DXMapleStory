@@ -7,7 +7,7 @@ enum class ECharacterState
 	Walk,
 	IdleJump,
 	WalkJump,
-	UseSkill,
+	Air,
 	Death
 };
 

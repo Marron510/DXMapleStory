@@ -44,29 +44,5 @@ AMainHallMode::~AMainHallMode()
 void AMainHallMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	/*if (UEngineInput::IsPress('A'))
-	{
-		Camera->AddRelativeLocation(FVector{ -300.0f * _DeltaTime, 0.0f, 0.0f });
-	}
-
-	if (UEngineInput::IsPress('D'))
-	{
-		Camera->AddRelativeLocation(FVector{ 300.0f * _DeltaTime, 0.0f, 0.0f });
-	}
-
-
-	if (UEngineInput::IsPress('W'))
-	{
-		Camera->AddRelativeLocation(FVector{ 0.0f, 300.0f * _DeltaTime, 0.0f });
-	}
-
-	if (UEngineInput::IsPress('S'))
-	{
-		Camera->AddRelativeLocation(FVector{ 0.0f, -300.0f * _DeltaTime, 0.0f });
-	}
-
-
 	
-	
-	*/
 }

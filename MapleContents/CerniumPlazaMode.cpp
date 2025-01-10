@@ -48,6 +48,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		Plaza= GetWorld()->SpawnActor<ACerniumPlaza>();
 	}
 
+
 	
 
 #pragma region
@@ -145,10 +146,11 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		HighKick = GetWorld()->SpawnActor<AHighKick>();
 		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
 	}
+
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 643.0f, static_cast<float>(EMapleZEnum::Player)});
+		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 639.0f, static_cast<float>(EMapleZEnum::Player)});
 		
 		Player->SetColImage("99_Cernium_Col.png");
 	}
@@ -161,7 +163,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	HighKick->AttachToActor(Player.get());
 	
 	Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation(FVector{ 0.0f, 240.0f , -1000.0f });
+	Camera->SetActorLocation(FVector{ 0.0f, 260.0f , -1000.0f });
 	Camera->AttachToActor(Player.get());
 	Camera->GetCameraComponent()->SetZSort(0, true);
 	
