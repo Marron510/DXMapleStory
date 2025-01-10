@@ -64,6 +64,10 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
+
+	std::shared_ptr<class UCollision> Collision;
+
+
 	// ±§¿Â
 	std::shared_ptr<class USpriteRenderer> Plaza_Back;
 	std::shared_ptr<class USpriteRenderer> Plaza_Mid;

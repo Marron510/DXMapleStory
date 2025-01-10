@@ -76,16 +76,16 @@ private:
 	void Walk(float _DeltaTime);
 	void IdleJump(float _DeltaTime);
 	void WalkJump(float _DeltaTime);
+	void LeafJump(float _DeltaTime);
 	void Air(float _DeltaTime);
 
 
-	void UseSkill(float _DeltaTime);
 	void IdleUseSkill(float _DeltaTime);
 	void AirUseSkill(float _DeltaTime);
 
 	void Gravity(float _DeltaTime);
 	void JumpGravity(float _DeltaTime);
 	void AntiGravity(float _DeltaTime);
-	void PlayerGroundCheck(FVector _MovePos);
+	//void PlayerGroundCheck(FVector _MovePos);
 };
 

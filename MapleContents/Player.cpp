@@ -37,10 +37,9 @@ APlayer::APlayer()
 
 	Collision->SetScale3D({ 46.0f, 60.0f });
 	Collision->SetRelativeLocation(FVector{ 0.0f, 30.0f, static_cast<float>(EMapleZEnum::Player) });
-	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
+	Collision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
 		{
-			_Other->GetActor()->Destroy();
-			UEngineDebug::OutPutString("Destroy");
+			GravityForce = FVector::ZERO;
 		});
 	
 	//상태
@@ -53,7 +52,7 @@ APlayer::APlayer()
 
 
 	// 스킬
-	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.08f);
+	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.096f);
 	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
 	PlayerRenderer->CreateAnimation("StrikeDualShot", "StrikeDualShot.png", 0, 6, 0.08f);
 	PlayerRenderer->CreateAnimation("Charge", "Charge.png", 0, 8, 0.08f);
@@ -126,10 +125,17 @@ void APlayer::Gravity(float _DeltaTime)
 
 void APlayer::JumpGravity(float _DeltaTime)
 {
+	float Delta = _DeltaTime;
+
+	if (true == bIsLeafUsing)
+	{
+		Delta = 0.0f;
+	}
+
 	if (false == bIsGround)
 	{
-		AddActorLocation(GravityForce * _DeltaTime);
-		GravityForce += FVector::DOWN * 1600.0f * _DeltaTime;
+		AddActorLocation(GravityForce * Delta);
+		GravityForce += FVector::DOWN * 1600.0f * Delta;
 	}
 	else if (true == bIsGround)
 	{
@@ -138,31 +144,31 @@ void APlayer::JumpGravity(float _DeltaTime)
 
 }
 
-void APlayer::PlayerGroundCheck(FVector _MovePos)
-{
-	bIsGround = false;
-
-	FVector NextPos = GetActorLocation() - _MovePos;
-
-	NextPos.X = floorf(NextPos.X);
-	NextPos.Y = floorf(-NextPos.Y);
-
-	UColor Color = ColImage.GetColor(NextPos, UColor(255, 255, 255, 0));
-
-	
-
-	if (Color == UColor(255, 255, 255, 0 ))
-	{
-		bIsGround = false;
-	}
-
-	else if (Color == UColor(0, 0, 0, 0) || Color == UColor(255, 0, 0, 0))
-	{
-		FVector Location = GetActorLocation();
-		bIsGround = true;
-		
-	}
-}
+//void APlayer::PlayerGroundCheck(FVector _MovePos)
+//{
+//	bIsGround = false;
+//
+//	FVector NextPos = GetActorLocation() - _MovePos;
+//
+//	NextPos.X = floorf(NextPos.X);
+//	NextPos.Y = floorf(-NextPos.Y);
+//
+//	UColor Color = ColImage.GetColor(NextPos, UColor(255, 255, 255, 0));
+//
+//	
+//
+//	if (Color == UColor(255, 255, 255, 0 ))
+//	{
+//		bIsGround = false;
+//	}
+//
+//	else if (Color == UColor(0, 0, 0, 0) || Color == UColor(255, 0, 0, 0))
+//	{
+//		FVector Location = GetActorLocation();
+//		bIsGround = true;
+//		
+//	}
+//}
 
 
 

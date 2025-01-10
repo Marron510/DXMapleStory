@@ -39,9 +39,13 @@
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
 	GetWorld()->CreateCollisionProfile("Monster");
+	GetWorld()->CreateCollisionProfile("Platform");
+	GetWorld()->CreateCollisionProfile("Ground");
 	GetWorld()->CreateCollisionProfile("Player");
 
 	GetWorld()->LinkCollisionProfile("Player", "Monster");
+	GetWorld()->LinkCollisionProfile("Player", "Ground");
+	GetWorld()->LinkCollisionProfile("Player", "Platform");
 
 	// ¸Ê
 	{
