@@ -60,6 +60,7 @@ private:
 	bool bIsCharge = false;
 	bool bIsJumping = false;
 	bool bIsJumpRight = false;
+	bool bIsJumpMoveEnd= false;
 	bool bIsHighKick = false;
 
 	void StateInit();

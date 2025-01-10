@@ -208,7 +208,7 @@ void APlayer::IdleJump(float _DeltaTime)
 	}
 
 	// 착지 시 Idle 상태로 전환
-	if (bIsGround)
+	if (0.00001f > TargetJumpVelocity.Y)
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 	}
@@ -218,6 +218,7 @@ void APlayer::IdleJump(float _DeltaTime)
 void APlayer::WalkJump(float _DeltaTime)
 {
 	bIsGround = false;
+	//bIsJumpMoveEnd = false;
 	PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 
@@ -250,10 +251,16 @@ void APlayer::WalkJump(float _DeltaTime)
 	}
 
 	// 착지 시 Idle 상태로 전환
-	if (bIsGround)
+	if (true == UEngineInput::IsUp(VK_RIGHT) || true == UEngineInput::IsUp(VK_LEFT))
 	{
+		bIsJumpMoveEnd = true;
+	}
+	if (true == bIsJumpMoveEnd && 0.00001f > TargetJumpVelocity.Y)
+	{
+		bIsJumpMoveEnd = false;
 		FSM.ChangeState(ECharacterState::Idle);
 	}
+
 }
 
 void APlayer::UseSkill(float _DeltaTime)
