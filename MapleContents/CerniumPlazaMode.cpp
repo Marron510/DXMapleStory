@@ -42,10 +42,11 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	GetWorld()->CreateCollisionProfile("Platform");
 	GetWorld()->CreateCollisionProfile("Ground");
 	GetWorld()->CreateCollisionProfile("Player");
+	GetWorld()->CreateCollisionProfile("MoveDot");
 
 	GetWorld()->LinkCollisionProfile("Player", "Monster");
-	GetWorld()->LinkCollisionProfile("Player", "Ground");
-	GetWorld()->LinkCollisionProfile("Player", "Platform");
+	GetWorld()->LinkCollisionProfile("MoveDot", "Ground");
+	GetWorld()->LinkCollisionProfile("MoveDot", "Platform");
 
 	// ¸Ê
 	{
@@ -154,9 +155,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	// ÇÃ·¹ÀÌ¾î
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 639.0f, static_cast<float>(EMapleZEnum::Player)});
-		
-		Player->SetColImage("99_Cernium_Col.png");
+		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 439.0f, static_cast<float>(EMapleZEnum::Player)});
 	}
 	
 	LeafTornadoFront->AttachToActor(Player.get());

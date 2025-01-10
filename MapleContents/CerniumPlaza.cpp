@@ -21,9 +21,9 @@ ACerniumPlaza::ACerniumPlaza()
 
 	Collision->SetScale3D({ 4830.0f, 500.0f });
 	Collision->SetRelativeLocation(FVector{ 2415.0f, -1684.0f, static_cast<float>(EMapleZEnum::Player) });
-	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
+	/*Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
-		});
+		});*/
 
 
 

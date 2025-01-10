@@ -5,6 +5,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/TimeEventComponent.h>
+#include <EngineCore/Collision.h>
 
 #include "Player.h"
 #include "EventCharacter.h"
@@ -50,12 +51,12 @@ void APlayer::StateInit()
 			PlayerRenderer->ChangeAnimation("Jump");
 		}
 	);
-	FSM.CreateState(ECharacterState::LeafJump, std::bind(&APlayer::LeafJump, this, std::placeholders::_1),
+	/*FSM.CreateState(ECharacterState::LeafJump, std::bind(&APlayer::LeafJump, this, std::placeholders::_1),
 		[this]()
 		{
 			PlayerRenderer->ChangeAnimation("Tornado");
 		}
-	);
+	);*/
 	FSM.CreateState(ECharacterState::Air, std::bind(&APlayer::Air, this, std::placeholders::_1),
 		[this]()
 		{
@@ -72,27 +73,28 @@ void APlayer::StateInit()
 void APlayer::Idle(float _DeltaTime)
 {
 	// 제자리에서 이동전환
-	//PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 	IdleUseSkill(_DeltaTime);
 	
 
-	if (UEngineInput::IsPress(VK_LEFT)){ FSM.ChangeState(ECharacterState::Walk); return; }
-	if (UEngineInput::IsPress(VK_RIGHT)) { FSM.ChangeState(ECharacterState::Walk); return; }
-	if (UEngineInput::IsPress(VK_DOWN)){ FSM.ChangeState(ECharacterState::Prone); return; }
+	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Walk); return; }
+	if (UEngineInput::IsPress(VK_RIGHT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); return; }
+	if (UEngineInput::IsPress(VK_DOWN) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Prone); return; }
 	if (UEngineInput::IsPress(VK_UP))
 	{
 		FSM.ChangeState(ECharacterState::Walk);
 		return;
 	}
-	// 제자리에서 점프 사용
+
 	if (UEngineInput::IsPress('C')) { bIsJumping = true; FSM.ChangeState(ECharacterState::IdleJump); return; }
 
-	if (false == bIsGround)
+
+	// 체공
+	/*if (false == MoveCollision->IsColliding())
 	{
 		FSM.ChangeState(ECharacterState::Air);
 		return;
-	}
+	}*/
 
 
 	
@@ -101,10 +103,11 @@ void APlayer::Idle(float _DeltaTime)
 
 void APlayer::Prone(float _DeltaTime)
 {
-	//PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 	IdleUseSkill(_DeltaTime);
-	if (UEngineInput::IsUp(VK_DOWN))
+	
+	
+	if (UEngineInput::IsUp(VK_DOWN) && true == MoveCollision->IsColliding())
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 		return;
@@ -112,8 +115,8 @@ void APlayer::Prone(float _DeltaTime)
 
 
 	
-	// 엎드려서 점프
-	if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::IdleJump); }
+	// 엎드려서 점프(아래점프)
+	//if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::IdleJump); }
 }
 
 
@@ -121,17 +124,16 @@ void APlayer::Prone(float _DeltaTime)
 
 void APlayer::Walk(float _DeltaTime)
 {
-	//PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 	IdleUseSkill(_DeltaTime);
 
-	if (UEngineInput::IsPress(VK_LEFT))
+	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding())
 	{
 		TargetVelocity = FVector(PlayerSpeed, 0.0f, 0.0f);
 		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
 	}
 
-	if (UEngineInput::IsPress(VK_RIGHT))
+	if (UEngineInput::IsPress(VK_RIGHT) && true == MoveCollision->IsColliding())
 	{
 		TargetVelocity = FVector(PlayerSpeed, 0.0f, 0.0f);
 		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
@@ -140,13 +142,6 @@ void APlayer::Walk(float _DeltaTime)
 	CurrentVelocity.X = UEngineMath::Lerp(CurrentVelocity.X, TargetVelocity.X, _DeltaTime * 2.0f);
 
 
-	// 체공
-
-	if (false == bIsGround && true == UEngineInput::IsPress(VK_RIGHT) )
-	{
-		int a = 0;
-	}
-	
 	// 점프
 		
 	if (UEngineInput::IsDown('C') && UEngineInput::IsPress(VK_LEFT))
@@ -164,7 +159,7 @@ void APlayer::Walk(float _DeltaTime)
 	}
 		
 	// 이동이 멈출 때 Idle 상태로 전환
-	if (UEngineInput::IsUp(VK_LEFT) || UEngineInput::IsUp(VK_RIGHT))
+	if (UEngineInput::IsUp(VK_LEFT) && true == MoveCollision->IsColliding() || UEngineInput::IsUp(VK_RIGHT) && true == MoveCollision->IsColliding())
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 		return;
@@ -188,8 +183,7 @@ void APlayer::Walk(float _DeltaTime)
 void APlayer::IdleJump(float _DeltaTime)
 {
 	bIsGround = false;
-	//PlayerGroundCheck(GravityForce * _DeltaTime);
-	JumpGravity(_DeltaTime);
+	Gravity(_DeltaTime);
 	AirUseSkill(_DeltaTime);
 
 	JumpVelocity = JumpPower;
@@ -222,43 +216,40 @@ void APlayer::IdleJump(float _DeltaTime)
 		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
 
 	}
-	
+	/*
 	if (UEngineInput::IsDown('D') && true == bIsLeafUsing)
 	{
 		FSM.ChangeState(ECharacterState::LeafJump);
-	}
+	}*/
 
 
 	// 스킬 사용시
-	if (true == bIsSkillUsing && 0.00001f > TargetJumpVelocity.Y)
+	if (true == bIsSkillUsing && true == MoveCollision->IsColliding())
 	{
 		bIsJumping = false;
 		
-
 		if (true == PlayerRenderer->IsCurAnimationEnd())
 		{
-			AddActorLocation(FVector::UP * 4.0f);
 			bIsSkillUsing = false;
 			FSM.ChangeState(ECharacterState::Idle);
 		}
 	}
 
-	else if (true == bIsSkillUsing && 0.00001f < TargetJumpVelocity.Y)
+	else if (true == bIsSkillUsing && false == MoveCollision->IsColliding())
 		{
 			bIsJumping = true;
 
 			if (true == PlayerRenderer->IsCurAnimationEnd())
 			{
-				AddActorLocation(FVector::UP *4.0f);
 				bIsSkillUsing = false;
 				FSM.ChangeState(ECharacterState::Air);
 				return;
 			}
 		}
 	// 스킬 사용 안할시
-	else if (false == bIsSkillUsing && 0.00001f > TargetJumpVelocity.Y)
+	else if (false == bIsSkillUsing && true == MoveCollision->IsColliding())
 	{
-		AddActorLocation(FVector::UP * 4.0f);
+		bIsGround = true;
 		FSM.ChangeState(ECharacterState::Idle);
 		return;
 	}
@@ -268,88 +259,62 @@ void APlayer::WalkJump(float _DeltaTime)
 {
 	bIsGround = false;
 	//PlayerGroundCheck(GravityForce * _DeltaTime);
-	JumpGravity(_DeltaTime);
-	AirUseSkill(_DeltaTime);
-
-	JumpVelocity = JumpPower; 
-	TargetJumpVelocity = FVector::ZERO; 
-
-	if (false == bIsGround)
-	{
-		TargetJumpVelocity = JumpPower;
-	}
-
-	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
-
-	// 점프 실행
-	AddActorLocation(JumpVelocity * _DeltaTime);
-
-
-
-
-
-	if (false == bIsJumpRight )
-	{
-		AddActorLocation(FVector(-PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
-	}
-
-	else if (true == bIsJumpRight)
-	{
-		AddActorLocation(FVector(PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
-	}
-	
-	if (true == UEngineInput::IsDown(VK_LEFT))
-	{
-		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-	}
-	if (true == UEngineInput::IsDown(VK_RIGHT))
-	{
-		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
-	}
-
-
-
-	// 착지 시 Idle 상태로 전환
-	if (true == UEngineInput::IsUp(VK_RIGHT) || true == UEngineInput::IsUp(VK_LEFT))
-	{
-		bIsJumpMoveEnd = true;
-	}
-	if (true == bIsJumpMoveEnd && 0.00000000001f > TargetJumpVelocity.Y)
-	{
-		bIsJumpMoveEnd = false;
-		AddActorLocation(FVector::UP * 6.0f);
-		FSM.ChangeState(ECharacterState::Idle);
-		return;
-	}
-}
-
-
-void APlayer::LeafJump(float _DeltaTime)
-{
-	//PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 	AirUseSkill(_DeltaTime);
 
-	FVector LJumpVelocity = FVector::UP;
-	LJumpVelocity = -GravityForce * _DeltaTime;
+	//JumpVelocity = JumpPower; 
+	//TargetJumpVelocity = FVector::ZERO; 
 
-	// 점프 실행
-	AddActorLocation(LJumpVelocity);
+	//if (false == bIsGround)
+	//{
+	//	TargetJumpVelocity = JumpPower;
+	//}
 
-	if (10.0f > LJumpVelocity.Y)
-	{
-		FSM.ChangeState(ECharacterState::Air);
-		bIsLeafUsing = false;
-	}
+	//JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
+
+	//// 점프 실행
+	//AddActorLocation(JumpVelocity * _DeltaTime);
 
 
-	if (true == bIsGround)
-	{
-		FSM.ChangeState(ECharacterState::Idle);
-		return;
-	}
 
+
+
+	//if (false == bIsJumpRight )
+	//{
+	//	AddActorLocation(FVector(-PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
+	//}
+
+	//else if (true == bIsJumpRight)
+	//{
+	//	AddActorLocation(FVector(PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
+	//}
+	//
+	//if (true == UEngineInput::IsDown(VK_LEFT))
+	//{
+	//	SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	//}
+	//if (true == UEngineInput::IsDown(VK_RIGHT))
+	//{
+	//	SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+	//}
+
+
+
+	//// 착지 시 Idle 상태로 전환
+	//if (true == UEngineInput::IsUp(VK_RIGHT) || true == UEngineInput::IsUp(VK_LEFT))
+	//{
+	//	bIsJumpMoveEnd = true;
+	//}
+	//if (true == bIsJumpMoveEnd && 0.00000000001f > TargetJumpVelocity.Y)
+	//{
+	//	bIsJumpMoveEnd = false;
+	//	AddActorLocation(FVector::UP * 6.0f);
+	//	FSM.ChangeState(ECharacterState::Idle);
+	//	return;
+	//}
 }
+
+
 
 void APlayer::Air(float _DeltaTime)
 {
@@ -357,7 +322,7 @@ void APlayer::Air(float _DeltaTime)
 	Gravity(_DeltaTime);
 	AirUseSkill(_DeltaTime);
 
-	if (true == bIsGround )
+	if (true == MoveCollision->IsColliding())
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 		return;

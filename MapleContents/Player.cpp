@@ -31,17 +31,24 @@ APlayer::APlayer()
 	
 
 	// 콜리전
-	Collision = CreateDefaultSubObject<UCollision>();
-	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Player");
+	MoveCollision = CreateDefaultSubObject<UCollision>();
+	MoveCollision->SetupAttachment(RootComponent);
+	MoveCollision->SetCollisionProfileName("MoveDot");
 
-	Collision->SetScale3D({ 46.0f, 60.0f });
-	Collision->SetRelativeLocation(FVector{ 0.0f, 30.0f, static_cast<float>(EMapleZEnum::Player) });
-	Collision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
+	MoveCollision->SetScale3D({ 20.0f, 5.0f });
+	MoveCollision->SetRelativeLocation(FVector{ 4.0f, 5.0f, static_cast<float>(EMapleZEnum::Player) });
+	MoveCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
 		{
 			GravityForce = FVector::ZERO;
 		});
-	
+	MoveCollision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
+		{
+			GravityForce = FVector::ZERO;
+		});
+	MoveCollision->SetCollisionEnd([this](UCollision* _This, UCollision* _Other)
+		{
+			//GravityForce += FVector::DOWN * 500.0f;
+		});
 	//상태
 	PlayerRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
 	PlayerRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
@@ -81,107 +88,39 @@ void APlayer::BeginPlay()
 	StateInit();
 	
 	FSM.ChangeState(ECharacterState::Idle);
+
 }
 
 
 void APlayer::Tick(float _DeltaTime)
 {
 	APawn::Tick(_DeltaTime);
-
 	
 	FSM.Update(_DeltaTime);
+
+
+	
 }
 
-void APlayer::SetColImage(std::string_view _ColImageName)
-{
-	UEngineDirectory Dir;
-	if (false == Dir.MoveParentToDirectory("MapleResources"))
-	{
-		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-		return;
-	}
-	Dir.Append("Image");
-
-	std::string_view ColName = _ColImageName;
-	UEngineFile ImageFiles = Dir.GetFile(ColName);
-
-	ColImage.Load(nullptr, ImageFiles.GetPathToString());
-
-}
 
 void APlayer::Gravity(float _DeltaTime)
 {
-	if (false == bIsGround)
+	if (false == MoveCollision->IsColliding())
 	{
-		AddActorLocation(GravityForce * _DeltaTime);
-		GravityForce += FVector::DOWN * 600.0f *_DeltaTime;
+		GravityForce += FVector::DOWN * 12.0f * _DeltaTime;
 	}
-	else
-	{
-		GravityForce = FVector::ZERO;
-	}
-
-}
-
-void APlayer::JumpGravity(float _DeltaTime)
-{
-	float Delta = _DeltaTime;
-
-	if (true == bIsLeafUsing)
-	{
-		Delta = 0.0f;
-	}
-
-	if (false == bIsGround)
-	{
-		AddActorLocation(GravityForce * Delta);
-		GravityForce += FVector::DOWN * 1600.0f * Delta;
-	}
-	else if (true == bIsGround)
+	else if (true == MoveCollision->IsColliding())
 	{
 		GravityForce = FVector::ZERO;
 	}
 
+	AddActorLocation(GravityForce);
 }
 
-//void APlayer::PlayerGroundCheck(FVector _MovePos)
+//void APlayer::GravityZero()
 //{
-//	bIsGround = false;
-//
-//	FVector NextPos = GetActorLocation() - _MovePos;
-//
-//	NextPos.X = floorf(NextPos.X);
-//	NextPos.Y = floorf(-NextPos.Y);
-//
-//	UColor Color = ColImage.GetColor(NextPos, UColor(255, 255, 255, 0));
-//
-//	
-//
-//	if (Color == UColor(255, 255, 255, 0 ))
-//	{
-//		bIsGround = false;
-//	}
-//
-//	else if (Color == UColor(0, 0, 0, 0) || Color == UColor(255, 0, 0, 0))
-//	{
-//		FVector Location = GetActorLocation();
-//		bIsGround = true;
-//		
-//	}
+//	GravityForce += FVector::DOWN * 600.0f;
+//	AddActorLocation(GravityForce * _DeltaTime);
 //}
 
 
-
-void APlayer::AntiGravity(float _DeltaTime)
-{
-	/*if (false == bIsGround)
-	{
-		AddActorLocation(-GravityForce * _DeltaTime);
-		GravityForce += FVector::UP * 1600.0f * _DeltaTime;
-	}
-	else
-	{
-		GravityForce = FVector::ZERO;
-	}*/
-
-}

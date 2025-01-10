@@ -29,8 +29,6 @@ AWrathOfEnril::AWrathOfEnril()
 	Collision->SetRelativeLocation(FVector{ -330.0f, 120.0f , static_cast<float>(EMapleZEnum::Player) });
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
-			_Other->GetActor()->Destroy();
-			UEngineDebug::OutPutString("Destroy");
 		});
 
 	WrathOfEnril->SetRelativeLocation(FVector{ -230.0f, -220.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front)});

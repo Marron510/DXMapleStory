@@ -24,7 +24,6 @@ public:
 	{
 		return PlayerRenderer;
 	}
-	void SetColImage(std::string_view _ColImageName);
 
 
 protected:
@@ -37,19 +36,18 @@ private:
 	std::shared_ptr<class USpriteRenderer> PlayerRenderer;
 	
 
-	std::shared_ptr<class UCollision> Collision;
+	std::shared_ptr<class UCollision> MoveCollision;
 
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 	
 	UFSMStateManager FSM;
 
 	// 콜리전
-	UEngineWinImage ColImage;
 
 	float PlayerSpeed = 260.0f;
 
-	FVector GravityForce = FVector::DOWN;
-	FVector JumpPower = FVector(0.0f, 580.0f);
+	FVector GravityForce = FVector::ZERO;
+	FVector JumpPower = FVector(0.0f, 300.0f);
 	
 	FVector CurrentVelocity = FVector::ZERO; // 현재 이동 속도
 	FVector TargetVelocity = FVector::ZERO;         // 목표 이동 속도
@@ -76,7 +74,6 @@ private:
 	void Walk(float _DeltaTime);
 	void IdleJump(float _DeltaTime);
 	void WalkJump(float _DeltaTime);
-	void LeafJump(float _DeltaTime);
 	void Air(float _DeltaTime);
 
 
@@ -84,8 +81,5 @@ private:
 	void AirUseSkill(float _DeltaTime);
 
 	void Gravity(float _DeltaTime);
-	void JumpGravity(float _DeltaTime);
-	void AntiGravity(float _DeltaTime);
-	//void PlayerGroundCheck(FVector _MovePos);
 };
 

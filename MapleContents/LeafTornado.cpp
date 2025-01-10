@@ -42,8 +42,6 @@ ALeafTornado::ALeafTornado()
 	Collision->SetRelativeLocation(FVector{ 0.0f, -120.0f, static_cast<float>(EMapleZEnum::Player) });
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
-			_Other->GetActor()->Destroy();
-			UEngineDebug::OutPutString("Destroy");
 		});
 
 }

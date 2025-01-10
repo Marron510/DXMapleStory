@@ -40,8 +40,6 @@ AChargeDrive::AChargeDrive()
 	Collision->SetRelativeLocation(FVector{ -20.0f, 60.0f , static_cast<float>(EMapleZEnum::Player) });
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
-			_Other->GetActor()->Destroy();
-			UEngineDebug::OutPutString("Destroy");
 		});
 }
 

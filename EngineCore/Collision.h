@@ -27,6 +27,18 @@ public:
 	{
 		return ProfileName;
 	}
+	bool IsColliding()
+	{
+		if (CollisionCheckSet.empty())
+		{
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
+	}
+
 
 	void SetRadius(float _Value);
 
