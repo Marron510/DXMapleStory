@@ -47,7 +47,7 @@ private:
 	float PlayerSpeed = 260.0f;
 
 	FVector GravityForce = FVector::ZERO;
-	FVector JumpPower = FVector(0.0f, 300.0f);
+	FVector JumpPower = FVector(0.0f, 600.0f);
 	
 	FVector CurrentVelocity = FVector::ZERO; // 현재 이동 속도
 	FVector TargetVelocity = FVector::ZERO;         // 목표 이동 속도

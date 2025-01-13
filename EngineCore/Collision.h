@@ -27,6 +27,7 @@ public:
 	{
 		return ProfileName;
 	}
+
 	bool IsColliding()
 	{
 		if (CollisionCheckSet.empty())

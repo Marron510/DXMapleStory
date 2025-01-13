@@ -90,11 +90,11 @@ void APlayer::Idle(float _DeltaTime)
 
 
 	// 체공
-	/*if (false == MoveCollision->IsColliding())
+	if (false == bIsJumping  && false == bIsGround)
 	{
 		FSM.ChangeState(ECharacterState::Air);
 		return;
-	}*/
+	}
 
 
 	
@@ -182,7 +182,7 @@ void APlayer::Walk(float _DeltaTime)
 
 void APlayer::IdleJump(float _DeltaTime)
 {
-	bIsGround = false;
+	
 	Gravity(_DeltaTime);
 	AirUseSkill(_DeltaTime);
 
@@ -225,15 +225,15 @@ void APlayer::IdleJump(float _DeltaTime)
 
 	// 스킬 사용시
 	if (true == bIsSkillUsing && true == MoveCollision->IsColliding())
-	{
-		bIsJumping = false;
-		
-		if (true == PlayerRenderer->IsCurAnimationEnd())
 		{
-			bIsSkillUsing = false;
-			FSM.ChangeState(ECharacterState::Idle);
+			bIsJumping = false;
+		
+			if (true == PlayerRenderer->IsCurAnimationEnd())
+			{
+				bIsSkillUsing = false;
+				FSM.ChangeState(ECharacterState::Idle);
+			}
 		}
-	}
 
 	else if (true == bIsSkillUsing && false == MoveCollision->IsColliding())
 		{
@@ -247,82 +247,83 @@ void APlayer::IdleJump(float _DeltaTime)
 			}
 		}
 	// 스킬 사용 안할시
-	else if (false == bIsSkillUsing && true == MoveCollision->IsColliding())
-	{
-		bIsGround = true;
-		FSM.ChangeState(ECharacterState::Idle);
-		return;
-	}
+	else if (false == bIsSkillUsing && true == bIsGround)
+		{
+			FSM.ChangeState(ECharacterState::Idle);
+			return;
+		}
 }
 
 void APlayer::WalkJump(float _DeltaTime)
 {
-	bIsGround = false;
-	//PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 	AirUseSkill(_DeltaTime);
 
-	//JumpVelocity = JumpPower; 
-	//TargetJumpVelocity = FVector::ZERO; 
+	JumpVelocity = JumpPower; 
+	TargetJumpVelocity = FVector::ZERO; 
 
-	//if (false == bIsGround)
-	//{
-	//	TargetJumpVelocity = JumpPower;
-	//}
+	if (false == bIsGround)
+	{
+		TargetJumpVelocity = JumpPower;
+	}
 
-	//JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
+	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
 
-	//// 점프 실행
-	//AddActorLocation(JumpVelocity * _DeltaTime);
-
-
+	// 점프 실행
+	AddActorLocation(JumpVelocity * _DeltaTime);
 
 
 
-	//if (false == bIsJumpRight )
-	//{
-	//	AddActorLocation(FVector(-PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
-	//}
-
-	//else if (true == bIsJumpRight)
-	//{
-	//	AddActorLocation(FVector(PlayerSpeed * _DeltaTime, 0.0f, 0.0f));
-	//}
-	//
-	//if (true == UEngineInput::IsDown(VK_LEFT))
-	//{
-	//	SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-	//}
-	//if (true == UEngineInput::IsDown(VK_RIGHT))
-	//{
-	//	SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
-	//}
 
 
+	if (false == bIsJumpRight )
+	{
+		AddActorLocation(FVector(-PlayerSpeed * 0.85f * _DeltaTime, 0.0f, 0.0f));
+	}
 
-	//// 착지 시 Idle 상태로 전환
-	//if (true == UEngineInput::IsUp(VK_RIGHT) || true == UEngineInput::IsUp(VK_LEFT))
-	//{
-	//	bIsJumpMoveEnd = true;
-	//}
-	//if (true == bIsJumpMoveEnd && 0.00000000001f > TargetJumpVelocity.Y)
-	//{
-	//	bIsJumpMoveEnd = false;
-	//	AddActorLocation(FVector::UP * 6.0f);
-	//	FSM.ChangeState(ECharacterState::Idle);
-	//	return;
-	//}
+	else if (true == bIsJumpRight)
+	{
+		AddActorLocation(FVector(PlayerSpeed * 0.85f * _DeltaTime, 0.0f, 0.0f));
+	}
+	
+	if (true == UEngineInput::IsDown(VK_LEFT))
+	{
+		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	}
+	if (true == UEngineInput::IsDown(VK_RIGHT))
+	{
+		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+	}
+
+
+
+	// 착지 시 Idle 상태로 전환
+	if (true == UEngineInput::IsUp('C') && true == bIsGround)
+	{
+		bIsJumpMoveEnd = true;
+	}
+	if (true == UEngineInput::IsFree('C') && true == bIsGround)
+	{
+		bIsJumpMoveEnd = true;
+	}
+
+	if (true == bIsJumpMoveEnd && bIsGround == true)
+	{
+		bIsJumpMoveEnd = false;
+		FSM.ChangeState(ECharacterState::Idle);
+		return;
+	}
+
 }
 
 
 
 void APlayer::Air(float _DeltaTime)
 {
-	//PlayerGroundCheck(GravityForce * _DeltaTime);
 	Gravity(_DeltaTime);
 	AirUseSkill(_DeltaTime);
 
-	if (true == MoveCollision->IsColliding())
+	if (true == bIsGround)
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 		return;

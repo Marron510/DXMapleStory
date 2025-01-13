@@ -39,15 +39,16 @@ APlayer::APlayer()
 	MoveCollision->SetRelativeLocation(FVector{ 4.0f, 5.0f, static_cast<float>(EMapleZEnum::Player) });
 	MoveCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
 		{
-			GravityForce = FVector::ZERO;
+			//GravityForce = FVector::ZERO;
+			bIsGround = true;
 		});
 	MoveCollision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			GravityForce = FVector::ZERO;
+			//GravityForce = FVector::ZERO;
 		});
 	MoveCollision->SetCollisionEnd([this](UCollision* _This, UCollision* _Other)
 		{
-			//GravityForce += FVector::DOWN * 500.0f;
+			bIsGround = false;
 		});
 	//ป๓ลย
 	PlayerRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
@@ -107,7 +108,7 @@ void APlayer::Gravity(float _DeltaTime)
 {
 	if (false == MoveCollision->IsColliding())
 	{
-		GravityForce += FVector::DOWN * 12.0f * _DeltaTime;
+		GravityForce += FVector::DOWN * 3.0f * _DeltaTime;
 	}
 	else if (true == MoveCollision->IsColliding())
 	{
