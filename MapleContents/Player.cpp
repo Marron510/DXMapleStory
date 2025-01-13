@@ -106,6 +106,11 @@ void APlayer::Tick(float _DeltaTime)
 
 void APlayer::Gravity(float _DeltaTime)
 {
+	if (true == bIsZeroGravity)
+	{
+		GravityForce = FVector::ZERO;
+		return;
+	}
 	if (false == MoveCollision->IsColliding())
 	{
 		GravityForce += FVector::DOWN * 3.0f * _DeltaTime;
@@ -117,11 +122,3 @@ void APlayer::Gravity(float _DeltaTime)
 
 	AddActorLocation(GravityForce);
 }
-
-//void APlayer::GravityZero()
-//{
-//	GravityForce += FVector::DOWN * 600.0f;
-//	AddActorLocation(GravityForce * _DeltaTime);
-//}
-
-

@@ -20,10 +20,10 @@ AStrikeDualShot::AStrikeDualShot()
 	StrikeDaulShotFront->SetupAttachment(RootComponent);
 	StrikeDaulShotBack->SetupAttachment(RootComponent);
 
-	StrikeDaulShotFront->CreateAnimation("StrikeDualShotFront", "StrikeDualShot", 0, 10, 0.032f);
+	StrikeDaulShotFront->CreateAnimation("StrikeDualShotFront", "StrikeDualShot", 0, 10, 0.032f, false);
 	StrikeDaulShotFront->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	
-	StrikeDaulShotBack->CreateAnimation("StrikeDualShotBack", "StrikeDualShot_Back", 0, 6, 0.0457f);
+	StrikeDaulShotBack->CreateAnimation("StrikeDualShotBack", "StrikeDualShot_Back", 0, 6, 0.0457f, false);
 	StrikeDaulShotBack->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	
 	StrikeDaulShotFront->ChangeAnimation("None");
@@ -47,7 +47,7 @@ void AStrikeDualShot::Tick(float _DeltaTime)
 {
 	ASkillManager::Tick(_DeltaTime);
 
-	if (false == UEngineInput::IsPressTime('S') && true == StrikeDaulShotFront->IsCurAnimationEnd())
+	if (true == StrikeDaulShotFront->IsCurAnimationEnd())
 	{
 		StrikeDaulShotFront->ChangeAnimation("None");
 		StrikeDaulShotBack->ChangeAnimation("None");

@@ -65,7 +65,7 @@ private:
 	bool bIsHighKick = false;
 	
 	bool bIsSkillUsing = false;
-
+	bool bIsZeroGravity = false;
 
 	void StateInit();
 
