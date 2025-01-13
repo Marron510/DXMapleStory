@@ -96,7 +96,10 @@ void APlayer::Idle(float _DeltaTime)
 		return;
 	}
 
-
+	if (true == PlayerRenderer->IsCurAnimationEnd())
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+	}
 	
 }
 
@@ -340,6 +343,7 @@ void APlayer::Air(float _DeltaTime)
 		return;
 	}
 
+	
 }
 
 
@@ -352,9 +356,6 @@ void APlayer::IdleUseSkill(float _DeltaTime)
 
 	// 스트라이크 듀얼 샷
 	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
-
-	// 스듀는 바로 캐릭터 Idle 전환
-	if (UEngineInput::IsUp('S')) { bIsSkillUsing = true; FSM.ChangeState(ECharacterState::Idle); }
 
 	// 차지 드라이브
 	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
@@ -373,9 +374,6 @@ void APlayer::AirUseSkill(float _DeltaTime)
 
 	// 스트라이크 듀얼 샷
 	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
-
-	// 스듀는 바로 캐릭터 Idle 전환
-	if (UEngineInput::IsUp('S')) { bIsSkillUsing = true; FSM.ChangeState(ECharacterState::Air); }
 
 	// 리프 토네이도 
 	if (UEngineInput::IsPress('D')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Tornado");

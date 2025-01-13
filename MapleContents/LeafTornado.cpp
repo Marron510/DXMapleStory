@@ -31,7 +31,7 @@ ALeafTornado::ALeafTornado()
 	LeafTornadoBack->ChangeAnimation("None");
 
 	LeafTornadoFront->SetRelativeLocation(FVector{ 25.0f, -400.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
-	LeafTornadoBack->SetRelativeLocation(FVector{ 0.0f, -440.0f, static_cast<float>(EMapleZEnum::Player_Skill_Back) });
+	LeafTornadoBack->SetRelativeLocation(FVector{ 0.0f, -440.0f, static_cast<float>(EMapleZEnum::Player_Skill_Back)  });
 
 
 	Collision = CreateDefaultSubObject<UCollision>();
