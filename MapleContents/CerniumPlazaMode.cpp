@@ -36,6 +36,7 @@
 #include "RollingMoonSult.h"
 #include "ChargeDrive.h"
 #include "HighKick.h"
+#include "UnicornSpike.h"
 
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
@@ -151,6 +152,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		RollingMoonSult = GetWorld()->SpawnActor<ARollingMoonSult>();
 		HighKick = GetWorld()->SpawnActor<AHighKick>();
 		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
+		UnicornSpike = GetWorld()->SpawnActor<AUnicornSpike>();
 	}
 
 	// 플레이어
@@ -166,7 +168,8 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	RollingMoonSult->AttachToActor(Player.get());
 	ChargeDrive->AttachToActor(Player.get());
 	HighKick->AttachToActor(Player.get());
-	
+	UnicornSpike->AttachToActor(Player.get());
+
 	Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector{ 0.0f, 260.0f , -1000.0f });
 	Camera->AttachToActor(Player.get());
@@ -196,6 +199,8 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 	AGameMode::Tick(_DeltaTime);
 
 	UpdateSprite(_DeltaTime);
+
+
 	ChargeDriveActive();	
 	HighKickActive();
 }

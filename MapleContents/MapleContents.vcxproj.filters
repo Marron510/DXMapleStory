@@ -107,6 +107,9 @@
     <ClCompile Include="CerniumHUD.cpp">
       <Filter>HUD</Filter>
     </ClCompile>
+    <ClCompile Include="UnicornSpike.cpp">
+      <Filter>SKill\02_PlayerSKill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="CerniumHUD.h">
       <Filter>HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="UnicornSpike.h">
+      <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

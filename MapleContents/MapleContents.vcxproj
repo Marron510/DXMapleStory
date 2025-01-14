@@ -293,6 +293,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp" />
+    <ClCompile Include="UnicornSpike.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="WrathOfEnril.cpp">
       <SubType>
       </SubType>
@@ -412,6 +416,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleLogo.h" />
+    <ClInclude Include="UnicornSpike.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WrathOfEnril.h">
       <SubType>
       </SubType>

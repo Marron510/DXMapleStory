@@ -66,16 +66,16 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	//플레이어 스킬
 
 	{
-				UEngineDirectory Dir;
-				if (false == Dir.MoveParentToDirectory("MapleResources"))
-				{
-					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-					return;
-				}
-				Dir.Append("Image");
-				Dir.Append("Skill/WrathOfEnril");
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Skill/WrathOfEnril");
 		
-				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
 	{
@@ -170,6 +170,18 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("MapleResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		Dir.Append("Skill/UnicornSpike");
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
 
 	// 세르니움 이미지
 #pragma region 

@@ -112,6 +112,8 @@ void APlayer::Idle(float _DeltaTime)
 		bIsZeroGravity = true;
 		FSM.ChangeState(ECharacterState::Air);
 	}
+
+
 	// 체공
 	if (false == bIsJumping  && false == bIsGround)
 	{
@@ -237,6 +239,8 @@ void APlayer::IdleJump(float _DeltaTime)
 	
 	// 점프 롤링 문썰트
 	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
+
+
 	// 3. 스킬 애니메이션이 끝나면 점프 애니메이션으로 전환
 	if (true == PlayerRenderer->IsCurAnimationEnd()) { bIsZeroGravity = false; PlayerRenderer->ChangeAnimation("Jump"); }
 	
@@ -352,7 +356,7 @@ void APlayer::UpJump(float _DeltaTime)
 
 	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
 
-	AddActorLocation(JumpPower * 0.03f);
+	AddActorLocation(JumpPower * UpJumpPower);
 
 	if (true == bIsGround)
 	{
@@ -402,8 +406,8 @@ void APlayer::WalkUpJump(float _DeltaTime)
 	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
 
 	// 윗점프 실행
-	if (false == bIsJumpRight) { AddActorLocation(FVector(-PlayerSpeed * JumpMove * _DeltaTime, 500.0f * 0.03f, 0.0f)); }
-	else if (true == bIsJumpRight) { AddActorLocation(FVector(PlayerSpeed * JumpMove * _DeltaTime, 500.0f * 0.03f, 0.0f)); }
+	if (false == bIsJumpRight) { AddActorLocation(FVector(-PlayerSpeed * JumpMove * _DeltaTime, 500.0f * UpJumpPower, 0.0f)); }
+	else if (true == bIsJumpRight) { AddActorLocation(FVector(PlayerSpeed * JumpMove * _DeltaTime, 500.0f * UpJumpPower, 0.0f)); }
 
 	if (true == bIsGround)
 	{
@@ -534,6 +538,8 @@ void APlayer::IdleUseSkill(float _DeltaTime)
 		if (UEngineInput::IsDown('W')) { AddActorLocation(FVector(0.0f, 200.0f));  bIsZeroGravity = true;
 		}
 	}
+
+
 }
 
 

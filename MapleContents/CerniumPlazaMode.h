@@ -39,7 +39,7 @@ private:
 	std::shared_ptr<class ARollingMoonSult> RollingMoonSult;
 	std::shared_ptr<class AChargeDrive> ChargeDrive;
 	std::shared_ptr<class AHighKick> HighKick;
-
+	std::shared_ptr<class AUnicornSpike> UnicornSpike;
 
 	// ¸Ê
 	std::shared_ptr<class ACerniumPlaza> Plaza;

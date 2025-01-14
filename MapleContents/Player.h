@@ -52,6 +52,7 @@ private:
 	float PlayerSpeed = 260.0f;
 	float JumpMove = 0.85f;
 	float SlowJumpMove = 0.2f;
+	float UpJumpPower = 0.04f;
 	FVector GravityForce = FVector::ZERO;
 	FVector JumpPower = FVector(0.0f, 500.0f);
 	FVector DoubleJumpPower = FVector(0.0f, 800.0f);
