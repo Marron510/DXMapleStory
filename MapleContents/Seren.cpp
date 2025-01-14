@@ -7,6 +7,7 @@
 #include <EngineCore/Collision.h>
 
 #include "MapleEnum.h"
+#include "SerenCollision.h"
 
 ASeren::ASeren()
 {
@@ -41,7 +42,7 @@ ASeren::ASeren()
 	SerenRender->ChangeAnimation("NoonSerenStand");
 
 	// ÄÝ¸®Á¯
-	Collision = CreateDefaultSubObject<UCollision>();
+	Collision = CreateDefaultSubObject<USerenCollision>();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Monster");
 

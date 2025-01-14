@@ -110,6 +110,9 @@
     <ClCompile Include="UnicornSpike.cpp">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
+    <ClCompile Include="SerenCollision.cpp">
+      <Filter>Character\02_BossSeren</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -220,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="UnicornSpike.h">
       <Filter>SKill\02_PlayerSKill</Filter>
+    </ClInclude>
+    <ClInclude Include="SerenCollision.h">
+      <Filter>Character\02_BossSeren</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

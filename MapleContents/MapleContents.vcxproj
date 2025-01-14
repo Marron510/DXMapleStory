@@ -266,6 +266,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="SerenCollision.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Shirine.cpp">
       <SubType>
       </SubType>
@@ -386,6 +390,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Seren.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SerenCollision.h">
       <SubType>
       </SubType>
     </ClInclude>

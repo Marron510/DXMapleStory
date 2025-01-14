@@ -21,12 +21,8 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	float Hp = 100000.0f;
-
-
-
 	std::shared_ptr<class USpriteRenderer> SerenRender;
 
-	std::shared_ptr<class UCollision> Collision;
+	std::shared_ptr<class USerenCollision> Collision;
 };
 
