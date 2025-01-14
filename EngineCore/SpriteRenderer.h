@@ -1,19 +1,8 @@
 #pragma once
 #include "Renderer.h"
 #include <EngineBase/EngineDelegate.h>
+#include "EngineDataStruct.h"
 
-struct FUVValue
-{
-	float4 PlusUVValue;
-};
-
-
-struct ResultColor
-{
-public:
-	float4 PlusColor;
-	float4 MulColor;
-};
 
 // Ό³Έν :
 class USpriteRenderer : public URenderer
@@ -122,7 +111,7 @@ public:
 
 	void SetSprite(UEngineSprite* _Sprite);
 
-	ResultColor ColorData;
+	FResultColor ColorData;
 	FUVValue UVValue;
 	FSpriteData SpriteData;
 

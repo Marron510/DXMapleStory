@@ -171,6 +171,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CerniumHUD.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="CerniumPlaza.cpp">
       <SubType>
       </SubType>
@@ -284,6 +288,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp" />
+    <ClCompile Include="TitleHUD.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleLogo.cpp" />
     <ClCompile Include="WrathOfEnril.cpp">
       <SubType>
@@ -291,6 +299,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CerniumHUD.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CerniumPlaza.h">
       <SubType>
       </SubType>
@@ -395,6 +407,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleGameMode.h" />
+    <ClInclude Include="TitleHUD.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleLogo.h" />
     <ClInclude Include="WrathOfEnril.h">
       <SubType>

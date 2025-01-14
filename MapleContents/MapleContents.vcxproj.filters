@@ -101,6 +101,12 @@
     <ClCompile Include="HighKick.cpp">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
+    <ClCompile Include="TitleHUD.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="CerniumHUD.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -203,6 +209,12 @@
     <ClInclude Include="HighKick.h">
       <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
+    <ClInclude Include="TitleHUD.h">
+      <Filter>HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="CerniumHUD.h">
+      <Filter>HUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -264,6 +276,9 @@
     </Filter>
     <Filter Include="MapleGobal">
       <UniqueIdentifier>{054291ee-8c48-445b-8bbd-fcc79e029def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HUD">
+      <UniqueIdentifier>{6470d269-708e-4388-9f40-ce7d245a8046}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

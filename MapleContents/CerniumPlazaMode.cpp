@@ -3,6 +3,7 @@
 
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/TransformObject.h>
 #include <EngineCore/EngineGUIWindow.h>
 
 #include <EnginePlatform/EngineWinImage.h>
@@ -233,7 +234,7 @@ void ACerniumPlazaMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& S
 		FVector CurrentPlayerLocation = Player.get()->GetActorLocation();
 		FVector Velocity = (CurrentPlayerLocation - PreviousPlayerLocation) / _DeltaTime;
 		PreviousPlayerLocation = CurrentPlayerLocation;
-		FVector CurrentLocation = Sprite->GetRelativeLocation();
+		FVector CurrentLocation = Sprite->GetTransformRef().Location;
 
 
 		switch (static_cast<EMapleZEnum>(static_cast<int>(CurrentLocation.Z)))

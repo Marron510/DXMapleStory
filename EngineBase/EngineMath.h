@@ -429,6 +429,14 @@ public:
 		return *this;
 	}
 
+	TVector& operator/=(const TVector& _Other)
+	{
+		X /= _Other.X;
+		Y /= _Other.Y;
+		Z /= _Other.Z;
+		return *this;
+	}
+
 	TVector& operator*=(float _Other)
 	{
 		X *= _Other;
@@ -459,10 +467,11 @@ public:
 };
 
 template<>
-const TVector<float> TVector<float>::NONE = TVector<float>(0.0f, 0.0f, 0.0f, 1.0f);
+const TVector<float> TVector<float>::NONE = TVector<float>(0.0f, 0.0f, 0.0f, 0.0f);
 
 template<>
-const TVector<float> TVector<float>::ZERO = TVector<float>(0.0f, 0.0f, 0.0f, 0.0f);
+const TVector<float> TVector<float>::ZERO = TVector<float>(0.0f, 0.0f, 0.0f, 1.0f);
+
 
 template<>
 const TVector<float> TVector<float>::LEFT = TVector<float>(-1.0f, 0.0f, 0.0f, 0.0f);;
@@ -841,8 +850,20 @@ public:
 
 	static bool OBB2DToOBB2D(const FTransform& _Left, const FTransform& _Right);
 	static bool OBB2DToRect(const FTransform& _Left, const FTransform& _Right);
-	static bool OBB2DToSphere(const FTransform& _Left, const FTransform& _Right);
 	static bool OBB2DToPoint(const FTransform& _Left, const FTransform& _Right);
+	static bool OBB2DToCirCle(const FTransform& _Left, const FTransform& _Right);
+
+	static bool OBBToSphere(const FTransform& _Left, const FTransform& _Right);
+	static bool OBBToOBB(const FTransform& _Left, const FTransform& _Right);
+	static bool OBBToAABB(const FTransform& _Left, const FTransform& _Right);
+
+	static bool SphereToSphere(const FTransform& _Left, const FTransform& _Right);
+	static bool SphereToOBB(const FTransform& _Left, const FTransform& _Right);
+	static bool SphereToAABB(const FTransform& _Left, const FTransform& _Right);
+
+	static bool AABBToSphere(const FTransform& _Left, const FTransform& _Right);
+	static bool AABBToOBB(const FTransform& _Left, const FTransform& _Right);
+	static bool AABBToAABB(const FTransform& _Left, const FTransform& _Right);
 
 
 
@@ -956,12 +977,12 @@ public:
 };
 
 
-class UColor
+template<typename ValueType>
+class TColor
 {
 public:
-	 static const UColor WHITE;
-	 static const UColor BLACK;
-	 static const UColor RED;
+	static const TColor WHITE;
+	static const TColor BLACK;
 
 	union
 	{
@@ -975,22 +996,31 @@ public:
 		};
 	};
 
-	ENGINEAPI UColor(unsigned long _Value)
+	TColor(unsigned long _Value)
 		:Color(_Value)
 	{
 
 	}
 
-	ENGINEAPI bool operator==(const UColor& _Other) const
+	bool operator==(const TColor& _Other)
 	{
 		return R == _Other.R && G == _Other.G && B == _Other.B;
 	}
 
 
-	ENGINEAPI UColor(unsigned char _R, unsigned char _G, unsigned char _B, unsigned char _A)
+	TColor(unsigned char _R, unsigned char _G, unsigned char _B, unsigned char _A)
 		:R(_R), G(_G), B(_B), A(_A)
 	{
 
 	}
 };
+
+using UColor = TColor<unsigned char>;
+
+template<>
+const TColor<unsigned char> TColor<unsigned char>::WHITE = TColor<unsigned char>(255, 255, 255, 0);
+
+template<>
+const TColor<unsigned char> TColor<unsigned char>::BLACK = TColor<unsigned char>(0, 0, 0, 0);
+
 

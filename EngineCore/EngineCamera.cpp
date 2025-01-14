@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "EngineCamera.h"
 #include "Renderer.h"
+#include "EngineRenderTarget.h"
 
 UEngineCamera::UEngineCamera()
 {
@@ -18,6 +19,10 @@ void UEngineCamera::BeginPlay()
 	ViewPortInfo.TopLeftY = 0.0f;
 	ViewPortInfo.MinDepth = 0.0f;
 	ViewPortInfo.MaxDepth = 1.0f;
+
+	CameraTarget = std::make_shared<UEngineRenderTarget>();
+	CameraTarget->CreateTarget(UEngineCore::GetScreenScale());
+	CameraTarget->CreateDepth();
 }
 
 UEngineCamera::~UEngineCamera()
@@ -27,25 +32,23 @@ UEngineCamera::~UEngineCamera()
 
 void UEngineCamera::Tick(float _DetlaTime)
 {
-	// 카메라는 틱에서 자신의 뷰와 프로젝트를 계산한다음 랜더러들에게 전달해줄 겁니다.
 	Transform.View;
 	Transform.Projection;
 }
 
 void UEngineCamera::Render(float _DetlaTime)
 {
-	// 랜더링 진입하기 전에 한번 뷰포트 세팅하고 
+	CameraTarget->Clear();
+	CameraTarget->Setting();
+
 	UEngineCore::GetDevice().GetContext()->RSSetViewports(1, &ViewPortInfo);
 
-	//// Ranged for를 돌릴때는 복사가 일어나므로
 	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Renderers)
 	{
 		std::list<std::shared_ptr<URenderer>>& RenderList = RenderGroup.second;
 
 		if (true == RendererZSort[RenderGroup.first])
 		{
-			// 둘의 z값이 완전히 겹쳐있을때는 답이 없다.
-			// 크기 비교해서 크기가 더 작은쪽을 왼쪽으로 옮긴다.
 			RenderList.sort([](std::shared_ptr<URenderer>& _Left, std::shared_ptr<URenderer>& _Right)
 				{
 					return _Left->GetTransformRef().WorldLocation.Z > _Right->GetTransformRef().WorldLocation.Z;

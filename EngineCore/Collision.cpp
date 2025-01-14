@@ -183,18 +183,17 @@ void UCollision::SetCollisionEnd(std::function<void(UCollision*, UCollision*)> _
 
 void UCollision::CollisionEventCheck(std::shared_ptr<UCollision> _Other)
 {
+	if (false == _Other->IsActive())
+	{
+		return;
+	}
+
 	if (true == FTransform::Collision(CollisionType, Transform, _Other->CollisionType, _Other->Transform))
 	{
-		// 충돌 했다.
-		// 충돌 했는데 너 내가 왜 몰라?
 		if (false == CollisionCheckSet.contains(_Other.get()))
 		{
 
-			// 없는데 충돌은 최초충돌 
-			// 전에는 한쪽만 기억하고 있었다.
-			// 플레이어가             몬스터를 기억하는 것 <= ex) 어 이녀석이랑 나랑 충돌했네
 			CollisionCheckSet.insert(_Other.get());
-			// 몬스터는 플레이어를 기억합니다.
 			_Other->CollisionCheckSet.insert(this);
 			if (nullptr != Enter)
 			{
@@ -203,7 +202,6 @@ void UCollision::CollisionEventCheck(std::shared_ptr<UCollision> _Other)
 		}
 		else
 		{
-			// 충돌을 했는데 전에 나랑 부딪친적이 있다.
 			if (nullptr != Stay)
 			{
 				Stay(this, _Other.get());
@@ -219,7 +217,6 @@ void UCollision::CollisionEventCheck(std::shared_ptr<UCollision> _Other)
 				End(this, _Other.get());
 			}
 
-			// 무조건 가독성과 사용성
 			CollisionCheckSet.erase(_Other.get());
 			_Other->CollisionCheckSet.erase(this);
 		}

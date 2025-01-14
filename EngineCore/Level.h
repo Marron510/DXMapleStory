@@ -32,6 +32,11 @@ public:
 		return MainPawn;
 	}
 
+	class AHUD* GetHUD()
+	{
+		return HUD;
+	}
+
 
 	void Tick(float _DeltaTime);
 	void Render(float _DeltaTime);
@@ -119,6 +124,8 @@ public:
 protected:
 
 private:
+	class AHUD* HUD = nullptr;
+
 	class AGameMode* GameMode = nullptr;
 
 	class APawn* MainPawn = nullptr;
@@ -129,12 +136,14 @@ private:
 
 	std::map<int, std::shared_ptr<class ACameraActor>> Cameras;
 
+	std::shared_ptr<class UEngineRenderTarget> LastRenderTarget;
+
 	std::map<std::string, std::list<std::shared_ptr<class UCollision>>> Collisions;
 
 	std::map<std::string, std::list<std::shared_ptr<class UCollision>>> CheckCollisions;
 
 	std::map<std::string, std::list<std::string>> CollisionLinks;
 
-	ENGINEAPI void InitLevel(AGameMode* _GameMode, APawn* _Pawn);
+	ENGINEAPI void InitLevel(AGameMode* _GameMode, APawn* _Pawn, AHUD* _HUD);
 };
 

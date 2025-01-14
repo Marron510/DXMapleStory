@@ -34,7 +34,7 @@ public:
 class UEngineTextureRes : public UEngineShaderRes
 {
 public:
-	std::shared_ptr<UEngineTexture> Res;
+	UEngineTexture* Res;
 
 	void Setting()
 	{
@@ -54,14 +54,30 @@ public:
 
 };
 
+// Render가 2개 만들었다.
+// Renderer1
+// 빨갛게 그리고 싶다.
+// 
+// Renderer2
+// 노랗게 그리고 싶어.
+
+// 설명 : 애가 쉐이더를 검색해서 
+// 각 랜더러마다 세팅해야할 값이 다르죠?
+// 이녀석의 역할을 크게 2가지 입니다.
+
+// 쉐이더가 가지고 있는 건 만들어야할 쉐이더 리소스를 보관하는 역할
+// 랜더러가 가지고 있는 건 그렇게 해서 조사된 리소스들의 데이터를 보관하는 역할로 가지고 있을 겁니다.
 class UEngineShaderResources
 {
+	// 
+
 public:
 	// constrcuter destructer
 	UEngineShaderResources();
 	~UEngineShaderResources();
 
 	// delete Function
+	// 이녀석은 복사를 직접적으로 해볼것이다.
 	//UEngineShaderResources(const UEngineShaderResources& _Other) = delete;
 	//UEngineShaderResources(UEngineShaderResources&& _Other) noexcept = delete;
 	//UEngineShaderResources& operator=(const UEngineShaderResources& _Other) = delete;
@@ -83,6 +99,9 @@ public:
 
 	void SamplerSetting(std::string_view _Name, std::string_view _ResName);
 	void TextureSetting(std::string_view _Name, std::string_view _ResName);
+	void TextureSetting(std::string_view _Name, std::shared_ptr<UEngineTexture> _Texture);
+
+	void TextureSetting(std::string_view _Name, UEngineTexture* _Texture);
 
 	bool IsSampler(std::string_view _Name);
 	bool IsTexture(std::string_view _Name);
@@ -95,4 +114,7 @@ private:
 	std::map<std::string, UEngineConstantBufferRes> ConstantBufferRes;
 	std::map<std::string, UEngineTextureRes> TextureRes;
 	std::map<std::string, UEngineSamplerRes> SamplerRes;
+	// std::map<std::string, UEngineConstantBufferRes> ConstantBufferSetters;
+
 };
+

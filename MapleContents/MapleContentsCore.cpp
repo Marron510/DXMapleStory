@@ -9,6 +9,9 @@
 #include "CerniumPlazaMode.h"
 #include "MainHallMode.h"
 #include "TheBoundaryOfTheWorld.h"
+#include "TitleHUD.h"
+#include "CerniumHUD.h"
+
 
 CreateContentsCoreDefine(UMapleContentsCore);
 
@@ -583,8 +586,8 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 
 	// 주인공 APawn 상속 받기
-	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Title");
-	UEngineCore::CreateLevel<ACerniumPlazaMode, APawn>("Plaza");
+	UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Title");
+	UEngineCore::CreateLevel<ACerniumPlazaMode, APawn, ACerniumHUD>("Plaza");
 	//UEngineCore::CreateLevel<AMainHallMode, APawn>("MainHall");
 	//UEngineCore::CreateLevel<ATheBoundaryOfTheWorld, APawn>("TheBoundaryOfTheWorld");
 
