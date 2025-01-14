@@ -18,7 +18,7 @@ AHighKick::AHighKick()
 	HighKick = CreateDefaultSubObject<USpriteRenderer>();
 	HighKick->SetupAttachment(RootComponent);
 
-	HighKick->CreateAnimation("HighKickDemolition", "HighKick", 0, 12, 0.0614f, false);
+	HighKick->CreateAnimation("HighKickDemolition", "HighKick", 0, 12, 0.04f, false);
 	HighKick->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	HighKick->ChangeAnimation("None");
 

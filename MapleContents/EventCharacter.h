@@ -10,6 +10,8 @@ enum class ECharacterState
 	UpJump,
 	WalkUpJump,
 	DoubleJump,
+	LeafTornado,
+	WrathOfEnril,
 	Air,
 	Death
 };

@@ -22,6 +22,9 @@ public:
 	void UpdateSprite(float _DeltaTime);
 	void UpdateSpriteLocation(std::shared_ptr<class USpriteRenderer>& Sprite, float _DeltaTime);
 
+
+	void ChargeDriveActive();
+	void HighKickActive();
 protected:
 
 private:
@@ -68,5 +71,6 @@ private:
 	float PreviousPlayerLocation = 0.0f;
 
 	float Velocity = 0.0f;
+
 };
 

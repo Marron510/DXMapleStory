@@ -20,7 +20,7 @@ AChargeDrive::AChargeDrive()
 	ChargeDrive_Back->SetupAttachment(RootComponent);
 	ChargeDrive_Front->SetupAttachment(RootComponent);
 
-	ChargeDrive_Front->CreateAnimation("ChargeDrive_Front", "ChargeDrive", 0, 10, 0.07f, false);
+	ChargeDrive_Front->CreateAnimation("ChargeDrive_Front", "ChargeDrive", 0, 10, 0.06f, false);
 	ChargeDrive_Back->CreateAnimation("ChargeDrive_Back", "ChargeDrive", 11, 19, 0.04f, false);
 
 	ChargeDrive_Front->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);

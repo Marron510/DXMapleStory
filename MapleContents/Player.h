@@ -25,6 +25,11 @@ public:
 		return PlayerRenderer;
 	}
 
+	bool IsGround()
+	{
+		return bIsGround;
+	}
+
 
 protected:
 	void BeginPlay() override;
@@ -45,7 +50,8 @@ private:
 	// 콜리전
 
 	float PlayerSpeed = 260.0f;
-
+	float JumpMove = 0.85f;
+	float SlowJumpMove = 0.2f;
 	FVector GravityForce = FVector::ZERO;
 	FVector JumpPower = FVector(0.0f, 500.0f);
 	FVector DoubleJumpPower = FVector(0.0f, 800.0f);
@@ -70,6 +76,7 @@ private:
 
 	void StateInit();
 
+	// 움직임
 	void Idle(float _DeltaTime);
 	void Prone(float _DeltaTime);
 	void Walk(float _DeltaTime);
@@ -78,8 +85,13 @@ private:
 	void Air(float _DeltaTime);
 	void UpJump(float _DeltaTime);
 	void WalkUpJump(float _DeltaTime);
+	
+	//스킬
+	void LeafTornado(float _DeltaTime);
+	void WrathOfEnril(float _DeltaTime);
 
 	void IdleUseSkill(float _DeltaTime);
+	void WalkUseSkill(float _DeltaTime);
 	void AirUseSkill(float _DeltaTime);
 
 	void Gravity(float _DeltaTime);

@@ -156,7 +156,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 439.0f, static_cast<float>(EMapleZEnum::Player) });
+		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 650.0f, static_cast<float>(EMapleZEnum::Player) });
 		PreviousPlayerLocation = Player->GetActorLocation().X;
 	}
 	
@@ -196,6 +196,8 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 	AGameMode::Tick(_DeltaTime);
 
 	UpdateSprite(_DeltaTime);
+	ChargeDriveActive();	
+	HighKickActive();
 }
 
 
@@ -263,3 +265,28 @@ void ACerniumPlazaMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& S
 	Sprite->SetWorldLocation(CurrentLocation);
 }
 
+void ACerniumPlazaMode::ChargeDriveActive()
+{
+	if (false == Player->IsGround())
+	{
+		ChargeDrive->SetActive(false);
+	}
+	else if (true == Player->IsGround() && UEngineInput::IsDown('Q'))
+	{
+		ChargeDrive->SetActive(true);
+	}
+	
+}
+
+
+void ACerniumPlazaMode::HighKickActive()
+{
+	if (true == Player->IsGround())
+	{
+		HighKick->SetActive(false);
+	}
+	else if (false == Player->IsGround() && UEngineInput::IsPress('W'))
+	{
+		HighKick->SetActive(true);
+	}
+}

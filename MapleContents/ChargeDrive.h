@@ -17,8 +17,12 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
-
+	
+	std::shared_ptr<class USpriteRenderer> GetChargeDrive_Front()
+	{
+		return ChargeDrive_Front;
+	}
+	
 protected:
 
 private:
