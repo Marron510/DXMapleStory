@@ -20,6 +20,14 @@ void ATitleHUD::BeginPlay()
 
 	std::shared_ptr<UWidget> Button = CreateWidget<UWidget>(-1);
 
+	/*Button->SetScale3D({ 100, 100, 1 });
+	Button->SetWorldLocation({ -200, 300 });
+	Button->SetTexture("BackGround.png");
+	Button->SetDownEvent([]()
+		{
+			UEngineDebug::OutPutString("Check");
+		});*/
+
 }
 
 void ATitleHUD::Tick(float _DeltaTime)
