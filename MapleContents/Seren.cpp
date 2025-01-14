@@ -4,7 +4,9 @@
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/Collision.h>
 
+#include "MapleEnum.h"
 
 ASeren::ASeren()
 {
@@ -28,14 +30,26 @@ ASeren::ASeren()
 	}
 	
 	// 세렌 석양 애니메이션
-	{
+	/*{
 		SerenRender->CreateAnimation("SunSetSerenFirstAttack", "SunSetSerenFirstAttack", 0, 38, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenSecondAttack", "SunSetSerenSecondAttack", 0, 36, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenThirdAttack", "SunSetSerenThirdAttack", 0, 39, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenDie", "SunSetSerenDie", 0, 36, 0.06f, false);
-	}
+	}*/
 
+	SerenRender->SetRelativeLocation(FVector{ 0.0f, -290.0f ,  static_cast<float>(EMapleZEnum::Monster) });
 	SerenRender->ChangeAnimation("NoonSerenStand");
+
+	// 콜리젼
+	Collision = CreateDefaultSubObject<UCollision>();
+	Collision->SetupAttachment(RootComponent);
+	Collision->SetCollisionProfileName("Monster");
+
+	Collision->SetScale3D({ 80.0f, 140.0f });
+	Collision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
+	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
+		{
+		});
 }
 
 ASeren::~ASeren()
@@ -52,8 +66,5 @@ void ASeren::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	
-	if (UEngineInput::IsPress('U'))
-	{
-		SerenRender->ChangeAnimation("SunSetSerenSecondAttack");
-	}
+
 }

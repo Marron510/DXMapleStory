@@ -24,7 +24,7 @@ AUnicornSpike::AUnicornSpike()
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Player");
+	Collision->SetCollisionProfileName("PlayerSKill");
 
 	Collision->SetScale3D({ 700.0f, 220.0f });
 	Collision->SetRelativeLocation(FVector{ -280.0f, 80.0f , static_cast<float>(EMapleZEnum::Player) });

@@ -26,7 +26,7 @@ ARollingMoonSult::ARollingMoonSult()
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Player");
+	Collision->SetCollisionProfileName("PlayerSKill");
 
 	Collision->SetScale3D({ 230.0f, 260.0f });
 	Collision->SetRelativeLocation(FVector{ 0.0f, 36.0f , static_cast<float>(EMapleZEnum::Player) });

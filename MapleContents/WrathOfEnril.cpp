@@ -23,7 +23,7 @@ AWrathOfEnril::AWrathOfEnril()
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Player");
+	Collision->SetCollisionProfileName("PlayerSKill");
 
 	Collision->SetScale3D({ 640.0f, 340.0f });
 	Collision->SetRelativeLocation(FVector{ -330.0f, 120.0f , static_cast<float>(EMapleZEnum::Player) });

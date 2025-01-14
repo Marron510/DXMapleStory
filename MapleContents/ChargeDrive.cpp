@@ -34,7 +34,7 @@ AChargeDrive::AChargeDrive()
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Player");
+	Collision->SetCollisionProfileName("PlayerSKill");
 
 	Collision->SetScale3D({ 160.0f, 120.0f });
 	Collision->SetRelativeLocation(FVector{ -20.0f, 60.0f , static_cast<float>(EMapleZEnum::Player) });

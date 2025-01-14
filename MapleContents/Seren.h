@@ -22,5 +22,7 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> SerenRender;
+
+	std::shared_ptr<class UCollision> Collision;
 };
 

@@ -27,6 +27,8 @@
 #include "Manyu.h"
 #include "Elbis.h"
 
+// 세렌 임시 삭제 예정
+#include "Seren.h"
 
 #include "Player.h"
 #include "SkillManager.h"
@@ -43,12 +45,14 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	GetWorld()->CreateCollisionProfile("Monster");
 	GetWorld()->CreateCollisionProfile("Platform");
 	GetWorld()->CreateCollisionProfile("Ground");
+	GetWorld()->CreateCollisionProfile("PlayerSKill");
 	GetWorld()->CreateCollisionProfile("Player");
 	GetWorld()->CreateCollisionProfile("MoveDot");
 
-	GetWorld()->LinkCollisionProfile("Player", "Monster");
+	GetWorld()->LinkCollisionProfile("PlayerSKill", "Monster");
 	GetWorld()->LinkCollisionProfile("MoveDot", "Ground");
 	GetWorld()->LinkCollisionProfile("MoveDot", "Platform");
+	GetWorld()->LinkCollisionProfile("Monster", "Player");
 
 	// 맵
 	{
@@ -155,6 +159,13 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		UnicornSpike = GetWorld()->SpawnActor<AUnicornSpike>();
 	}
 
+
+	// 임시 세렌
+	{
+		Seren = GetWorld()->SpawnActor<ASeren>();
+		Seren->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 650.0f, static_cast<float>(EMapleZEnum::Monster) });
+	}
+	
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();

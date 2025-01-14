@@ -31,6 +31,9 @@ private:
 	// 플레이어
 	std::shared_ptr<class APlayer> Player;
 
+	// 세렌 임시
+	std::shared_ptr<class ASeren> Seren;
+
 	// 플레이어 스킬
 
 	std::shared_ptr<class AWrathOfEnril> WrathOfEnril;
