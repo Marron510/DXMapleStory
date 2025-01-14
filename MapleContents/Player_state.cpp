@@ -51,12 +51,18 @@ void APlayer::StateInit()
 			PlayerRenderer->ChangeAnimation("Jump");
 		}
 	);
-	/*FSM.CreateState(ECharacterState::LeafJump, std::bind(&APlayer::LeafJump, this, std::placeholders::_1),
+	FSM.CreateState(ECharacterState::UpJump, std::bind(&APlayer::UpJump, this, std::placeholders::_1),
 		[this]()
 		{
-			PlayerRenderer->ChangeAnimation("Tornado");
+			PlayerRenderer->ChangeAnimation("Jump");
 		}
-	);*/
+	);
+	FSM.CreateState(ECharacterState::WalkUpJump, std::bind(&APlayer::WalkUpJump, this, std::placeholders::_1),
+		[this]()
+		{
+			PlayerRenderer->ChangeAnimation("Jump");
+		}
+	);
 	FSM.CreateState(ECharacterState::Air, std::bind(&APlayer::Air, this, std::placeholders::_1),
 		[this]()
 		{
@@ -80,11 +86,11 @@ void APlayer::Idle(float _DeltaTime)
 	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Walk); return; }
 	if (UEngineInput::IsPress(VK_RIGHT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); return; }
 	if (UEngineInput::IsPress(VK_DOWN) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Prone); return; }
-	if (UEngineInput::IsPress(VK_UP))
-	{
-		FSM.ChangeState(ECharacterState::Walk);
-		return;
-	}
+	//if (UEngineInput::IsPress(VK_UP))
+	//{
+	//	FSM.ChangeState(ECharacterState::Walk);
+	//	return;
+	//}
 
 	if (UEngineInput::IsPress('C')) { bIsJumping = true; FSM.ChangeState(ECharacterState::IdleJump); return; }
 
@@ -221,6 +227,13 @@ void APlayer::IdleJump(float _DeltaTime)
 
 	}
 
+	if (true == UEngineInput::IsDown('C') && true == UEngineInput::IsPress(VK_UP))
+	{
+		FSM.ChangeState(ECharacterState::UpJump);
+	}
+
+
+
 	if (true == UEngineInput::IsPress(VK_LEFT))
 	{
 		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
@@ -275,6 +288,10 @@ void APlayer::WalkJump(float _DeltaTime)
 	}
 
 
+	if (true == UEngineInput::IsDown('C') && true == UEngineInput::IsPress(VK_UP))
+	{
+		FSM.ChangeState(ECharacterState::WalkUpJump);
+	}
 
 
 
@@ -330,6 +347,72 @@ void APlayer::WalkJump(float _DeltaTime)
 
 }
 
+void APlayer::UpJump(float _DeltaTime)
+{
+	Gravity(_DeltaTime);
+	AirUseSkill(_DeltaTime);
+
+
+
+	JumpVelocity = JumpPower;
+	TargetJumpVelocity = FVector::ZERO;
+
+
+	if (false == bIsGround)
+	{
+		TargetJumpVelocity = JumpPower;
+	}
+
+	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
+
+	AddActorLocation(JumpPower * 0.03f);
+
+	if (true == bIsGround)
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+		return;
+	}
+
+
+}
+
+void APlayer::WalkUpJump(float _DeltaTime)
+{
+	Gravity(_DeltaTime);
+	AirUseSkill(_DeltaTime);
+
+
+
+	JumpVelocity = JumpPower;
+	TargetJumpVelocity = FVector::ZERO;
+
+
+	if (false == bIsGround)
+	{
+		TargetJumpVelocity = JumpPower;
+	}
+
+	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
+
+
+	if (false == bIsJumpRight)
+	{
+		AddActorLocation(FVector(-PlayerSpeed * 0.85f * _DeltaTime, 500.0f * 0.03f, 0.0f));
+	}
+
+	else if (true == bIsJumpRight)
+	{
+		AddActorLocation(FVector(PlayerSpeed * 0.85f * _DeltaTime, 500.0f * 0.03f, 0.0f));
+	}
+
+	if (true == bIsGround)
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+		return;
+	}
+
+
+}
 
 
 void APlayer::Air(float _DeltaTime)

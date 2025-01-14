@@ -48,6 +48,7 @@ private:
 
 	FVector GravityForce = FVector::ZERO;
 	FVector JumpPower = FVector(0.0f, 500.0f);
+	FVector DoubleJumpPower = FVector(0.0f, 800.0f);
 	
 	FVector CurrentVelocity = FVector::ZERO; // 현재 이동 속도
 	FVector TargetVelocity = FVector::ZERO;         // 목표 이동 속도
@@ -75,7 +76,8 @@ private:
 	void IdleJump(float _DeltaTime);
 	void WalkJump(float _DeltaTime);
 	void Air(float _DeltaTime);
-
+	void UpJump(float _DeltaTime);
+	void WalkUpJump(float _DeltaTime);
 
 	void IdleUseSkill(float _DeltaTime);
 	void AirUseSkill(float _DeltaTime);
