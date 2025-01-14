@@ -237,7 +237,7 @@ void APlayer::IdleJump(float _DeltaTime)
 		AddActorLocation(FVector(PlayerSpeed * SlowJumpMove * _DeltaTime, 0.0f, 0.0f));
 	}
 
-	
+	// 스킬 애니메이션이 끝나면 점프 애니메이션으로 전환
 	if (true == PlayerRenderer->IsCurAnimationEnd()) { bIsZeroGravity = false; PlayerRenderer->ChangeAnimation("Jump"); }
 	
 	// 점프 끝날 때 까지 이동
@@ -318,7 +318,10 @@ void APlayer::WalkJump(float _DeltaTime)
 	if (true == UEngineInput::IsPress(VK_LEFT))	{ SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f)); }
 	// 점프 후 오른쪽 방향보기
 	if (true == UEngineInput::IsPress(VK_RIGHT)) { SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f)); }
-
+	
+	
+	// 스킬 애니메이션일 끝나면 점프 애니메이션으로 전환
+	if (true == PlayerRenderer->IsCurAnimationEnd()) { bIsZeroGravity = false; PlayerRenderer->ChangeAnimation("Jump"); }
 
 
 	// 착지 시 Idle 상태로 전환
@@ -356,13 +359,12 @@ void APlayer::UpJump(float _DeltaTime)
 		FSM.ChangeState(ECharacterState::Idle);
 		return;
 	}
-	if (true == UEngineInput::IsDown('D'))
-	{
-		GravityForce = FVector::DOWN * 6.0f;
-		FSM.ChangeState(ECharacterState::LeafTornado);
-	}
 
-	// 사용 가능한 스킬(이동 중 멈춤)  -> 리프 토네이도, 롤링 문썰트, G 키
+	// 윗 점프 리프 토네이도
+	if (true == UEngineInput::IsDown('D')) { GravityForce = FVector::DOWN * 6.0f; FSM.ChangeState(ECharacterState::LeafTornado); }
+	if (true == UEngineInput::IsDown('E')) {FSM.ChangeState(ECharacterState::Air); }
+
+	// 사용 가능한 스킬(이동 중 멈춤)  -> 리프 토네이도(완), 롤링 문썰트(완), G 키
 	// 사용 가능한 스킬(이동 중 안멈춤)  -> 유니콘, 엔릴, 스듀
 }
 
@@ -391,8 +393,15 @@ void APlayer::WalkUpJump(float _DeltaTime)
 		return;
 	}
 
+	// 스킬 애니메이션일 끝나면 점프 애니메이션으로 전환
+	if (true == PlayerRenderer->IsCurAnimationEnd()) { bIsZeroGravity = false; PlayerRenderer->ChangeAnimation("Jump"); }
+
 	// 사용 가능한 스킬(이동 중 멈춤)  -> 리프 토네이도, 롤링 문썰트, G 키
+	if (true == UEngineInput::IsDown('D')) { GravityForce = FVector::DOWN * 6.0f; FSM.ChangeState(ECharacterState::LeafTornado); }
+	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
+	
 	// 사용 가능한 스킬(이동 중 안멈춤)  -> 유니콘, 엔릴, 스듀
+
 
 }
 
@@ -440,6 +449,7 @@ void APlayer::Air(float _DeltaTime)
 		return;
 	}
 
+	// 스킬 애니메이션이 끝나면 점프 애니메이션으로 전환
 	if (true == PlayerRenderer->IsCurAnimationEnd())
 	{
 		bIsZeroGravity = false;
