@@ -65,7 +65,7 @@ APlayer::APlayer()
 	PlayerRenderer->CreateAnimation("StrikeDualShot", "StrikeDualShot.png", 0, 6, 0.08f);
 	PlayerRenderer->CreateAnimation("Charge", "Charge.png", 0, 8, 0.08f);
 	PlayerRenderer->CreateAnimation("Wrath", "Wrath.png", 0, 4, 0.17f);
-	PlayerRenderer->CreateAnimation("Unicorn", "Unicorn.png", 0, 4, 0.14f);
+	PlayerRenderer->CreateAnimation("Unicorn", "Unicorn.png", 0, 4, 0.1f);
 	PlayerRenderer->CreateAnimation("LegendarySpear", "LegendarySpear.png", 0, 11, 0.046f);
 	PlayerRenderer->CreateAnimation("ProneAttack", "Prone.png", 0, 1, 0.1f);
 	PlayerRenderer->CreateAnimation("HighKick", "HighKick", 0, 0, 0.6f);

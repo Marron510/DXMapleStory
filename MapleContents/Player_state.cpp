@@ -532,6 +532,9 @@ void APlayer::IdleUseSkill(float _DeltaTime)
 	// 차지 드라이브
 	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
 
+	// 유니콘 스파이크
+	if (UEngineInput::IsPress('R')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Unicorn"); }
+
 	// 하이킥 데몰리션
 	{
 		if (UEngineInput::IsPress('W')) { PlayerRenderer->ChangeAnimation("HighKick"); }
@@ -554,6 +557,9 @@ void APlayer::WalkUseSkill(float _DeltaTime)
 	// 차지 드라이브
 	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
 
+	// 유니콘 스파이크
+	if (UEngineInput::IsPress('R')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Unicorn"); }
+
 	// 하이킥 데몰리션
 	{
 		if (UEngineInput::IsPress('W')) { PlayerRenderer->ChangeAnimation("HighKick"); }
@@ -574,6 +580,9 @@ void APlayer::AirUseSkill(float _DeltaTime)
 
 	// 롤링 어썰트
 	if (UEngineInput::IsPress('E')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Rolling"); bIsZeroGravity = true; }
+
+	// 유니콘 스파이크
+	if (UEngineInput::IsPress('R')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Unicorn"); }
 
 	// 하이킥 데몰리션
 	{

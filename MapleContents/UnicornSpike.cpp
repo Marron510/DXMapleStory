@@ -16,7 +16,7 @@ AUnicornSpike::AUnicornSpike()
 	UnicornSpike = CreateDefaultSubObject<USpriteRenderer>();
 	UnicornSpike->SetupAttachment(RootComponent);
 
-	UnicornSpike->CreateAnimation("UnicornSpike", "UnicornSpike", 0, 15, 0.06f, false);
+	UnicornSpike->CreateAnimation("UnicornSpike", "UnicornSpike", 0, 15, 0.08f, false);
 	UnicornSpike->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	UnicornSpike->ChangeAnimation("None");
 
@@ -26,8 +26,8 @@ AUnicornSpike::AUnicornSpike()
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Player");
 
-	Collision->SetScale3D({ 700.0f, 180.0f });
-	Collision->SetRelativeLocation(FVector{ -280.0f, 100.0f , static_cast<float>(EMapleZEnum::Player) });
+	Collision->SetScale3D({ 700.0f, 220.0f });
+	Collision->SetRelativeLocation(FVector{ -280.0f, 80.0f , static_cast<float>(EMapleZEnum::Player) });
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
 		});
