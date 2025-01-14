@@ -133,6 +133,11 @@ void ULevel::Render(float _DeltaTime)
 			continue;
 		}
 
+		if (false == Camera.second->IsActive())
+		{
+			continue;
+		}
+
 		Camera.second->Tick(_DeltaTime);
 		Camera.second->GetCameraComponent()->Render(_DeltaTime);
 		Camera.second->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
@@ -140,9 +145,19 @@ void ULevel::Render(float _DeltaTime)
 
 	if (true == Cameras.contains(static_cast<int>(EEngineCameraType::UICamera)))
 	{
-		std::shared_ptr<UEngineCamera> CameraComponent = Cameras[static_cast<int>(EEngineCameraType::UICamera)]->GetCameraComponent();
+		std::shared_ptr<ACameraActor> CameraActor = Cameras[static_cast<int>(EEngineCameraType::UICamera)];
+		if (true == CameraActor->IsActive())
+		{
+			std::shared_ptr<UEngineCamera> CameraComponent = Cameras[static_cast<int>(EEngineCameraType::UICamera)]->GetCameraComponent();
 
-		HUD->UIRender(CameraComponent.get(), _DeltaTime);
+			CameraActor->Tick(_DeltaTime);
+			CameraComponent->CameraTarget->Clear();
+			CameraComponent->CameraTarget->Setting();
+
+			HUD->UIRender(CameraComponent.get(), _DeltaTime);
+
+			CameraComponent->CameraTarget->MergeTo(LastRenderTarget);
+		}
 
 	}
 	else

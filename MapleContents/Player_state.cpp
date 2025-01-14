@@ -396,7 +396,7 @@ void APlayer::WalkUpJump(float _DeltaTime)
 	// 스킬 애니메이션일 끝나면 점프 애니메이션으로 전환
 	if (true == PlayerRenderer->IsCurAnimationEnd()) { bIsZeroGravity = false; PlayerRenderer->ChangeAnimation("Jump"); }
 
-	// 사용 가능한 스킬(이동 중 멈춤)  -> 리프 토네이도, 롤링 문썰트, G 키
+	// 사용 가능한 스킬(이동 중 멈춤)  -> 리프 토네이도(완), 롤링 문썰트(완), G 키
 	if (true == UEngineInput::IsDown('D')) { GravityForce = FVector::DOWN * 6.0f; FSM.ChangeState(ECharacterState::LeafTornado); }
 	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
 	

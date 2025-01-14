@@ -18,7 +18,7 @@ void ATitleHUD::BeginPlay()
 {
 	AHUD::BeginPlay();
 
-	CreateWidget<UWidget>();
+	std::shared_ptr<UWidget> Button = CreateWidget<UWidget>(-1);
 
 }
 

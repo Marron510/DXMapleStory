@@ -48,6 +48,12 @@ public:
 		return GetCamera(0);
 	}
 
+	template<typename EnumType>
+	std::shared_ptr<class ACameraActor> GetCamera(EnumType _Order)
+	{
+		return GetCamera(static_cast<int>(_Order));
+	}
+
 	std::shared_ptr<class ACameraActor> GetCamera(int _Order)
 	{
 		if (false == Cameras.contains(_Order))

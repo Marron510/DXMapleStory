@@ -119,7 +119,7 @@ protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 	void BeginPlay() override;
 	void ComponentTick(float _DeltaTime) override;
-	ENGINEAPI void RenderTransUpdate(UEngineCamera* _Camera) override;
+	ENGINEAPI void CameraTransUpdate(UEngineCamera* _Camera) override;
 
 private:
 
