@@ -317,6 +317,9 @@
     <ClInclude Include="EngineFont.h">
       <Filter>Resources\Font</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
+      <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Interface">
@@ -402,6 +405,12 @@
     </Filter>
     <Filter Include="Resources\Font">
       <UniqueIdentifier>{ef6a3985-c9cd-4894-9b1d-622974513900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper">
+      <UniqueIdentifier>{6c101e89-e10f-43fd-b370-56d20dbcef3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Inc">
+      <UniqueIdentifier>{38d62766-e200-4e91-868b-72c0fef34c2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
