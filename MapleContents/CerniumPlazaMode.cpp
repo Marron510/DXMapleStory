@@ -240,10 +240,10 @@ void ACerniumPlazaMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& S
 
 	switch (static_cast<EMapleZEnum>(static_cast<int>(CurrentLocation.Z)))
 	{
-	case EMapleZEnum::BackGround_Mid:
+	case EMapleZEnum::BackGround_Back:
 		SpeedMultiplier = 0.05f;
 		break;
-	case EMapleZEnum::BackGround_Back:
+	case EMapleZEnum::BackGround_Mid:
 		SpeedMultiplier = 0.07f;
 		break;
 	case EMapleZEnum::Object_Front:
