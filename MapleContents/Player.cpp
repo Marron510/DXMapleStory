@@ -2,7 +2,7 @@
 #include "Player.h"
 
 #include <EnginePlatform/EngineInput.h>
-#include <EnginePlatform/EngineWinImage.h>>
+#include <EnginePlatform/EngineWinImage.h>
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>

@@ -14,8 +14,7 @@ class UEngineCore
 {
 public:
 	// constrcuter destructer
-	ENGINEAPI UEngineCore();
-	ENGINEAPI virtual ~UEngineCore() = 0;
+	
 
 	ENGINEAPI static void EngineStart(HINSTANCE _Instance, std::string_view _DllName);
 
@@ -49,14 +48,16 @@ public:
 protected:
 
 private:
-	ENGINEAPI static UEngineWindow MainWindow;
 
-	ENGINEAPI static UEngineGraphicDevice Device;
-	static HMODULE ContentsDLL;
-	static std::shared_ptr<IContentsCore> Core;
-	static UEngineInitData Data;
+	UEngineWindow MainWindow;
 
-	static UEngineTimer Timer;
+	UEngineGraphicDevice Device;
+
+	HMODULE ContentsDLL;
+	std::shared_ptr<IContentsCore> Core;
+	UEngineInitData Data;
+
+	UEngineTimer Timer;
 
 	static void WindowInit(HINSTANCE _Instance);
 	static void LoadContents(std::string_view _DllName);
@@ -66,8 +67,13 @@ private:
 
 	ENGINEAPI static std::shared_ptr<ULevel> NewLevelCreate(std::string_view _Name);
 
-	static std::map<std::string, std::shared_ptr<class ULevel>> LevelMap;
-	static std::shared_ptr<class ULevel> CurLevel;
-	static std::shared_ptr<class ULevel> NextLevel;
+	std::map<std::string, std::shared_ptr<class ULevel>> LevelMap;
+	std::shared_ptr<class ULevel> CurLevel;
+	std::shared_ptr<class ULevel> NextLevel;
+
+	// constrcuter destructer
+	ENGINEAPI UEngineCore();
+	ENGINEAPI virtual ~UEngineCore();
 };
 
+ENGINEAPI extern class UEngineCore* GEngine;

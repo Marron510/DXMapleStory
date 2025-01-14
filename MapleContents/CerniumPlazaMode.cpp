@@ -232,7 +232,7 @@ void ACerniumPlazaMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& S
 		}
 
 		FVector CurrentPlayerLocation = Player.get()->GetActorLocation();
-		FVector Velocity = (CurrentPlayerLocation - PreviousPlayerLocation) / _DeltaTime;
+		FVector Velocity = (CurrentPlayerLocation - PreviousPlayerLocation) / static_cast<int>(_DeltaTime);
 		PreviousPlayerLocation = CurrentPlayerLocation;
 		FVector CurrentLocation = Sprite->GetTransformRef().Location;
 
