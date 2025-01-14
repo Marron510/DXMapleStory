@@ -187,7 +187,7 @@ void APlayer::Walk(float _DeltaTime)
 		return;
 	}
 		
-	// 이동이 멈출 때 Idle 상태로 전환
+	// 3. 이동이 멈출 때 Idle 상태로 전환
 	if (UEngineInput::IsUp(VK_LEFT) && true == MoveCollision->IsColliding() || UEngineInput::IsUp(VK_RIGHT) && true == MoveCollision->IsColliding())
 	{
 		FSM.ChangeState(ECharacterState::Idle);
@@ -211,19 +211,14 @@ void APlayer::IdleJump(float _DeltaTime)
 
 	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
 
-	// 점프 실행
+	// 1. 점프 실행
 	if (true == bIsJumping && false == bIsZeroGravity) { AddActorLocation(JumpVelocity * _DeltaTime); }
 	if (true == UEngineInput::IsDown(VK_LEFT)){ SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f)); }
 	if (true == UEngineInput::IsDown(VK_RIGHT)) { SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f)); }
 	
-	// 윗 점프
+	// 2. 윗 점프
 	if (true == UEngineInput::IsDown('C') && true == UEngineInput::IsPress(VK_UP)) { FSM.ChangeState(ECharacterState::UpJump); }
 
-	// 점프 리프 토네이도
-	if (true == UEngineInput::IsDown('D')) { FSM.ChangeState(ECharacterState::LeafTornado); }
-	
-	// 점프 롤링 문썰트
-	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
 	
 	// 점프 후 움직임
 	if (true == UEngineInput::IsPress(VK_LEFT))
@@ -237,14 +232,19 @@ void APlayer::IdleJump(float _DeltaTime)
 		AddActorLocation(FVector(PlayerSpeed * SlowJumpMove * _DeltaTime, 0.0f, 0.0f));
 	}
 
-	// 스킬 애니메이션이 끝나면 점프 애니메이션으로 전환
+	// 점프 리프 토네이도
+	if (true == UEngineInput::IsDown('D')) { FSM.ChangeState(ECharacterState::LeafTornado); }
+	
+	// 점프 롤링 문썰트
+	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
+	// 3. 스킬 애니메이션이 끝나면 점프 애니메이션으로 전환
 	if (true == PlayerRenderer->IsCurAnimationEnd()) { bIsZeroGravity = false; PlayerRenderer->ChangeAnimation("Jump"); }
 	
 	// 점프 끝날 때 까지 이동
 	//if (true == UEngineInput::IsUp('C') && true == bIsGround) { bIsJumpMoveEnd = true; }
 	if (true == UEngineInput::IsFree('C') && true == bIsGround)	{ bIsJumpMoveEnd = true; }
 	
-	// 착지 시 Idle 상태로 전환
+	// 4. 착지 시 Idle 상태로 전환
 	if (true == bIsJumpMoveEnd && bIsGround == true)
 	{
 		bIsJumpMoveEnd = false;
@@ -269,14 +269,14 @@ void APlayer::WalkJump(float _DeltaTime)
 
 	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
 
-	// 점프 실행
+	// 1. 점프 실행
 	if (false == UEngineInput::IsPress('E') && false == bIsZeroGravity ||
 		false == UEngineInput::IsPress('W') && false == bIsZeroGravity)
 	{
 		AddActorLocation(JumpVelocity * _DeltaTime);
 	}
 
-	// 걸으면서 점프 후 윗 점프
+	// 2. 걸으면서 점프 후 윗 점프
 	if (true == UEngineInput::IsDown('C') && true == UEngineInput::IsPress(VK_UP)) {FSM.ChangeState(ECharacterState::WalkUpJump); }
 
 	// 걸으면서 점프 후 리프 토네이도
@@ -324,7 +324,7 @@ void APlayer::WalkJump(float _DeltaTime)
 	if (true == PlayerRenderer->IsCurAnimationEnd()) { bIsZeroGravity = false; PlayerRenderer->ChangeAnimation("Jump"); }
 
 
-	// 착지 시 Idle 상태로 전환
+	// 3. 착지 시 Idle 상태로 전환
 	if (true == UEngineInput::IsUp('C') && true == bIsGround) {	bIsJumpMoveEnd = true; }
 	if (true == UEngineInput::IsFree('C') && true == bIsGround) { bIsJumpMoveEnd = true; }
 
@@ -360,6 +360,24 @@ void APlayer::UpJump(float _DeltaTime)
 		return;
 	}
 
+	// 점프 후 왼쪽 방향으로 약간 이동
+	if (true == UEngineInput::IsPress(VK_LEFT) && true == bIsJumpRight)
+	{
+		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+		AddActorLocation(FVector(-PlayerSpeed * SlowJumpMove * _DeltaTime, 0.0f, 0.0f));
+	}
+	// 점프 후 오른쪽 방향으로 약간 이동
+	if (true == UEngineInput::IsPress(VK_RIGHT) && false == bIsJumpRight)
+	{
+		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+		AddActorLocation(FVector(PlayerSpeed * SlowJumpMove * _DeltaTime, 0.0f, 0.0f));
+	}
+
+	// 점프 후 왼쪽 방향보기
+	if (true == UEngineInput::IsPress(VK_LEFT)) { SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f)); }
+	// 점프 후 오른쪽 방향보기
+	if (true == UEngineInput::IsPress(VK_RIGHT)) { SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f)); }
+
 	// 윗 점프 리프 토네이도
 	if (true == UEngineInput::IsDown('D')) { GravityForce = FVector::DOWN * 6.0f; FSM.ChangeState(ECharacterState::LeafTornado); }
 	if (true == UEngineInput::IsDown('E')) {FSM.ChangeState(ECharacterState::Air); }
@@ -392,6 +410,24 @@ void APlayer::WalkUpJump(float _DeltaTime)
 		FSM.ChangeState(ECharacterState::Idle);
 		return;
 	}
+
+	// 점프 후 왼쪽 방향으로 약간 이동
+	if (true == UEngineInput::IsPress(VK_LEFT) && true == bIsJumpRight)
+	{
+		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+		AddActorLocation(FVector(-PlayerSpeed * SlowJumpMove * _DeltaTime, 0.0f, 0.0f));
+	}
+	// 점프 후 오른쪽 방향으로 약간 이동
+	if (true == UEngineInput::IsPress(VK_RIGHT) && false == bIsJumpRight)
+	{
+		SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+		AddActorLocation(FVector(PlayerSpeed * SlowJumpMove * _DeltaTime, 0.0f, 0.0f));
+	}
+
+	// 점프 후 왼쪽 방향보기
+	if (true == UEngineInput::IsPress(VK_LEFT)) { SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f)); }
+	// 점프 후 오른쪽 방향보기
+	if (true == UEngineInput::IsPress(VK_RIGHT)) { SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f)); }
 
 	// 스킬 애니메이션일 끝나면 점프 애니메이션으로 전환
 	if (true == PlayerRenderer->IsCurAnimationEnd()) { bIsZeroGravity = false; PlayerRenderer->ChangeAnimation("Jump"); }
