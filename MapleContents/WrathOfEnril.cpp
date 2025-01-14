@@ -29,6 +29,19 @@ AWrathOfEnril::AWrathOfEnril()
 	Collision->SetRelativeLocation(FVector{ -330.0f, 120.0f , static_cast<float>(EMapleZEnum::Player) });
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
+			UEngineDebug::OutPutString("enter");
+		});
+	Collision->SetCollisionStay([](UCollision* _This, UCollision* _Other)
+		{
+			UEngineDebug::OutPutString("stay");
+			if(true == bIsHitMonster)
+			{
+				_Other->
+			}
+		});
+	Collision->SetCollisionEnd([](UCollision* _This, UCollision* _Other)
+		{
+			UEngineDebug::OutPutString("End");
 		});
 
 	WrathOfEnril->SetRelativeLocation(FVector{ -230.0f, -220.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front)});
@@ -49,15 +62,19 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 {
 	ASkillManager::Tick(_DeltaTime);
 
+
+
 	if (true == WrathOfEnril->IsCurAnimationEnd())
 	{
 		WrathOfEnril->ChangeAnimation("None");
-		Collision->SetActive(false);
 		WrathOfEnril->SetActive(false);
+		Collision->SetActive(false);
+		
 	}
 
 	if (UEngineInput::IsPress('A'))
 	{
+		
 		WrathOfEnril->ChangeAnimation("WrathOfEnril");
 		WrathOfEnril->SetActive(true);
 		Collision->SetActive(true);
