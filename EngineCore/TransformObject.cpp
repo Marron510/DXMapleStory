@@ -33,7 +33,6 @@ void UTransformObject::SetupAttachment(UTransformObject* _Parent)
 void UTransformObject::TransformUpdate()
 {
 	ParentMatrixCheck();
-	// 나의 트랜스폼 업데이트는 일단 한다.
 	Transform.TransformUpdate(IsAbsolute);
 
 	for (UTransformObject* Child : Childs)

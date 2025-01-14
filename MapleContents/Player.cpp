@@ -113,7 +113,7 @@ void APlayer::Gravity(float _DeltaTime)
 	}
 	if (false == MoveCollision->IsColliding())
 	{
-		GravityForce += FVector::DOWN * 3.0f * _DeltaTime;
+		GravityForce += FVector::DOWN * 12.0f * _DeltaTime;
 	}
 	else if (true == MoveCollision->IsColliding())
 	{

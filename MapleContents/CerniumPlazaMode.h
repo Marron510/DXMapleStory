@@ -18,7 +18,8 @@ public:
 	void BeginPlay();
 	void Tick(float _DeltaTime);
 
-	void UpdateSpriteLocation(float _DeltaTime);
+	void GetSpriteLocation();
+	void UpdateSprite(float _DeltaTime);
 	void UpdateSpriteLocation(std::shared_ptr<class USpriteRenderer>& Sprite, float _DeltaTime);
 
 protected:
@@ -47,12 +48,25 @@ private:
 	float MapSizeHalfY = 795.0f;
 	float MapSizeDefaultY = 1203.0f;
 
+
+
+	std::shared_ptr<class USpriteRenderer> Plaza_Back = nullptr;
+	std::shared_ptr<class USpriteRenderer> Plaza_Mid = nullptr;
+	std::shared_ptr<class USpriteRenderer> Flag0 = nullptr;
+	std::shared_ptr<class USpriteRenderer> Flag1 = nullptr;
+	std::shared_ptr<class USpriteRenderer> Flag2 = nullptr;
+	std::shared_ptr<class USpriteRenderer> Flag3 = nullptr;
+	std::shared_ptr<class USpriteRenderer> Flag4 = nullptr;
+	std::shared_ptr<class USpriteRenderer> Flag5 = nullptr;
+
 	// Ä«¸Þ¶ó
 	std::shared_ptr<class ACameraActor> Camera;
 
 	
 	FVector PlazaRenderScale = FVector{ 4830.0f ,1590.0f , 8000};
 	float SpeedMultiplier = 0.0f;
-	FVector PreviousPlayerLocation = FVector{0.0f, 0.0f, 0.0f};
+	float PreviousPlayerLocation = 0.0f;
+
+	float Velocity = 0.0f;
 };
 

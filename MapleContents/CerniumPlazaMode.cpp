@@ -156,7 +156,8 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	// 플레이어
 	{
 		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 439.0f, static_cast<float>(EMapleZEnum::Player)});
+		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 439.0f, static_cast<float>(EMapleZEnum::Player) });
+		PreviousPlayerLocation = Player->GetActorLocation().X;
 	}
 	
 	LeafTornadoFront->AttachToActor(Player.get());
@@ -184,6 +185,8 @@ ACerniumPlazaMode::~ACerniumPlazaMode()
 void ACerniumPlazaMode::BeginPlay()
 {
 	AGameMode::BeginPlay();
+
+	GetSpriteLocation();
 	
 	
 }
@@ -192,26 +195,26 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 {
 	AGameMode::Tick(_DeltaTime);
 
-
-	UpdateSpriteLocation(_DeltaTime);
-
-	FVector CurrentPlayerLocation = Player.get()->GetActorLocation();
-	
-	
+	UpdateSprite(_DeltaTime);
 }
 
 
-void ACerniumPlazaMode::UpdateSpriteLocation(float _DeltaTime)
+void ACerniumPlazaMode::GetSpriteLocation()
 {
-	
-	std::shared_ptr<class USpriteRenderer> Plaza_Back = Plaza->GetPlaza_BackRender();
-	std::shared_ptr<class USpriteRenderer> Plaza_Mid = Plaza->GetPlaza_MidRender();
-	std::shared_ptr<class USpriteRenderer> Flag0 = Plaza->GetFlag0Render();
-	std::shared_ptr<class USpriteRenderer> Flag1 = Plaza->GetFlag1Render();
-	std::shared_ptr<class USpriteRenderer> Flag2 = Plaza->GetFlag2Render();
-	std::shared_ptr<class USpriteRenderer> Flag3 = Plaza->GetFlag3Render();
-	std::shared_ptr<class USpriteRenderer> Flag4 = Plaza->GetFlag4Render();
-	std::shared_ptr<class USpriteRenderer> Flag5 = Plaza->GetFlag5Render();
+	Plaza_Back = Plaza->GetPlaza_BackRender();
+	Plaza_Mid = Plaza->GetPlaza_MidRender();
+	Flag0 = Plaza->GetFlag0Render();
+	Flag1 = Plaza->GetFlag1Render();
+	Flag2 = Plaza->GetFlag2Render();
+	Flag3 = Plaza->GetFlag3Render();
+	Flag4 = Plaza->GetFlag4Render();
+	Flag5 = Plaza->GetFlag5Render();
+}
+
+void ACerniumPlazaMode::UpdateSprite(float _DeltaTime)
+{
+	float CurrentPlayerLocation = Player.get()->GetActorLocation().X;
+	Velocity = (CurrentPlayerLocation - PreviousPlayerLocation) / _DeltaTime;
 
 	UpdateSpriteLocation(Plaza_Back, _DeltaTime);
 	UpdateSpriteLocation(Plaza_Mid, _DeltaTime);
@@ -221,46 +224,42 @@ void ACerniumPlazaMode::UpdateSpriteLocation(float _DeltaTime)
 	UpdateSpriteLocation(Flag3, _DeltaTime);
 	UpdateSpriteLocation(Flag4, _DeltaTime);
 	UpdateSpriteLocation(Flag5, _DeltaTime);
+
+	PreviousPlayerLocation = Player.get()->GetActorLocation().X;
 }
 
 void ACerniumPlazaMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& Sprite, float _DeltaTime)
+{
+	if (nullptr == Sprite)
 	{
-		if (nullptr == Sprite)
-		{
-			MSGASSERT("존재하지 않는 스프라이트를 이동시키려고 했습니다.");
-			return;
-		}
+		MSGASSERT("존재하지 않는 스프라이트를 이동시키려고 했습니다.");
+		return;
+	}
 
-		FVector CurrentPlayerLocation = Player.get()->GetActorLocation();
-		FVector Velocity = (CurrentPlayerLocation - PreviousPlayerLocation) / static_cast<int>(_DeltaTime);
-		PreviousPlayerLocation = CurrentPlayerLocation;
-		FVector CurrentLocation = Sprite->GetTransformRef().Location;
+	FVector CurrentLocation = Sprite->GetTransformRef().RelativeLocation;
+
+	switch (static_cast<EMapleZEnum>(static_cast<int>(CurrentLocation.Z)))
+	{
+	case EMapleZEnum::BackGround_Mid:
+		SpeedMultiplier = 0.05f;
+		break;
+	case EMapleZEnum::BackGround_Back:
+		SpeedMultiplier = 0.07f;
+		break;
+	case EMapleZEnum::Object_Front:
+		SpeedMultiplier = 0.05f;
+		break;
+	default:
+		SpeedMultiplier = 0.05f;
+		break;
+	}
+
+	if (true == UEngineInput::IsPress(VK_LEFT) || true == UEngineInput::IsPress(VK_RIGHT))
+	{
+		CurrentLocation.X += SpeedMultiplier * Velocity * _DeltaTime;
+	}
 
 
-		switch (static_cast<EMapleZEnum>(static_cast<int>(CurrentLocation.Z)))
-		{
-		case EMapleZEnum::BackGround_Back:
-			SpeedMultiplier = 0.2f;
-			break;
-		case EMapleZEnum::BackGround_Mid:
-			SpeedMultiplier = 0.22f;
-			break;
-		case EMapleZEnum::Object_Front:
-			SpeedMultiplier = 0.2f;
-			break;
-		default:
-			SpeedMultiplier = 0.0f;
-			break;
-		}
+	Sprite->SetWorldLocation(CurrentLocation);
+}
 
-		if (true == UEngineInput::IsPress(VK_LEFT))
-		{
-			CurrentLocation.X -= SpeedMultiplier;
-		}
-		if (true == UEngineInput::IsPress(VK_RIGHT))
-		{
-			CurrentLocation.X += SpeedMultiplier;
-		}
-
-		Sprite->SetRelativeLocation(CurrentLocation);
-	};
