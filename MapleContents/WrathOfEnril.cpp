@@ -38,7 +38,7 @@ AWrathOfEnril::AWrathOfEnril()
 		});
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			if (true == _This->IsColliding() && true == this->bIsCanUse)
+			if (true == _This->IsColliding() && true == this->bIsCanUse && true == _This->GetActiveValue())
 			{
 				// 이 때 실행
 				this->bIsCanUse = false;
@@ -48,6 +48,7 @@ AWrathOfEnril::AWrathOfEnril()
 
 			if (true == WrathOfEnril->IsCurAnimationEnd() && false == this->bIsCanUse)
 			{
+				WrathOfEnril->ChangeAnimation("None");
 				this->bIsCanUse = true;
 			}
 			/*if(true == bIsHitMonster)
@@ -82,7 +83,7 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 
 	if (true == WrathOfEnril->IsCurAnimationEnd())
 	{
-		WrathOfEnril->ChangeAnimation("None");
+		
 		WrathOfEnril->SetActive(false);
 		//Collision->SetActive(false);
 		
@@ -90,7 +91,6 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('A'))
 	{
-		
 		WrathOfEnril->ChangeAnimation("WrathOfEnril");
 		WrathOfEnril->SetActive(true);
 		Collision->SetActive(true);
