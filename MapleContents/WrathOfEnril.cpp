@@ -3,6 +3,7 @@
 
 #include <EnginePlatform/EngineInput.h>
 
+#include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/Collision.h>
@@ -13,6 +14,8 @@ AWrathOfEnril::AWrathOfEnril()
 {
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
+
+	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
 	WrathOfEnril = CreateDefaultSubObject<USpriteRenderer>();
 	WrathOfEnril->SetupAttachment(RootComponent);
@@ -31,9 +34,13 @@ AWrathOfEnril::AWrathOfEnril()
 		{
 			UEngineDebug::OutPutString("enter");
 		});
-	Collision->SetCollisionStay([](UCollision* _This, UCollision* _Other)
+	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
+			if (false == bIsCanUse)
+			{
 			UEngineDebug::OutPutString("stay");
+			}
+
 			/*if(true == bIsHitMonster)
 			{
 				_Other->

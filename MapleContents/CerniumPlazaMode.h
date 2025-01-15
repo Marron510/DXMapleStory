@@ -73,7 +73,7 @@ private:
 	float SpeedMultiplier = 0.0f;
 	float PreviousPlayerLocation = 0.0f;
 
-	float Velocity = 0.0f;
+	double Velocity = 0.0f;
 
 };
 
