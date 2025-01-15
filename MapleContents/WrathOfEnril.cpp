@@ -34,10 +34,10 @@ AWrathOfEnril::AWrathOfEnril()
 	Collision->SetCollisionStay([](UCollision* _This, UCollision* _Other)
 		{
 			UEngineDebug::OutPutString("stay");
-			if(true == bIsHitMonster)
+			/*if(true == bIsHitMonster)
 			{
 				_Other->
-			}
+			}*/
 		});
 	Collision->SetCollisionEnd([](UCollision* _This, UCollision* _Other)
 		{
