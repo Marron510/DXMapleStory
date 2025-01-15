@@ -30,17 +30,26 @@ AWrathOfEnril::AWrathOfEnril()
 
 	Collision->SetScale3D({ 640.0f, 340.0f });
 	Collision->SetRelativeLocation(FVector{ -330.0f, 120.0f , static_cast<float>(EMapleZEnum::Player) });
-	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
+	Collision->SetActive(false);
+	Collision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
 		{
 			UEngineDebug::OutPutString("enter");
+			this->bIsCanUse = true;
 		});
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			if (false == bIsCanUse)
+			if (true == _This->IsColliding() && true == this->bIsCanUse)
 			{
-			UEngineDebug::OutPutString("stay");
+				// 이 때 실행
+				this->bIsCanUse = false;
+				_This->SetActive(false);
+				UEngineDebug::OutPutString("stay");
 			}
 
+			if (true == WrathOfEnril->IsCurAnimationEnd() && false == this->bIsCanUse)
+			{
+				this->bIsCanUse = true;
+			}
 			/*if(true == bIsHitMonster)
 			{
 				_Other->
@@ -75,7 +84,7 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 	{
 		WrathOfEnril->ChangeAnimation("None");
 		WrathOfEnril->SetActive(false);
-		Collision->SetActive(false);
+		//Collision->SetActive(false);
 		
 	}
 
