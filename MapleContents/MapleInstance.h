@@ -1,5 +1,8 @@
 #pragma once
+#include <EngineCore/GameInstance.h>
+#include <EngineCore/Widget.h>
 
+#include "MapleStruct.h"
 
 class MapleInstance
 {
@@ -14,6 +17,11 @@ public:
 	MapleInstance(MapleInstance&& _Other) noexcept = delete;
 	MapleInstance& operator=(const MapleInstance& _Other) = delete;
 	MapleInstance& operator=(MapleInstance&& _Other) noexcept = delete;
+
+
+	PlayerStatus Status;
+
+	UWidget* InvenWidget;
 
 
 protected:
