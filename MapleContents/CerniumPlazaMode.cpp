@@ -217,7 +217,6 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 
 	UpdateSprite(_DeltaTime);
 
-
 	ChargeDriveActive();	
 	HighKickActive();
 
