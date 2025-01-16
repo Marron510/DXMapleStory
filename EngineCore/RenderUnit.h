@@ -44,6 +44,8 @@ public:
 
 	ENGINEAPI void SetSampler(std::string_view Name, std::string_view _ResName);
 
+	ENGINEAPI void Reset();
+
 	std::map<EShaderType, UEngineShaderResources> Resources;
 
 private:

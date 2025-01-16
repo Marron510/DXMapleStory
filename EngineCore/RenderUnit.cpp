@@ -233,3 +233,12 @@ void URenderUnit::InputLayOutCreate()
 		Blob->GetBufferSize(),
 		&InputLayOut);
 }
+
+
+void URenderUnit::Reset()
+{
+	for (std::pair<const EShaderType, UEngineShaderResources>& Pair : Resources)
+	{
+		Pair.second.Reset();
+	}
+}

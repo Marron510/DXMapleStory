@@ -29,6 +29,10 @@ public:
 
 		Res->Setting(ShaderType, BindIndex);
 	}
+	void Reset()
+	{
+
+	}
 };
 
 class UEngineTextureRes : public UEngineShaderRes
@@ -39,6 +43,10 @@ public:
 	void Setting()
 	{
 		Res->Setting(ShaderType, BindIndex);
+	}
+	void Reset()
+	{
+		Res->Reset(ShaderType, BindIndex);
 	}
 };
 
@@ -51,7 +59,10 @@ public:
 	{
 		Res->Setting(ShaderType, BindIndex);
 	}
-
+	void Reset()
+	{
+		Res->Setting(ShaderType, BindIndex);
+	}
 };
 
 // Render가 2개 만들었다.
@@ -107,6 +118,7 @@ public:
 	bool IsTexture(std::string_view _Name);
 	bool IsConstantBuffer(std::string_view _Name);
 	void Setting();
+	void Reset();
 
 protected:
 
