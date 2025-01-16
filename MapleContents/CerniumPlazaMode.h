@@ -25,11 +25,13 @@ public:
 
 	void ChargeDriveActive();
 	void HighKickActive();
+
+
 protected:
 
 private:
 	// 플레이어
-	std::shared_ptr<class APlayer> Player;
+	class APlayer* Player;
 
 	// 세렌 임시
 	std::shared_ptr<class ASeren> Seren;

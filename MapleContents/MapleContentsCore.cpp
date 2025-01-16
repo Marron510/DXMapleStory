@@ -599,9 +599,9 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 
 	// 주인공 APawn 상속 받기
 	UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Title");
-	UEngineCore::CreateLevel<ACerniumPlazaMode, APawn, ACerniumHUD>("Plaza");
-	//UEngineCore::CreateLevel<AMainHallMode, APawn>("MainHall");
-	//UEngineCore::CreateLevel<ATheBoundaryOfTheWorld, APawn>("TheBoundaryOfTheWorld");
+	UEngineCore::CreateLevel<ACerniumPlazaMode, APlayer, ACerniumHUD>("Plaza");
+	//UEngineCore::CreateLevel<AMainHallMode, APlayer>("MainHall");
+	//UEngineCore::CreateLevel<ATheBoundaryOfTheWorld, APlayer>("TheBoundaryOfTheWorld");
 
 	UEngineCore::OpenLevel("Plaza");
 }

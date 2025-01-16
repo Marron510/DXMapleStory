@@ -8,10 +8,10 @@
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
 
-
+#include "CerniumPlazaMode.h"
 #include "EventCharacter.h"
-#include"MapleEnum.h"
-
+#include "MapleEnum.h"
+#include "Player.h"
 
 
 void ASeren::StateInit()
@@ -45,9 +45,6 @@ void ASeren::StateInit()
 		}
 	);
 
-
-
-
 	SerenFSM.CreateState(ESerenState::NoonDie, std::bind(&ASeren::Die, this, std::placeholders::_1),
 		[this]()
 		{
@@ -60,13 +57,25 @@ void ASeren::StateInit()
 
 void ASeren::Idle(float _DeltaTime)
 {
-	
-	int a = 0;
+	FVector SerenLocation = GetActorLocation();
+	FVector DifferentLocation = CurPlayerLocation - SerenLocation;
+	DifferentLocation.Normalize();
+
+	if (0 < DifferentLocation.X)
+	{
+		SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+	}
+	else if(0 >= DifferentLocation.X)
+	{
+		SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
+	}
+
+	AddActorLocation(FVector(DifferentLocation.X * _DeltaTime * 50.0f, 0.0f, 0.0f));
 }
 
 void ASeren::Walk(float _DeltaTime)
 {
-
+	
 }
 
 void ASeren::Rush(float _DeltaTime)

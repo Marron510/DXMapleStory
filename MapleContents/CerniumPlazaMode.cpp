@@ -167,25 +167,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 		Seren->SetActorLocation(FVector{ MapSizeHalfX + 1200.0f, -795.0f - 650.0f});
 	}
 	
-	// 플레이어
-	{
-		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 650.0f, static_cast<float>(EMapleZEnum::Player) });
-		PreviousPlayerLocation = Player->GetActorLocation().X;
-	}
-	
-	LeafTornadoFront->AttachToActor(Player.get());
-	WrathOfEnril->AttachToActor(Player.get());
-	StrikeDualShot->AttachToActor(Player.get());
-	RollingMoonSult->AttachToActor(Player.get());
-	ChargeDrive->AttachToActor(Player.get());
-	HighKick->AttachToActor(Player.get());
-	UnicornSpike->AttachToActor(Player.get());
 
-	Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation(FVector{ 0.0f, 260.0f , -1000.0f });
-	Camera->AttachToActor(Player.get());
-	Camera->GetCameraComponent()->SetZSort(0, true);
 	
 
 	
@@ -200,6 +182,27 @@ ACerniumPlazaMode::~ACerniumPlazaMode()
 void ACerniumPlazaMode::BeginPlay()
 {
 	AGameMode::BeginPlay();
+
+	// 플레이어
+	{
+		Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
+		// Player = GetWorld()->SpawnActor<APlayer>();
+		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 650.0f, static_cast<float>(EMapleZEnum::Player) });
+		PreviousPlayerLocation = Player->GetActorLocation().X;
+	}
+
+	LeafTornadoFront->AttachToActor(Player);
+	WrathOfEnril->AttachToActor(Player);
+	StrikeDualShot->AttachToActor(Player);
+	RollingMoonSult->AttachToActor(Player);
+	ChargeDrive->AttachToActor(Player);
+	HighKick->AttachToActor(Player);
+	UnicornSpike->AttachToActor(Player);
+
+	Camera = GetWorld()->GetMainCamera();
+	Camera->SetActorLocation(FVector{ 0.0f, 260.0f , -1000.0f });
+	Camera->AttachToActor(Player);
+	Camera->GetCameraComponent()->SetZSort(0, true);
 
 	GetSpriteLocation();
 	
@@ -236,7 +239,7 @@ void ACerniumPlazaMode::GetSpriteLocation()
 
 void ACerniumPlazaMode::UpdateSprite(float _DeltaTime)
 {
-	float CurrentPlayerLocation = Player.get()->GetActorLocation().X;
+	float CurrentPlayerLocation = Player->GetActorLocation().X;
 	Velocity = (CurrentPlayerLocation - PreviousPlayerLocation) / _DeltaTime;
 
 	UpdateSpriteLocation(Plaza_Back, _DeltaTime);
@@ -248,7 +251,7 @@ void ACerniumPlazaMode::UpdateSprite(float _DeltaTime)
 	UpdateSpriteLocation(Flag4, _DeltaTime);
 	UpdateSpriteLocation(Flag5, _DeltaTime);
 
-	PreviousPlayerLocation = Player.get()->GetActorLocation().X;
+	PreviousPlayerLocation = Player->GetActorLocation().X;
 }
 
 void ACerniumPlazaMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& Sprite, float _DeltaTime)

@@ -5,10 +5,14 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/Collision.h>
+#include <EngineCore/Pawn.h>
 
 #include "MapleEnum.h"
 #include "SerenCollision.h"
 #include "EventCharacter.h"
+#include "Player.h"
+
+
 
 ASeren::ASeren()
 {
@@ -62,6 +66,9 @@ ASeren::~ASeren()
 void ASeren::BeginPlay()
 {
 	AActor::BeginPlay();
+	Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
+	
+
 	StateInit();
 	SerenFSM.ChangeState(ESerenState::NoonIdle);
 }
@@ -71,10 +78,12 @@ void ASeren::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	
 	SerenFSM.Update(_DeltaTime);
+	CurPlayerLocation = Player->GetActorLocation();
 
 	if ( 0 >= Collision->GetHp())
 	{
 		Collision->SetActive(false);
-		SerenRender->ChangeAnimation("NoonSerenDie");
+		SerenFSM.ChangeState(ESerenState::NoonDie);
 	}
+
 }

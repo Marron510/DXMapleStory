@@ -33,6 +33,10 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
+	// 플레이어 -> 세렌은 플레이어 알아야함
+	class APlayer* Player = nullptr;
+	FVector CurPlayerLocation = FVector::ZERO;
+
 	std::shared_ptr<class USpriteRenderer> SerenRender;
 
 	std::shared_ptr<class USerenCollision> Collision;
