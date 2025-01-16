@@ -9,6 +9,7 @@
 #include <EngineCore/Collision.h>
 
 #include "MapleEnum.h"
+#include "SerenCollision.h"
 
 AWrathOfEnril::AWrathOfEnril()
 {
@@ -42,7 +43,15 @@ AWrathOfEnril::AWrathOfEnril()
 			{
 				return;
 			}
+		
 			UEngineDebug::OutPutString("stay");
+
+			UEngineDebug::OutPutString(_Other->GetCollisionProfileName());
+			if (_Other->GetCollisionProfileName() == "MONSTER")
+			{
+				static_cast<USerenCollision*>(_Other)->Damage(WrathOfEnrilAtt);
+			}
+			//_Other->Damage(WrathOfEnrilAtt);
 			this->bIsCanUse = false;
 		});
 

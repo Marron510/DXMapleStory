@@ -35,5 +35,7 @@ private:
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 
 	bool bIsCanUse = false;
+
+	float WrathOfEnrilAtt = 5.0f;
 };
 

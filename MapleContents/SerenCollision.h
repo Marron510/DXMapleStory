@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Collision.h>
+#include <EngineBase/EngineDebug.h>
 
 class USerenCollision : public UCollision
 {
@@ -15,11 +16,18 @@ public:
 	USerenCollision& operator=(const USerenCollision& _Other) = delete;
 	USerenCollision& operator=(USerenCollision&& _Other) noexcept = delete;
 
+
+
 	float GetHp()
 	{
 		return Hp;
 	}
 
+	void Damage(float _Attack)
+	{
+		Hp -= _Attack;
+	}
+	
 protected:
 
 private:

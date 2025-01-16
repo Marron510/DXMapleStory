@@ -163,7 +163,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	// 임시 세렌
 	{
 		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ MapSizeHalfX + 1200.0f, -795.0f - 650.0f, static_cast<float>(EMapleZEnum::Monster) });
+		Seren->SetActorLocation(FVector{ MapSizeHalfX + 1200.0f, -795.0f - 650.0f});
 	}
 	
 	// 플레이어

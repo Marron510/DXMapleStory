@@ -66,6 +66,7 @@ void ASeren::BeginPlay()
 void ASeren::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	int a = 0;
 	
-
+	float CurHp = Collision->GetHp();
 }
