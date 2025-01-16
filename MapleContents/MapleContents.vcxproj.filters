@@ -113,6 +113,9 @@
     <ClCompile Include="SerenCollision.cpp">
       <Filter>Character\02_BossSeren</Filter>
     </ClCompile>
+    <ClCompile Include="Seren_state.cpp">
+      <Filter>Character\02_BossSeren</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />

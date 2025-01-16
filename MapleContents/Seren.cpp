@@ -8,6 +8,7 @@
 
 #include "MapleEnum.h"
 #include "SerenCollision.h"
+#include "EventCharacter.h"
 
 ASeren::ASeren()
 {
@@ -61,13 +62,15 @@ ASeren::~ASeren()
 void ASeren::BeginPlay()
 {
 	AActor::BeginPlay();
+	StateInit();
+	SerenFSM.ChangeState(ESerenState::NoonIdle);
 }
 
 void ASeren::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	
-	float CurHp = Collision->GetHp();
+	SerenFSM.Update(_DeltaTime);
 
 	if ( 0 >= Collision->GetHp())
 	{

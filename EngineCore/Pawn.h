@@ -15,6 +15,8 @@ public:
 	APawn& operator=(const APawn& _Other) = delete;
 	APawn& operator=(APawn&& _Other) noexcept = delete;
 
+
+
 protected:
 
 private:

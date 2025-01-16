@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineBase/FSMStateManager.h>
 
 class ASeren : public AActor
 {
@@ -14,7 +15,18 @@ public:
 	ASeren& operator=(const ASeren& _Other) = delete;
 	ASeren& operator=(ASeren&& _Other) noexcept = delete;
 
+	void StateInit();
 	
+	// °øÅë
+	void Idle(float _DeltaTime);
+	void Walk(float _DeltaTime);
+	void Rush(float _DeltaTime);
+	void Sting(float _DeltaTime);
+	
+	void Die(float _DeltaTime);
+
+
+
 
 protected:
 	void BeginPlay() override;
@@ -24,5 +36,7 @@ private:
 	std::shared_ptr<class USpriteRenderer> SerenRender;
 
 	std::shared_ptr<class USerenCollision> Collision;
+
+	UFSMStateManager SerenFSM;
 };
 

@@ -16,6 +16,15 @@ enum class ECharacterState
 	Death
 };
 
+enum class ESerenState
+{
+	NoonIdle,
+	NoonWalk,
+	NoonRush,
+	NoonSting,
+
+	NoonDie,
+};
 class AEventCharacter
 {
 public:

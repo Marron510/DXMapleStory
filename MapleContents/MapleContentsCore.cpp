@@ -11,7 +11,7 @@
 #include "TheBoundaryOfTheWorld.h"
 #include "TitleHUD.h"
 #include "CerniumHUD.h"
-
+#include "Player.h"
 
 CreateContentsCoreDefine(UMapleContentsCore);
 

@@ -270,6 +270,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Seren_state.cpp" />
     <ClCompile Include="Shirine.cpp">
       <SubType>
       </SubType>
