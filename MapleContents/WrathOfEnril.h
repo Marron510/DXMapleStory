@@ -36,6 +36,6 @@ private:
 
 	bool bIsCanUse = false;
 
-	float WrathOfEnrilAtt = 5.0f;
+	float WrathOfEnrilAtt = 50.0f;
 };
 

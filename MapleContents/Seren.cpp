@@ -66,7 +66,12 @@ void ASeren::BeginPlay()
 void ASeren::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	int a = 0;
 	
 	float CurHp = Collision->GetHp();
+
+	if ( 0 >= Collision->GetHp())
+	{
+		Collision->SetActive(false);
+		SerenRender->ChangeAnimation("NoonSerenDie");
+	}
 }
