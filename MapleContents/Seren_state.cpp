@@ -38,7 +38,7 @@ void ASeren::StateInit()
 			SerenRender->ChangeAnimation("NoonSerenRush");
 		}
 	);
-	SerenFSM.CreateState(ESerenState::NoonRush, std::bind(&ASeren::Sting, this, std::placeholders::_1),
+	SerenFSM.CreateState(ESerenState::NoonSting, std::bind(&ASeren::Sting, this, std::placeholders::_1),
 		[this]()
 		{
 			SerenRender->ChangeAnimation("NoonSerenSting");
