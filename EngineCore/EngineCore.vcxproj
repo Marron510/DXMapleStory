@@ -202,6 +202,7 @@
     <ClCompile Include="EngineVertex.cpp" />
     <ClCompile Include="EngineVertexBuffer.cpp" />
     <ClCompile Include="EngineVertexShader.cpp" />
+    <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GameMode.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="imgui.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="EngineVertex.h" />
     <ClInclude Include="EngineVertexBuffer.h" />
     <ClInclude Include="EngineVertexShader.h" />
+    <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GameMode.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="IContentsCore.h" />

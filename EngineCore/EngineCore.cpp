@@ -8,7 +8,7 @@
 #include "EngineConstantBuffer.h"
 #include "EngineGUI.h"
 #include "Level.h"
-
+#include "GameInstance.h"
 
 UEngineGraphicDevice& UEngineCore::GetDevice()
 {
@@ -23,6 +23,11 @@ UEngineWindow& UEngineCore::GetMainWindow()
 std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::GetAllLevelMap()
 {
 	return GEngine->LevelMap;
+}
+
+UGameInstance* UEngineCore::GetGameInstance()
+{
+	return GEngine->GameInstance.get();
 }
 
 UEngineCore* GEngine = nullptr;

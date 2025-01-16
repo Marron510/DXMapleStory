@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneComponent.h"
+#include <EngineCore/EngineCore.h>
 
 class AActor : public UObject
 {
@@ -59,6 +60,15 @@ public:
 
 		return NewCom;
 	}
+
+	template<typename Type>
+	Type* GetGameInstance()
+	{
+		return dynamic_cast<Type*>(GetGameInstance());
+	}
+
+	class UGameInstance* GetGameInstance();
+
 
 	ULevel* GetWorld()
 	{

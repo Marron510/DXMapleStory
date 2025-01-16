@@ -149,6 +149,9 @@
     <ClCompile Include="EngineFont.cpp">
       <Filter>Resources\Font</Filter>
     </ClCompile>
+    <ClCompile Include="GameInstance.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -319,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
       <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInstance.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

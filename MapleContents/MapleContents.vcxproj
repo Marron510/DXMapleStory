@@ -234,6 +234,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MapleInstance.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MidNight.cpp">
       <SubType>
       </SubType>
@@ -372,6 +376,11 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MapleEnum.h" />
+    <ClInclude Include="MapleInstance.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MapleStruct.h" />
     <ClInclude Include="MidNight.h">
       <SubType>
       </SubType>

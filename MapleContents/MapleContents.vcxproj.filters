@@ -116,6 +116,9 @@
     <ClCompile Include="Seren_state.cpp">
       <Filter>Character\02_BossSeren</Filter>
     </ClCompile>
+    <ClCompile Include="MapleInstance.cpp">
+      <Filter>MapleGobal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -229,6 +232,12 @@
     </ClInclude>
     <ClInclude Include="SerenCollision.h">
       <Filter>Character\02_BossSeren</Filter>
+    </ClInclude>
+    <ClInclude Include="MapleStruct.h">
+      <Filter>MapleGobal</Filter>
+    </ClInclude>
+    <ClInclude Include="MapleInstance.h">
+      <Filter>MapleGobal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
