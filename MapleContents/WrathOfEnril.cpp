@@ -38,27 +38,12 @@ AWrathOfEnril::AWrathOfEnril()
 		});
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			if (true == _This->IsColliding() && true == this->bIsCanUse && true == _This->GetActiveValue())
+			if (this->bIsCanUse == false)
 			{
-				// 이 때 실행
-				this->bIsCanUse = false;
-				_This->SetActive(false);
-				UEngineDebug::OutPutString("stay");
+				return;
 			}
-
-			if (true == WrathOfEnril->IsCurAnimationEnd() && false == this->bIsCanUse)
-			{
-				WrathOfEnril->ChangeAnimation("None");
-				this->bIsCanUse = true;
-			}
-			/*if(true == bIsHitMonster)
-			{
-				_Other->
-			}*/
-		});
-	Collision->SetCollisionEnd([](UCollision* _This, UCollision* _Other)
-		{
-			UEngineDebug::OutPutString("End");
+			UEngineDebug::OutPutString("stay");
+			this->bIsCanUse = false;
 		});
 
 	WrathOfEnril->SetRelativeLocation(FVector{ -230.0f, -220.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front)});
@@ -83,9 +68,10 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 
 	if (true == WrathOfEnril->IsCurAnimationEnd())
 	{
-		
+		WrathOfEnril->ChangeAnimation("None");
 		WrathOfEnril->SetActive(false);
-		//Collision->SetActive(false);
+		Collision->SetActive(false);
+		bIsCanUse = true;
 		
 	}
 
