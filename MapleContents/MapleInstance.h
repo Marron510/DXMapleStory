@@ -4,7 +4,7 @@
 
 #include "MapleStruct.h"
 
-class MapleInstance
+class MapleInstance : public UGameInstance
 {
 public:
 	// 持失切 社瑚切

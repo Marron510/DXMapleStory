@@ -50,7 +50,7 @@ public:
 	template<typename Type>
 	static void CreateGameInstance()
 	{
-		GameInstance = std::make_shared<Type>();
+		//GameInstance = std::make_shared<Type>();
 	}
 
 

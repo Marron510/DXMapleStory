@@ -12,6 +12,8 @@
 #include "TitleHUD.h"
 #include "CerniumHUD.h"
 #include "Player.h"
+#include "MapleInstance.h"
+
 
 CreateContentsCoreDefine(UMapleContentsCore);
 
@@ -28,6 +30,8 @@ UMapleContentsCore::~UMapleContentsCore()
 
 void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 {
+
+	GEngine->CreateGameInstance<MapleInstance>();
 
 	_Data.WindowPos = { 100, 100 };
 	_Data.WindowSize = { 1366, 768 };
