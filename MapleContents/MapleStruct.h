@@ -3,6 +3,6 @@
 
 struct PlayerStatus
 {
-	int Hp;
-	int Att;
+	int Hp = 100.0f;
+	int Att = 1.0f;
 };
