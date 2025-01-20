@@ -44,6 +44,10 @@ private:
 	std::shared_ptr<class USpriteRenderer> MainHall_Pillar_Right = nullptr;
 
 
+	float MapSizeHalfX = 2274.0f;
+	float MapSizeHalfY = 858.0f;
+	float MapSizeDefaultY = 1203.0f;
+
 	float SpeedMultiplier = 0.0f;
 
 	float PreviousPlayerLocation = 0.0f;

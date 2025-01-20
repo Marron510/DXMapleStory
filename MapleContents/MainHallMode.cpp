@@ -56,13 +56,13 @@ void AMainHallMode::BeginPlay()
 	// 플레이어
 	{
 		Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
-		Player->SetActorLocation(FVector{ 0.0f, -275.0f });
+		Player->SetActorLocation(FVector{ MapSizeHalfX, -MapSizeHalfY, static_cast<float>(EMapleZEnum::Player) });
 	}
 
 	// 카메라
 	{
 		Camera = GetWorld()->GetMainCamera();
-		Camera->SetActorLocation(FVector{ 0.0f, 260.0f , -1000.0f });
+		Camera->SetActorLocation(FVector{ 0.0f, 290.0f , -1000.0f });
 		Camera->AttachToActor(Player);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
@@ -70,7 +70,7 @@ void AMainHallMode::BeginPlay()
 	// 세렌
 	{
 		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ 50.0f, -185.0f });
+		Seren->SetActorLocation(FVector{ MapSizeHalfX, -MapSizeHalfY - 240.0f ,static_cast<float>(EMapleZEnum::Monster)});
 	}
 	GetSpriteRender();
 }

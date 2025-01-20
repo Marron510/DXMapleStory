@@ -188,7 +188,7 @@ void ACerniumPlazaMode::BeginPlay()
 	// 플레이어
 	{
 		Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
-		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 650.0f, static_cast<float>(EMapleZEnum::Player) });
+		Player->SetActorLocation(FVector{ MapSizeHalfX, -MapSizeHalfY - 650.0f, static_cast<float>(EMapleZEnum::Player) });
 		PreviousPlayerLocation = Player->GetActorLocation().X;
 	}
 

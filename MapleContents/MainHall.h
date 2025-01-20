@@ -52,6 +52,10 @@ private:
 	std::shared_ptr<class USpriteRenderer> MainHall_Center;
 	std::shared_ptr<class USpriteRenderer> MainHall_Pillar_Left;
 	std::shared_ptr<class USpriteRenderer> MainHall_Pillar_Right;
+
+	float MapSizeHalfX = 2274.0f;
+	float MapSizeHalfY = 858.0f;
+	float MapSizeDefaultY = 810.0f;
 	
 };
 
