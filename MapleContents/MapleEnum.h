@@ -28,8 +28,8 @@ enum class EMapleZEnum : int
 	NPC_2              = 2200,
 	NPC_1              = 2100,
 					   
-	Monster            = 1900,
-	Monster_Skill      = 1800,
+	Monster            = 1600,
+	Monster_Skill      = 1500,
 
 	Player_Skill_Back  = 1450,
 	Player             = 1400,

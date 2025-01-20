@@ -163,13 +163,6 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	}
 
 
-	//// ÀÓ½Ã ¼¼·»
-	//{
-	//	Seren = GetWorld()->SpawnActor<ASeren>();
-	//	Seren->SetActorLocation(FVector{ MapSizeHalfX + 1200.0f, -795.0f - 650.0f});
-	//}
-	//
-
 	
 
 	

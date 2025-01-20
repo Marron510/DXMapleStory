@@ -59,7 +59,7 @@ AMainHall::AMainHall()
 		MainHall_Wall_Right->SetSprite("MainHall", 6);
 		MainHall_Wall_Right->SetupAttachment(RootComponent);
 		MainHall_Wall_Right->SetScale3D({ 810.0f , 892.0f });
-		MainHall_Wall_Right->SetRelativeLocation({ MapSizeHalfX + 710.0f, - MapSizeDefaultY - 330.0f,  static_cast<float>(EMapleZEnum::Building_Back) });
+		MainHall_Wall_Right->SetRelativeLocation({ MapSizeHalfX + 710.0f, - MapSizeDefaultY - 310.0f,  static_cast<float>(EMapleZEnum::Building_Back) });
 	}
 
 	{

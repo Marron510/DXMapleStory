@@ -39,10 +39,6 @@ AMainHallMode::AMainHallMode()
 		MainHall = GetWorld()->SpawnActor<AMainHall>();
 	}
 
-
-
-	
-
 }
 
 AMainHallMode::~AMainHallMode()
@@ -70,8 +66,9 @@ void AMainHallMode::BeginPlay()
 	// ¼¼·»
 	{
 		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ MapSizeHalfX, -MapSizeHalfY - 240.0f ,static_cast<float>(EMapleZEnum::Monster)});
+		Seren->SetActorLocation(FVector{ MapSizeHalfX, -MapSizeHalfY - 240.0f ,static_cast<float>(EMapleZEnum::Monster) - 300.0f});
 	}
+
 	GetSpriteRender();
 }
 
@@ -79,6 +76,7 @@ void AMainHallMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	
+	UpdateSprite(_DeltaTime);
 }
 
 void AMainHallMode::GetSpriteRender()
@@ -87,6 +85,8 @@ void AMainHallMode::GetSpriteRender()
 	MainHall_Center = MainHall->GetMainHall_Center();
 	MainHall_Pillar_Left = MainHall->GetMainHall_Pillar_Left();
 	MainHall_Pillar_Right = MainHall->GetMainHall_Pillar_Right();
+
+
 }
 
 
@@ -117,13 +117,13 @@ void AMainHallMode::UpdateSpriteLocation(std::shared_ptr<USpriteRenderer>& Sprit
 	switch (static_cast<EMapleZEnum>(static_cast<int>(CurrentLocation.Z)))
 	{
 	case EMapleZEnum::BackGround_Back:
-		SpeedMultiplier = 0.05f;
+		SpeedMultiplier = 0.03f;
 		break;
 	case EMapleZEnum::BackGround_Mid:
 		SpeedMultiplier = 0.06f;
 		break;
 	case EMapleZEnum::Building_Front:
-		SpeedMultiplier = 0.07f;
+		SpeedMultiplier = 0.03f;
 		break;
 	default:
 		SpeedMultiplier = 0.05f;
