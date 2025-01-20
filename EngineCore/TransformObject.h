@@ -1,7 +1,6 @@
 #pragma once
 
-// Ό³Έν :
-class UTransformObject 
+class UTransformObject
 {
 public:
 	// constrcuter destructer
@@ -67,6 +66,7 @@ public:
 		TransformUpdate();
 	}
 
+	// local
 	void SetRelativeScale3D(const FVector& _Value)
 	{
 		Transform.Scale = _Value;
@@ -79,6 +79,15 @@ public:
 		return Transform.WorldScale;
 	}
 
+	FVector GetRelativeLocation()
+	{
+		return Transform.RelativeLocation;
+	}
+
+	FVector GetWorldLocation()
+	{
+		return Transform.WorldLocation;
+	}
 
 	FTransform& GetTransformRef()
 	{
@@ -94,7 +103,6 @@ public:
 	ENGINEAPI void TransformUpdate();
 
 	UTransformObject* Parent = nullptr;
-
 protected:
 	bool IsAbsolute = false;
 

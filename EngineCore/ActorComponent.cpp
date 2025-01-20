@@ -12,7 +12,6 @@ UActorComponent::~UActorComponent()
 
 bool UActorComponent::IsActive()
 {
-	// URenderer* NewRender = new URenderer();
 
 	if (nullptr == GetActor())
 	{
@@ -27,7 +26,6 @@ bool UActorComponent::IsDestroy()
 {
 	return UObject::IsDestroy() || GetActor()->IsDestroy();
 }
-
 
 class AActor* UActorComponent::GetActor()
 {
