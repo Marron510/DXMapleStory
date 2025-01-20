@@ -16,6 +16,16 @@
 #include "MainHall.h"
 #include "MapleEnum.h"
 
+#include "SkillManager.h"
+#include "WrathOfEnril.h"
+#include "LeafTornado.h"
+#include "StrikeDualShot.h"
+#include "RollingMoonSult.h"
+#include "ChargeDrive.h"
+#include "HighKick.h"
+#include "UnicornSpike.h"
+
+
 #include "Seren.h"
 #include "Player.h"
 
@@ -48,12 +58,30 @@ AMainHallMode::~AMainHallMode()
 void AMainHallMode::BeginPlay()
 {
 	AGameMode::BeginPlay();
+	// 플레이어 스킬
+	{
+		LeafTornadoFront = GetWorld()->SpawnActor<ALeafTornado>();
+		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
+		StrikeDualShot = GetWorld()->SpawnActor<AStrikeDualShot>();
+		RollingMoonSult = GetWorld()->SpawnActor<ARollingMoonSult>();
+		HighKick = GetWorld()->SpawnActor<AHighKick>();
+		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
+		UnicornSpike = GetWorld()->SpawnActor<AUnicornSpike>();
+	}
 
 	// 플레이어
 	{
 		Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
 		Player->SetActorLocation(FVector{ MapSizeHalfX, -MapSizeHalfY, static_cast<float>(EMapleZEnum::Player) });
 	}
+
+	LeafTornadoFront->AttachToActor(Player);
+	WrathOfEnril->AttachToActor(Player);
+	StrikeDualShot->AttachToActor(Player);
+	RollingMoonSult->AttachToActor(Player);
+	ChargeDrive->AttachToActor(Player);
+	HighKick->AttachToActor(Player);
+	UnicornSpike->AttachToActor(Player);
 
 	// 카메라
 	{

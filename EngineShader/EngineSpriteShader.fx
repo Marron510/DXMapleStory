@@ -5,23 +5,15 @@ struct EngineVertex
     float4 COLOR : COLOR;
 };
 
-// 버텍스 쉐이더는 무조건 리턴값이 있어야 합니다.
-// 인풋어셈블러2로 넘길 값을 리턴해줘야하는데.
-// 이때도 규칙이 있습니다.
-
 struct VertexShaderOutPut
 {
-    float4 SVPOSITION : SV_POSITION; // 뷰포트행렬이 곱해지는 포지션입니다.
+    float4 SVPOSITION : SV_POSITION;
     float4 UV : TEXCOORD; // 
     float4 COLOR : COLOR;
 };
 
-// 상수버퍼를 사용하겠다.
 cbuffer FTransform : register(b0)
 {
-	// transformupdate는 
-	// 아래의 값들을 다 적용해서
-	// WVP를 만들어내는 함수이다.
 	// 변환용 벨류
     float4 Scale;
     float4 Rotation;
@@ -52,7 +44,6 @@ cbuffer FTransform : register(b0)
     float4x4 WVP;
 };
 
-// 상수버퍼는 아무것도 세팅해주지 않으면 기본값이 0으로 채워집니다.
 cbuffer FSpriteData : register(b1)
 {
     float4 CuttingPos;
@@ -65,14 +56,8 @@ cbuffer FUVValue : register(b2)
     float4 PlusUVValue;
 };
 
-// 버텍스쉐이더를 다 만들었다.
 VertexShaderOutPut SpriteRender_VS(EngineVertex _Vertex)
 {
-	// CPU에서 계산한 값을 쉐이더에게 넘기는 방법을 알아야 하는데
-	// 상수버퍼라고 부릅니다.
-	// 그중에서 가장 기본적인 것은 상수버퍼를 
-	
-	// float4x4 WVP;
 	
     VertexShaderOutPut OutPut;
 	
@@ -94,19 +79,14 @@ VertexShaderOutPut SpriteRender_VS(EngineVertex _Vertex)
 
 
 Texture2D ImageTexture : register(t0);
-// 샘플러 1개가 필요합니다.
 SamplerState ImageSampler : register(s0);
 
-// 쉐이더끼리는 상수버퍼 인덱스 겹쳐도 상관 없다.
-// ex) 버텍스쉐이더에서 0번 상수버퍼를 썼어도
-// ex) 픽셀쉐이더에서는 0번 을 쓸수 있다.
 cbuffer ResultColor : register(b0)
 {
     float4 PlusColor;
     float4 MulColor;
 };
 
-// 이미지를 샘플링해서 이미지를 보이게 만들고
 float4 SpriteRender_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
 	
@@ -114,7 +94,6 @@ float4 SpriteRender_PS(VertexShaderOutPut _Vertex) : SV_Target0
 	
     if (0.0f >= Color.a)
     {
-		// 픽셀쉐이더에서 아웃풋 머저로 넘기지 않는다.
         clip(-1);
     }
 	

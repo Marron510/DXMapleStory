@@ -151,16 +151,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	}
 #pragma endregion
 	
-	// 플레이어 스킬
-	{
-		LeafTornadoFront = GetWorld()->SpawnActor<ALeafTornado>();
-		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
-		StrikeDualShot = GetWorld()->SpawnActor<AStrikeDualShot>();
-		RollingMoonSult = GetWorld()->SpawnActor<ARollingMoonSult>();
-		HighKick = GetWorld()->SpawnActor<AHighKick>();
-		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
-		UnicornSpike = GetWorld()->SpawnActor<AUnicornSpike>();
-	}
+	
 
 
 	
@@ -177,6 +168,16 @@ ACerniumPlazaMode::~ACerniumPlazaMode()
 void ACerniumPlazaMode::BeginPlay()
 {
 	AGameMode::BeginPlay();
+	// 플레이어 스킬
+	{
+		LeafTornadoFront = GetWorld()->SpawnActor<ALeafTornado>();
+		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
+		StrikeDualShot = GetWorld()->SpawnActor<AStrikeDualShot>();
+		RollingMoonSult = GetWorld()->SpawnActor<ARollingMoonSult>();
+		HighKick = GetWorld()->SpawnActor<AHighKick>();
+		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
+		UnicornSpike = GetWorld()->SpawnActor<AUnicornSpike>();
+	}
 
 	// 플레이어
 	{

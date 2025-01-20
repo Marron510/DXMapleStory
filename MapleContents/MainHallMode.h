@@ -29,6 +29,16 @@ private:
 	// 플레이어
 	class APlayer* Player;
 
+	// 플레이어 스킬
+
+	std::shared_ptr<class AWrathOfEnril> WrathOfEnril;
+	std::shared_ptr<class ALeafTornado> LeafTornadoFront;
+	std::shared_ptr<class AStrikeDualShot> StrikeDualShot;
+	std::shared_ptr<class ARollingMoonSult> RollingMoonSult;
+	std::shared_ptr<class AChargeDrive> ChargeDrive;
+	std::shared_ptr<class AHighKick> HighKick;
+	std::shared_ptr<class AUnicornSpike> UnicornSpike;
+
 	// 세렌
 	std::shared_ptr<class ASeren> Seren;
 

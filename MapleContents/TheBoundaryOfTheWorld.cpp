@@ -56,7 +56,7 @@ ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 		Seren->SetActorLocation(FVector{ 50.0f, -435.0f });
 	}
 
-	
+	//omset  또 나요 흑흑 ㅠㅠ왜지
 
 
 }

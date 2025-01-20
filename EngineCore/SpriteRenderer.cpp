@@ -100,15 +100,12 @@ void USpriteRenderer::CameraTransUpdate(UEngineCamera* _Camera)
 {
 	FTransform& CameraTrans = _Camera->GetTransformRef();
 	FTransform& RendererTrans = GetTransformRef();
-	//	// 랜더러는 월드 뷰 프로젝트를 다 세팅받았고
-	// RendererTrans.View = CameraTrans.View;
 
 	RendererTrans.View = CameraTrans.View;
 	FMatrix CurWorld = RendererTrans.World;
 
 	if (true == IsBillboard)
 	{
-		
 		FMatrix Bill = CameraTrans.View;
 		Bill.ArrVector[3] = FVector(0.0f, 0.0f, 0.0f, 1.0f);
 		Bill.Transpose();
