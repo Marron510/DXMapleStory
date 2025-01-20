@@ -152,6 +152,9 @@
     <ClCompile Include="GameInstance.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="FontRenderer.cpp">
+      <Filter>Object\Component\Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -326,6 +329,9 @@
     <ClInclude Include="GameInstance.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="FontRenderer.h">
+      <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Interface">
@@ -418,6 +424,12 @@
     <Filter Include="ThirdParty\FW1FontWrapper\Inc">
       <UniqueIdentifier>{38d62766-e200-4e91-868b-72c0fef34c2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Debug">
+      <UniqueIdentifier>{9b85c37b-7bd0-4a5e-8723-957dc2c3dc11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Release">
+      <UniqueIdentifier>{60deb307-80bc-4b85-9322-9bc4d89c9765}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl">
@@ -431,5 +443,19 @@
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
       <Filter>ThirdParty\DirectxTex\Debug</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
+      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib">
+      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll">
+      <Filter>ThirdParty\FW1FontWrapper\Release</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib">
+      <Filter>ThirdParty\FW1FontWrapper\Release</Filter>
+    </Library>
   </ItemGroup>
 </Project>
