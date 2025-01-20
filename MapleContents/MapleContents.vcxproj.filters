@@ -119,6 +119,9 @@
     <ClCompile Include="MapleInstance.cpp">
       <Filter>MapleGobal</Filter>
     </ClCompile>
+    <ClCompile Include="LoadingGamdMode.cpp">
+      <Filter>GameMode\00_LoadingGameMode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="MapleInstance.h">
       <Filter>MapleGobal</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingGamdMode.h">
+      <Filter>GameMode\00_LoadingGameMode</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
