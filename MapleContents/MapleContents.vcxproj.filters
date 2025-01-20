@@ -304,5 +304,8 @@
     <Filter Include="HUD">
       <UniqueIdentifier>{6470d269-708e-4388-9f40-ce7d245a8046}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameMode\00_LoadingGameMode">
+      <UniqueIdentifier>{2f200bc3-19f6-4fe1-aeae-2a4e1ca9968a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
