@@ -14,8 +14,11 @@
 #include "CerniumPlazaMode.h"
 #include "MainHallMode.h"
 #include "TheBoundaryOfTheWorld.h"
+
 #include "TitleHUD.h"
 #include "CerniumHUD.h"
+#include "SerenHUD.h"
+
 #include "Player.h"
 #include "MapleInstance.h"
 
@@ -540,7 +543,7 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 		#pragma endregion
 
 			// 세렌 석양
-			/*{
+			{
 				UEngineDirectory Dir;
 				if (false == Dir.MoveParentToDirectory("MapleResources"))
 				{
@@ -594,16 +597,16 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 				Dir.Append("02_SerenSunSet/SunSetSerenDie");
 
 				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-			}*/
+			}
 
 
 			// 이미지를 변환 
 			UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Title");
 			UEngineCore::CreateLevel<ACerniumPlazaMode, APlayer, ACerniumHUD>("Plaza");
-			//UEngineCore::CreateLevel<AMainHallMode, APlayer>("MainHall");
-			//UEngineCore::CreateLevel<ATheBoundaryOfTheWorld, APlayer>("TheBoundaryOfTheWorld");
+			UEngineCore::CreateLevel<AMainHallMode, APlayer, ASerenHUD>("MainHall");
+			UEngineCore::CreateLevel<ATheBoundaryOfTheWorld, APlayer, ASerenHUD>("TheBoundaryOfTheWorld");
 			
-			UEngineCore::OpenLevel("Plaza");
+			UEngineCore::OpenLevel("MainHall");
 		}
 
 	}

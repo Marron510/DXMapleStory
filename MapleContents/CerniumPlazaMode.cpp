@@ -163,12 +163,12 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	}
 
 
-	// 임시 세렌
-	{
-		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ MapSizeHalfX + 1200.0f, -795.0f - 650.0f});
-	}
-	
+	//// 임시 세렌
+	//{
+	//	Seren = GetWorld()->SpawnActor<ASeren>();
+	//	Seren->SetActorLocation(FVector{ MapSizeHalfX + 1200.0f, -795.0f - 650.0f});
+	//}
+	//
 
 	
 
@@ -188,7 +188,6 @@ void ACerniumPlazaMode::BeginPlay()
 	// 플레이어
 	{
 		Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
-		// Player = GetWorld()->SpawnActor<APlayer>();
 		Player->SetActorLocation(FVector{ MapSizeHalfX, -795.0f - 650.0f, static_cast<float>(EMapleZEnum::Player) });
 		PreviousPlayerLocation = Player->GetActorLocation().X;
 	}
@@ -206,7 +205,7 @@ void ACerniumPlazaMode::BeginPlay()
 	Camera->AttachToActor(Player);
 	Camera->GetCameraComponent()->SetZSort(0, true);
 
-	GetSpriteLocation();
+	GetSpriteRender();
 	
 	
 }
@@ -225,7 +224,7 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 }
 
 
-void ACerniumPlazaMode::GetSpriteLocation()
+void ACerniumPlazaMode::GetSpriteRender()
 {
 	Plaza_Back = Plaza->GetPlaza_BackRender();
 	Plaza_Mid = Plaza->GetPlaza_MidRender();

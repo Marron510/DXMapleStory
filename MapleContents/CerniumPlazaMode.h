@@ -18,7 +18,7 @@ public:
 	void BeginPlay();
 	void Tick(float _DeltaTime);
 
-	void GetSpriteLocation();
+	void GetSpriteRender();
 	void UpdateSprite(float _DeltaTime);
 	void UpdateSpriteLocation(std::shared_ptr<class USpriteRenderer>& Sprite, float _DeltaTime);
 

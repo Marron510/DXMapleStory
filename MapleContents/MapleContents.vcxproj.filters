@@ -122,6 +122,9 @@
     <ClCompile Include="LoadingGamdMode.cpp">
       <Filter>GameMode\00_LoadingGameMode</Filter>
     </ClCompile>
+    <ClCompile Include="SerenHUD.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -244,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="LoadingGamdMode.h">
       <Filter>GameMode\00_LoadingGameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="SerenHUD.h">
+      <Filter>HUD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

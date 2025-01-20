@@ -16,13 +16,18 @@ public:
 	AMainHallMode& operator=(const AMainHallMode& _Other) = delete;
 	AMainHallMode& operator=(AMainHallMode&& _Other) noexcept = delete;
 
+	void BeginPlay();
 	void Tick(float _DeltaTime);
+
+	void GetSpriteRender();
+	void UpdateSprite(float _DeltaTime);
+	void UpdateSpriteLocation(std::shared_ptr<class USpriteRenderer>& Sprite, float _DeltaTime);
 
 protected:
 
 private:
 	// 플레이어
-	std::shared_ptr<class APlayer> Player;
+	class APlayer* Player;
 
 	// 세렌
 	std::shared_ptr<class ASeren> Seren;
@@ -32,5 +37,18 @@ private:
 
 	// 카메라
 	std::shared_ptr<class ACameraActor> Camera;
+
+	std::shared_ptr<class USpriteRenderer> MainHall_Sky = nullptr;
+	std::shared_ptr<class USpriteRenderer> MainHall_Center = nullptr;
+	std::shared_ptr<class USpriteRenderer> MainHall_Pillar_Left = nullptr;
+	std::shared_ptr<class USpriteRenderer> MainHall_Pillar_Right = nullptr;
+
+
+	float SpeedMultiplier = 0.0f;
+
+	float PreviousPlayerLocation = 0.0f;
+
+	float Velocity = 0.0f;
+
 };
 

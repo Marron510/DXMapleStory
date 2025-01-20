@@ -17,6 +17,17 @@
 
 ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 {
+	GetWorld()->CreateCollisionProfile("Monster");
+	GetWorld()->CreateCollisionProfile("Platform");
+	GetWorld()->CreateCollisionProfile("Ground");
+	GetWorld()->CreateCollisionProfile("PlayerSKill");
+	GetWorld()->CreateCollisionProfile("Player");
+	GetWorld()->CreateCollisionProfile("MoveDot");
+
+	GetWorld()->LinkCollisionProfile("PlayerSKill", "Monster");
+	GetWorld()->LinkCollisionProfile("MoveDot", "Ground");
+	GetWorld()->LinkCollisionProfile("MoveDot", "Platform");
+	GetWorld()->LinkCollisionProfile("Monster", "Player");
 	/*{
 		Noon = GetWorld()->SpawnActor<ANoon>();
 	}*/
@@ -45,17 +56,25 @@ ATheBoundaryOfTheWorld::ATheBoundaryOfTheWorld()
 		Seren->SetActorLocation(FVector{ 50.0f, -435.0f });
 	}
 
-	// 플레이어
-	{
-		Player = GetWorld()->SpawnActor<APlayer>();
-		Player->SetActorLocation(FVector{ 0.0f, -150.0f });
-	}
+	
 
 
 }
 
 ATheBoundaryOfTheWorld::~ATheBoundaryOfTheWorld()
 {
+
+}
+
+void ATheBoundaryOfTheWorld::BeginPlay()
+{
+	AGameMode::BeginPlay();
+
+	// 플레이어
+	{
+		Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
+		Player->SetActorLocation(FVector{ 0.0f, -150.0f });
+	}
 
 }
 

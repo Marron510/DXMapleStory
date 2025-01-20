@@ -15,15 +15,17 @@ public:
 	ATheBoundaryOfTheWorld(ATheBoundaryOfTheWorld&& _Other) noexcept = delete;
 	ATheBoundaryOfTheWorld& operator=(const ATheBoundaryOfTheWorld& _Other) = delete;
 	ATheBoundaryOfTheWorld& operator=(ATheBoundaryOfTheWorld&& _Other) noexcept = delete;
-
+	
+	void BeginPlay();
 	void Tick(float _DeltaTime);
 
 	void ChangeMapState();
+
 protected:
 
 private:
 	// 플레이어
-	std::shared_ptr<class APlayer> Player;
+	class APlayer* Player;
 
 	// 세렌
 	std::shared_ptr<class ASeren> Seren;
