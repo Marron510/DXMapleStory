@@ -21,10 +21,10 @@ ALeafTornado::ALeafTornado()
 	LeafTornadoFront->SetupAttachment(RootComponent);
 	LeafTornadoBack->SetupAttachment(RootComponent);
 	
-	LeafTornadoFront->CreateAnimation("LeafTornadoDown", "LeafTornadoDown", 0, 11, 0.072f, false);
+	LeafTornadoFront->CreateAnimation("LeafTornadoDown", "LeafTornadoDown", 0, 11, 0.06f, false);
 	LeafTornadoFront->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 
-	LeafTornadoBack->CreateAnimation("LeafTornadoUp", "LeafTornadoUp", 0, 11, 0.072f, false);
+	LeafTornadoBack->CreateAnimation("LeafTornadoUp", "LeafTornadoUp", 0, 11, 0.06f, false);
 	LeafTornadoBack->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 
 	LeafTornadoFront->ChangeAnimation("None");

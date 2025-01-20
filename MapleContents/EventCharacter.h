@@ -11,6 +11,7 @@ enum class ECharacterState
 	WalkUpJump,
 	DoubleJump,
 	LeafTornado,
+	LegendarySpear,
 	WrathOfEnril,
 	Air,
 	Death

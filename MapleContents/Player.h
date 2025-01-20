@@ -91,6 +91,7 @@ private:
 	//½ºÅ³
 	void LeafTornado(float _DeltaTime);
 	void WrathOfEnril(float _DeltaTime);
+	void LegendarySpear(float _DeltaTime);
 
 	void IdleUseSkill(float _DeltaTime);
 	void WalkUseSkill(float _DeltaTime);

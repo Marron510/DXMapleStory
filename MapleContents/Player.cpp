@@ -60,8 +60,8 @@ APlayer::APlayer()
 
 
 	// ½ºÅ³
-	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.086f);
-	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.1f);
+	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.08f);
+	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.07f);
 	PlayerRenderer->CreateAnimation("StrikeDualShot", "StrikeDualShot.png", 0, 6, 0.08f);
 	PlayerRenderer->CreateAnimation("Charge", "Charge.png", 0, 8, 0.08f);
 	PlayerRenderer->CreateAnimation("Wrath", "Wrath.png", 0, 4, 0.17f);

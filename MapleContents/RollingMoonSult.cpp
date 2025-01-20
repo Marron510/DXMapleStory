@@ -17,7 +17,7 @@ ARollingMoonSult::ARollingMoonSult()
 	RollingMoonSult = CreateDefaultSubObject<USpriteRenderer>();
 	RollingMoonSult->SetupAttachment(RootComponent);
 
-	RollingMoonSult->CreateAnimation("RollingMoonSult", "RollingMoonSult", 0, 8, 0.1f, false);
+	RollingMoonSult->CreateAnimation("RollingMoonSult", "RollingMoonSult", 0, 8, 0.07f, false);
 	RollingMoonSult->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	RollingMoonSult->ChangeAnimation("None");
 

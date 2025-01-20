@@ -45,6 +45,7 @@ private:
 	std::shared_ptr<class AChargeDrive> ChargeDrive;
 	std::shared_ptr<class AHighKick> HighKick;
 	std::shared_ptr<class AUnicornSpike> UnicornSpike;
+	std::shared_ptr<class ALegendarySpear> LegendarySpear;
 
 	// ¸Ê
 	std::shared_ptr<class ACerniumPlaza> Plaza;

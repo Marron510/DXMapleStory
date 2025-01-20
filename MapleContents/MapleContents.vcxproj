@@ -224,6 +224,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="LeafTornado.cpp" />
+    <ClCompile Include="LegendarySpear.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="LoadingGamdMode.cpp">
       <SubType>
       </SubType>
@@ -373,6 +377,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="LeafTornado.h" />
+    <ClInclude Include="LegendarySpear.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="LoadingGamdMode.h">
       <SubType>
       </SubType>

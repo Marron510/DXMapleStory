@@ -41,6 +41,8 @@
 #include "ChargeDrive.h"
 #include "HighKick.h"
 #include "UnicornSpike.h"
+#include "LegendarySpear.h"
+
 
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
@@ -177,6 +179,7 @@ void ACerniumPlazaMode::BeginPlay()
 		HighKick = GetWorld()->SpawnActor<AHighKick>();
 		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
 		UnicornSpike = GetWorld()->SpawnActor<AUnicornSpike>();
+		LegendarySpear = GetWorld()->SpawnActor<ALegendarySpear>();
 	}
 
 	// 플레이어
@@ -193,6 +196,7 @@ void ACerniumPlazaMode::BeginPlay()
 	ChargeDrive->AttachToActor(Player);
 	HighKick->AttachToActor(Player);
 	UnicornSpike->AttachToActor(Player);
+	LegendarySpear->AttachToActor(Player);
 
 	Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector{ 0.0f, 260.0f , -1000.0f });

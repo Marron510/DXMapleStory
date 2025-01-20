@@ -24,7 +24,7 @@
 #include "ChargeDrive.h"
 #include "HighKick.h"
 #include "UnicornSpike.h"
-
+#include "LegendarySpear.h"
 
 #include "Seren.h"
 #include "Player.h"
@@ -67,6 +67,7 @@ void AMainHallMode::BeginPlay()
 		HighKick = GetWorld()->SpawnActor<AHighKick>();
 		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
 		UnicornSpike = GetWorld()->SpawnActor<AUnicornSpike>();
+		LegendarySpear = GetWorld()->SpawnActor<ALegendarySpear>();
 	}
 
 	// 플레이어
@@ -82,6 +83,8 @@ void AMainHallMode::BeginPlay()
 	ChargeDrive->AttachToActor(Player);
 	HighKick->AttachToActor(Player);
 	UnicornSpike->AttachToActor(Player);
+	LegendarySpear->AttachToActor(Player);
+
 
 	// 카메라
 	{
