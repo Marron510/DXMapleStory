@@ -8,45 +8,46 @@
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
 
+#include "MapleInstance.h"
 #include "SerenCollision.h"
 #include "CerniumPlazaMode.h"
 #include "EventCharacter.h"
 #include "MapleEnum.h"
 #include "Player.h"
-
+#include "Sting.h"
 
 void ASeren::StateInit()
 {
 
 	//4개의 세렌 모두 똑같이 행동하는 것 ( Idle, Walk, Rush, Die, Hit)
-	SerenFSM.CreateState(ESerenState::NoonIdle, std::bind(&ASeren::Idle, this, std::placeholders::_1),
+	SerenFSM.CreateState(ESerenState::Idle, std::bind(&ASeren::Idle, this, std::placeholders::_1),
 		[this]()
 		{
 			SerenRender->ChangeAnimation("NoonSerenStand");
 		}
 	);
 
-	SerenFSM.CreateState(ESerenState::NoonWalk, std::bind(&ASeren::Walk, this, std::placeholders::_1),
+	SerenFSM.CreateState(ESerenState::Walk, std::bind(&ASeren::Walk, this, std::placeholders::_1),
 		[this]()
 		{
 			SerenRender->ChangeAnimation("NoonSerenStand");
 		}
 	);
 
-	SerenFSM.CreateState(ESerenState::NoonRush, std::bind(&ASeren::Rush, this, std::placeholders::_1),
+	SerenFSM.CreateState(ESerenState::Rush, std::bind(&ASeren::Rush, this, std::placeholders::_1),
 		[this]()
 		{
 			SerenRender->ChangeAnimation("NoonSerenRush");
 		}
 	);
-	SerenFSM.CreateState(ESerenState::NoonSting, std::bind(&ASeren::Sting, this, std::placeholders::_1),
+	SerenFSM.CreateState(ESerenState::Sting, std::bind(&ASeren::ASting, this, std::placeholders::_1),
 		[this]()
 		{
 			SerenRender->ChangeAnimation("NoonSerenSting");
 		}
 	);
 
-	SerenFSM.CreateState(ESerenState::NoonDie, std::bind(&ASeren::Die, this, std::placeholders::_1),
+	SerenFSM.CreateState(ESerenState::Die, std::bind(&ASeren::Die, this, std::placeholders::_1),
 		[this]()
 		{
 			SerenRender->ChangeAnimation("NoonSerenDie");
@@ -58,6 +59,50 @@ void ASeren::StateInit()
 
 void ASeren::Idle(float _DeltaTime)
 {
+	// 0. 세렌 플레이어 향해서 이동
+
+	OutRangeCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
+		{
+			SerenFSM.ChangeState(ESerenState::Walk);
+			return;
+		});
+
+	// 1. 근접 콜리전 충돌 시 
+
+	
+
+	// 랜덤값으로 체인지
+
+	// 2. 근접 콜리전에서 벗어날 시
+
+
+
+
+}
+
+void ASeren::Walk(float _DeltaTime)
+{
+
+	
+
+	
+	CheckCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
+		{
+
+			SkillCoolTime -= _DeltaTime;
+
+			if( 0 >= SkillCoolTime)
+			{
+				this->StingCollision->SetActive(true);
+				SerenFSM.ChangeState(ESerenState::Sting);
+				return;
+			}
+
+		});
+
+
+	
+	
 	FVector SerenLocation = GetActorLocation();
 	FVector DifferentLocation = CurPlayerLocation - SerenLocation;
 	DifferentLocation.Normalize();
@@ -66,17 +111,16 @@ void ASeren::Idle(float _DeltaTime)
 	{
 		SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
 	}
-	else if(0 >= DifferentLocation.X)
+	else if (0 >= DifferentLocation.X)
 	{
 		SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
 	}
 
 	AddActorLocation(FVector(DifferentLocation.X * _DeltaTime * 50.0f, 0.0f, 0.0f));
-}
 
-void ASeren::Walk(float _DeltaTime)
-{
-	
+
+
+
 }
 
 void ASeren::Rush(float _DeltaTime)
@@ -85,15 +129,31 @@ void ASeren::Rush(float _DeltaTime)
 }
 
 
-void ASeren::Sting(float _DeltaTime)
+void ASeren::ASting(float _DeltaTime)
 {
+	
+	
+	
+	
+	StingCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
+		{
+			
+			if (true == _Other->IsColliding() && true == SerenRender->IsCurAnimationEnd())
+			{
+				GetGameInstance<MapleInstance>()->Status.Hp -= 5.0f;
+				//float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+				bIsSting = true;
+			}
+		});
 
 
 
-	if (true == SerenRender->IsCurAnimationEnd())
+	if (true == SerenRender->IsCurAnimationEnd() && true == bIsSting)
 	{
+		SkillCoolTime = StimgCoolTime;
 		StingCollision->SetActive(false);
-		SerenRender->ChangeAnimation("NoonSerenStand");
+		bIsSting = false;
+		SerenFSM.ChangeState(ESerenState::Idle);
 	}
 }
 

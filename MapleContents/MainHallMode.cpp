@@ -16,6 +16,7 @@
 #include "MainHall.h"
 #include "MapleEnum.h"
 
+// 플레이어 스킬
 #include "SkillManager.h"
 #include "WrathOfEnril.h"
 #include "LeafTornado.h"
@@ -27,16 +28,25 @@
 #include "LegendarySpear.h"
 #include "RoyalKnight.h"
 
+//세렌 스킬
+#include "Sting.h"
+
+
+// 세렌
 #include "Seren.h"
 #include "SerenCollision.h"
+
+// 플레이어
 #include "Player.h"
 
 AMainHallMode::AMainHallMode()
 {
+
 	// 몬스터 콜리전
 	GetWorld()->CreateCollisionProfile("Monster");
 	GetWorld()->CreateCollisionProfile("MonsterSkill");
-	
+	GetWorld()->CreateCollisionProfile("Check");
+
 	// 플레이어 콜리전
 	GetWorld()->CreateCollisionProfile("Player");
 	GetWorld()->CreateCollisionProfile("PlayerSKill");
@@ -49,9 +59,12 @@ AMainHallMode::AMainHallMode()
 	// 콜리전 링크
 	GetWorld()->LinkCollisionProfile("PlayerSKill", "Monster");
 	GetWorld()->LinkCollisionProfile("MonsterSkill", "Player");
+	GetWorld()->LinkCollisionProfile("Check", "Player");
+
 	GetWorld()->LinkCollisionProfile("MoveDot", "Ground");
 	GetWorld()->LinkCollisionProfile("MoveDot", "Platform");
 	GetWorld()->LinkCollisionProfile("Monster", "Player");
+
 
 
 	{
@@ -96,6 +109,23 @@ void AMainHallMode::BeginPlay()
 	LegendarySpear->AttachToActor(Player);
 	RoyalKnight->AttachToActor(Player);
 
+
+	// 세렌
+	{
+		Seren = GetWorld()->SpawnActor<ASeren>();
+		Seren->SetActorLocation(FVector{ MapSizeHalfX + 500.0f, -MapSizeHalfY - 240.0f ,static_cast<float>(EMapleZEnum::Monster) - 300.0f});
+	}
+
+	// 세렌 스킬
+	{
+		Sting = GetWorld()->SpawnActor<ASting>();
+	}
+
+	Sting->AttachToActor(Seren.get());
+
+
+
+
 	// 카메라
 	{
 		Camera = GetWorld()->GetMainCamera();
@@ -103,13 +133,6 @@ void AMainHallMode::BeginPlay()
 		Camera->AttachToActor(Player);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
-
-	// 세렌
-	{
-		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ MapSizeHalfX, -MapSizeHalfY - 240.0f ,static_cast<float>(EMapleZEnum::Monster) - 300.0f});
-	}
-
 	GetSpriteRender();
 }
 

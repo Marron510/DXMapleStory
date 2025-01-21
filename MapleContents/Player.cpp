@@ -31,25 +31,45 @@ APlayer::APlayer()
 	
 
 	// 콜리전
-	MoveCollision = CreateDefaultSubObject<UCollision>();
-	MoveCollision->SetupAttachment(RootComponent);
-	MoveCollision->SetCollisionProfileName("MoveDot");
+	{
+		PlayerCollision = CreateDefaultSubObject<UCollision>();
+		PlayerCollision->SetupAttachment(RootComponent);
+		PlayerCollision->SetCollisionProfileName("Player");
 
-	MoveCollision->SetScale3D({ 20.0f, 5.0f });
-	MoveCollision->SetRelativeLocation(FVector{ 4.0f, 5.0f, static_cast<float>(EMapleZEnum::Player) });
-	MoveCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
-		{
-			//GravityForce = FVector::ZERO;
-			bIsGround = true;
-		});
-	MoveCollision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
-		{
-			//GravityForce = FVector::ZERO;
-		});
-	MoveCollision->SetCollisionEnd([this](UCollision* _This, UCollision* _Other)
-		{
-			bIsGround = false;
-		});
+		PlayerCollision->SetScale3D({ 60.0f, 80.0f });
+		PlayerCollision->SetRelativeLocation(FVector{ 4.0f, 40.0f, static_cast<float>(EMapleZEnum::Player) });
+		PlayerCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
+			{
+			});
+		PlayerCollision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
+			{
+			});
+		PlayerCollision->SetCollisionEnd([this](UCollision* _This, UCollision* _Other)
+			{
+			});
+	}
+
+	{
+		MoveCollision = CreateDefaultSubObject<UCollision>();
+		MoveCollision->SetupAttachment(RootComponent);
+		MoveCollision->SetCollisionProfileName("MoveDot");
+
+		MoveCollision->SetScale3D({ 20.0f, 5.0f });
+		MoveCollision->SetRelativeLocation(FVector{ 4.0f, 5.0f, static_cast<float>(EMapleZEnum::Player) });
+		MoveCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
+			{
+				//GravityForce = FVector::ZERO;
+				bIsGround = true;
+			});
+		MoveCollision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
+			{
+				//GravityForce = FVector::ZERO;
+			});
+		MoveCollision->SetCollisionEnd([this](UCollision* _This, UCollision* _Other)
+			{
+				bIsGround = false;
+			});
+	}
 	//상태
 	PlayerRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
 	PlayerRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);

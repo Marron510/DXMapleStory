@@ -50,6 +50,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	// 몬스터 콜리전
 	GetWorld()->CreateCollisionProfile("Monster");
 	GetWorld()->CreateCollisionProfile("MonsterSkill");
+	GetWorld()->CreateCollisionProfile("Check");
 
 	// 플레이어 콜리전
 	GetWorld()->CreateCollisionProfile("Player");
@@ -63,6 +64,7 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	// 콜리전 링크
 	GetWorld()->LinkCollisionProfile("PlayerSKill", "Monster");
 	GetWorld()->LinkCollisionProfile("MonsterSkill", "Player");
+	GetWorld()->LinkCollisionProfile("Check", "Player");
 
 	GetWorld()->LinkCollisionProfile("MoveDot", "Ground");
 	GetWorld()->LinkCollisionProfile("MoveDot", "Platform");

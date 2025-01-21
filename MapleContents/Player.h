@@ -41,7 +41,7 @@ protected:
 private:
 	std::shared_ptr<class USpriteRenderer> PlayerRenderer;
 	
-
+	std::shared_ptr<class UCollision> PlayerCollision;
 	std::shared_ptr<class UCollision> MoveCollision;
 
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;

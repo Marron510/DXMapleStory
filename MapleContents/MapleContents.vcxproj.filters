@@ -131,6 +131,9 @@
     <ClCompile Include="RoyalKnight.cpp">
       <Filter>SKill\02_PlayerSKill\002_BuffSkill</Filter>
     </ClCompile>
+    <ClCompile Include="Sting.cpp">
+      <Filter>SKill\03_SerenSkill\Phase1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -263,6 +266,9 @@
     <ClInclude Include="RoyalKnight.h">
       <Filter>SKill\02_PlayerSKill\002_BuffSkill</Filter>
     </ClInclude>
+    <ClInclude Include="Sting.h">
+      <Filter>SKill\03_SerenSkill\Phase1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -336,6 +342,15 @@
     </Filter>
     <Filter Include="SKill\02_PlayerSKill\002_BuffSkill">
       <UniqueIdentifier>{991a0c13-786d-4574-b1da-f3ba36ee9238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SKill\03_SerenSkill">
+      <UniqueIdentifier>{78c5375e-9480-486d-a6c2-f64a311cbc08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SKill\03_SerenSkill\Phase1">
+      <UniqueIdentifier>{d524d965-4932-4c8e-b54e-66671b73c04a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SKill\03_SerenSkill\Phase2">
+      <UniqueIdentifier>{e49c49de-7de4-461a-a3f7-5b4218a3bb05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

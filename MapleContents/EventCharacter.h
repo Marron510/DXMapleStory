@@ -19,12 +19,12 @@ enum class ECharacterState
 
 enum class ESerenState
 {
-	NoonIdle,
-	NoonWalk,
-	NoonRush,
-	NoonSting,
-
-	NoonDie,
+	Idle,
+	Walk,
+	Rush,
+	Sting,
+	Die,
+	None
 };
 class AEventCharacter
 {

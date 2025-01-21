@@ -97,6 +97,9 @@ void APlayer::StateInit()
 
 void APlayer::Idle(float _DeltaTime)
 {
+	PlayerCollision->SetScale3D({ 60.0f, 80.0f });
+	PlayerCollision->SetRelativeLocation(FVector{ 4.0f, 40.0f, static_cast<float>(EMapleZEnum::Player) });
+
 	// 제자리에서 이동전환
 	Gravity(_DeltaTime);
 	IdleUseSkill(_DeltaTime);
@@ -139,6 +142,9 @@ void APlayer::Idle(float _DeltaTime)
 
 void APlayer::Prone(float _DeltaTime)
 {
+	PlayerCollision->SetScale3D({ 80.0f, 16.0f });
+	PlayerCollision->SetRelativeLocation(FVector{ -10.0f, 8.0f, static_cast<float>(EMapleZEnum::Player) });
+
 	Gravity(_DeltaTime);
 	IdleUseSkill(_DeltaTime);
 	

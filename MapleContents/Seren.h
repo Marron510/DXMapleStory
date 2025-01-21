@@ -21,7 +21,7 @@ public:
 	void Idle(float _DeltaTime);
 	void Walk(float _DeltaTime);
 	void Rush(float _DeltaTime);
-	void Sting(float _DeltaTime);
+	void ASting(float _DeltaTime);
 	
 	void Die(float _DeltaTime);
 
@@ -43,8 +43,25 @@ private:
 	std::shared_ptr<class USpriteRenderer> SerenRender;
 
 	std::shared_ptr<class USerenCollision> Collision;
-	std::shared_ptr<class USerenCollision> StingCollision;
+	std::shared_ptr<class UCollision> CheckCollision;
+	std::shared_ptr<class UCollision> OutRangeCollision;
+
+	std::shared_ptr<class UCollision> StingCollision;
+	
 
 	UFSMStateManager SerenFSM;
+
+
+
+	bool bIsSting = false;
+
+
+	void SerenDeathCheck();
+
+
+	void PlayerLocationCheck(float _DeltaTime);
+
+	float SkillCoolTime = 0.0f;
+	float StimgCoolTime = 3.0f;
 };
 

@@ -44,6 +44,9 @@ private:
 	// ¼¼·»
 	std::shared_ptr<class ASeren> Seren;
 
+	// ¼¼·» ½ºÅ³
+	std::shared_ptr<class ASting> Sting;
+
 	// ¸Ê
 	std::shared_ptr<class AMainHall> MainHall;
 

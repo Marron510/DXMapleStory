@@ -28,7 +28,7 @@ ASeren::ASeren()
 	{
 		SerenRender->CreateAnimation("NoonSerenStand", "NoonSerenStand", 0, 14, 0.09f);
 		SerenRender->CreateAnimation("NoonSerenRush", "NoonSerenRush", 0, 35, 0.072f, false);
-		SerenRender->CreateAnimation("NoonSerenSting", "NoonSerenSting", 0, 20, 0.07f, false);
+		SerenRender->CreateAnimation("NoonSerenSting", "NoonSerenSting", 0, 20, 0.04f, false);
 		SerenRender->CreateAnimation("NoonSerenStunLaser", "NoonSerenStunLaser", 0, 21, 0.13f, false);
 		SerenRender->CreateAnimation("NoonSerenEightLaser", "NoonSerenEightLaser", 0, 27, 0.11f, false);
 		SerenRender->CreateAnimation("NoonSerenHit", "NoonSerenHit", 0, 0, 0.09f, false);
@@ -61,14 +61,34 @@ ASeren::ASeren()
 	}
 
 	{
-		StingCollision = CreateDefaultSubObject<USerenCollision>();
+		CheckCollision = CreateDefaultSubObject<UCollision>();
+		CheckCollision->SetupAttachment(RootComponent);
+		CheckCollision->SetCollisionProfileName("Check");
+
+		CheckCollision->SetScale3D({ 500.0f, 200.0f });
+		CheckCollision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
+		
+	}
+
+	{
+		OutRangeCollision = CreateDefaultSubObject<UCollision>();
+		OutRangeCollision->SetupAttachment(RootComponent);
+		OutRangeCollision->SetCollisionProfileName("Check");
+
+		OutRangeCollision->SetScale3D({ 1000.0f, 200.0f });
+		OutRangeCollision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
+
+	}
+	{
+		StingCollision = CreateDefaultSubObject<UCollision>();
 		StingCollision->SetupAttachment(RootComponent);
 		StingCollision->SetCollisionProfileName("MonsterSkill");
 
-		StingCollision->SetScale3D({ 80.0f, 30.0f });
-		StingCollision->SetRelativeLocation(FVector{ -50.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
-		//StingCollision->SetActive(false);
+		StingCollision->SetScale3D({ 300.0f, 30.0f });
+		StingCollision->SetRelativeLocation(FVector{ -80.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
+		StingCollision->SetActive(false);
 	}
+	
 }
 
 ASeren::~ASeren()
@@ -83,7 +103,7 @@ void ASeren::BeginPlay()
 	
 
 	StateInit();
-	SerenFSM.ChangeState(ESerenState::NoonIdle);
+	SerenFSM.ChangeState(ESerenState::Idle);
 }
 
 void ASeren::Tick(float _DeltaTime)
@@ -91,12 +111,28 @@ void ASeren::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	
 	SerenFSM.Update(_DeltaTime);
-	CurPlayerLocation = Player->GetActorLocation();
+	
+	
 
-	if ( 0 >= Collision->GetHp())
+	// ¼¼·» Á×À½ Ã¼Å©
+	SerenDeathCheck();
+}
+
+
+void ASeren::SerenDeathCheck()
+{
+
+	if (0 >= Collision->GetHp())
 	{
 		Collision->SetActive(false);
-		SerenFSM.ChangeState(ESerenState::NoonDie);
+		SerenFSM.ChangeState(ESerenState::Die);
 	}
 
 }
+
+
+void ASeren::PlayerLocationCheck(float _DeltaTime)
+{
+
+}
+
