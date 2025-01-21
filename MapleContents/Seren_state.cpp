@@ -132,20 +132,6 @@ void ASeren::Rush(float _DeltaTime)
 void ASeren::ASting(float _DeltaTime)
 {
 	
-	
-	
-	
-	StingCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
-		{
-			
-			if (true == _Other->IsColliding() && true == SerenRender->IsCurAnimationEnd())
-			{
-				GetGameInstance<MapleInstance>()->Status.Hp -= 5.0f;
-				//float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
-				bIsSting = true;
-			}
-		});
-
 
 
 	if (true == SerenRender->IsCurAnimationEnd() && true == bIsSting)
@@ -154,7 +140,26 @@ void ASeren::ASting(float _DeltaTime)
 		StingCollision->SetActive(false);
 		bIsSting = false;
 		SerenFSM.ChangeState(ESerenState::Idle);
+		return;
 	}
+	
+	
+	
+	StingCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
+		{
+			if (true == _Other->IsColliding() && true == SerenRender->IsCurAnimationEnd())
+			{
+				GetGameInstance<MapleInstance>()->Status.Hp -= 5.0f;
+				float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+				bIsSting = true;
+			}
+		});
+
+	if (true == SerenRender->IsCurAnimationEnd())
+	{
+		bIsSting = true;
+	}
+
 }
 
 void ASeren::Die(float _DeltaTime)
