@@ -14,7 +14,6 @@
 #include "EventCharacter.h"
 #include "MapleEnum.h"
 #include "Player.h"
-#include "Sting.h"
 
 void ASeren::StateInit()
 {
@@ -82,10 +81,9 @@ void ASeren::Idle(float _DeltaTime)
 
 void ASeren::Walk(float _DeltaTime)
 {
-
 	
 
-	
+	// 스킬 사용 가능 여부 확인(근거리, 원거리)
 	CheckCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
 		{
 
@@ -102,7 +100,7 @@ void ASeren::Walk(float _DeltaTime)
 
 
 	
-	
+	// 이동 로직
 	FVector SerenLocation = GetActorLocation();
 	FVector DifferentLocation = CurPlayerLocation - SerenLocation;
 	DifferentLocation.Normalize();

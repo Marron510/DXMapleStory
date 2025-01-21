@@ -29,7 +29,6 @@
 #include "RoyalKnight.h"
 
 //¼¼·» ½ºÅ³
-#include "Sting.h"
 
 
 // ¼¼·»
@@ -113,15 +112,11 @@ void AMainHallMode::BeginPlay()
 	// ¼¼·»
 	{
 		Seren = GetWorld()->SpawnActor<ASeren>();
-		Seren->SetActorLocation(FVector{ MapSizeHalfX + 500.0f, -MapSizeHalfY - 240.0f ,static_cast<float>(EMapleZEnum::Monster) - 300.0f});
+		Seren->SetActorLocation(FVector{ MapSizeHalfX + 600.0f, -MapSizeHalfY - 240.0f ,static_cast<float>(EMapleZEnum::Monster) - 300.0f});
 	}
 
 	// ¼¼·» ½ºÅ³
-	{
-		Sting = GetWorld()->SpawnActor<ASting>();
-	}
 
-	Sting->AttachToActor(Seren.get());
 
 
 

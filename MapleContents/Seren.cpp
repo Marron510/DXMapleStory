@@ -2,6 +2,7 @@
 #include "Seren.h"
 #include <EnginePlatform/EngineInput.h>
 
+#include <EngineCore/Level.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/Collision.h>
@@ -12,7 +13,6 @@
 #include "EventCharacter.h"
 #include "Player.h"
 #include "MapleInstance.h"
-
 
 ASeren::ASeren()
 {
@@ -89,6 +89,7 @@ ASeren::ASeren()
 		StingCollision->SetActive(false);
 	}
 	
+
 }
 
 ASeren::~ASeren()
@@ -104,6 +105,8 @@ void ASeren::BeginPlay()
 
 	StateInit();
 	SerenFSM.ChangeState(ESerenState::Idle);
+	
+	//std::shared_ptr<class ASting> sting = GetWorld()->SpawnActor<class ASting>();
 }
 
 void ASeren::Tick(float _DeltaTime)
@@ -111,7 +114,6 @@ void ASeren::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	
 	SerenFSM.Update(_DeltaTime);
-	
 	
 
 	// ¼¼·» Á×À½ Ã¼Å©

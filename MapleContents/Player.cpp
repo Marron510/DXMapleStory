@@ -119,6 +119,7 @@ void APlayer::Tick(float _DeltaTime)
 	
 	FSM.Update(_DeltaTime);
 
+	
 
 	
 }
