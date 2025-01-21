@@ -32,7 +32,6 @@ private:
 	std::shared_ptr<class USpriteRenderer> WrathOfEnril;
 
 	std::shared_ptr<class UCollision> Collision;
-	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 
 	bool bIsCanUse = false;
 

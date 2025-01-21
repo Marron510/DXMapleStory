@@ -83,32 +83,11 @@
     <ClCompile Include="SkillManager.cpp">
       <Filter>SKill\01_SkillManager</Filter>
     </ClCompile>
-    <ClCompile Include="WrathOfEnril.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClCompile>
-    <ClCompile Include="LeafTornado.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClCompile>
-    <ClCompile Include="StrikeDualShot.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClCompile>
-    <ClCompile Include="RollingMoonSult.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClCompile>
-    <ClCompile Include="ChargeDrive.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClCompile>
-    <ClCompile Include="HighKick.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClCompile>
     <ClCompile Include="TitleHUD.cpp">
       <Filter>HUD</Filter>
     </ClCompile>
     <ClCompile Include="CerniumHUD.cpp">
       <Filter>HUD</Filter>
-    </ClCompile>
-    <ClCompile Include="UnicornSpike.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
     </ClCompile>
     <ClCompile Include="SerenCollision.cpp">
       <Filter>Character\02_BossSeren</Filter>
@@ -125,8 +104,32 @@
     <ClCompile Include="SerenHUD.cpp">
       <Filter>HUD</Filter>
     </ClCompile>
+    <ClCompile Include="ChargeDrive.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="HighKick.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="LeafTornado.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
     <ClCompile Include="LegendarySpear.cpp">
-      <Filter>SKill\02_PlayerSKill</Filter>
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="RollingMoonSult.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="StrikeDualShot.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="UnicornSpike.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="WrathOfEnril.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="RoyalKnight.cpp">
+      <Filter>SKill\02_PlayerSKill\002_BuffSkill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,35 +212,14 @@
     <ClInclude Include="SkillManager.h">
       <Filter>SKill\01_SkillManager</Filter>
     </ClInclude>
-    <ClInclude Include="WrathOfEnril.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClInclude>
-    <ClInclude Include="LeafTornado.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClInclude>
-    <ClInclude Include="StrikeDualShot.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClInclude>
     <ClInclude Include="MapleEnum.h">
       <Filter>MapleGobal</Filter>
-    </ClInclude>
-    <ClInclude Include="RollingMoonSult.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClInclude>
-    <ClInclude Include="ChargeDrive.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
-    </ClInclude>
-    <ClInclude Include="HighKick.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
     <ClInclude Include="TitleHUD.h">
       <Filter>HUD</Filter>
     </ClInclude>
     <ClInclude Include="CerniumHUD.h">
       <Filter>HUD</Filter>
-    </ClInclude>
-    <ClInclude Include="UnicornSpike.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
     </ClInclude>
     <ClInclude Include="SerenCollision.h">
       <Filter>Character\02_BossSeren</Filter>
@@ -254,8 +236,32 @@
     <ClInclude Include="SerenHUD.h">
       <Filter>HUD</Filter>
     </ClInclude>
+    <ClInclude Include="ChargeDrive.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="HighKick.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="LeafTornado.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
     <ClInclude Include="LegendarySpear.h">
-      <Filter>SKill\02_PlayerSKill</Filter>
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="RollingMoonSult.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="StrikeDualShot.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="UnicornSpike.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="WrathOfEnril.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="RoyalKnight.h">
+      <Filter>SKill\02_PlayerSKill\002_BuffSkill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +330,12 @@
     </Filter>
     <Filter Include="GameMode\00_LoadingGameMode">
       <UniqueIdentifier>{2f200bc3-19f6-4fe1-aeae-2a4e1ca9968a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SKill\02_PlayerSKill\001_ActiveSkill">
+      <UniqueIdentifier>{21a8e2e6-37c3-4418-9ac0-5e8502c4d5c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SKill\02_PlayerSKill\002_BuffSkill">
+      <UniqueIdentifier>{991a0c13-786d-4574-b1da-f3ba36ee9238}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

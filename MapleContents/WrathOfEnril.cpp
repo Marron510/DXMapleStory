@@ -16,8 +16,6 @@ AWrathOfEnril::AWrathOfEnril()
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
 
-	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
-
 	WrathOfEnril = CreateDefaultSubObject<USpriteRenderer>();
 	WrathOfEnril->SetupAttachment(RootComponent);
 
