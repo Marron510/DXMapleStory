@@ -25,6 +25,7 @@
 #include "HighKick.h"
 #include "UnicornSpike.h"
 #include "LegendarySpear.h"
+#include "RoyalKnight.h"
 
 #include "Seren.h"
 #include "Player.h"
@@ -68,6 +69,7 @@ void AMainHallMode::BeginPlay()
 		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
 		UnicornSpike = GetWorld()->SpawnActor<AUnicornSpike>();
 		LegendarySpear = GetWorld()->SpawnActor<ALegendarySpear>();
+		RoyalKnight = GetWorld()->SpawnActor<ARoyalKnight>();
 	}
 
 	// 플레이어
@@ -84,7 +86,7 @@ void AMainHallMode::BeginPlay()
 	HighKick->AttachToActor(Player);
 	UnicornSpike->AttachToActor(Player);
 	LegendarySpear->AttachToActor(Player);
-
+	RoyalKnight->AttachToActor(Player);
 
 	// 카메라
 	{

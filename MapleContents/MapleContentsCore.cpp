@@ -36,17 +36,6 @@ void UMapleContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowPos = { 100, 100 };
 	_Data.WindowSize = { 1366, 768 };
 
-
-	
-	
-
-	
-
-
-
-
-
-
 	UEngineCore::CreateLevel<ALoadingGamdMode, APawn, AHUD>("LoadingLevel");
 
 	UEngineCore::OpenLevel("LoadingLevel");
