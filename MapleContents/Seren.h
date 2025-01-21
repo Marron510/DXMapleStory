@@ -25,7 +25,10 @@ public:
 	
 	void Die(float _DeltaTime);
 
-
+	std::shared_ptr<class USerenCollision> GetSerenCollision()
+	{
+		return Collision;
+	}
 
 
 protected:
@@ -40,6 +43,7 @@ private:
 	std::shared_ptr<class USpriteRenderer> SerenRender;
 
 	std::shared_ptr<class USerenCollision> Collision;
+	std::shared_ptr<class USerenCollision> StingCollision;
 
 	UFSMStateManager SerenFSM;
 };

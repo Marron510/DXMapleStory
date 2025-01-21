@@ -47,14 +47,23 @@
 ACerniumPlazaMode::ACerniumPlazaMode()
 {
 	
+	// 몬스터 콜리전
 	GetWorld()->CreateCollisionProfile("Monster");
+	GetWorld()->CreateCollisionProfile("MonsterSkill");
+
+	// 플레이어 콜리전
+	GetWorld()->CreateCollisionProfile("Player");
+	GetWorld()->CreateCollisionProfile("PlayerSKill");
+
+	// 발판 콜리전
 	GetWorld()->CreateCollisionProfile("Platform");
 	GetWorld()->CreateCollisionProfile("Ground");
-	GetWorld()->CreateCollisionProfile("PlayerSKill");
-	GetWorld()->CreateCollisionProfile("Player");
 	GetWorld()->CreateCollisionProfile("MoveDot");
 
+	// 콜리전 링크
 	GetWorld()->LinkCollisionProfile("PlayerSKill", "Monster");
+	GetWorld()->LinkCollisionProfile("MonsterSkill", "Player");
+
 	GetWorld()->LinkCollisionProfile("MoveDot", "Ground");
 	GetWorld()->LinkCollisionProfile("MoveDot", "Platform");
 	GetWorld()->LinkCollisionProfile("Monster", "Player");
@@ -218,7 +227,7 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 	HighKickActive();
 
 	// 인스턴스가 체력을 가져야 한다 -> 플레이어의 체력
-	 //GetGameInstance<MapleInstance>();
+	GetGameInstance<MapleInstance>()->Status.Hp;
 }
 
 

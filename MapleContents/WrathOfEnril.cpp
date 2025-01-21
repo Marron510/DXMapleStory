@@ -11,6 +11,8 @@
 #include "MapleEnum.h"
 #include "SerenCollision.h"
 
+float AWrathOfEnril::WrathOfEnrilCoolTime = 5.0f;
+
 AWrathOfEnril::AWrathOfEnril()
 {
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
@@ -71,8 +73,8 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 {
 	ASkillManager::Tick(_DeltaTime);
 
-
-
+	WrathOfEnrilCoolTime -= _DeltaTime;
+	
 	if (true == WrathOfEnril->IsCurAnimationEnd())
 	{
 		WrathOfEnril->ChangeAnimation("None");
@@ -82,10 +84,11 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 		
 	}
 
-	if (UEngineInput::IsPress('A'))
+	if (WrathOfEnrilCoolTime <= 0 && UEngineInput::IsPress('A'))
 	{
 		WrathOfEnril->ChangeAnimation("WrathOfEnril");
 		WrathOfEnril->SetActive(true);
 		Collision->SetActive(true);
+		WrathOfEnrilCoolTime = 5.0f;
 	}
 }

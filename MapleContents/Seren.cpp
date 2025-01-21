@@ -11,7 +11,7 @@
 #include "SerenCollision.h"
 #include "EventCharacter.h"
 #include "Player.h"
-
+#include "MapleInstance.h"
 
 
 ASeren::ASeren()
@@ -36,26 +36,39 @@ ASeren::ASeren()
 	}
 	
 	// 세렌 석양 애니메이션
-	/*{
+	{
 		SerenRender->CreateAnimation("SunSetSerenFirstAttack", "SunSetSerenFirstAttack", 0, 38, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenSecondAttack", "SunSetSerenSecondAttack", 0, 36, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenThirdAttack", "SunSetSerenThirdAttack", 0, 39, 0.06f, false);
 		SerenRender->CreateAnimation("SunSetSerenDie", "SunSetSerenDie", 0, 36, 0.06f, false);
-	}*/
+	}
 
 	SerenRender->SetRelativeLocation(FVector{ 0.0f, -290.0f ,  static_cast<float>(EMapleZEnum::Monster) });
 	SerenRender->ChangeAnimation("NoonSerenStand");
 
 	// 콜리젼
-	Collision = CreateDefaultSubObject<USerenCollision>();
-	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Monster");
+	{
+		Collision = CreateDefaultSubObject<USerenCollision>();
+		Collision->SetupAttachment(RootComponent);
+		Collision->SetCollisionProfileName("Monster");
 
-	Collision->SetScale3D({ 80.0f, 140.0f });
-	Collision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
-	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
-		{
-		});
+		Collision->SetScale3D({ 80.0f, 140.0f });
+		Collision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
+		Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
+			{
+
+			});
+	}
+
+	{
+		StingCollision = CreateDefaultSubObject<USerenCollision>();
+		StingCollision->SetupAttachment(RootComponent);
+		StingCollision->SetCollisionProfileName("MonsterSkill");
+
+		StingCollision->SetScale3D({ 80.0f, 30.0f });
+		StingCollision->SetRelativeLocation(FVector{ -50.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
+		//StingCollision->SetActive(false);
+	}
 }
 
 ASeren::~ASeren()

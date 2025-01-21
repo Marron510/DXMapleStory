@@ -8,6 +8,7 @@
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
 
+#include "SerenCollision.h"
 #include "CerniumPlazaMode.h"
 #include "EventCharacter.h"
 #include "MapleEnum.h"
@@ -87,6 +88,13 @@ void ASeren::Rush(float _DeltaTime)
 void ASeren::Sting(float _DeltaTime)
 {
 
+
+
+	if (true == SerenRender->IsCurAnimationEnd())
+	{
+		StingCollision->SetActive(false);
+		SerenRender->ChangeAnimation("NoonSerenStand");
+	}
 }
 
 void ASeren::Die(float _DeltaTime)

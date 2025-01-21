@@ -438,65 +438,65 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 					UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 				}
 			
-				//// 정오 맵 이미지
-				//{
-				//	UEngineDirectory Dir;
-				//	if (false == Dir.MoveParentToDirectory("MapleResources"))
-				//	{
-				//		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-				//		return;
-				//	}
-				//	Dir.Append("Image");
-				//	Dir.Append("Phase2");
-				//	Dir.Append("Phase2_MapImage/01_NoonImage");
+				// 정오 맵 이미지
+				{
+					UEngineDirectory Dir;
+					if (false == Dir.MoveParentToDirectory("MapleResources"))
+					{
+						MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+						return;
+					}
+					Dir.Append("Image");
+					Dir.Append("Phase2");
+					Dir.Append("Phase2_MapImage/01_NoonImage");
 			
-				//	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-				//}
+					UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+				}
 			
-				//// 석양 맵 이미지
-				//{
-				//	UEngineDirectory Dir;
-				//	if (false == Dir.MoveParentToDirectory("MapleResources"))
-				//	{
-				//		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-				//		return;
-				//	}
-				//	Dir.Append("Image");
-				//	Dir.Append("Phase2");
-				//	Dir.Append("Phase2_MapImage/02_SunSetImage");
+				// 석양 맵 이미지
+				{
+					UEngineDirectory Dir;
+					if (false == Dir.MoveParentToDirectory("MapleResources"))
+					{
+						MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+						return;
+					}
+					Dir.Append("Image");
+					Dir.Append("Phase2");
+					Dir.Append("Phase2_MapImage/02_SunSetImage");
 			
-				//	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-				//}
+					UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+				}
 			
-				//// 자정 맵 이미지
-				//{
-				//	UEngineDirectory Dir;
-				//	if (false == Dir.MoveParentToDirectory("MapleResources"))
-				//	{
-				//		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-				//		return;
-				//	}
-				//	Dir.Append("Image");
-				//	Dir.Append("Phase2");
-				//	Dir.Append("Phase2_MapImage/03_MidnightImage");
+				// 자정 맵 이미지
+				{
+					UEngineDirectory Dir;
+					if (false == Dir.MoveParentToDirectory("MapleResources"))
+					{
+						MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+						return;
+					}
+					Dir.Append("Image");
+					Dir.Append("Phase2");
+					Dir.Append("Phase2_MapImage/03_MidnightImage");
 			
-				//	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-				//}
+					UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+				}
 			
-				//// 여명 맵 이미지
-				//{
-				//	UEngineDirectory Dir;
-				//	if (false == Dir.MoveParentToDirectory("MapleResources"))
-				//	{
-				//		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-				//		return;
-				//	}
-				//	Dir.Append("Image");
-				//	Dir.Append("Phase2");
-				//	Dir.Append("Phase2_MapImage/04_DawnImage");
+				// 여명 맵 이미지
+				{
+					UEngineDirectory Dir;
+					if (false == Dir.MoveParentToDirectory("MapleResources"))
+					{
+						MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+						return;
+					}
+					Dir.Append("Image");
+					Dir.Append("Phase2");
+					Dir.Append("Phase2_MapImage/04_DawnImage");
 			
-				//	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-				//}
+					UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+				}
 			
 			// 세렌 이미지
 			// 세렌 정오
@@ -599,7 +599,7 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 			}
 
-			//#pragma endregion
+			#pragma endregion
 
 	
 
@@ -607,62 +607,62 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 
 		#pragma endregion
 
-			//// 세렌 석양
-			//{
-			//	UEngineDirectory Dir;
-			//	if (false == Dir.MoveParentToDirectory("MapleResources"))
-			//	{
-			//		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			//		return;
-			//	}
-			//	Dir.Append("Image");
-			//	Dir.Append("Phase2");
-			//	Dir.Append("02_SerenSunSet/SunSetSerenFirstAttack");
+			// 세렌 석양
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Phase2");
+				Dir.Append("02_SerenSunSet/SunSetSerenFirstAttack");
 
-			//	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-			//}
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
 
-			//{
-			//	UEngineDirectory Dir;
-			//	if (false == Dir.MoveParentToDirectory("MapleResources"))
-			//	{
-			//		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			//		return;
-			//	}
-			//	Dir.Append("Image");
-			//	Dir.Append("Phase2");
-			//	Dir.Append("02_SerenSunSet/SunSetSerenSecondAttack");
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Phase2");
+				Dir.Append("02_SerenSunSet/SunSetSerenSecondAttack");
 
-			//	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-			//}
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
 
-			//{
-			//	UEngineDirectory Dir;
-			//	if (false == Dir.MoveParentToDirectory("MapleResources"))
-			//	{
-			//		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			//		return;
-			//	}
-			//	Dir.Append("Image");
-			//	Dir.Append("Phase2");
-			//	Dir.Append("02_SerenSunSet/SunSetSerenThirdAttack");
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Phase2");
+				Dir.Append("02_SerenSunSet/SunSetSerenThirdAttack");
 
-			//	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-			//}
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
 
-			//{
-			//	UEngineDirectory Dir;
-			//	if (false == Dir.MoveParentToDirectory("MapleResources"))
-			//	{
-			//		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			//		return;
-			//	}
-			//	Dir.Append("Image");
-			//	Dir.Append("Phase2");
-			//	Dir.Append("02_SerenSunSet/SunSetSerenDie");
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Phase2");
+				Dir.Append("02_SerenSunSet/SunSetSerenDie");
 
-			//	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-			//}
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
 
 
 			// 이미지를 변환 

@@ -27,10 +27,16 @@ public:
 	{
 		Hp -= _Attack;
 	}
+
+	bool GetIsDamaged()
+	{
+		return bIsDamaged;
+	}
 	
 protected:
 
 private:
 	float Hp = 100.0f;
+	bool bIsDamaged = false;
 };
 

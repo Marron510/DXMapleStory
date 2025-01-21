@@ -10,6 +10,8 @@
 
 #include "MapleEnum.h"
 
+bool ARoyalKnight::bLoyalKnightsOn = false;
+
 ARoyalKnight::ARoyalKnight()
 {
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
@@ -60,6 +62,7 @@ void ARoyalKnight::Tick(float _DeltaTime)
 	{
 		RoyalKnight->ChangeAnimation("RoyalKnightsLoop");
 		bIsRoyalStart = false;
+		bLoyalKnightsOn = true;
 		bIsRoyalLoop = true;
 		TimeEventComponent->AddEndEvent(10.0f, [this]()
 			{
@@ -86,6 +89,7 @@ void ARoyalKnight::Tick(float _DeltaTime)
 		if (true == RoyalKnight->IsCurAnimationEnd())
 		{
 			bIsRoyalEnd = false;
+			bLoyalKnightsOn = false;
 			RoyalKnight->ChangeAnimation("None");
 		}
 	}

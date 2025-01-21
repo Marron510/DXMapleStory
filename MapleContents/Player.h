@@ -69,7 +69,9 @@ private:
 	bool bIsJumping = false;
 	bool bIsJumpRight = false;
 	bool bIsJumpMoveEnd= false;
-	
+	bool bIsIdleJump = true;
+
+
 	bool bIsLeafUsing = false;
 	bool bIsHighKick = false;
 	

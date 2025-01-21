@@ -24,6 +24,7 @@ public:
 		return WrathOfEnril;
 	}
 
+	static float WrathOfEnrilCoolTime;
 
 protected:
 	
@@ -34,7 +35,6 @@ private:
 	std::shared_ptr<class UCollision> Collision;
 
 	bool bIsCanUse = false;
-
 	float WrathOfEnrilAtt = 50.0f;
 };
 
