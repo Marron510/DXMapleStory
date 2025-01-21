@@ -484,11 +484,13 @@ void APlayer::Air(float _DeltaTime)
 	if (true == UEngineInput::IsDown('D'))
 	{
 		FSM.ChangeState(ECharacterState::LeafTornado);
+		return;
 	}
 
 	if (true == UEngineInput::IsDown('G'))
 	{
 		FSM.ChangeState(ECharacterState::LegendarySpear);
+		return;
 	}
 
 	
@@ -528,6 +530,7 @@ void APlayer::LegendarySpear(float _DeltaTime)
 {
 	Gravity(_DeltaTime);
 	AirUseSkill(_DeltaTime);
+	
 
 	JumpVelocity = JumpPower;
 	TargetJumpVelocity = FVector::ZERO;
@@ -538,8 +541,14 @@ void APlayer::LegendarySpear(float _DeltaTime)
 	}
 
 	JumpVelocity.Y = UEngineMath::Lerp(JumpVelocity.Y, TargetJumpVelocity.Y, _DeltaTime * 5.0f);
+	
+	if (true == bIsGround)
+	{
+		AddActorLocation(JumpVelocity * 0.3f);
+		bIsZeroGravity = true;
+		return;
+	}
 
-	AddActorLocation(JumpPower * 0.025f);
 
 	if (true == bIsGround)
 	{
@@ -548,7 +557,7 @@ void APlayer::LegendarySpear(float _DeltaTime)
 	}
 	if (true == PlayerRenderer->IsCurAnimationEnd() && false == bIsGround)
 	{
-		GravityForce = FVector::DOWN * 4.0f;
+		GravityForce = FVector::DOWN * 6.0f;
 		FSM.ChangeState(ECharacterState::Air);
 		return;
 	}
