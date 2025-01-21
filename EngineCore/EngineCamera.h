@@ -5,12 +5,6 @@
 #include "SceneComponent.h"
 #include "EngineEnums.h"
 
-// MinimapCamera;
-// PlayerCamera
-// PlayCamera
-// UICamera
-
-// 설명 :
 class UEngineCamera : public USceneComponent
 {
 	friend class ULevel;
@@ -64,7 +58,7 @@ protected:
 
 private:
 	float Near = 1.0f;
-	float Far = 13000.0f;
+	float Far = 15000.0f;
 
 	float FOV = 60.0f;
 
@@ -76,11 +70,12 @@ private:
 
 	FVector ProjectionScale = { 0.0f, 0.0f };
 
-	// 내가 바라보는 랜더러의 그룹은 카메라가 가진다.
 	std::map<int, std::list<std::shared_ptr<class URenderer>>> Renderers;
 	std::map<int, bool> RendererZSort;
 
 	std::shared_ptr<class UEngineRenderTarget> CameraTarget;
+
+
 
 	void ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer);
 };

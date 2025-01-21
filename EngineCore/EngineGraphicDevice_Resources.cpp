@@ -8,6 +8,7 @@
 #include "EngineShader.h"
 #include "EngineMaterial.h"
 #include "EngineTexture.h"
+#include "EngineFont.h"
 #include "EngineDepthStencilState.h"
 
 void UEngineGraphicDevice::DefaultResourcesInit()
@@ -19,6 +20,8 @@ void UEngineGraphicDevice::DefaultResourcesInit()
 	RasterizerStateInit();
 	ShaderInit();
 	MaterialInit();
+
+	UEngineFont::Load("궁서", "궁서");
 }
 
 void UEngineGraphicDevice::DepthStencilInit()
@@ -29,6 +32,7 @@ void UEngineGraphicDevice::DepthStencilInit()
 		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		Desc.DepthFunc = D3D11_COMPARISON_LESS;
 		Desc.StencilEnable = false;
+		// Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
 
 		UEngineDepthStencilState::Create("BaseDepth", Desc);
 	}
@@ -37,7 +41,6 @@ void UEngineGraphicDevice::DepthStencilInit()
 		D3D11_DEPTH_STENCIL_DESC Desc = { 0 };
 		Desc.DepthEnable = false;
 		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-		// 깊이값이 더 작으면 통과시켜
 		Desc.DepthFunc = D3D11_COMPARISON_LESS;
 		Desc.StencilEnable = false;
 		// Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
@@ -52,6 +55,7 @@ void UEngineGraphicDevice::DepthStencilInit()
 		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		Desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
 		Desc.StencilEnable = false;
+		// Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
 
 		UEngineDepthStencilState::Create("CollisionDebugDepth", Desc);
 	}
@@ -62,6 +66,7 @@ void UEngineGraphicDevice::DepthStencilInit()
 		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		Desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
 		Desc.StencilEnable = false;
+		// Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
 
 		UEngineDepthStencilState::Create("TargetMerge", Desc);
 	}
@@ -72,15 +77,14 @@ void UEngineGraphicDevice::TextureInit()
 {
 
 	D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
-	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // 0~1사이만 유효
-	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // y
-	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP; // z // 3중 
+	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; 
+	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; 
+	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP;
 
 	SampInfo.BorderColor[0] = 0.0f;
 	SampInfo.BorderColor[1] = 0.0f;
 	SampInfo.BorderColor[2] = 0.0f;
 	SampInfo.BorderColor[3] = 0.0f;
-
 
 	UEngineSampler::Create("WRAPSampler", SampInfo);
 
@@ -118,7 +122,8 @@ void UEngineGraphicDevice::ShaderInit()
 
 void UEngineGraphicDevice::MeshInit()
 {
-	int a = 0;
+
+
 
 	{
 		std::vector<FEngineVertex> Vertexs;
@@ -164,14 +169,10 @@ void UEngineGraphicDevice::MeshInit()
 
 void UEngineGraphicDevice::BlendInit()
 {
-
-
 	D3D11_BLEND_DESC Desc = { 0 };
 
-	
 	Desc.AlphaToCoverageEnable = false;
-
-
+	
 	Desc.IndependentBlendEnable = true;
 	Desc.RenderTarget[0].BlendEnable = true;
 	Desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
@@ -183,8 +184,6 @@ void UEngineGraphicDevice::BlendInit()
 	Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_MAX;
 	Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
 	Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
-
-
 
 	UEngineBlend::Create("AlphaBlend", Desc);
 }
@@ -223,6 +222,7 @@ void UEngineGraphicDevice::MaterialInit()
 		Mat->SetDepthStencilState("UIDepth");
 	}
 
+
 	{
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("CollisionDebugMaterial");
 		Mat->SetVertexShader("EngineDebugCollisionShader.fx");
@@ -231,10 +231,25 @@ void UEngineGraphicDevice::MaterialInit()
 		Mat->SetRasterizerState("CollisionDebugRas");
 	}
 
+	/*{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("TileMap");
+		Mat->SetVertexShader("EngineTileMapShader.fx");
+		Mat->SetPixelShader("EngineTileMapShader.fx");
+	}
+
+	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("TileMapInst");
+		Mat->SetVertexShader("EngineTileMapInstShader.fx");
+		Mat->SetPixelShader("EngineTileMapInstShader.fx");
+	}*/
+
 	{
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("TargetMerge");
 		Mat->SetVertexShader("EngineTargetMergeShader.fx");
 		Mat->SetPixelShader("EngineTargetMergeShader.fx");
 		Mat->SetDepthStencilState("TargetMerge");
 	}
+
+
+
 }

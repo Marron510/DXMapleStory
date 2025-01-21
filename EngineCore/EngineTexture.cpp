@@ -63,7 +63,6 @@ void UEngineTexture::ResLoad()
 
 	if (UpperExt == ".DDS")
 	{
-		// LoadFromDDSFile 함수는 쓰레드에 safe 할까?
 		if (S_OK != DirectX::LoadFromDDSFile(wLoadPath.c_str(), DirectX::DDS_FLAGS_NONE, &Metadata, ImageData))
 		{
 			MSGASSERT("DDS 파일 로드에 실패했습니다.");
@@ -87,7 +86,6 @@ void UEngineTexture::ResLoad()
 		}
 	}
 
-	// UEngineCore::GetDevice().GetDevice() 이녀석도 데이터 영역입니다.
 
 	if (S_OK != DirectX::CreateShaderResourceView(
 		UEngineCore::GetDevice().GetDevice(),
