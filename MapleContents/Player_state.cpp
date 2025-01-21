@@ -197,12 +197,19 @@ void APlayer::Walk(float _DeltaTime)
 		return;
 	}
 		
-	// 3. 이동이 멈출 때 Idle 상태로 전환
+
+	// 3. 걸으면서 스킬 사용
+	// Idle 레전더리 스피어
+	if (true == UEngineInput::IsDown('G')) { GravityForce = FVector::DOWN * 4.0f; FSM.ChangeState(ECharacterState::LegendarySpear); }
+	
+	// 4. 이동이 멈출 때 Idle 상태로 전환
 	if (UEngineInput::IsUp(VK_LEFT) && true == MoveCollision->IsColliding() || UEngineInput::IsUp(VK_RIGHT) && true == MoveCollision->IsColliding())
 	{
 		FSM.ChangeState(ECharacterState::Idle);
 		return;
 	}
+
+
 }
 
 void APlayer::IdleJump(float _DeltaTime)
@@ -246,7 +253,7 @@ void APlayer::IdleJump(float _DeltaTime)
 	if (true == UEngineInput::IsDown('D')) { FSM.ChangeState(ECharacterState::LeafTornado); }
 	
 	// 점프 레전더리 스피어
-	if (true == UEngineInput::IsDown('G')) { FSM.ChangeState(ECharacterState::LegendarySpear); }
+	if (true == UEngineInput::IsDown('G')) { FSM.ChangeState(ECharacterState::Air); }
 
 	// 점프 롤링 문썰트
 	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
@@ -298,7 +305,7 @@ void APlayer::WalkJump(float _DeltaTime)
 	if (true == UEngineInput::IsDown('D')) { FSM.ChangeState(ECharacterState::LeafTornado); }
 	
 	// 걸으면서 점프 후 레전더리 스피어
-	if (true == UEngineInput::IsDown('G')) { FSM.ChangeState(ECharacterState::LegendarySpear); }
+	if (true == UEngineInput::IsDown('G')) { FSM.ChangeState(ECharacterState::Air); }
 
 	// 걸으면서 점프 후 리프 롤링 문썰트
 	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
@@ -399,8 +406,8 @@ void APlayer::UpJump(float _DeltaTime)
 
 	// 윗 점프 리프 토네이도
 	if (true == UEngineInput::IsDown('D')) { GravityForce = FVector::DOWN * 6.0f; FSM.ChangeState(ECharacterState::LeafTornado); }
-	if (true == UEngineInput::IsDown('E')) {FSM.ChangeState(ECharacterState::Air); }
-	if (true == UEngineInput::IsDown('G')) { GravityForce = FVector::DOWN * 4.0f; FSM.ChangeState(ECharacterState::LegendarySpear); }
+	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
+	if (true == UEngineInput::IsDown('G')) { FSM.ChangeState(ECharacterState::Air); }
 	// 사용 가능한 스킬(이동 중 멈춤)  -> 리프 토네이도(완), 롤링 문썰트(완), G 키
 	// 사용 가능한 스킬(이동 중 안멈춤)  -> 유니콘, 엔릴, 스듀
 }
@@ -454,7 +461,7 @@ void APlayer::WalkUpJump(float _DeltaTime)
 	// 사용 가능한 스킬(이동 중 멈춤)  -> 리프 토네이도(완), 롤링 문썰트(완), G 키
 	if (true == UEngineInput::IsDown('D')) { GravityForce = FVector::DOWN * 6.0f; FSM.ChangeState(ECharacterState::LeafTornado); }
 	if (true == UEngineInput::IsDown('E')) { FSM.ChangeState(ECharacterState::Air); }
-	if (true == UEngineInput::IsDown('G')) { GravityForce = FVector::DOWN * 4.0f; FSM.ChangeState(ECharacterState::LegendarySpear); }
+	if (true == UEngineInput::IsDown('G')) { FSM.ChangeState(ECharacterState::Air); }
 	// 사용 가능한 스킬(이동 중 안멈춤)  -> 유니콘, 엔릴, 스듀
 
 
@@ -647,7 +654,8 @@ void APlayer::AirUseSkill(float _DeltaTime)
 	if (UEngineInput::IsPress('R')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Unicorn"); }
 
 	// 레전더리 스피어
-	if (UEngineInput::IsPress('G')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("LegendarySpear"); }
+	if (UEngineInput::IsPress('G')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("LegendarySpear"); bIsZeroGravity = true;
+	}
 
 	// 하이킥 데몰리션
 	{
