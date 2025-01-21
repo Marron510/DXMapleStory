@@ -33,13 +33,13 @@ ALegendarySpear::ALegendarySpear()
 	LegendarySpearFront->SetRelativeLocation(FVector{ -500.0f, -260.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
 	LegendarySpearMid->SetRelativeLocation(FVector{ 0.0f, -250.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) - 20.0f });
 
-
+	
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("PlayerSKill");
 
-	Collision->SetScale3D({ 640.0f, 340.0f });
-	Collision->SetRelativeLocation(FVector{ -330.0f, 120.0f, static_cast<float>(EMapleZEnum::Player) });
+	Collision->SetScale3D({ 800.0f, 500.0f });
+	Collision->SetRelativeLocation(FVector{ -460.0f, 50.0f, static_cast<float>(EMapleZEnum::Player) });
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
 		});
