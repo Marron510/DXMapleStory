@@ -21,6 +21,10 @@ public:
 protected:
 
 private:
+	FVector StatusLocation = FVector(0.0f, -342.0f);
+	FVector StatusBackLocation = FVector(0.0f, -352.0f);
+	FVector ExpBarLocation = FVector(0.0f, -379.0f);
+
 
 };
 
