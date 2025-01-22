@@ -21,7 +21,8 @@ public:
 	void Idle(float _DeltaTime);
 	void Walk(float _DeltaTime);
 	void Rush(float _DeltaTime);
-	void ASting(float _DeltaTime);
+	void Sting(float _DeltaTime);
+	void SwordAura(float _DeltaTime);
 	
 	void Die(float _DeltaTime);
 
@@ -70,9 +71,18 @@ private:
 
 	void PlayerLocationCheck(float _DeltaTime);
 
+	// 세렌 스킬 횟수
+	int StingCount = 0; // 최대 2회
+
+	// 세렌 스킬 데미지
+	float StingDamage = 10.0f;
+	float RushDamage = 10.0f;
+	float AuraDamage = 30.0f;
+
+
 	// 쿨타임
 	float SkillCoolTime = 0.0f;
-	float StimgCoolTime = 3.0f;
-	float RushCoolTime = 5.0f;
+	float StimgCoolTime = 1.5f;
+	float RushCoolTime = 3.0f;
 };
 

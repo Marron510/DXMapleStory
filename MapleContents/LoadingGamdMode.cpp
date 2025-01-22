@@ -52,6 +52,7 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 			// 플레이어
 			UEngineSprite::CreateSpriteToMeta("Idle.png", ".sdata");
 			UEngineSprite::CreateSpriteToMeta("Walk.png", ".sdata");
+			UEngineSprite::CreateSpriteToMeta("Hit.png", ".sdata");
 			UEngineSprite::CreateSpriteToMeta("LeafTornado.png", ".sdata");
 			UEngineSprite::CreateSpriteToMeta("Rolling.png", ".sdata");
 			UEngineSprite::CreateSpriteToMeta("StrikeDualShot.png", ".sdata");
@@ -673,7 +674,7 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 				}
 				Dir.Append("Image");
 				Dir.Append("Phase1");
-				Dir.Append("Phase1_Skill/Phase1Skill1_Ball");
+				Dir.Append("Phase1_Skill/Phase1_SwordAura_Ball");
 
 				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 			}

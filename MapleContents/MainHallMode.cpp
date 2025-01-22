@@ -58,6 +58,7 @@ AMainHallMode::AMainHallMode()
 	// 콜리전 링크
 	GetWorld()->LinkCollisionProfile("PlayerSKill", "Monster");
 	GetWorld()->LinkCollisionProfile("MonsterSkill", "Player");
+	GetWorld()->LinkCollisionProfile("Player", "MonsterSkill");
 	GetWorld()->LinkCollisionProfile("Check", "Player");
 
 	GetWorld()->LinkCollisionProfile("MoveDot", "Ground");

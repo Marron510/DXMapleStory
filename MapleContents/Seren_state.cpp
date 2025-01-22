@@ -14,6 +14,7 @@
 #include "EventCharacter.h"
 #include "MapleEnum.h"
 #include "Player.h"
+#include "Aura.h"
 
 void ASeren::StateInit()
 {
@@ -39,10 +40,17 @@ void ASeren::StateInit()
 			SerenRender->ChangeAnimation("Phase1_Rush");
 		}
 	);
-	SerenFSM.CreateState(ESerenState::Sting, std::bind(&ASeren::ASting, this, std::placeholders::_1),
+	SerenFSM.CreateState(ESerenState::Sting, std::bind(&ASeren::Sting, this, std::placeholders::_1),
 		[this]()
 		{
 			SerenRender->ChangeAnimation("Phase1_Sting");
+		}
+	);
+
+	SerenFSM.CreateState(ESerenState::SwordAura, std::bind(&ASeren::SwordAura, this, std::placeholders::_1),
+		[this]()
+		{
+			SerenRender->ChangeAnimation("Phase1_SwordAura");
 		}
 	);
 
@@ -91,17 +99,22 @@ void ASeren::Walk(float _DeltaTime)
 
 	CheckCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
 		{
-
-			
-
 			bIsInRange = true;
 
-			if( 0 >= SkillCoolTime)
+			if( 0 >= SkillCoolTime && 3 > StingCount)
 			{
 				this->StingCollision->SetActive(true);
+				
 				SerenFSM.ChangeState(ESerenState::Sting);
 				return;
 			}
+
+			if (0 >= SkillCoolTime && 3 >= StingCount)
+			{
+				SerenFSM.ChangeState(ESerenState::SwordAura);
+				return;
+			}
+
 
 		});
 
@@ -126,6 +139,8 @@ void ASeren::Walk(float _DeltaTime)
 
 
 	CurPlayerLocation = Player->GetActorLocation();
+
+
 	// 이동 로직
 	FVector SerenLocation = GetActorLocation();
 	DifferentLocation = CurPlayerLocation - SerenLocation;
@@ -141,9 +156,6 @@ void ASeren::Walk(float _DeltaTime)
 	}
 
 	AddActorLocation(FVector(DifferentLocation.X * _DeltaTime * 50.0f, 0.0f, 0.0f));
-
-
-
 
 }
 
@@ -173,7 +185,8 @@ void ASeren::Rush(float _DeltaTime)
 		{
 			if (true == _Other->IsColliding() && true == SerenRender->IsCurAnimationEnd())
 			{
-				GetGameInstance<MapleInstance>()->Status.Hp -= 5.0f;
+				// 러쉬 데미지
+				GetGameInstance<MapleInstance>()->Status.Hp -= RushDamage;
 				float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
 				bIsRush = true;
 			}
@@ -186,10 +199,8 @@ void ASeren::Rush(float _DeltaTime)
 }
 
 
-void ASeren::ASting(float _DeltaTime)
+void ASeren::Sting(float _DeltaTime)
 {
-	
-
 
 	if (true == SerenRender->IsCurAnimationEnd() && true == bIsSting)
 	{
@@ -197,6 +208,7 @@ void ASeren::ASting(float _DeltaTime)
 		StingCollision->SetActive(false);
 		bIsSting = false;
 		bIsIdle = true;
+		StingCount += 1;
 		SerenFSM.ChangeState(ESerenState::Idle);
 		return;
 	}
@@ -207,7 +219,8 @@ void ASeren::ASting(float _DeltaTime)
 		{
 			if (true == _Other->IsColliding() && true == SerenRender->IsCurAnimationEnd())
 			{
-				GetGameInstance<MapleInstance>()->Status.Hp -= 5.0f;
+				// 찌르기 데미지
+				GetGameInstance<MapleInstance>()->Status.Hp -= StingDamage;
 				float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
 				bIsSting = true;
 			}
@@ -219,6 +232,24 @@ void ASeren::ASting(float _DeltaTime)
 	}
 
 }
+
+
+void ASeren::SwordAura(float _DeltaTime)
+{
+
+	if (true == SerenRender->IsCurAnimationEnd())
+	{
+		std::shared_ptr<class AAura> Aura = GetWorld()->SpawnActor<AAura>();
+		FVector AuraLocation = GetActorLocation() + FVector(0.0f, -170.0f);
+		Aura->SetActorLocation(AuraLocation);
+		StingCount = 0;
+		SkillCoolTime = StimgCoolTime;
+		bIsIdle = true;
+		SerenFSM.ChangeState(ESerenState::Idle);
+	}
+
+}
+
 
 void ASeren::Die(float _DeltaTime)
 {

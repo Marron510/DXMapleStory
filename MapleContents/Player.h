@@ -83,6 +83,7 @@ private:
 	// 움직임
 	void Idle(float _DeltaTime);
 	void Prone(float _DeltaTime);
+	void Hit(float _DeltaTime);
 	void Walk(float _DeltaTime);
 	void IdleJump(float _DeltaTime);
 	void WalkJump(float _DeltaTime);
@@ -100,5 +101,10 @@ private:
 	void AirUseSkill(float _DeltaTime);
 
 	void Gravity(float _DeltaTime);
+
+
+	// 데미지 체크
+
+	bool BIsdamage = false;
 };
 

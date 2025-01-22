@@ -25,10 +25,18 @@ void APlayer::StateInit()
 		}
 	);
 
-	FSM.CreateState(ECharacterState::Prone, std::bind(&APlayer::Prone, this, std::placeholders::_1),
+	
+FSM.CreateState(ECharacterState::Prone, std::bind(&APlayer::Prone, this, std::placeholders::_1),
 		[this]()
 		{
 			PlayerRenderer->ChangeAnimation("Prone");
+		}
+	);
+	
+	FSM.CreateState(ECharacterState::Hit, std::bind(&APlayer::Hit, this, std::placeholders::_1),
+		[this]()
+		{
+			PlayerRenderer->ChangeAnimation("Hit");
 		}
 	);
 
@@ -104,6 +112,11 @@ void APlayer::Idle(float _DeltaTime)
 	Gravity(_DeltaTime);
 	IdleUseSkill(_DeltaTime);
 	
+	if (true == BIsdamage)
+	{
+		FSM.ChangeState(ECharacterState::Hit);
+	}
+
 
 	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Walk); return; }
 	if (UEngineInput::IsPress(VK_RIGHT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); return; }
@@ -161,6 +174,28 @@ void APlayer::Prone(float _DeltaTime)
 	//if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::IdleJump); }
 }
 
+
+void APlayer::Hit(float _DeltaTime)
+{
+	Gravity(_DeltaTime);
+	IdleUseSkill(_DeltaTime);
+	
+	if (true == BIsdamage)
+	{
+		PlayerCollision->SetActive(false);
+	}
+
+	/*if (UEngineInput::IsUp(VK_DOWN) && true == MoveCollision->IsColliding())
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+		return;
+	}*/
+
+
+
+	// 엎드려서 점프(아래점프)
+	//if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::IdleJump); }
+}
 
 
 

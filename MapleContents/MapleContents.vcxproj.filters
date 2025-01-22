@@ -131,6 +131,9 @@
     <ClCompile Include="RoyalKnight.cpp">
       <Filter>SKill\02_PlayerSKill\002_BuffSkill</Filter>
     </ClCompile>
+    <ClCompile Include="Aura.cpp">
+      <Filter>SKill\03_SerenSkill\Phase1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -262,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="RoyalKnight.h">
       <Filter>SKill\02_PlayerSKill\002_BuffSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="Aura.h">
+      <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

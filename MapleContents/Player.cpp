@@ -8,7 +8,9 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
+
 #include "MapleEnum.h"
+#include "MapleInstance.h"
 
 APlayer::APlayer()
 {
@@ -31,23 +33,7 @@ APlayer::APlayer()
 	
 
 	// 콜리전
-	{
-		PlayerCollision = CreateDefaultSubObject<UCollision>();
-		PlayerCollision->SetupAttachment(RootComponent);
-		PlayerCollision->SetCollisionProfileName("Player");
-
-		PlayerCollision->SetScale3D({ 60.0f, 80.0f });
-		PlayerCollision->SetRelativeLocation(FVector{ 4.0f, 40.0f, static_cast<float>(EMapleZEnum::Player) });
-		PlayerCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
-			{
-			});
-		PlayerCollision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
-			{
-			});
-		PlayerCollision->SetCollisionEnd([this](UCollision* _This, UCollision* _Other)
-			{
-			});
-	}
+	
 
 	{
 		MoveCollision = CreateDefaultSubObject<UCollision>();
@@ -73,6 +59,7 @@ APlayer::APlayer()
 
 	//상태
 	PlayerRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
+	PlayerRenderer->CreateAnimation("Hit", "Hit.png", 0, 2, 0.5f);
 	PlayerRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);
 	PlayerRenderer->CreateAnimation("Prone", "Prone.png", 0, 0, 0.046f);
 	PlayerRenderer->CreateAnimation("ProneAttack", "Prone.png", 0, 1, 0.1f);
@@ -111,6 +98,16 @@ void APlayer::BeginPlay()
 	
 	FSM.ChangeState(ECharacterState::Idle);
 
+	PlayerCollision = CreateDefaultSubObject<UCollision>();
+	PlayerCollision->SetupAttachment(RootComponent);
+	PlayerCollision->SetCollisionProfileName("Player");
+
+	PlayerCollision->SetScale3D({ 60.0f, 80.0f });
+	PlayerCollision->SetRelativeLocation(FVector{ 4.0f, 40.0f, static_cast<float>(EMapleZEnum::Player) });
+	PlayerCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
+		{
+			BIsdamage = true;
+		});
 }
 
 
@@ -121,6 +118,8 @@ void APlayer::Tick(float _DeltaTime)
 	FSM.Update(_DeltaTime);
 
 	
+	
+
 
 	
 }
@@ -144,3 +143,5 @@ void APlayer::Gravity(float _DeltaTime)
 
 	AddActorLocation(GravityForce);
 }
+
+

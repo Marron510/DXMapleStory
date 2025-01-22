@@ -4,6 +4,7 @@ enum class ECharacterState
 {
 	Idle,
 	Prone,
+	Hit,
 	Walk,
 	IdleJump,
 	WalkJump,
@@ -23,6 +24,7 @@ enum class ESerenState
 	Walk,
 	Rush,
 	Sting,
+	SwordAura,
 	Die,
 	None
 };
