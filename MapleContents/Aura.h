@@ -25,7 +25,7 @@ private:
 	std::shared_ptr<class USpriteRenderer> Aura;
 	std::shared_ptr<class UCollision> Collision;
 	
-
+	class APlayer* Player = nullptr;
 	FVector DifferentLocation = FVector::ZERO;
 	
 	// 플레이어 위치체크 했는지?

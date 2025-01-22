@@ -32,11 +32,7 @@ AAura::AAura()
 
 	Collision->SetScale3D({ 400.0f, 120.0f });
 	Collision->SetRelativeLocation(FVector{ -56.0f, 260.0f , static_cast<float>(EMapleZEnum::Monster_Skill) });
-	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
-		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= AuraDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
-		});
+	
 }
 
 AAura::~AAura()
@@ -48,7 +44,14 @@ void AAura::BeginPlay()
 {
 	AActor::BeginPlay();
 
+	Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
 
+	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
+		{
+			GetGameInstance<MapleInstance>()->Status.Hp -= AuraDamage;
+			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+			Player->bIsdamageOn();
+		});
 }
 
 void AAura::Tick(float _DeltaTime)
@@ -78,7 +81,6 @@ void AAura::Move(float _DeltaTime)
 
 	if (false == bLocationCheck)
 	{
-		APlayer* Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
 		FVector CurPlayerLocation = Player->GetActorLocation();
 		FVector SerenLocation = GetActorLocation();
 		DifferentLocation = CurPlayerLocation - SerenLocation;

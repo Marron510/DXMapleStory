@@ -188,6 +188,7 @@ void ASeren::Rush(float _DeltaTime)
 				// 러쉬 데미지
 				GetGameInstance<MapleInstance>()->Status.Hp -= RushDamage;
 				float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+				Player->bIsdamageOn();
 				bIsRush = true;
 			}
 		});
@@ -222,6 +223,7 @@ void ASeren::Sting(float _DeltaTime)
 				// 찌르기 데미지
 				GetGameInstance<MapleInstance>()->Status.Hp -= StingDamage;
 				float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+				Player->bIsdamageOn();
 				bIsSting = true;
 			}
 		});

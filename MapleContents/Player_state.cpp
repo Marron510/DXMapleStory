@@ -33,12 +33,12 @@ FSM.CreateState(ECharacterState::Prone, std::bind(&APlayer::Prone, this, std::pl
 		}
 	);
 	
-	FSM.CreateState(ECharacterState::Hit, std::bind(&APlayer::Hit, this, std::placeholders::_1),
-		[this]()
-		{
-			PlayerRenderer->ChangeAnimation("Hit");
-		}
-	);
+	//FSM.CreateState(ECharacterState::Hit, std::bind(&APlayer::Hit, this, std::placeholders::_1),
+	//	[this]()
+	//	{
+	//		PlayerRenderer->ChangeAnimation("Hit");
+	//	}
+	//);
 
 	FSM.CreateState(ECharacterState::Walk, std::bind(&APlayer::Walk, this, std::placeholders::_1),
 		[this]()
@@ -111,11 +111,6 @@ void APlayer::Idle(float _DeltaTime)
 	// 제자리에서 이동전환
 	Gravity(_DeltaTime);
 	IdleUseSkill(_DeltaTime);
-	
-	if (true == BIsdamage)
-	{
-		FSM.ChangeState(ECharacterState::Hit);
-	}
 
 
 	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Walk); return; }
@@ -175,27 +170,6 @@ void APlayer::Prone(float _DeltaTime)
 }
 
 
-void APlayer::Hit(float _DeltaTime)
-{
-	Gravity(_DeltaTime);
-	IdleUseSkill(_DeltaTime);
-	
-	if (true == BIsdamage)
-	{
-		PlayerCollision->SetActive(false);
-	}
-
-	/*if (UEngineInput::IsUp(VK_DOWN) && true == MoveCollision->IsColliding())
-	{
-		FSM.ChangeState(ECharacterState::Idle);
-		return;
-	}*/
-
-
-
-	// 엎드려서 점프(아래점프)
-	//if (UEngineInput::IsDown('C')) { FSM.ChangeState(ECharacterState::IdleJump); }
-}
 
 
 

@@ -104,10 +104,6 @@ void APlayer::BeginPlay()
 
 	PlayerCollision->SetScale3D({ 60.0f, 80.0f });
 	PlayerCollision->SetRelativeLocation(FVector{ 4.0f, 40.0f, static_cast<float>(EMapleZEnum::Player) });
-	PlayerCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
-		{
-			BIsdamage = true;
-		});
 }
 
 
@@ -117,10 +113,19 @@ void APlayer::Tick(float _DeltaTime)
 	
 	FSM.Update(_DeltaTime);
 
-	
-	
+	CanDamageTime -= _DeltaTime;
 
+	if (true == bIsdamage)
+	{
+		PlayerCollision->SetActive(false);
+		CanDamageTime = invincibilityTime;
+		bIsdamage = false;
+	}
 
+	if (0.0f >= CanDamageTime)
+	{
+		PlayerCollision->SetActive(true);
+	}
 	
 }
 
