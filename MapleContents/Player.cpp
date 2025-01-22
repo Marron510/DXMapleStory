@@ -80,7 +80,7 @@ APlayer::APlayer()
 
 
 	// ½ºÅ³
-	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.08f);
+	PlayerRenderer->CreateAnimation("Tornado", "LeafTornado.png", 0, 8, 0.06f);
 	PlayerRenderer->CreateAnimation("Rolling", "Rolling.png", 0, 8, 0.07f);
 	PlayerRenderer->CreateAnimation("StrikeDualShot", "StrikeDualShot.png", 0, 6, 0.08f);
 	PlayerRenderer->CreateAnimation("Charge", "Charge.png", 0, 8, 0.08f);
@@ -134,7 +134,7 @@ void APlayer::Gravity(float _DeltaTime)
 	}
 	if (false == MoveCollision->IsColliding())
 	{
-		GravityForce += FVector::DOWN * 16.0f * _DeltaTime;
+		GravityForce += FVector::DOWN * 24.0f * _DeltaTime;
 	}
 	else if (true == MoveCollision->IsColliding())
 	{

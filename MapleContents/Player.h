@@ -55,7 +55,7 @@ private:
 	float SlowJumpMove = 0.2f;
 	float UpJumpPower = 0.04f;
 	FVector GravityForce = FVector::ZERO;
-	FVector JumpPower = FVector(0.0f, 500.0f);
+	FVector JumpPower = FVector(0.0f, 600.0f);
 	FVector DoubleJumpPower = FVector(0.0f, 800.0f);
 	
 	FVector CurrentVelocity = FVector::ZERO; // 현재 이동 속도
