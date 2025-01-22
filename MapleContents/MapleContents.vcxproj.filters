@@ -134,6 +134,9 @@
     <ClCompile Include="Aura.cpp">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClCompile>
+    <ClCompile Include="Small8Laser.cpp">
+      <Filter>SKill\03_SerenSkill\Phase1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -267,6 +270,9 @@
       <Filter>SKill\02_PlayerSKill\002_BuffSkill</Filter>
     </ClInclude>
     <ClInclude Include="Aura.h">
+      <Filter>SKill\03_SerenSkill\Phase1</Filter>
+    </ClInclude>
+    <ClInclude Include="Small8Laser.h">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClInclude>
   </ItemGroup>
