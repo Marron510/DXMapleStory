@@ -47,21 +47,32 @@ private:
 	std::shared_ptr<class UCollision> OutRangeCollision;
 
 	std::shared_ptr<class UCollision> StingCollision;
+	std::shared_ptr<class UCollision> RushCollision;
 	
 
 	UFSMStateManager SerenFSM;
 
+	// 근거리 원거리 체크
 
+	bool bIsInRange = false;
+
+	// 상태 체크
 	bool bIsIdle= true;
 	bool bIsSting = false;
+	bool bIsRush = false;
 	bool bIsDead = false;
+
+	// 플레이어 위치 - 세렌 위치
+	FVector DifferentLocation = FVector::ZERO;
 
 	void SerenDeathCheck();
 
 
 	void PlayerLocationCheck(float _DeltaTime);
 
+	// 쿨타임
 	float SkillCoolTime = 0.0f;
 	float StimgCoolTime = 3.0f;
+	float RushCoolTime = 5.0f;
 };
 

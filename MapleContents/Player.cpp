@@ -70,6 +70,7 @@ APlayer::APlayer()
 				bIsGround = false;
 			});
 	}
+
 	//ป๓ลย
 	PlayerRenderer->CreateAnimation("Idle", "Idle.png", 0, 3, 0.7f);
 	PlayerRenderer->CreateAnimation("Walk", "Walk.png", 0, 3, 0.08f);

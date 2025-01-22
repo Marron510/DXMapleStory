@@ -24,6 +24,13 @@ ASeren::ASeren()
 
 	SerenRender->SetupAttachment(RootComponent);
 
+	// 1페 애니메이션 
+	{
+		SerenRender->CreateAnimation("Phase1_Stand", "Phase1_Stand", 0, 15, 0.09f);
+		SerenRender->CreateAnimation("Phase1_Sting", "Phase1_Sting", 0, 20, 0.04f, false);
+		SerenRender->CreateAnimation("Phase1_Rush", "Phase1_Rush", 0, 34, 0.05f, false);
+	}
+
 	// 정오 스킬 애니메이션 
 	{
 		SerenRender->CreateAnimation("NoonSerenStand", "NoonSerenStand", 0, 14, 0.09f);
@@ -79,6 +86,7 @@ ASeren::ASeren()
 		OutRangeCollision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
 
 	}
+
 	{
 		StingCollision = CreateDefaultSubObject<UCollision>();
 		StingCollision->SetupAttachment(RootComponent);
@@ -88,7 +96,16 @@ ASeren::ASeren()
 		StingCollision->SetRelativeLocation(FVector{ -80.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
 		StingCollision->SetActive(false);
 	}
-	
+
+	{
+		RushCollision = CreateDefaultSubObject<UCollision>();
+		RushCollision->SetupAttachment(RootComponent);
+		RushCollision->SetCollisionProfileName("MonsterSkill");
+		
+		RushCollision->SetScale3D({ 700.0f, 30.0f });
+		RushCollision->SetRelativeLocation(FVector{ -300.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
+		RushCollision->SetActive(false);
+	}
 
 }
 

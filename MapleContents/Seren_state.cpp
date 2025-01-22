@@ -22,27 +22,27 @@ void ASeren::StateInit()
 	SerenFSM.CreateState(ESerenState::Idle, std::bind(&ASeren::Idle, this, std::placeholders::_1),
 		[this]()
 		{
-			SerenRender->ChangeAnimation("NoonSerenStand");
+			SerenRender->ChangeAnimation("Phase1_Stand");
 		}
 	);
 
 	SerenFSM.CreateState(ESerenState::Walk, std::bind(&ASeren::Walk, this, std::placeholders::_1),
 		[this]()
 		{
-			SerenRender->ChangeAnimation("NoonSerenStand");
+			SerenRender->ChangeAnimation("Phase1_Stand");
 		}
 	);
 
 	SerenFSM.CreateState(ESerenState::Rush, std::bind(&ASeren::Rush, this, std::placeholders::_1),
 		[this]()
 		{
-			SerenRender->ChangeAnimation("NoonSerenRush");
+			SerenRender->ChangeAnimation("Phase1_Rush");
 		}
 	);
 	SerenFSM.CreateState(ESerenState::Sting, std::bind(&ASeren::ASting, this, std::placeholders::_1),
 		[this]()
 		{
-			SerenRender->ChangeAnimation("NoonSerenSting");
+			SerenRender->ChangeAnimation("Phase1_Sting");
 		}
 	);
 
@@ -85,13 +85,16 @@ void ASeren::Idle(float _DeltaTime)
 
 void ASeren::Walk(float _DeltaTime)
 {
-	
+	SkillCoolTime -= _DeltaTime;
 
 	// 스킬 사용 가능 여부 확인(근거리, 원거리)
+
 	CheckCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
 		{
 
-			SkillCoolTime -= _DeltaTime;
+			
+
+			bIsInRange = true;
 
 			if( 0 >= SkillCoolTime)
 			{
@@ -102,11 +105,30 @@ void ASeren::Walk(float _DeltaTime)
 
 		});
 
+	// 근거리 -> 원거리
+	CheckCollision->SetCollisionEnd([this, _DeltaTime](UCollision* _This, UCollision* _Other)
+		{
+			bIsInRange = false;
+		});
+
+
+	// 러쉬 스킬
+	OutRangeCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
+		{
+				// 원거리 일 때만 사용 가능
+				if (0 >= SkillCoolTime && false == bIsInRange)
+				{
+					this->RushCollision->SetActive(true);
+					SerenFSM.ChangeState(ESerenState::Rush);
+					return;
+				}
+		});
+
 
 	CurPlayerLocation = Player->GetActorLocation();
 	// 이동 로직
 	FVector SerenLocation = GetActorLocation();
-	FVector DifferentLocation = CurPlayerLocation - SerenLocation;
+	DifferentLocation = CurPlayerLocation - SerenLocation;
 	DifferentLocation.Normalize();
 
 	if (0 < DifferentLocation.X)
@@ -127,7 +149,40 @@ void ASeren::Walk(float _DeltaTime)
 
 void ASeren::Rush(float _DeltaTime)
 {
+	if (true == SerenRender->IsCurAnimationEnd() && true == bIsRush)
+	{
+		SkillCoolTime = StimgCoolTime;
+		RushCollision->SetActive(false);
+		bIsRush = false;
+		bIsIdle = true;
+		if (0.0f > DifferentLocation.X)
+		{
+			AddActorLocation(FVector{ -690.0f, 0.0f });
+			SerenFSM.ChangeState(ESerenState::Idle);
+			return;
+		}
+		if (0.0f < DifferentLocation.X)
+		{
+			AddActorLocation(FVector{ 690.0f, 0.0f });
+			SerenFSM.ChangeState(ESerenState::Idle);
+			return;
+		}
+	}
 
+	RushCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
+		{
+			if (true == _Other->IsColliding() && true == SerenRender->IsCurAnimationEnd())
+			{
+				GetGameInstance<MapleInstance>()->Status.Hp -= 5.0f;
+				float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+				bIsRush = true;
+			}
+		});
+
+	if (true == SerenRender->IsCurAnimationEnd())
+	{
+		bIsRush = true;
+	}
 }
 
 
