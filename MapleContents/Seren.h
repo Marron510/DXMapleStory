@@ -52,9 +52,9 @@ private:
 	UFSMStateManager SerenFSM;
 
 
-
+	bool bIsIdle= true;
 	bool bIsSting = false;
-
+	bool bIsDead = false;
 
 	void SerenDeathCheck();
 

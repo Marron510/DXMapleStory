@@ -123,11 +123,16 @@ void ASeren::Tick(float _DeltaTime)
 
 void ASeren::SerenDeathCheck()
 {
+	if (true == bIsDead)
+	{
+		return;
+	}
 
-	if (0 >= Collision->GetHp())
+	if (0 >= Collision->GetHp() && false == bIsDead)
 	{
 		Collision->SetActive(false);
 		SerenFSM.ChangeState(ESerenState::Die);
+		bIsDead = true;
 	}
 
 }

@@ -60,10 +60,14 @@ void ASeren::Idle(float _DeltaTime)
 {
 	// 0. 세렌 플레이어 향해서 이동
 
-	OutRangeCollision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
+	OutRangeCollision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
+			if (true == bIsIdle)
+			{
 			SerenFSM.ChangeState(ESerenState::Walk);
+			bIsIdle = false;
 			return;
+			}
 		});
 
 	// 1. 근접 콜리전 충돌 시 
@@ -99,7 +103,7 @@ void ASeren::Walk(float _DeltaTime)
 		});
 
 
-	
+	CurPlayerLocation = Player->GetActorLocation();
 	// 이동 로직
 	FVector SerenLocation = GetActorLocation();
 	FVector DifferentLocation = CurPlayerLocation - SerenLocation;
@@ -137,6 +141,7 @@ void ASeren::ASting(float _DeltaTime)
 		SkillCoolTime = StimgCoolTime;
 		StingCollision->SetActive(false);
 		bIsSting = false;
+		bIsIdle = true;
 		SerenFSM.ChangeState(ESerenState::Idle);
 		return;
 	}
