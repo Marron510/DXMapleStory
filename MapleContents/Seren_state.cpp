@@ -80,7 +80,7 @@ void ASeren::Idle(float _DeltaTime)
 
 
 
-
+	// 99. Á×À½ Ã¼Å©
 }
 
 void ASeren::Walk(float _DeltaTime)
@@ -167,5 +167,7 @@ void ASeren::ASting(float _DeltaTime)
 
 void ASeren::Die(float _DeltaTime)
 {
-
+	Collision->SetActive(false);
+	CheckCollision->SetActive(false);
+	OutRangeCollision->SetActive(false);
 }
