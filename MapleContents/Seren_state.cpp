@@ -15,6 +15,8 @@
 #include "MapleEnum.h"
 #include "Player.h"
 #include "Aura.h"
+#include "Small8Laser.h"
+
 
 void ASeren::StateInit()
 {
@@ -51,6 +53,13 @@ void ASeren::StateInit()
 		[this]()
 		{
 			SerenRender->ChangeAnimation("Phase1_SwordAura");
+		}
+	);
+
+	SerenFSM.CreateState(ESerenState::SmallLaser, std::bind(&ASeren::SmallLaser, this, std::placeholders::_1),
+		[this]()
+		{
+			SerenRender->ChangeAnimation("Phase1_Laser");
 		}
 	);
 
@@ -106,6 +115,12 @@ void ASeren::Walk(float _DeltaTime)
 				this->StingCollision->SetActive(true);
 				
 				SerenFSM.ChangeState(ESerenState::Sting);
+				return;
+			}
+
+			if (0 >= SkillCoolTime && 3 >= StingCount && true == bIsSwordAura)
+			{
+				SerenFSM.ChangeState(ESerenState::SmallLaser);
 				return;
 			}
 
@@ -169,13 +184,13 @@ void ASeren::Rush(float _DeltaTime)
 		bIsIdle = true;
 		if (0.0f > DifferentLocation.X)
 		{
-			AddActorLocation(FVector{ -690.0f, 0.0f });
+			AddActorLocation(FVector{ -RushDistance, 0.0f });
 			SerenFSM.ChangeState(ESerenState::Idle);
 			return;
 		}
 		if (0.0f < DifferentLocation.X)
 		{
-			AddActorLocation(FVector{ 690.0f, 0.0f });
+			AddActorLocation(FVector{ RushDistance, 0.0f });
 			SerenFSM.ChangeState(ESerenState::Idle);
 			return;
 		}
@@ -238,19 +253,47 @@ void ASeren::Sting(float _DeltaTime)
 
 void ASeren::SwordAura(float _DeltaTime)
 {
-
 	if (true == SerenRender->IsCurAnimationEnd())
 	{
 		std::shared_ptr<class AAura> Aura = GetWorld()->SpawnActor<AAura>();
 		FVector AuraLocation = GetActorLocation() + FVector(0.0f, -170.0f);
 		Aura->SetActorLocation(AuraLocation);
-		StingCount = 0;
 		SkillCoolTime = StimgCoolTime;
+		bIsSwordAura = true;
 		bIsIdle = true;
 		SerenFSM.ChangeState(ESerenState::Idle);
 	}
+}
+
+
+void ASeren::SmallLaser(float _DeltaTime)
+{
+	if (true == SerenRender->IsCurAnimationEnd())
+	{
+		SkillCoolTime = StimgCoolTime;
+		StingCount = 0;
+		bIsIdle = true;
+		bIsSwordAura = false;
+		bIsSmalllaser = false;
+		SerenFSM.ChangeState(ESerenState::Idle);
+		return;
+	}
+
+	if (false == bIsSmalllaser)
+	{
+		Small8Laser = GetWorld()->SpawnActor<ASmall8Laser>();
+		Small8Laser->AttachToActor(this);
+		Small8Laser->SetActive(true);
+		bIsSmalllaser = true;
+	}
+
+	if (true == Small8Laser->GetLaser1()->IsCurAnimationEnd())
+	{
+		Small8Laser->SetActive(false);
+	}
 
 }
+
 
 
 void ASeren::Die(float _DeltaTime)

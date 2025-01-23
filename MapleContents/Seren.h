@@ -23,14 +23,18 @@ public:
 	void Rush(float _DeltaTime);
 	void Sting(float _DeltaTime);
 	void SwordAura(float _DeltaTime);
-	
+	void SmallLaser(float _DeltaTime);
+
 	void Die(float _DeltaTime);
 
 	std::shared_ptr<class USerenCollision> GetSerenCollision()
 	{
 		return Collision;
 	}
-
+	std::shared_ptr<class USpriteRenderer> GetSerenRender()
+	{
+		return SerenRender;
+	}
 
 protected:
 	void BeginPlay() override;
@@ -50,6 +54,7 @@ private:
 	std::shared_ptr<class UCollision> StingCollision;
 	std::shared_ptr<class UCollision> RushCollision;
 	
+	std::shared_ptr<class ASmall8Laser> Small8Laser;
 
 	UFSMStateManager SerenFSM;
 
@@ -61,6 +66,8 @@ private:
 	bool bIsIdle= true;
 	bool bIsSting = false;
 	bool bIsRush = false;
+	bool bIsSwordAura = false;
+	bool bIsSmalllaser= false;
 	bool bIsDead = false;
 
 	// 플레이어 위치 - 세렌 위치
@@ -74,6 +81,9 @@ private:
 	// 세렌 스킬 횟수
 	int StingCount = 0; // 최대 2회
 
+	// 러쉬 거리
+	float RushDistance = 645.0f;
+
 	// 세렌 스킬 데미지
 	float StingDamage = 10.0f;
 	float RushDamage = 10.0f;
@@ -82,7 +92,7 @@ private:
 
 	// 쿨타임
 	float SkillCoolTime = 0.0f;
-	float StimgCoolTime = 1.5f;
+	float StimgCoolTime = 1.0f;
 	float RushCoolTime = 3.0f;
 };
 

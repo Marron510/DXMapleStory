@@ -750,9 +750,34 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 			}
 
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Phase1");
+				Dir.Append("Phase1_Seren/Phase1_Laser");
+
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
 
 
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Phase1");
+				Dir.Append("Phase1_Skill/Phase1_8Laser");
 
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
 
 
 			

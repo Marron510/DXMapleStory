@@ -30,6 +30,7 @@ ASeren::ASeren()
 		SerenRender->CreateAnimation("Phase1_Sting", "Phase1_Sting", 0, 20, 0.04f, false);
 		SerenRender->CreateAnimation("Phase1_Rush", "Phase1_Rush", 0, 34, 0.05f, false);
 		SerenRender->CreateAnimation("Phase1_SwordAura", "Phase1_SwordAura", 0, 29, 0.05f, false);
+		SerenRender->CreateAnimation("Phase1_Laser", "Phase1_Laser", 0, 26, 0.1f, false);
 	}
 
 	// 정오 스킬 애니메이션 

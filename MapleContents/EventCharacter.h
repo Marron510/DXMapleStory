@@ -25,6 +25,7 @@ enum class ESerenState
 	Rush,
 	Sting,
 	SwordAura,
+	SmallLaser,
 	Die,
 	None
 };
