@@ -26,6 +26,11 @@ public:
 	void SmallLaser(float _DeltaTime);
 
 	void Die(float _DeltaTime);
+	
+	
+	// ¸ÊÆÐÅÏ
+	void DropStone(float _DeltaTime);
+
 
 	std::shared_ptr<class USerenCollision> GetSerenCollision()
 	{
@@ -74,10 +79,7 @@ private:
 	FVector DifferentLocation = FVector::ZERO;
 
 	void SerenDeathCheck();
-
-
-	void PlayerLocationCheck(float _DeltaTime);
-
+	
 	// ¼¼·» ½ºÅ³ È½¼ö
 	int StingCount = 0; // ÃÖ´ë 2È¸
 

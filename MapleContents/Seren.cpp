@@ -125,7 +125,7 @@ void ASeren::BeginPlay()
 	StateInit();
 	SerenFSM.ChangeState(ESerenState::Idle);
 	
-	//std::shared_ptr<class ASting> sting = GetWorld()->SpawnActor<class ASting>();
+	
 }
 
 void ASeren::Tick(float _DeltaTime)
@@ -133,10 +133,13 @@ void ASeren::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	
 	SerenFSM.Update(_DeltaTime);
-	
 
 	// 세렌 죽음 체크
 	SerenDeathCheck();
+
+	// 맵패턴
+
+
 }
 
 
@@ -157,8 +160,12 @@ void ASeren::SerenDeathCheck()
 }
 
 
-void ASeren::PlayerLocationCheck(float _DeltaTime)
+void ASeren::DropStone(float _DeltaTime)
 {
+	//스폰액터
+
+	// 스톤은 다섯개 바닥에 닿으면 애니메이션 바꾸고 
+	// 콜리전이 플레이어랑 닿으면 에너지 증가 <= 중요
+	// 위에서 랜덤 위치(x)에 다시 소환
 
 }
-
