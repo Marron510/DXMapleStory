@@ -62,7 +62,7 @@ ASeren::ASeren()
 		Collision->SetCollisionProfileName("Monster");
 
 		Collision->SetScale3D({ 80.0f, 140.0f });
-		Collision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
+		Collision->SetRelativeLocation(FVector{ -16.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
 		Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 			{
 
