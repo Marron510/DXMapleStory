@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
 #include <EngineBase/FSMStateManager.h>
+#include <EngineBase/EngineRandom.h>
 
 class ASeren : public AActor
 {
@@ -30,13 +31,16 @@ public:
 	
 	// 맵패턴
 	void DropStone(float _DeltaTime);
+	void FloorExplosionSetting(float _DeltaTime);
 	void FloorExplosion1(float _DeltaTime);
 	void FloorExplosion2(float _DeltaTime);
 	void FloorExplosion3(float _DeltaTime);
 	void FloorExplosion4(float _DeltaTime);
 	void FloorExplosion5(float _DeltaTime);
+	void FloorExplosion6(float _DeltaTime);
+	void FloorExplosion7(float _DeltaTime);
 	void FloorExplosionCheck(float _DeltaTime);
-
+	void FloorExplosionRandomInit();
 
 	std::shared_ptr<class USerenCollision> GetSerenCollision()
 	{
@@ -77,6 +81,8 @@ private:
 	std::shared_ptr<class AFloorSkill> FloorSkill3;
 	std::shared_ptr<class AFloorSkill> FloorSkill4;
 	std::shared_ptr<class AFloorSkill> FloorSkill5;
+	std::shared_ptr<class AFloorSkill> FloorSkill6;
+	std::shared_ptr<class AFloorSkill> FloorSkill7;
 
 	// 천장 스킬
 
@@ -96,6 +102,12 @@ private:
 
 	// 맵패턴 상태 체크
 	bool bIsExplosion1 = false;
+	bool bIsExplosion2 = false;
+	bool bIsExplosion3 = false;
+	bool bIsExplosion4 = false;
+	bool bIsExplosion5 = false;
+	bool bIsExplosion6 = false;
+	bool bIsExplosion7 = false;
 
 
 	// 플레이어 위치 - 세렌 위치
@@ -121,10 +133,21 @@ private:
 	float RushCoolTime = 3.0f;
 	
 	// 맵패턴 쿨타임
-	float Floor1CoolTime = 5.0f;
-	float Floor2CoolTime = 5.0f;
-	float Floor3CoolTime = 5.0f;
-	float Floor4CoolTime = 5.0f;
-	float Floor5CoolTime = 5.0f;
+	float Floor1CoolTime = 0.0f;
+	float Floor2CoolTime = 0.0f;
+	float Floor3CoolTime = 0.0f;
+	float Floor4CoolTime = 0.0f;
+	float Floor5CoolTime = 0.0f;
+	float Floor6CoolTime = 0.0f;
+	float Floor7CoolTime = 0.0f;
+
+	class UEngineRandom ExplosionRandom1;
+	class UEngineRandom ExplosionRandom2;
+	class UEngineRandom ExplosionRandom3;
+	class UEngineRandom ExplosionRandom4;
+	class UEngineRandom ExplosionRandom5;
+	class UEngineRandom ExplosionRandom6;
+	class UEngineRandom ExplosionRandom7;
+
 };
 
