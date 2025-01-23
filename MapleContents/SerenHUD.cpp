@@ -36,6 +36,34 @@ void ASerenHUD::BeginPlay()
 		ExpBarBack->SetRelativeLocation(ExpBarLocation);
 	}
 
+
+	// 레벨
+
+	{
+		std::shared_ptr<UImageWidget> Level = CreateWidget<UImageWidget>(-1);
+		Level->SetTexture("Lv.png", true, 1.0f);
+		Level->SetRelativeLocation(LevelLocation);
+	}
+
+	{
+		std::shared_ptr<UImageWidget> First = CreateWidget<UImageWidget>(-1);
+		First->SetTexture("2.png", true, 1.0f);
+		First->SetRelativeLocation(FirstLocation);
+	}
+
+	{
+		std::shared_ptr<UImageWidget> Second = CreateWidget<UImageWidget>(-1);
+		Second->SetTexture("8.png", true, 1.0f);
+		Second->SetRelativeLocation(SecondLocation);
+	}
+
+	{
+		std::shared_ptr<UImageWidget> Third = CreateWidget<UImageWidget>(-1);
+		Third->SetTexture("0.png", true, 1.0f);
+		Third->SetRelativeLocation(ThirdLocation);
+	}
+
+
 	// 이 사이에 exp 바 넣어야 함
 
 	{
