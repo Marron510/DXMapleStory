@@ -144,7 +144,7 @@ void ASeren::Walk(float _DeltaTime)
 	OutRangeCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
 		{
 				// 원거리 일 때만 사용 가능
-				if (0 >= SkillCoolTime && false == bIsInRange)
+				if (0 >= SkillCoolTime && false == bIsInRange && true == SerenRender->IsCurAnimationEnd())
 				{
 					this->RushCollision->SetActive(true);
 					SerenFSM.ChangeState(ESerenState::Rush);

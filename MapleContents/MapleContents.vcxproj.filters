@@ -140,6 +140,9 @@
     <ClCompile Include="FirstGage.cpp">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClCompile>
+    <ClCompile Include="FloorSkill.cpp">
+      <Filter>SKill\03_SerenSkill\Phase1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -279,6 +282,9 @@
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClInclude>
     <ClInclude Include="FirstGage.h">
+      <Filter>SKill\03_SerenSkill\Phase1</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorSkill.h">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClInclude>
   </ItemGroup>

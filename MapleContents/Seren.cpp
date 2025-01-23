@@ -13,6 +13,8 @@
 #include "EventCharacter.h"
 #include "Player.h"
 #include "MapleInstance.h"
+#include "FloorSkill.h"
+
 
 ASeren::ASeren()
 {
@@ -109,6 +111,8 @@ ASeren::ASeren()
 		RushCollision->SetActive(false);
 	}
 
+	
+
 }
 
 ASeren::~ASeren()
@@ -125,7 +129,12 @@ void ASeren::BeginPlay()
 	StateInit();
 	SerenFSM.ChangeState(ESerenState::Idle);
 	
-	
+	{
+		FloorSkill1 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill1->SetActorLocation(FVector{ 2274.0f, -858.0f });
+
+		//FloorSkill1->SetActive(false);
+	}
 }
 
 void ASeren::Tick(float _DeltaTime)
@@ -138,8 +147,6 @@ void ASeren::Tick(float _DeltaTime)
 	SerenDeathCheck();
 
 	// 맵패턴
-
-
 }
 
 
@@ -163,9 +170,14 @@ void ASeren::SerenDeathCheck()
 void ASeren::DropStone(float _DeltaTime)
 {
 	//스폰액터
-
 	// 스톤은 다섯개 바닥에 닿으면 애니메이션 바꾸고 
 	// 콜리전이 플레이어랑 닿으면 에너지 증가 <= 중요
 	// 위에서 랜덤 위치(x)에 다시 소환
+
+}
+
+
+void ASeren::FloorExplosion(float _DeltaTime)
+{
 
 }

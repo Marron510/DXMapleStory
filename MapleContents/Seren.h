@@ -30,7 +30,7 @@ public:
 	
 	// 맵패턴
 	void DropStone(float _DeltaTime);
-
+	void FloorExplosion(float _DeltaTime);
 
 	std::shared_ptr<class USerenCollision> GetSerenCollision()
 	{
@@ -50,8 +50,10 @@ private:
 	class APlayer* Player = nullptr;
 	FVector CurPlayerLocation = FVector::ZERO;
 
+	// 세렌
 	std::shared_ptr<class USpriteRenderer> SerenRender;
 
+	// 세렌 콜리전
 	std::shared_ptr<class USerenCollision> Collision;
 	std::shared_ptr<class UCollision> CheckCollision;
 	std::shared_ptr<class UCollision> OutRangeCollision;
@@ -59,7 +61,18 @@ private:
 	std::shared_ptr<class UCollision> StingCollision;
 	std::shared_ptr<class UCollision> RushCollision;
 	
+	// 세렌 스킬 
+	// 레이저
 	std::shared_ptr<class ASmall8Laser> Small8Laser;
+	
+	// 바닥 스킬
+	std::shared_ptr<class AFloorSkill> FloorSkill1;
+	std::shared_ptr<class AFloorSkill> FloorSkill2;
+	std::shared_ptr<class AFloorSkill> FloorSkill3;
+	std::shared_ptr<class AFloorSkill> FloorSkill4;
+	std::shared_ptr<class AFloorSkill> FloorSkill5;
+
+	// 천장 스킬
 
 	UFSMStateManager SerenFSM;
 
