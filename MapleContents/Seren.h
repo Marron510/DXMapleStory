@@ -40,7 +40,6 @@ public:
 	void FloorExplosion6(float _DeltaTime);
 	void FloorExplosion7(float _DeltaTime);
 	void FloorExplosionCheck(float _DeltaTime);
-	void FloorExplosionRandomInit();
 
 	std::shared_ptr<class USerenCollision> GetSerenCollision()
 	{
@@ -118,6 +117,11 @@ private:
 	// 세렌 스킬 횟수
 	int StingCount = 0; // 최대 2회
 
+	// 세렌 콜리전 거리
+
+	float OutRangeDistance = 2000.0f;
+	float InRangeDistance = 800.0f;
+
 	// 러쉬 거리
 	float RushDistance = 645.0f;
 
@@ -133,13 +137,13 @@ private:
 	float RushCoolTime = 3.0f;
 	
 	// 맵패턴 쿨타임
-	float Floor1CoolTime = 0.0f;
-	float Floor2CoolTime = 0.0f;
-	float Floor3CoolTime = 0.0f;
-	float Floor4CoolTime = 0.0f;
-	float Floor5CoolTime = 0.0f;
-	float Floor6CoolTime = 0.0f;
-	float Floor7CoolTime = 0.0f;
+	float Floor1CoolTime = 10.0f;
+	float Floor2CoolTime = 8.0f;
+	float Floor3CoolTime = 14.0f;
+	float Floor4CoolTime = 19.0f;
+	float Floor5CoolTime = 12.0f;
+	float Floor6CoolTime = 7.0f;
+	float Floor7CoolTime = 5.0f;
 
 	class UEngineRandom ExplosionRandom1;
 	class UEngineRandom ExplosionRandom2;

@@ -79,7 +79,7 @@ ASeren::ASeren()
 		CheckCollision->SetupAttachment(RootComponent);
 		CheckCollision->SetCollisionProfileName("Check");
 
-		CheckCollision->SetScale3D({ 500.0f, 200.0f });
+		CheckCollision->SetScale3D({ InRangeDistance, 200.0f });
 		CheckCollision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
 		
 	}
@@ -89,7 +89,7 @@ ASeren::ASeren()
 		OutRangeCollision->SetupAttachment(RootComponent);
 		OutRangeCollision->SetCollisionProfileName("Check");
 
-		OutRangeCollision->SetScale3D({ 1000.0f, 200.0f });
+		OutRangeCollision->SetScale3D({ OutRangeDistance, 200.0f });
 		OutRangeCollision->SetRelativeLocation(FVector{ 10.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
 
 	}
@@ -167,8 +167,7 @@ void ASeren::BeginPlay()
 		FloorSkill7 = GetWorld()->SpawnActor<AFloorSkill>();
 		FloorSkill7->SetActorLocation(FVector{ 3174.0f, -858.0f });
 	}
-
-	FloorExplosionRandomInit();
+	
 }
 
 void ASeren::Tick(float _DeltaTime)
@@ -181,6 +180,7 @@ void ASeren::Tick(float _DeltaTime)
 	SerenDeathCheck();
 
 	// ¸ÊÆÐÅÏ
+	
 	FloorExplosionSetting(_DeltaTime);
 	FloorExplosionCheck(_DeltaTime);
 }
@@ -229,7 +229,7 @@ void ASeren::FloorExplosion1(float _DeltaTime)
 
 	if (true == FloorSkill1->GetFloorSkill()->IsCurAnimationEnd() && true == bIsExplosion1)
 	{
-		Floor1CoolTime = ExplosionRandom1.Randomfloat(8.0f, 10.0f);
+		Floor1CoolTime = ExplosionRandom1.Randomfloat(5.0f, 19.0f);
 		bIsExplosion1 = false;
 	}
 
@@ -248,13 +248,13 @@ void ASeren::FloorExplosion2(float _DeltaTime)
 
 	if (true == FloorSkill2->GetFloorSkill()->IsCurAnimationEnd() && true == bIsExplosion2)
 	{
-		Floor1CoolTime = ExplosionRandom2.Randomfloat(8.0f, 10.0f);
+		Floor2CoolTime = ExplosionRandom2.Randomfloat(5.0f, 18.0f);
 		bIsExplosion2 = false;
 	}
 
 	if (0 >= Floor2CoolTime && false == bIsExplosion2)
 	{
-		FloorSkill1->SetActive(true);
+		FloorSkill2->SetActive(true);
 		bIsExplosion2 = true;
 	}
 }
@@ -267,7 +267,7 @@ void ASeren::FloorExplosion3(float _DeltaTime)
 
 	if (true == FloorSkill3->GetFloorSkill()->IsCurAnimationEnd() && true == bIsExplosion3)
 	{
-		Floor1CoolTime = ExplosionRandom1.Randomfloat(8.0f, 10.0f);
+		Floor3CoolTime = ExplosionRandom1.Randomfloat(5.0f, 17.0f);
 		bIsExplosion3 = false;
 	}
 
@@ -286,7 +286,7 @@ void ASeren::FloorExplosion4(float _DeltaTime)
 
 	if (true == FloorSkill4->GetFloorSkill()->IsCurAnimationEnd() && true == bIsExplosion4)
 	{
-		Floor4CoolTime = ExplosionRandom4.Randomfloat(8.0f, 10.0f);
+		Floor4CoolTime = ExplosionRandom4.Randomfloat(5.0f, 18.0f);
 		bIsExplosion4 = false;
 	}
 
@@ -305,7 +305,7 @@ void ASeren::FloorExplosion5(float _DeltaTime)
 
 	if (true == FloorSkill5->GetFloorSkill()->IsCurAnimationEnd() && true == bIsExplosion5)
 	{
-		Floor5CoolTime = ExplosionRandom5.Randomfloat(8.0f, 10.0f);
+		Floor5CoolTime = ExplosionRandom5.Randomfloat(5.0f, 19.0f);
 		bIsExplosion5 = false;
 	}
 
@@ -324,7 +324,7 @@ void ASeren::FloorExplosion6(float _DeltaTime)
 
 	if (true == FloorSkill6->GetFloorSkill()->IsCurAnimationEnd() && true == bIsExplosion6)
 	{
-		Floor6CoolTime = ExplosionRandom6.Randomfloat(8.0f, 10.0f);
+		Floor6CoolTime = ExplosionRandom6.Randomfloat(5.0f, 20.0f);
 		bIsExplosion6 = false;
 	}
 
@@ -343,7 +343,7 @@ void ASeren::FloorExplosion7(float _DeltaTime)
 
 	if (true == FloorSkill7->GetFloorSkill()->IsCurAnimationEnd() && true == bIsExplosion7)
 	{
-		Floor7CoolTime = ExplosionRandom7.Randomfloat(8.0f, 10.0f);
+		Floor7CoolTime = ExplosionRandom7.Randomfloat(5.0f, 20.0f);
 		bIsExplosion7 = false;
 	}
 
@@ -393,18 +393,4 @@ void ASeren::FloorExplosionCheck(float _DeltaTime)
 	{
 		FloorSkill7->SetActive(false);
 	}
-}
-
-
-
-void ASeren::FloorExplosionRandomInit()
-{
-	Floor1CoolTime = ExplosionRandom1.Randomfloat(8.0f, 10.0f);
-	Floor2CoolTime = ExplosionRandom2.Randomfloat(7.0f, 10.0f);
-	Floor3CoolTime = ExplosionRandom3.Randomfloat(8.0f, 10.0f);
-	Floor4CoolTime = ExplosionRandom4.Randomfloat(7.0f, 10.0f);
-	Floor5CoolTime = ExplosionRandom5.Randomfloat(8.0f, 10.0f);
-	Floor6CoolTime = ExplosionRandom6.Randomfloat(7.0f, 10.0f);
-	Floor7CoolTime = ExplosionRandom7.Randomfloat(8.0f, 10.0f);
-
 }
