@@ -132,9 +132,33 @@ void ASeren::BeginPlay()
 	{
 		FloorSkill1 = GetWorld()->SpawnActor<AFloorSkill>();
 		FloorSkill1->SetActorLocation(FVector{ 2274.0f, -858.0f });
-
-		//FloorSkill1->SetActive(false);
+		FloorSkill1->SetActive(false);
 	}
+
+	{
+		FloorSkill2 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill2->SetActorLocation(FVector{ 1974.0f, -858.0f, 10.0f });
+		FloorSkill2->SetActive(false);
+	}
+
+	{
+		FloorSkill3 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill3->SetActorLocation(FVector{ 1674.0f, -858.0f });
+		FloorSkill3->SetActive(false);
+	}
+
+	{
+		FloorSkill4 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill4->SetActorLocation(FVector{ 1374.0f, -858.0f, 10.0f });
+		FloorSkill4->SetActive(false);
+	}
+
+	{
+		FloorSkill5 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill5->SetActorLocation(FVector{ 2274.0f, -858.0f });
+		FloorSkill5->SetActive(false);
+	}
+	
 }
 
 void ASeren::Tick(float _DeltaTime)
@@ -147,6 +171,8 @@ void ASeren::Tick(float _DeltaTime)
 	SerenDeathCheck();
 
 	// ¸ÊÆÐÅÏ
+	FloorExplosion1(_DeltaTime);
+	FloorExplosionCheck(_DeltaTime);
 }
 
 
@@ -164,6 +190,9 @@ void ASeren::SerenDeathCheck()
 		bIsDead = true;
 	}
 
+	
+
+
 }
 
 
@@ -177,7 +206,27 @@ void ASeren::DropStone(float _DeltaTime)
 }
 
 
-void ASeren::FloorExplosion(float _DeltaTime)
+void ASeren::FloorExplosion1(float _DeltaTime)
 {
+	Floor1CoolTime -= _DeltaTime;
 
+	if (0 >= Floor1CoolTime)
+	{
+		FloorSkill1->SetActive(true);
+		bIsExplosion1 = false;
+	}
+
+	if (true == FloorSkill1->GetFloorSkill()->IsCurAnimationEnd() && false == bIsExplosion1)
+	{
+		Floor1CoolTime = 5.0f;
+		bIsExplosion1 = true;
+	}
+}
+
+void ASeren::FloorExplosionCheck(float _DeltaTime)
+{
+	if (true == bIsExplosion1)
+	{
+		FloorSkill1->SetActive(false);
+	}
 }

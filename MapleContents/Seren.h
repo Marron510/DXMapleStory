@@ -30,7 +30,13 @@ public:
 	
 	// 맵패턴
 	void DropStone(float _DeltaTime);
-	void FloorExplosion(float _DeltaTime);
+	void FloorExplosion1(float _DeltaTime);
+	void FloorExplosion2(float _DeltaTime);
+	void FloorExplosion3(float _DeltaTime);
+	void FloorExplosion4(float _DeltaTime);
+	void FloorExplosion5(float _DeltaTime);
+	void FloorExplosionCheck(float _DeltaTime);
+
 
 	std::shared_ptr<class USerenCollision> GetSerenCollision()
 	{
@@ -88,6 +94,10 @@ private:
 	bool bIsSmalllaser= false;
 	bool bIsDead = false;
 
+	// 맵패턴 상태 체크
+	bool bIsExplosion1 = false;
+
+
 	// 플레이어 위치 - 세렌 위치
 	FVector DifferentLocation = FVector::ZERO;
 
@@ -109,5 +119,12 @@ private:
 	float SkillCoolTime = 0.0f;
 	float StimgCoolTime = 1.0f;
 	float RushCoolTime = 3.0f;
+	
+	// 맵패턴 쿨타임
+	float Floor1CoolTime = 5.0f;
+	float Floor2CoolTime = 5.0f;
+	float Floor3CoolTime = 5.0f;
+	float Floor4CoolTime = 5.0f;
+	float Floor5CoolTime = 5.0f;
 };
 

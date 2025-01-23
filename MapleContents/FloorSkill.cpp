@@ -22,7 +22,7 @@ AFloorSkill::AFloorSkill()
 	FloorSkill = CreateDefaultSubObject<USpriteRenderer>();
 	FloorSkill->SetupAttachment(RootComponent);
 
-	FloorSkill->CreateAnimation("Phase1_FloorSkill", "Phase1_FloorSkill", 0, 19, 0.1f);
+	FloorSkill->CreateAnimation("Phase1_FloorSkill", "Phase1_FloorSkill", 0, 19, 0.1f, false);
 	FloorSkill->ChangeAnimation("Phase1_FloorSkill");
 
 	FloorSkill->SetRelativeLocation(FVector{ 0.0f, FloorY, static_cast<float>(EMapleZEnum::Monster_Skill) });
@@ -34,6 +34,7 @@ AFloorSkill::AFloorSkill()
 
 	Collision->SetScale3D({ 240.0f, 400.0f });
 	Collision->SetRelativeLocation(FVector{ 10.0f, -30.0f , static_cast<float>(EMapleZEnum::Monster_Skill) });
+	Collision->SetActive(false);
 }
 
 AFloorSkill::~AFloorSkill()
@@ -52,19 +53,5 @@ void AFloorSkill::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	WaitTime -= _DeltaTime;
-
-	if (0 >= WaitTime)
-	{
-		Collision->SetActive(true);
-	}
-
-	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
-		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= ExplosionDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
-			Player->bIsdamageOn();
-			Collision->SetActive(false);
-			WaitTime = HitTime;
-		});
+	
 }
