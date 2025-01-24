@@ -88,7 +88,7 @@ public:
 	FUVValue UVValue;
 	FSpriteData SpriteData;
 
-
+	
 protected:
 
 private:

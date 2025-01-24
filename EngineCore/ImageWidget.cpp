@@ -270,6 +270,7 @@ UImageWidget::FrameAnimation* UImageWidget::FindAnimation(std::string_view _Anim
 // Render
 void UImageWidget::Render(UEngineCamera* Camera, float _DeltaTime)
 {
+	
 	UWidget::Render(Camera, _DeltaTime);
 
 	if (nullptr != CurAnimation)

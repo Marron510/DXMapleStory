@@ -99,6 +99,12 @@ void ASerenHUD::BeginPlay()
 		GageUI_Back->SetRelativeLocation(GageBackLocation);
 	}
 
+	{
+		std::shared_ptr<UImageWidget> GageUI_Ball = CreateWidget<UImageWidget>(-1);
+		GageUI_Ball->SetTexture("GageUI_Ball.png", true);
+		GageUI_Ball->SetRelativeLocation(GageBallLocation);
+		
+	}
 }
 
 void ASerenHUD::Tick(float _DeltaTime)

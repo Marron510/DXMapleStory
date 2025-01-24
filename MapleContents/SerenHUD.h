@@ -44,7 +44,7 @@ private:
 	// 세렌 게이지 위치
 
 	FVector GageBackLocation = FVector(-500.0f, 202.0f);
-
+	FVector GageBallLocation = FVector(-501.0f, 202.0f);
 
 };
 
