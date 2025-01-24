@@ -56,11 +56,14 @@ void ASmallAtom::BeginPlay()
 			Player->bIsdamageOn();
 			Collision->SetActive(false);
 		});
+
+	Create();
 }
 
 void ASmallAtom::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	
 
 	Move(_DeltaTime);
 }
@@ -72,6 +75,7 @@ void ASmallAtom::Create()
 	{
 		return;
 	}
+
 	if (true == SmallAtom->IsCurAnimationEnd())
 	{
 		SmallAtom->ChangeAnimation("Small_Atom_Ing");
@@ -81,13 +85,7 @@ void ASmallAtom::Create()
 
 void ASmallAtom::Move(float _DeltaTime)
 {
-	//-1100
-	if (-1100.0f < this->GetActorLocation().Y)
-	{
-		this->AddActorLocation(FVector::DOWN * AtomSpeed * _DeltaTime);
-	}
-	
-	else if (true == Collision->IsColliding())
+	if (true == Collision->IsColliding())
 	{
 		SmallAtom->ChangeAnimation("Small_Atom_End");
 
@@ -97,14 +95,22 @@ void ASmallAtom::Move(float _DeltaTime)
 		}
 		return;
 	}
+	
+	
+	if (-1240.0f < this->GetActorLocation().Y || true == bIsStart)
+	{
+		this->AddActorLocation(FVector::DOWN * AtomSpeed * _DeltaTime);
+	}
+	
 
-	else if (-1300.0f >= this->GetActorLocation().Y)
+	else if (-1240.0f >= this->GetActorLocation().Y)
 	{
 		SmallAtom->ChangeAnimation("Small_Atom_End");
 		
 		if (true == SmallAtom->IsCurAnimationEnd())
 		{
 			SmallAtom->SetActive(false);
+			Collision->SetActive(false);
 		}
 	}
 
