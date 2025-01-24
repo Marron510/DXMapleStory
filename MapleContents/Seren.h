@@ -30,7 +30,10 @@ public:
 	
 	
 	// 맵패턴
-	void DropStone(float _DeltaTime);
+
+	void SmallAtomInit();
+	void DropAtom(float _DeltaTime);
+	void FloorExplosionInit();
 	void FloorExplosionSetting(float _DeltaTime);
 	void FloorExplosion1(float _DeltaTime);
 	void FloorExplosion2(float _DeltaTime);
@@ -84,6 +87,15 @@ private:
 	std::shared_ptr<class AFloorSkill> FloorSkill7;
 
 	// 천장 스킬
+	std::shared_ptr<class ASmallAtom> SmallAtom1;
+	std::shared_ptr<class ASmallAtom> SmallAtom2;
+	std::shared_ptr<class ASmallAtom> SmallAtom3;
+	std::shared_ptr<class ASmallAtom> SmallAtom4;
+	std::shared_ptr<class ASmallAtom> SmallAtom5;
+	std::shared_ptr<class ASmallAtom> SmallAtom6;
+	std::shared_ptr<class ASmallAtom> SmallAtom7;
+
+
 
 	UFSMStateManager SerenFSM;
 

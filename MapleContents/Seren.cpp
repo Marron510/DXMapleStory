@@ -17,7 +17,7 @@
 #include "Player.h"
 #include "MapleInstance.h"
 #include "FloorSkill.h"
-
+#include "SmallAtom.h"
 
 ASeren::ASeren()
 {
@@ -132,42 +132,13 @@ void ASeren::BeginPlay()
 	StateInit();
 	SerenFSM.ChangeState(ESerenState::Idle);
 	
-	{
-		FloorSkill1 = GetWorld()->SpawnActor<AFloorSkill>();
-		FloorSkill1->SetActorLocation(FVector{ 2274.0f, -858.0f });
-		
-	}
+	FloorExplosionInit();
+	SmallAtomInit();
 
-	{
-		FloorSkill2 = GetWorld()->SpawnActor<AFloorSkill>();
-		FloorSkill2->SetActorLocation(FVector{ 1974.0f, -858.0f, 10.0f });
-	}
 
-	{
-		FloorSkill3 = GetWorld()->SpawnActor<AFloorSkill>();
-		FloorSkill3->SetActorLocation(FVector{ 1674.0f, -858.0f });
-	}
 
-	{
-		FloorSkill4 = GetWorld()->SpawnActor<AFloorSkill>();
-		FloorSkill4->SetActorLocation(FVector{ 1374.0f, -858.0f, 10.0f });
-	}
 
-	{
-		FloorSkill5 = GetWorld()->SpawnActor<AFloorSkill>();
-		FloorSkill5->SetActorLocation(FVector{ 2574.0f, -858.0f });
-	}
-	
-	{
-		FloorSkill6 = GetWorld()->SpawnActor<AFloorSkill>();
-		FloorSkill6->SetActorLocation(FVector{ 2874.0f, -858.0f });
-	}
 
-	{
-		FloorSkill7 = GetWorld()->SpawnActor<AFloorSkill>();
-		FloorSkill7->SetActorLocation(FVector{ 3174.0f, -858.0f });
-	}
-	
 }
 
 void ASeren::Tick(float _DeltaTime)
@@ -201,14 +172,61 @@ void ASeren::SerenDeathCheck()
 	}
 }
 
-
-void ASeren::DropStone(float _DeltaTime)
+void ASeren::SmallAtomInit()
 {
-	//스폰액터
+	{
+		SmallAtom1 = GetWorld()->SpawnActor<ASmallAtom>();
+		SmallAtom1->SetActorLocation(FVector{ 2274.0f, -858.0f });
+	}
+
+}
+
+
+void ASeren::DropAtom(float _DeltaTime)
+{
+	
 	// 스톤은 다섯개 바닥에 닿으면 애니메이션 바꾸고 
 	// 콜리전이 플레이어랑 닿으면 에너지 증가 <= 중요
 	// 위에서 랜덤 위치(x)에 다시 소환
 
+}
+
+void ASeren::FloorExplosionInit()
+{
+	{
+		FloorSkill1 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill1->SetActorLocation(FVector{ 2274.0f, -858.0f });
+	}
+
+	{
+		FloorSkill2 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill2->SetActorLocation(FVector{ 1974.0f, -858.0f, 10.0f });
+	}
+
+	{
+		FloorSkill3 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill3->SetActorLocation(FVector{ 1674.0f, -858.0f });
+	}
+
+	{
+		FloorSkill4 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill4->SetActorLocation(FVector{ 1374.0f, -858.0f, 10.0f });
+	}
+
+	{
+		FloorSkill5 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill5->SetActorLocation(FVector{ 2574.0f, -858.0f });
+	}
+
+	{
+		FloorSkill6 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill6->SetActorLocation(FVector{ 2874.0f, -858.0f });
+	}
+
+	{
+		FloorSkill7 = GetWorld()->SpawnActor<AFloorSkill>();
+		FloorSkill7->SetActorLocation(FVector{ 3174.0f, -858.0f });
+	}
 }
 
 void ASeren::FloorExplosionSetting(float _DeltaTime)

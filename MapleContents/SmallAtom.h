@@ -20,6 +20,9 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	
+	void Create();
+	
 	void Move(float _DeltaTime);
 
 protected:
@@ -29,7 +32,10 @@ private:
 	std::shared_ptr<class UCollision> Collision;
 
 	class APlayer* Player = nullptr;
+	bool bIsStart = false;
+	bool bIsEnd = false;
 
-
+	float AtomDamage = 10.0f;
+	float AtomSpeed = 100.0f;
 };
 

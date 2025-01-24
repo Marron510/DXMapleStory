@@ -67,7 +67,7 @@ void AAura::Move(float _DeltaTime)
 
 	FVector CurPlayerLocation = Player->GetActorLocation();
 	FVector SerenLocation = GetActorLocation();
-	int a = 0;
+
 	if (true == bLocationCheck)
 	{
 
