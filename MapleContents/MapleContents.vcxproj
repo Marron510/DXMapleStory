@@ -319,6 +319,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="SmallAtom.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="StrikeDualShot.cpp" />
     <ClCompile Include="SunSet.cpp">
       <SubType>
@@ -480,6 +484,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Small8Laser.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SmallAtom.h">
       <SubType>
       </SubType>
     </ClInclude>
