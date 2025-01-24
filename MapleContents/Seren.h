@@ -161,7 +161,7 @@ private:
 
 	// ÄðÅ¸ÀÓ
 	float SkillCoolTime = 0.0f;
-	float AuraCoolTime = 1.2f;
+	float AuraCoolTime = 1.0f;
 	float StimgCoolTime = 1.0f;
 	float RushCoolTime = 3.0f;
 	

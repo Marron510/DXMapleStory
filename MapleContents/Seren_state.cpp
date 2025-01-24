@@ -273,7 +273,7 @@ void ASeren::SwordAura(float _DeltaTime)
 	if (0.0f >= AuraCoolTime && false == bIsAuraDir)
 	{
 		std::shared_ptr<class AAura> Aura = GetWorld()->SpawnActor<AAura>();
-		FVector AuraLocation = GetActorLocation() + FVector(-100.0f, -170.0f);
+		FVector AuraLocation = GetActorLocation() + FVector(120.0f, -170.0f);
 		Aura->SetActorLocation(AuraLocation);
 
 
@@ -283,7 +283,7 @@ void ASeren::SwordAura(float _DeltaTime)
 	if (true == SerenRender->IsCurAnimationEnd())
 	{
 		SkillCoolTime = StimgCoolTime;
-		AuraCoolTime = 1.2f;
+		AuraCoolTime = 1.0f;
 		bIsSwordAura = true;
 		bIsIdle = true;
 		bIsAuraDir = false;

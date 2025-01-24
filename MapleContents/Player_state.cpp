@@ -150,8 +150,8 @@ void APlayer::Idle(float _DeltaTime)
 
 void APlayer::Prone(float _DeltaTime)
 {
-	PlayerCollision->SetScale3D({ 80.0f, 16.0f });
-	PlayerCollision->SetRelativeLocation(FVector{ -10.0f, 8.0f, static_cast<float>(EMapleZEnum::Player) });
+	PlayerCollision->SetScale3D({ 50.0f, 16.0f });
+	PlayerCollision->SetRelativeLocation(FVector{ -16.0f, 8.0f, static_cast<float>(EMapleZEnum::Player) });
 
 	Gravity(_DeltaTime);
 	IdleUseSkill(_DeltaTime);
