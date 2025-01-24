@@ -18,6 +18,8 @@
 #include "MapleInstance.h"
 #include "FloorSkill.h"
 #include "SmallAtom.h"
+#include "Aura.h"
+
 
 ASeren::ASeren()
 {
@@ -149,6 +151,8 @@ void ASeren::Tick(float _DeltaTime)
 
 	// ¼¼·» Á×À½ Ã¼Å©
 	SerenDeathCheck();
+
+
 
 	// ¸ÊÆÐÅÏ
 	
@@ -479,6 +483,7 @@ void ASeren::FloorExplosion1(float _DeltaTime)
 	{
 		Floor1CoolTime = ExplosionRandom1.Randomfloat(5.0f, 19.0f);
 		bIsExplosion1 = false;
+		FloorSkill1->SetActive(false);
 	}
 
 	if (0 >= Floor1CoolTime && false == bIsExplosion1)
@@ -498,6 +503,7 @@ void ASeren::FloorExplosion2(float _DeltaTime)
 	{
 		Floor2CoolTime = ExplosionRandom2.Randomfloat(5.0f, 18.0f);
 		bIsExplosion2 = false;
+		FloorSkill2->SetActive(false);
 	}
 
 	if (0 >= Floor2CoolTime && false == bIsExplosion2)
@@ -517,6 +523,7 @@ void ASeren::FloorExplosion3(float _DeltaTime)
 	{
 		Floor3CoolTime = ExplosionRandom1.Randomfloat(5.0f, 17.0f);
 		bIsExplosion3 = false;
+		FloorSkill3->SetActive(false);
 	}
 
 	if (0 >= Floor3CoolTime && false == bIsExplosion3)
@@ -536,6 +543,7 @@ void ASeren::FloorExplosion4(float _DeltaTime)
 	{
 		Floor4CoolTime = ExplosionRandom4.Randomfloat(5.0f, 18.0f);
 		bIsExplosion4 = false;
+		FloorSkill4->SetActive(false);
 	}
 
 	if (0 >= Floor4CoolTime && false == bIsExplosion4)
@@ -555,6 +563,7 @@ void ASeren::FloorExplosion5(float _DeltaTime)
 	{
 		Floor5CoolTime = ExplosionRandom5.Randomfloat(5.0f, 19.0f);
 		bIsExplosion5 = false;
+		FloorSkill5->SetActive(false);
 	}
 
 	if (0 >= Floor5CoolTime && false == bIsExplosion5)
@@ -574,6 +583,7 @@ void ASeren::FloorExplosion6(float _DeltaTime)
 	{
 		Floor6CoolTime = ExplosionRandom6.Randomfloat(5.0f, 20.0f);
 		bIsExplosion6 = false;
+		FloorSkill6->SetActive(false);
 	}
 
 	if (0 >= Floor6CoolTime && false == bIsExplosion6)
@@ -593,6 +603,7 @@ void ASeren::FloorExplosion7(float _DeltaTime)
 	{
 		Floor7CoolTime = ExplosionRandom7.Randomfloat(5.0f, 20.0f);
 		bIsExplosion7 = false;
+		FloorSkill7->SetActive(false);
 	}
 
 	if (0 >= Floor7CoolTime && false == bIsExplosion7)
@@ -642,3 +653,5 @@ void ASeren::FloorExplosionCheck(float _DeltaTime)
 		FloorSkill7->SetActive(false);
 	}
 }
+
+

@@ -42,7 +42,7 @@ ASmall8Laser::ASmall8Laser()
 
 		Laser3->CreateAnimation("Phase1_8Laser", "Phase1_8Laser", 0, 22, LaserSpeed, false);
 		Laser3->ChangeAnimation("Phase1_8Laser");
-		Laser3->SetRelativeLocation(FVector{ -66.0f, -44.0f, static_cast<float>(EMapleZEnum::Monster) + 60.0f });
+		Laser3->SetRelativeLocation(FVector{ -76.0f, -44.0f, static_cast<float>(EMapleZEnum::Monster) + 60.0f });
 		Laser3->SetRotation(FVector{ 0.0f, 0.0f, -45.0f });
 
 		// 오른쪽 대각
@@ -69,7 +69,7 @@ ASmall8Laser::ASmall8Laser()
 		Collision2->SetupAttachment(RootComponent);
 		Collision2->SetCollisionProfileName("MonsterSkill");
 		Collision2->SetScale3D({ 2000.0f, 10.0f });
-		Collision2->SetRelativeLocation(FVector{ -24.0f, 50.0f, static_cast<float>(EMapleZEnum::Monster_Skill) });
+		Collision2->SetRelativeLocation(FVector{ -34.0f, 50.0f, static_cast<float>(EMapleZEnum::Monster_Skill) });
 		Collision2->SetRotation(FVector{ 0.0f, 0.0f, 45.0f });
 		Collision2->SetActive(false);
 	}
@@ -88,7 +88,7 @@ ASmall8Laser::ASmall8Laser()
 		Collision4->SetupAttachment(RootComponent);
 		Collision4->SetCollisionProfileName("MonsterSkill");
 		Collision4->SetScale3D({ 2000.0f, 10.0f });
-		Collision4->SetRelativeLocation(FVector{ 36.0f, 40.0f, static_cast<float>(EMapleZEnum::Monster_Skill) });
+		Collision4->SetRelativeLocation(FVector{ 16.0f, 40.0f, static_cast<float>(EMapleZEnum::Monster_Skill) });
 		Collision4->SetRotation(FVector{ 0.0f, 0.0f, -45.0f });
 		Collision4->SetActive(false);
 	}

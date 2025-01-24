@@ -120,7 +120,8 @@ void ASmallAtom::Move(float _DeltaTime)
 	else if (-1240.0f >= this->GetActorLocation().Y)
 	{
 		SmallAtom->ChangeAnimation("Small_Atom_End");
-		
+		Collision->SetActive(false);
+
 		if (true == SmallAtom->IsCurAnimationEnd())
 		{
 			this->SetActive(false);

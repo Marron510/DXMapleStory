@@ -273,8 +273,19 @@ void ASeren::SwordAura(float _DeltaTime)
 	if (0.0f >= AuraCoolTime && false == bIsAuraDir)
 	{
 		std::shared_ptr<class AAura> Aura = GetWorld()->SpawnActor<AAura>();
-		FVector AuraLocation = GetActorLocation() + FVector(120.0f, -170.0f);
-		Aura->SetActorLocation(AuraLocation);
+		
+		
+		if (0 < DifferentLocation.X)
+		{
+			FVector AuraLocation = GetActorLocation() + FVector(0.0f, -170.0f);
+			Aura->SetActorLocation(AuraLocation);
+		}
+		else if (0 >= DifferentLocation.X)
+		{
+			FVector AuraLocation = GetActorLocation() + FVector(0.0f, -170.0f);
+			Aura->SetActorLocation(AuraLocation);
+		}
+		
 
 
 		bIsAuraDir = true;

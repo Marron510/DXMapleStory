@@ -84,11 +84,21 @@ void ASerenHUD::BeginPlay()
 		ExpBarCover->SetTexture("QuickSkill.png", true, 1.0f);
 		ExpBarCover->SetRelativeLocation(SkillBarLocation);
 	}
+
 	{
 		std::shared_ptr<UImageWidget> ExpBarCover = CreateWidget<UImageWidget>(-1);
 		ExpBarCover->SetTexture("Skill_Fold.png", true, 1.0f);
 		ExpBarCover->SetRelativeLocation(SkillFoldBarLocation);
 	}
+
+
+	// ¼¼·» ºû °ÔÀÌÁö
+	{
+		std::shared_ptr<UImageWidget> GageUI_Back = CreateWidget<UImageWidget>(-1);
+		GageUI_Back->SetTexture("GageUI_Back.png", true);
+		GageUI_Back->SetRelativeLocation(GageBackLocation);
+	}
+
 }
 
 void ASerenHUD::Tick(float _DeltaTime)

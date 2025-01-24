@@ -52,15 +52,23 @@ void AFloorSkill::BeginPlay()
 void AFloorSkill::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	
 
+	if (true == this->IsActive() && false == HitCheck)
+	{
+		Collision->SetActive(false);
+		WaitTime = HitTime;
+		HitCheck = true;
+
+	}
 
 	WaitTime -= _DeltaTime;
 
-	if (0 >= WaitTime)
+	if (0 >= WaitTime && true == HitCheck)
 	{
 		Collision->SetActive(true);
-	
 	}
+	
 
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
@@ -68,7 +76,11 @@ void AFloorSkill::Tick(float _DeltaTime)
 			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
 			Player->bIsdamageOn();
 			Collision->SetActive(false);
-			WaitTime = HitTime;
+			HitCheck = false;
 		});
-	
+
+	if (true == FloorSkill->IsCurAnimationEnd())
+	{
+		HitCheck = false;
+	}
 }

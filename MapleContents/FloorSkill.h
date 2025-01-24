@@ -32,8 +32,10 @@ private:
 
 	class APlayer* Player = nullptr;
 
-	float WaitTime = 1.2f;
-	float HitTime = 1.2f;
+	bool HitCheck = false;
+
+	float WaitTime = 0.9f;
+	float HitTime = 0.9f;
 	float ExplosionDamage = 10.0f;
 	float FloorY = -280.0f;
 };

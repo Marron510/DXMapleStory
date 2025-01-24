@@ -214,5 +214,8 @@ private:
 	bool bIsAtom6Init = false;
 	bool bIsAtom7Init = false;
 
+	float AuraSpeed = 160.0f;
+	bool bIsAuraSpawn = false;
+
 };
 

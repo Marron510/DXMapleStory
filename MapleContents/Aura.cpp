@@ -71,12 +71,12 @@ void AAura::Move(float _DeltaTime)
 	if (true == bLocationCheck)
 	{
 
-		if (0 < DifferentLocation.X)
+		if (0.0f < DifferentLocation.X)
 		{
 			AddActorLocation(FVector{ AuraSpeed * _DeltaTime, 0.0f, 1.0f });
 			SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
 		}
-		else if (0 >= DifferentLocation.X)
+		else if (0.0f >= DifferentLocation.X)
 		{
 			AddActorLocation(FVector{ -AuraSpeed * _DeltaTime, 0.0f, 1.0f });
 			SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
