@@ -64,6 +64,10 @@ void AAura::Tick(float _DeltaTime)
 
 void AAura::Move(float _DeltaTime)
 {
+
+	FVector CurPlayerLocation = Player->GetActorLocation();
+	FVector SerenLocation = GetActorLocation();
+	int a = 0;
 	if (true == bLocationCheck)
 	{
 
@@ -81,13 +85,16 @@ void AAura::Move(float _DeltaTime)
 
 	if (false == bLocationCheck)
 	{
-		FVector CurPlayerLocation = Player->GetActorLocation();
-		FVector SerenLocation = GetActorLocation();
 		DifferentLocation = CurPlayerLocation - SerenLocation;
 		DifferentLocation.Normalize();
 		bLocationCheck = true;
 	}
 
+	
+	if (1200.0f > this->GetActorLocation().X || 3500.0f < this->GetActorLocation().X)
+	{
+		this->SetActive(false);
+	}
 
 
 }

@@ -43,12 +43,18 @@ ASmallAtom::~ASmallAtom()
 
 void ASmallAtom::BeginPlay()
 {
+	AActor::BeginPlay();
 }
 
 void ASmallAtom::Tick(float _DeltaTime)
 {
+	AActor::Tick(_DeltaTime);
+
+	Move(_DeltaTime);
 }
 
 void ASmallAtom::Move(float _DeltaTime)
 {
+
+
 }
