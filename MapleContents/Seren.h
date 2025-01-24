@@ -32,7 +32,16 @@ public:
 	// ∏ ∆–≈œ
 
 	void SmallAtomInit();
-	void DropAtom(float _DeltaTime);
+	void DropAtomSetting(float _DeltaTime);
+	void DropAtom1(float _DeltaTime);
+	void DropAtom2(float _DeltaTime);
+	void DropAtom3(float _DeltaTime);
+	void DropAtom4(float _DeltaTime);
+	void DropAtom5(float _DeltaTime);
+	void DropAtom6(float _DeltaTime);
+	void DropAtom7(float _DeltaTime);
+
+
 	void FloorExplosionInit();
 	void FloorExplosionSetting(float _DeltaTime);
 	void FloorExplosion1(float _DeltaTime);
@@ -110,6 +119,9 @@ private:
 	bool bIsSwordAura = false;
 	bool bIsSmalllaser= false;
 	bool bIsDead = false;
+	bool bIsAuraDir = false;
+	bool bIsAuraLeft = false;
+	bool bIsAuraCheck = false;
 
 	// ∏ ∆–≈œ ªÛ≈¬ √º≈©
 	bool bIsExplosion1 = false;
@@ -126,6 +138,10 @@ private:
 
 	void SerenDeathCheck();
 	
+	// ∏  Ω√¿€ ≥° X¡¬«• 
+	float MapstartX = 1200.0f;
+	float MapEndX = 3500.0f;
+
 	// ºº∑ª Ω∫≈≥ »Ωºˆ
 	int StingCount = 0; // √÷¥Î 2»∏
 
@@ -145,6 +161,7 @@ private:
 
 	// ƒ≈∏¿”
 	float SkillCoolTime = 0.0f;
+	float AuraCoolTime = 1.2f;
 	float StimgCoolTime = 1.0f;
 	float RushCoolTime = 3.0f;
 	
@@ -164,6 +181,38 @@ private:
 	class UEngineRandom ExplosionRandom5;
 	class UEngineRandom ExplosionRandom6;
 	class UEngineRandom ExplosionRandom7;
+
+	class UEngineRandom SmallAtomRandom1;
+	class UEngineRandom SmallAtomRandom2;
+	class UEngineRandom SmallAtomRandom3;
+	class UEngineRandom SmallAtomRandom4;
+	class UEngineRandom SmallAtomRandom5;
+	class UEngineRandom SmallAtomRandom6;
+	class UEngineRandom SmallAtomRandom7;
+
+	class UEngineRandom SmallAtomLocationRandom1;
+	class UEngineRandom SmallAtomLocationRandom2;
+	class UEngineRandom SmallAtomLocationRandom3;
+	class UEngineRandom SmallAtomLocationRandom4;
+	class UEngineRandom SmallAtomLocationRandom5;
+	class UEngineRandom SmallAtomLocationRandom6;
+	class UEngineRandom SmallAtomLocationRandom7;
+
+	float SmallAtom1CoolTime = 15.0f;
+	float SmallAtom2CoolTime = 20.0f;
+	float SmallAtom3CoolTime = 12.0f;
+	float SmallAtom4CoolTime = 10.0f;
+	float SmallAtom5CoolTime = 7.0f;
+	float SmallAtom6CoolTime = 16.0f;
+	float SmallAtom7CoolTime = 22.0f;
+
+	bool bIsAtom1Init = false;
+	bool bIsAtom2Init = false;
+	bool bIsAtom3Init = false;
+	bool bIsAtom4Init = false;
+	bool bIsAtom5Init = false;
+	bool bIsAtom6Init = false;
+	bool bIsAtom7Init = false;
 
 };
 

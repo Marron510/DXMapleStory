@@ -73,12 +73,12 @@ void AAura::Move(float _DeltaTime)
 
 		if (0 < DifferentLocation.X)
 		{
-			AddActorLocation(FVector{ 120.0f * _DeltaTime, 0.0f, 1.0f });
+			AddActorLocation(FVector{ AuraSpeed * _DeltaTime, 0.0f, 1.0f });
 			SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
 		}
 		else if (0 >= DifferentLocation.X)
 		{
-			AddActorLocation(FVector{ -120.0f * _DeltaTime, 0.0f, 1.0f });
+			AddActorLocation(FVector{ -AuraSpeed * _DeltaTime, 0.0f, 1.0f });
 			SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
 		}
 	}
@@ -91,7 +91,7 @@ void AAura::Move(float _DeltaTime)
 	}
 
 	
-	if (1200.0f > this->GetActorLocation().X || 3500.0f < this->GetActorLocation().X)
+	if (MapstartX > this->GetActorLocation().X || MapEndX < this->GetActorLocation().X)
 	{
 		this->SetActive(false);
 	}

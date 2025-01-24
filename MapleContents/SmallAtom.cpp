@@ -54,6 +54,7 @@ void ASmallAtom::BeginPlay()
 			GetGameInstance<MapleInstance>()->Status.Hp -= AtomDamage;
 			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
 			Player->bIsdamageOn();
+			SmallAtom->ChangeAnimation("Small_Atom_End");
 			Collision->SetActive(false);
 		});
 
@@ -69,14 +70,25 @@ void ASmallAtom::Tick(float _DeltaTime)
 }
 
 
+void ASmallAtom::Restart()
+{
+	bIsStart = false;
+	bIsEnd = false;
+	this->SetActive(true);
+	Collision->SetActive(true);
+	SmallAtom->SetActive(true);
+	SmallAtom->ChangeAnimation("Small_Atom_Ing");
+}
+
 void ASmallAtom::Create()
 {
+
 	if (true == bIsStart)
 	{
 		return;
 	}
 
-	if (true == SmallAtom->IsCurAnimationEnd())
+	if (true == SmallAtom->IsCurAnimationEnd() && false == bIsEnd)
 	{
 		SmallAtom->ChangeAnimation("Small_Atom_Ing");
 		bIsStart = true;
@@ -85,13 +97,15 @@ void ASmallAtom::Create()
 
 void ASmallAtom::Move(float _DeltaTime)
 {
-	if (true == Collision->IsColliding())
+	// ÇÃ·¹ÀÌ¾î¶û ºÎµóÇûÀ» ¶§
+	if (true == Collision->IsColliding() && false== bIsEnd)
 	{
-		SmallAtom->ChangeAnimation("Small_Atom_End");
-
 		if (true == SmallAtom->IsCurAnimationEnd())
 		{
-			SmallAtom->SetActive(false);
+			this->SetActive(false);
+			SmallAtom->ChangeAnimation("Small_Atom_Ing");
+			
+			bIsEnd = true;
 		}
 		return;
 	}
@@ -102,15 +116,15 @@ void ASmallAtom::Move(float _DeltaTime)
 		this->AddActorLocation(FVector::DOWN * AtomSpeed * _DeltaTime);
 	}
 	
-
+	// ¹Ù´Ú¿¡ ´ê¾ÒÀ» ¶§
 	else if (-1240.0f >= this->GetActorLocation().Y)
 	{
 		SmallAtom->ChangeAnimation("Small_Atom_End");
 		
 		if (true == SmallAtom->IsCurAnimationEnd())
 		{
-			SmallAtom->SetActive(false);
-			Collision->SetActive(false);
+			this->SetActive(false);
+			bIsEnd = true;
 		}
 	}
 

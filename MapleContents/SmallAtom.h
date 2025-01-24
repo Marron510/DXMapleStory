@@ -24,6 +24,12 @@ public:
 	void Create();
 	
 	void Move(float _DeltaTime);
+	void Restart();
+
+	bool GetIsEnd()
+	{
+		return bIsEnd;
+	}
 
 protected:
 

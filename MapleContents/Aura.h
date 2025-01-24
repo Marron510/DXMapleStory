@@ -35,5 +35,9 @@ private:
 	
 	// µ¥¹ÌÁö
 	float AuraDamage = 30.0f;
+	float AuraSpeed = 160.0f;
+
+	float MapstartX = 1200.0f;
+	float MapEndX = 3500.0f;
 };
 

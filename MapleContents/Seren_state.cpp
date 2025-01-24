@@ -109,28 +109,28 @@ void ASeren::Walk(float _DeltaTime)
 	CheckCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
 		{
 			bIsInRange = true;
-
-			if( 0 >= SkillCoolTime && 3 > StingCount)
+			if (true == SerenRender->IsCurAnimationEnd())
 			{
-				this->StingCollision->SetActive(true);
-				
-				SerenFSM.ChangeState(ESerenState::Sting);
-				return;
+				if (0 >= SkillCoolTime && 3 > StingCount)
+				{
+					this->StingCollision->SetActive(true);
+
+					SerenFSM.ChangeState(ESerenState::Sting);
+					return;
+				}
+
+				if (0 >= SkillCoolTime && 3 >= StingCount && true == bIsSwordAura)
+				{
+					SerenFSM.ChangeState(ESerenState::SmallLaser);
+					return;
+				}
+
+				if (0 >= SkillCoolTime && 3 >= StingCount)
+				{
+					SerenFSM.ChangeState(ESerenState::SwordAura);
+					return;
+				}
 			}
-
-			if (0 >= SkillCoolTime && 3 >= StingCount && true == bIsSwordAura)
-			{
-				SerenFSM.ChangeState(ESerenState::SmallLaser);
-				return;
-			}
-
-			if (0 >= SkillCoolTime && 3 >= StingCount)
-			{
-				SerenFSM.ChangeState(ESerenState::SwordAura);
-				return;
-			}
-
-
 		});
 
 	// 근거리 -> 원거리
@@ -253,16 +253,54 @@ void ASeren::Sting(float _DeltaTime)
 
 void ASeren::SwordAura(float _DeltaTime)
 {
-	if (true == SerenRender->IsCurAnimationEnd())
+	AuraCoolTime -= _DeltaTime;
+
+	FVector SerenLocation = GetActorLocation();
+	DifferentLocation = CurPlayerLocation - SerenLocation;
+	DifferentLocation.Normalize();
+
+	if (0 < DifferentLocation.X)
+	{
+		SetActorRelativeScale3D(FVector{ -1.0f, 1.0f, 1.0f });
+		bIsAuraLeft = true;
+	}
+	else if (0 >= DifferentLocation.X)
+	{
+		SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
+		bIsAuraLeft = false;
+	}
+
+	if (0.0f >= AuraCoolTime && false == bIsAuraDir)
 	{
 		std::shared_ptr<class AAura> Aura = GetWorld()->SpawnActor<AAura>();
-		FVector AuraLocation = GetActorLocation() + FVector(0.0f, -170.0f);
+		FVector AuraLocation = GetActorLocation() + FVector(-100.0f, -170.0f);
 		Aura->SetActorLocation(AuraLocation);
+
+
+		bIsAuraDir = true;
+	}
+
+	if (true == SerenRender->IsCurAnimationEnd())
+	{
 		SkillCoolTime = StimgCoolTime;
+		AuraCoolTime = 1.2f;
 		bIsSwordAura = true;
 		bIsIdle = true;
+		bIsAuraDir = false;
 		SerenFSM.ChangeState(ESerenState::Idle);
 	}
+
+
+	//if (true == SerenRender->IsCurAnimationEnd())
+	//{
+	//	std::shared_ptr<class AAura> Aura = GetWorld()->SpawnActor<AAura>();
+	//	FVector AuraLocation = GetActorLocation() + FVector(0.0f, -170.0f);
+	//	Aura->SetActorLocation(AuraLocation);
+	//	SkillCoolTime = StimgCoolTime;
+	//	bIsSwordAura = true;
+	//	bIsIdle = true;
+	//	SerenFSM.ChangeState(ESerenState::Idle);
+	//}
 }
 
 
