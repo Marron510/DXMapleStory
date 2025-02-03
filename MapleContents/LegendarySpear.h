@@ -18,12 +18,21 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	static float LegendarySpearCoolTime;
+
 protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> LegendarySpearFront;
 	std::shared_ptr<class USpriteRenderer> LegendarySpearMid;
+	std::shared_ptr<class USpriteRenderer> LegendarySpearHit;
 
 	std::shared_ptr<class UCollision> Collision;
+
+
+	class APlayer* Player = nullptr;
+	bool bIsCanUse = false;
+	bool bIsHit = false;
+	float LegendarySpearAtt = 5.0f;
 };
 
