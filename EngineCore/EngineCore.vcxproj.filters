@@ -197,9 +197,6 @@
     <ClInclude Include="EngineCamera.h">
       <Filter>Object\Render</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h">
-      <Filter>ThirdParty\DirectxTex\Inc</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Object\Component\Render</Filter>
     </ClInclude>
@@ -329,9 +326,6 @@
     <ClInclude Include="EngineFont.h">
       <Filter>Resources\Font</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
-      <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
-    </ClInclude>
     <ClInclude Include="GameInstance.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -343,6 +337,12 @@
     </ClInclude>
     <ClInclude Include="FontWidget.h">
       <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h">
+      <Filter>ThirdParty\DirectxTex\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
+      <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -444,26 +444,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <Library Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
+      <Filter>ThirdParty\DirectxTex\Debug</Filter>
+    </Library>
+    <Library Include="ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
+      <Filter>ThirdParty\DirectxTex\Release</Filter>
+    </Library>
+    <Library Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib">
+      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
+    </Library>
+    <Library Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib">
+      <Filter>ThirdParty\FW1FontWrapper\Release</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl">
       <Filter>ThirdParty\DirectxTex\Inc</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="..\..\GM2\DX\GM2DX\EngineCore\ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
-      <Filter>ThirdParty\DirectxTex\Release</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
-      <Filter>ThirdParty\DirectxTex\Debug</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
+    <None Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
       <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib">
-      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll">
+    </None>
+    <None Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll">
       <Filter>ThirdParty\FW1FontWrapper\Release</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib" />
+    </None>
   </ItemGroup>
 </Project>
