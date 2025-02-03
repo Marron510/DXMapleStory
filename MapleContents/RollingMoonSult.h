@@ -18,11 +18,19 @@ public:
 	void BeginPlay();
 	void Tick(float _DeltaTime);
 
+
+	static float RollingMoonSultCoolTime;
+
 protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> RollingMoonSult;
-
+	std::shared_ptr<class USpriteRenderer> RollingMoonSultHit;
 	std::shared_ptr<class UCollision> Collision;
+
+	class APlayer* Player = nullptr;
+	bool bIsCanUse = false;
+	bool bIsHit = false;
+	float RollingMoonSultAtt = 5.0f;
 };
 
