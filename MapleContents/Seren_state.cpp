@@ -211,7 +211,7 @@ void ASeren::Rush(float _DeltaTime)
 			if (true == _Other->IsColliding() && true == SerenRender->IsCurAnimationEnd())
 			{
 				// 러쉬 데미지
-				GetGameInstance<MapleInstance>()->Status.CurHp -= RushDamage;
+				GetGameInstance<MapleInstance>()->Status.TakeDamage(RushDamage);
 				float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 				Player->bIsdamageOn();
 				bIsRush = true;
@@ -246,7 +246,7 @@ void ASeren::Sting(float _DeltaTime)
 			if (true == _Other->IsColliding() && true == SerenRender->IsCurAnimationEnd())
 			{
 				// 찌르기 데미지
-				GetGameInstance<MapleInstance>()->Status.CurHp -= StingDamage;
+				GetGameInstance<MapleInstance>()->Status.TakeDamage(StingDamage);
 				float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 				Player->bIsdamageOn();
 				bIsSting = true;

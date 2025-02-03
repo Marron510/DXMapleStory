@@ -155,9 +155,8 @@ private:
 	float RushDistance = 645.0f;
 
 	// 세렌 스킬 데미지
-	float StingDamage = 10.0f;
-	float RushDamage = 10.0f;
-	float AuraDamage = 30.0f;
+	float StingDamage = 6000.0f;
+	float RushDamage = 6000.0f;
 
 
 	// 쿨타임
