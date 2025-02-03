@@ -22,13 +22,17 @@ ARollingMoonSult::ARollingMoonSult()
 	RollingMoonSult = CreateDefaultSubObject<USpriteRenderer>();
 	RollingMoonSult->SetupAttachment(RootComponent);
 
+	RollingMoonSultHit = CreateDefaultSubObject<USpriteRenderer>();
+	RollingMoonSultHit->SetupAttachment(RootComponent);
+
+
 	RollingMoonSult->CreateAnimation("RollingMoonSult", "RollingMoonSult", 0, 8, 0.07f, false);
 	RollingMoonSult->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	RollingMoonSult->ChangeAnimation("None");
 
 	RollingMoonSult->SetRelativeLocation(FVector{ 0.0f, -100.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front)});
 
-	RollingMoonSultHit->CreateAnimation("UnicornSpikeHit", "UnicornSpikeHit", 0, 6, 0.1f, false);
+	RollingMoonSultHit->CreateAnimation("RollingMoonSultHit", "RollingMoonSultHit", 0, 5, 0.1f, false);
 	RollingMoonSultHit->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	RollingMoonSultHit->ChangeAnimation("None");
 
@@ -41,9 +45,6 @@ ARollingMoonSult::ARollingMoonSult()
 
 	Collision->SetScale3D({ 230.0f, 260.0f });
 	Collision->SetRelativeLocation(FVector{ 0.0f, 36.0f , static_cast<float>(EMapleZEnum::Player) });
-	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
-		{
-		});
 
 }
 
@@ -58,8 +59,6 @@ void ARollingMoonSult::BeginPlay()
 
 	Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
 
-
-
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
 			if (this->bIsCanUse == false)
@@ -72,7 +71,7 @@ void ARollingMoonSult::BeginPlay()
 				if (true == Player->GetbIsDirLeft())
 				{
 					float DiffLocation = _Other->GetWorldLocation().X - Player->GetActorLocation().X;
-					RollingMoonSultHit->ChangeAnimation("UnicornSpikeHit");
+					RollingMoonSultHit->ChangeAnimation("RollingMoonSultHit");
 					RollingMoonSultHit->SetRelativeLocation(FVector{ DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
 					static_cast<USerenCollision*>(_Other)->Damage(RollingMoonSultAtt);
@@ -81,7 +80,7 @@ void ARollingMoonSult::BeginPlay()
 				else if (false == Player->GetbIsDirLeft())
 				{
 					float DiffLocation = _Other->GetWorldLocation().X - Player->GetActorLocation().X;
-					RollingMoonSultHit->ChangeAnimation("UnicornSpikeHit");
+					RollingMoonSultHit->ChangeAnimation("RollingMoonSultHit");
 					RollingMoonSultHit->SetRelativeLocation(FVector{ -DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
 					static_cast<USerenCollision*>(_Other)->Damage(RollingMoonSultAtt);
@@ -114,7 +113,7 @@ void ARollingMoonSult::Tick(float _DeltaTime)
 		bIsCanUse = true;
 	}
 
-	if (0.0f >= RollingMoonSultCoolTime && UEngineInput::IsPress('R'))
+	if (0.0f >= RollingMoonSultCoolTime && UEngineInput::IsPress('E'))
 	{
 		RollingMoonSult->ChangeAnimation("RollingMoonSult");
 		RollingMoonSult->SetActive(true);
