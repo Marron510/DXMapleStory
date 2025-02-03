@@ -120,8 +120,8 @@ void APlayer::Idle(float _DeltaTime)
 	IdleUseSkill(_DeltaTime);
 
 
-	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); return; bIsDirLeft = true; }
-	if (UEngineInput::IsPress(VK_RIGHT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); return; bIsDirLeft = false;  }
+	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); bIsDirLeft = true; return;  }
+	if (UEngineInput::IsPress(VK_RIGHT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); bIsDirLeft = false; return;   }
 	if (UEngineInput::IsPress(VK_DOWN) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Prone); return; }
 	//if (UEngineInput::IsPress(VK_UP))
 	//{
@@ -659,10 +659,31 @@ void APlayer::IdleUseSkill(float _DeltaTime)
 		if (IshballTime <= 0.0f)
 		{
 			std::shared_ptr<AIshtar_Ball> IShtarBall = GetWorld()->SpawnActor<AIshtar_Ball>();
+			
+			
+			IshNum %= 3;
 
-			IshballTime = 0.2f;
+			switch (IshNum)
+			{
+			case 0:
+				IShtarBall->AddActorLocation(FVector::ZERO);
+				break;
+			case 1:
+				IShtarBall->AddActorLocation(FVector::UP * 20.0f);
+				break;
+			case 2:
+				IShtarBall->AddActorLocation(FVector::DOWN * 20.0f);
+				break;
+			default:
+				break;
+			}
+			
+			IshNum += 1;
+			IshballTime = 0.15f;
 		}
 	}
+
+	if (UEngineInput::IsUp(VK_SPACE)) { IshNum = 0; }
 
 	// 차지 드라이브
 	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
@@ -693,7 +714,39 @@ void APlayer::WalkUseSkill(float _DeltaTime)
 	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
 
 	// 이슈타르의 링
-	if (UEngineInput::IsPress(VK_SPACE)) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+	if (UEngineInput::IsPress(VK_SPACE)) {
+		bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot");
+
+		IshballTime -= _DeltaTime;
+
+		if (IshballTime <= 0.0f)
+		{
+			std::shared_ptr<AIshtar_Ball> IShtarBall = GetWorld()->SpawnActor<AIshtar_Ball>();
+
+
+			IshNum %= 3;
+
+			switch (IshNum)
+			{
+			case 0:
+				IShtarBall->AddActorLocation(FVector::ZERO);
+				break;
+			case 1:
+				IShtarBall->AddActorLocation(FVector::UP * 20.0f);
+				break;
+			case 2:
+				IShtarBall->AddActorLocation(FVector::DOWN * 20.0f);
+				break;
+			default:
+				break;
+			}
+
+			IshNum += 1;
+			IshballTime = 0.15f;
+		}
+	}
+
+	if (UEngineInput::IsUp(VK_SPACE)) { IshNum = 0; }
 
 	// 차지 드라이브
 	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
@@ -720,7 +773,39 @@ void APlayer::AirUseSkill(float _DeltaTime)
 	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
 
 	// 이슈타르의 링
-	if (UEngineInput::IsPress(VK_SPACE)) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+	if (UEngineInput::IsPress(VK_SPACE)) {
+		bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot");
+
+		IshballTime -= _DeltaTime;
+
+		if (IshballTime <= 0.0f)
+		{
+			std::shared_ptr<AIshtar_Ball> IShtarBall = GetWorld()->SpawnActor<AIshtar_Ball>();
+
+
+			IshNum %= 3;
+
+			switch (IshNum)
+			{
+			case 0:
+				IShtarBall->AddActorLocation(FVector::ZERO);
+				break;
+			case 1:
+				IShtarBall->AddActorLocation(FVector::UP * 20.0f);
+				break;
+			case 2:
+				IShtarBall->AddActorLocation(FVector::DOWN * 20.0f);
+				break;
+			default:
+				break;
+			}
+
+			IshNum += 1;
+			IshballTime = 0.15f;
+		}
+	}
+
+	if (UEngineInput::IsUp(VK_SPACE)) { IshNum = 0; }
 
 	// 리프 토네이도 
 	//if (UEngineInput::IsPress('D')) { bIsSkillUsing = true; }

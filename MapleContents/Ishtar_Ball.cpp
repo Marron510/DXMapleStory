@@ -32,7 +32,7 @@ AIshtar_Ball::AIshtar_Ball()
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("PlayerSKill");
 
-	Collision->SetScale3D({ 10.0f, 10.0f });
+	Collision->SetScale3D({ 4.0f, 4.0f });
 
 	/*Collision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
 		{
@@ -54,10 +54,9 @@ void AIshtar_Ball::BeginPlay()
 	
 	if (true == Player->GetbIsDirLeft())
 	{
-		
-		Ishtar_Ball->SetRelativeLocation(FVector{ -50.0f, 30.0f , static_cast<float>(EMapleZEnum::Player) } + SpawnLocation);
-		Collision->SetRelativeLocation(FVector{ -100.0f, 48.0f , static_cast<float>(EMapleZEnum::Player) } + SpawnLocation);
-		Ishtar_Ball->SetRelativeScale3D(FVector{ 1.0f, 1.0f });
+		SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+		Ishtar_Ball->SetRelativeLocation(FVector{ -50.0f, 30.0f , static_cast<float>(EMapleZEnum::Player_Skill_Front) } + SpawnLocation);
+		Collision->SetRelativeLocation(FVector{ -100.0f, 46.0f , static_cast<float>(EMapleZEnum::Player_Skill_Front) } + SpawnLocation);
 		Ishtar_Ball->ChangeAnimation("Ishtar_Ball");
 		BallSpawnLocation = Ishtar_Ball->GetWorldLocation();
 		LeftShot = true;
@@ -65,14 +64,16 @@ void AIshtar_Ball::BeginPlay()
 	}
 	else if(false == Player->GetbIsDirLeft())
 	{
-		Ishtar_Ball->SetRelativeLocation(FVector{ 50.0f, 30.0f , static_cast<float>(EMapleZEnum::Player) } + SpawnLocation);
-		Collision->SetRelativeLocation(FVector{ 100.0f, 48.0f , static_cast<float>(EMapleZEnum::Player) } + SpawnLocation);
-		Ishtar_Ball->SetRelativeScale3D(FVector{ -1.0f, 1.0f });
+		Ishtar_Ball->SetRotation(FVector{0.0f, 0.0f, 180.0f});
+		Ishtar_Ball->SetRelativeLocation(FVector{ 50.0f, 62.0f, 0.0f } + SpawnLocation);
+		Collision->SetRelativeLocation(FVector{ 100.0f, 46.0f, 0.0f }+ SpawnLocation);
 		Ishtar_Ball->ChangeAnimation("Ishtar_Ball");
 		BallSpawnLocation = Ishtar_Ball->GetWorldLocation();
 		LeftShot = false;
 		DirCheck = true;
 	} 
+
+	
 }
 
 void AIshtar_Ball::Tick(float _DeltaTime)
@@ -80,11 +81,11 @@ void AIshtar_Ball::Tick(float _DeltaTime)
 	ASkillManager::Tick(_DeltaTime);
 	if (true == LeftShot && true == DirCheck)
 	{
-		AddActorLocation(FVector::LEFT * _DeltaTime * 400.0f);
+		AddActorLocation(FVector::LEFT * _DeltaTime * 600.0f);
 	}
 	else if (false == LeftShot && true == DirCheck)
 	{
-		AddActorLocation(FVector::RIGHT * _DeltaTime * 400.0f);
+		AddActorLocation(FVector::RIGHT * _DeltaTime * 600.0f);
 	}
 
 	Playerlocation = Player->GetActorLocation().X;
@@ -96,11 +97,16 @@ void AIshtar_Ball::Tick(float _DeltaTime)
 
 
 
-	if (Length <= BallSpawnLocation.X - Curlocation)
+	if (Length <= BallSpawnLocation.X - Curlocation && true == LeftShot)
 	{
 		this->Destroy();
 		return;
 	}
 	
+	if (Length <= Curlocation - BallSpawnLocation.X && false == LeftShot)
+	{
+		this->Destroy();
+		return;
+	}
 
 }

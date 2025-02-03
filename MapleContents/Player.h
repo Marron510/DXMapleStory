@@ -117,6 +117,9 @@ private:
 
 	// 이슈 화살 생성 시간
 	float IshballTime = 0.2f;
+	// 이슈 위치
+	int IshNum = 0;
+
 
 	// 무적 시간
 	float CanDamageTime = 0.0f;

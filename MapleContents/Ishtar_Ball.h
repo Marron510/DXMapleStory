@@ -35,6 +35,7 @@ private:
 	float Playerlocation = 0.0f;
 	float DifferLocation = 0.0f;
 	float Length = 400.0f;
+	int IshNum = 1;
 
 	bool LeftShot = false;
 	bool DirCheck = false;
