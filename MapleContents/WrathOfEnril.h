@@ -34,6 +34,7 @@ private:
 	std::shared_ptr<class USpriteRenderer> WrathOfEnrilHit;
 	std::shared_ptr<class UCollision> Collision;
 	class APlayer* Player = nullptr;
+
 	bool bIsCanUse = false;
 	bool bIsHit = false;
 	float WrathOfEnrilAtt = 5.0f;

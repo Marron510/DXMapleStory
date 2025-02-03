@@ -18,11 +18,18 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	static float UnicornSpikeCoolTime;
+
 protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> UnicornSpike;
-
+	std::shared_ptr<class USpriteRenderer> UnicornSpikeHit;
 	std::shared_ptr<class UCollision> Collision;
+
+	class APlayer* Player = nullptr;
+	bool bIsCanUse = false;
+	bool bIsHit = false;
+	float UnicornSpikeAtt = 5.0f;
 };
 

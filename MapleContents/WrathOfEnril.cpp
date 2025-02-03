@@ -13,7 +13,7 @@
 #include "Player.h"
 
 
-float AWrathOfEnril::WrathOfEnrilCoolTime = 5.0f;
+float AWrathOfEnril::WrathOfEnrilCoolTime = 0.0f;
 
 AWrathOfEnril::AWrathOfEnril()
 {
@@ -42,12 +42,6 @@ AWrathOfEnril::AWrathOfEnril()
 	Collision->SetScale3D({ 640.0f, 340.0f });
 	Collision->SetRelativeLocation(FVector{ -330.0f, 120.0f , static_cast<float>(EMapleZEnum::Player) });
 	Collision->SetActive(false);
-	Collision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
-		{
-			UEngineDebug::OutPutString("enter");
-			
-		});
-
 
 	WrathOfEnril->SetRelativeLocation(FVector{ -230.0f, -220.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front)});
 
