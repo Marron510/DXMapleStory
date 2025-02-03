@@ -21,9 +21,17 @@ AWrathOfEnril::AWrathOfEnril()
 	WrathOfEnril = CreateDefaultSubObject<USpriteRenderer>();
 	WrathOfEnril->SetupAttachment(RootComponent);
 
+	WrathOfEnrilHit = CreateDefaultSubObject<USpriteRenderer>();
+	WrathOfEnrilHit->SetupAttachment(RootComponent);
+
 	WrathOfEnril->CreateAnimation("WrathOfEnril", "WrathOfEnril", 0, 13, 0.0614f, false);
 	WrathOfEnril->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 	WrathOfEnril->ChangeAnimation("None");
+
+	WrathOfEnrilHit->CreateAnimation("WrathOfEnrilHit", "WrathOfEnrilHit", 0, 7, 0.114f, false);
+	WrathOfEnrilHit->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
+	WrathOfEnrilHit->ChangeAnimation("None");
+	WrathOfEnrilHit->SetRelativeLocation(FVector{ -230.0f, -220.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
@@ -35,7 +43,7 @@ AWrathOfEnril::AWrathOfEnril()
 	Collision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
 		{
 			UEngineDebug::OutPutString("enter");
-			this->bIsCanUse = true;
+			
 		});
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
@@ -44,14 +52,15 @@ AWrathOfEnril::AWrathOfEnril()
 				return;
 			}
 		
-			UEngineDebug::OutPutString("stay");
-
-			UEngineDebug::OutPutString(_Other->GetCollisionProfileName());
 			if (_Other->GetCollisionProfileName() == "MONSTER")
 			{
+				WrathOfEnrilHit->ChangeAnimation("WrathOfEnrilHit");
+				WrathOfEnrilHit->SetWorldLocation(_Other->GetWorldLocation());
+				bIsHit = true;
 				static_cast<USerenCollision*>(_Other)->Damage(WrathOfEnrilAtt);
+				this->bIsCanUse = true;
 			}
-			//_Other->Damage(WrathOfEnrilAtt);
+
 			this->bIsCanUse = false;
 		});
 
@@ -75,6 +84,13 @@ void AWrathOfEnril::Tick(float _DeltaTime)
 
 	WrathOfEnrilCoolTime -= _DeltaTime;
 	
+
+
+	if (true == bIsHit && true == WrathOfEnrilHit->IsCurAnimationEnd())
+	{
+		WrathOfEnrilHit->ChangeAnimation("None");
+	}
+
 	if (true == WrathOfEnril->IsCurAnimationEnd())
 	{
 		WrathOfEnril->ChangeAnimation("None");

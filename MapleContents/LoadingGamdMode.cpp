@@ -315,6 +315,31 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 			}
 
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Skill/IshHit");
+
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
+
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Skill/WrathOfEnrilHit");
+
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
 
 			{
 				UEngineDirectory Dir;

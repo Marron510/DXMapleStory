@@ -22,8 +22,9 @@ AIshtar_Ball::AIshtar_Ball()
 	Ishtar_Ball->SetupAttachment(RootComponent);
 
 	Ishtar_Ball->CreateAnimation("Ishtar_Ball", "IshBall", 0, 5, 0.0614f);
+	Ishtar_Ball->CreateAnimation("IshHit", "IshHit", 0, 6, 0.06f);
 
-		Ishtar_Ball->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);	
+	Ishtar_Ball->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);	
 
 	Ishtar_Ball->ChangeAnimation("None");
 	
@@ -34,11 +35,26 @@ AIshtar_Ball::AIshtar_Ball()
 
 	Collision->SetScale3D({ 4.0f, 4.0f });
 
-	/*Collision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
+	Collision->SetCollisionEnter([this](UCollision* _This, UCollision* _Other)
 		{
-			UEngineDebug::OutPutString("enter");
-			this->bIsCanUse = true;
-		});*/
+			if (_Other->GetCollisionProfileName() == "MONSTER")
+			{
+				static_cast<USerenCollision*>(_Other)->Damage(IshtarAtt);
+				Ishtar_Ball->ChangeAnimation("IshHit");
+
+				if (true == Player->GetbIsDirLeft())
+				{
+					Ishtar_Ball->SetWorldLocation(_Other->GetWorldLocation() + FVector::DOWN * 120.0f + FVector::RIGHT * 100.0f);
+				}
+				else if (false == Player->GetbIsDirLeft())
+				{
+					Ishtar_Ball->SetWorldLocation(_Other->GetWorldLocation() + FVector::UP * 80.0f + FVector::LEFT * 100.0f);
+				}
+
+				bIsHit = true;
+			}
+		
+		});
 }
 
 AIshtar_Ball::~AIshtar_Ball()
@@ -79,13 +95,18 @@ void AIshtar_Ball::BeginPlay()
 void AIshtar_Ball::Tick(float _DeltaTime)
 {
 	ASkillManager::Tick(_DeltaTime);
-	if (true == LeftShot && true == DirCheck)
+	if (true == LeftShot && true == DirCheck && false == bIsHit)
 	{
 		AddActorLocation(FVector::LEFT * _DeltaTime * 600.0f);
 	}
-	else if (false == LeftShot && true == DirCheck)
+	else if (false == LeftShot && true == DirCheck && false == bIsHit)
 	{
 		AddActorLocation(FVector::RIGHT * _DeltaTime * 600.0f);
+	}
+
+	if (true == bIsHit && true == Ishtar_Ball->IsCurAnimationEnd())
+	{
+		this->Destroy();
 	}
 
 	Playerlocation = Player->GetActorLocation().X;
@@ -95,7 +116,10 @@ void AIshtar_Ball::Tick(float _DeltaTime)
 	
 	DifferLocation = Playerlocation - Curlocation;
 
+	if (true)
+	{
 
+	}
 
 	if (Length <= BallSpawnLocation.X - Curlocation && true == LeftShot)
 	{

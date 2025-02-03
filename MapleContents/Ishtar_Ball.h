@@ -34,10 +34,12 @@ private:
 	float Curlocation = 0.0f;
 	float Playerlocation = 0.0f;
 	float DifferLocation = 0.0f;
-	float Length = 400.0f;
+	float Length = 300.0f;
 	int IshNum = 1;
 
 	bool LeftShot = false;
 	bool DirCheck = false;
+	bool bIsHit = false;
+	float IshtarAtt = 1.0f;
 };
 
