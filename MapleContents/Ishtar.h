@@ -23,7 +23,8 @@ public:
 protected:
 
 private:
-	std::shared_ptr<class USpriteRenderer> Ishtar;
 
+	std::shared_ptr<class USpriteRenderer> Ishtar;
+	bool bIsStart = false;
 };
 

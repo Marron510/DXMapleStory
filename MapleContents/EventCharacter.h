@@ -14,6 +14,7 @@ enum class ECharacterState
 	LeafTornado,
 	LegendarySpear,
 	WrathOfEnril,
+	Ishtar,
 	Air,
 	Death
 };

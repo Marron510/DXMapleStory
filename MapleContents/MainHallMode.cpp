@@ -21,6 +21,7 @@
 #include "WrathOfEnril.h"
 #include "LeafTornado.h"
 #include "StrikeDualShot.h"
+#include "Ishtar.h"
 #include "RollingMoonSult.h"
 #include "ChargeDrive.h"
 #include "HighKick.h"
@@ -85,6 +86,7 @@ void AMainHallMode::BeginPlay()
 		LeafTornadoFront = GetWorld()->SpawnActor<ALeafTornado>();
 		WrathOfEnril = GetWorld()->SpawnActor<AWrathOfEnril>();
 		StrikeDualShot = GetWorld()->SpawnActor<AStrikeDualShot>();
+		Ishtar = GetWorld()->SpawnActor<AIshtar>();
 		RollingMoonSult = GetWorld()->SpawnActor<ARollingMoonSult>();
 		HighKick = GetWorld()->SpawnActor<AHighKick>();
 		ChargeDrive = GetWorld()->SpawnActor<AChargeDrive>();
@@ -102,6 +104,7 @@ void AMainHallMode::BeginPlay()
 	LeafTornadoFront->AttachToActor(Player);
 	WrathOfEnril->AttachToActor(Player);
 	StrikeDualShot->AttachToActor(Player);
+	Ishtar->AttachToActor(Player);
 	RollingMoonSult->AttachToActor(Player);
 	ChargeDrive->AttachToActor(Player);
 	HighKick->AttachToActor(Player);

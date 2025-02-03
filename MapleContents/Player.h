@@ -34,7 +34,10 @@ public:
 	{
 		bIsdamage = true; 
 	}
-
+	bool GetbIsDirLeft()
+	{
+		return bIsDirLeft;
+	}
 
 	// 데미지 체크
 	bool bIsdamage = false;
@@ -77,6 +80,7 @@ private:
 	bool bIsJumpRight = false;
 	bool bIsJumpMoveEnd= false;
 	bool bIsIdleJump = true;
+	bool bIsDirLeft = true;
 
 
 	bool bIsLeafUsing = false;
@@ -102,6 +106,7 @@ private:
 	void LeafTornado(float _DeltaTime);
 	void WrathOfEnril(float _DeltaTime);
 	void LegendarySpear(float _DeltaTime);
+	void Ishtar(float _DeltaTime);
 
 	void IdleUseSkill(float _DeltaTime);
 	void WalkUseSkill(float _DeltaTime);
@@ -110,6 +115,8 @@ private:
 	void Gravity(float _DeltaTime);
 
 
+	// 이슈 화살 생성 시간
+	float IshballTime = 0.2f;
 
 	// 무적 시간
 	float CanDamageTime = 0.0f;

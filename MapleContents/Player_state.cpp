@@ -12,7 +12,7 @@
 #include "MapleEnum.h"
 
 #include "WrathOfEnril.h"
-
+#include "Ishtar_Ball.h"
 
 
 
@@ -90,6 +90,13 @@ FSM.CreateState(ECharacterState::Prone, std::bind(&APlayer::Prone, this, std::pl
 		}
 	);
 
+	FSM.CreateState(ECharacterState::Ishtar, std::bind(&APlayer::Ishtar, this, std::placeholders::_1),
+		[this]()
+		{
+			PlayerRenderer->ChangeAnimation("StrikeDualShot");
+		}
+	);
+
 	FSM.CreateState(ECharacterState::Air, std::bind(&APlayer::Air, this, std::placeholders::_1),
 		[this]()
 		{
@@ -113,8 +120,8 @@ void APlayer::Idle(float _DeltaTime)
 	IdleUseSkill(_DeltaTime);
 
 
-	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Walk); return; }
-	if (UEngineInput::IsPress(VK_RIGHT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); return; }
+	if (UEngineInput::IsPress(VK_LEFT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); return; bIsDirLeft = true; }
+	if (UEngineInput::IsPress(VK_RIGHT) && true == MoveCollision->IsColliding()) { FSM.ChangeState(ECharacterState::Walk); return; bIsDirLeft = false;  }
 	if (UEngineInput::IsPress(VK_DOWN) && true == MoveCollision->IsColliding()){ FSM.ChangeState(ECharacterState::Prone); return; }
 	//if (UEngineInput::IsPress(VK_UP))
 	//{
@@ -132,6 +139,8 @@ void APlayer::Idle(float _DeltaTime)
 	}
 	// Idle 레전더리 스피어
 	if (true == UEngineInput::IsDown('G')) { GravityForce = FVector::DOWN * 4.0f; FSM.ChangeState(ECharacterState::LegendarySpear); }
+
+
 
 	// 체공
 	if (false == bIsJumping  && false == bIsGround)
@@ -619,6 +628,20 @@ void APlayer::WrathOfEnril(float _DeltaTime)
 }
 
 
+void APlayer::Ishtar(float _DeltaTime)
+{
+
+	Gravity(_DeltaTime);
+
+	
+
+	if (UEngineInput::IsUp(VK_SPACE))
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+	}
+}
+
+
 
 void APlayer::IdleUseSkill(float _DeltaTime)
 {
@@ -627,6 +650,19 @@ void APlayer::IdleUseSkill(float _DeltaTime)
 
 	// 스트라이크 듀얼 샷
 	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+
+	// 이슈타르의 링
+	if (UEngineInput::IsPress(VK_SPACE)) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); 
+	
+		IshballTime -= _DeltaTime;
+
+		if (IshballTime <= 0.0f)
+		{
+			std::shared_ptr<AIshtar_Ball> IShtarBall = GetWorld()->SpawnActor<AIshtar_Ball>();
+
+			IshballTime = 0.2f;
+		}
+	}
 
 	// 차지 드라이브
 	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
@@ -656,6 +692,9 @@ void APlayer::WalkUseSkill(float _DeltaTime)
 	// 스트라이크 듀얼 샷
 	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
 
+	// 이슈타르의 링
+	if (UEngineInput::IsPress(VK_SPACE)) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+
 	// 차지 드라이브
 	if (UEngineInput::IsPress('Q')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Charge"); }
 
@@ -679,6 +718,9 @@ void APlayer::AirUseSkill(float _DeltaTime)
 
 	// 스트라이크 듀얼 샷
 	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+
+	// 이슈타르의 링
+	if (UEngineInput::IsPress(VK_SPACE)) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
 
 	// 리프 토네이도 
 	//if (UEngineInput::IsPress('D')) { bIsSkillUsing = true; }
