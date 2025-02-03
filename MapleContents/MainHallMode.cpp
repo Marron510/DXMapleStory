@@ -128,8 +128,8 @@ void AMainHallMode::BeginPlay()
 	// Ä«¸Þ¶ó
 	{
 		Camera = GetWorld()->GetMainCamera();
-		Camera->SetActorLocation(FVector{ 0.0f, 290.0f , -1000.0f });
-		Camera->AttachToActor(Player);
+		Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 44.0f, -1000.0f });
+		//Camera->AttachToActor(Player);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 	GetSpriteRender();
@@ -138,8 +138,38 @@ void AMainHallMode::BeginPlay()
 void AMainHallMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	CameraLocationX = Camera->GetActorLocation().X;
 	
+
 	UpdateSprite(_DeltaTime);
+	CameraMove(_DeltaTime);
+
+}
+
+void AMainHallMode::CameraMove(float _DeltaTime)
+{
+	
+	if (MapSizeHalfX + 400.0f > CameraLocationX)
+	{
+		if (UEngineInput::IsPress(VK_LEFT)) 
+		{
+			Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 282.0f , -1000.0f });
+		}
+		if (UEngineInput::IsPress(VK_RIGHT)) 
+		{
+			Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 282.0f , -1000.0f }); 
+		}
+	}
+	if (MapSizeHalfX + 400.0f < CameraLocationX)
+	{
+		Camera->SetActorLocation(FVector{ MapSizeHalfX + 400.0f, Player->GetActorLocation().Y + 282.0f , -1000.0f });
+	}
+	
+	if (MapSizeHalfX - 400.0f > CameraLocationX)
+	{
+		Camera->SetActorLocation(FVector{ MapSizeHalfX - 400.0f, Player->GetActorLocation().Y + 282.0f , -1000.0f });
+	}
+
 }
 
 void AMainHallMode::GetSpriteRender()

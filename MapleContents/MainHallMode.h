@@ -19,6 +19,8 @@ public:
 	void BeginPlay();
 	void Tick(float _DeltaTime);
 
+	void CameraMove(float _DeltaTime);
+
 	void GetSpriteRender();
 	void UpdateSprite(float _DeltaTime);
 	void UpdateSpriteLocation(std::shared_ptr<class USpriteRenderer>& Sprite, float _DeltaTime);
@@ -53,6 +55,8 @@ private:
 
 	// Ä«¸Þ¶ó
 	std::shared_ptr<class ACameraActor> Camera;
+	float CameraLocationX = 0.0f;
+
 
 	std::shared_ptr<class USpriteRenderer> MainHall_Sky = nullptr;
 	std::shared_ptr<class USpriteRenderer> MainHall_Center = nullptr;
@@ -69,6 +73,8 @@ private:
 	float PreviousPlayerLocation = 0.0f;
 
 	float Velocity = 0.0f;
+
+
 
 };
 
