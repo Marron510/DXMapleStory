@@ -1,12 +1,9 @@
 #pragma once
 #include "Widget.h"
-#include <EngineCore/EngineSprite.h>
-#include <EngineBase/EngineDelegate.h>
 
 // Ό³Έν :
 class UImageWidget : public UWidget
 {
-	// Animation
 public:
 	class FrameAnimation
 	{
@@ -14,13 +11,20 @@ public:
 		UEngineSprite* Sprite = nullptr;
 		std::vector<int> FrameIndex;
 		std::vector<float> FrameTime;
-		std::map<int, EngineDelegate> Events;
+		std::map<int, UEngineDelegate> Events;
 
 		int CurIndex = 0;
 		int ResultIndex = 0;
 		float CurTime = 0.0f;
 		bool Loop = true;
 		bool IsEnd = false;
+
+		int GetCurIndex()
+		{
+			return FrameIndex[CurIndex];
+		}
+
+
 
 		void Reset()
 		{
@@ -49,10 +53,7 @@ private:
 	float CurAnimationSpeed = 1.0f;
 	FrameAnimation* CurAnimation = nullptr;
 	std::map<std::string, FrameAnimation> FrameAnimations;
-
 public:
-
-
 	// constrcuter destructer
 	ENGINEAPI UImageWidget();
 	ENGINEAPI ~UImageWidget();
@@ -63,10 +64,10 @@ public:
 	UImageWidget& operator=(const UImageWidget& _Other) = delete;
 	UImageWidget& operator=(UImageWidget&& _Other) noexcept = delete;
 
-	void Tick(float _DeltaTime) override;
-	void Render(UEngineCamera* Camera, float _DeltaTime) override;
+	ENGINEAPI void Render(UEngineCamera* Camera, float _DeltaTime) override;
+	ENGINEAPI void Tick(float _DeltaTime) override;
 
-	URenderUnit& GetRenderUnit()
+	ENGINEAPI URenderUnit& GetRenderUnit()
 	{
 		return RenderUnit;
 	}
@@ -74,12 +75,18 @@ public:
 	ENGINEAPI void SetSprite(std::string_view _Name, UINT _Index = 0);
 	ENGINEAPI void SetTexture(std::string_view _Name, bool AutoScale = false, float _Ratio = 1.0f);
 
-	void SetAutoScale(bool _Value)
+	ENGINEAPI void SetSpritePivot(FVector _Pivot);
+	ENGINEAPI void SetAnimationPivot(std::string_view AnimationName, FVector _Pivot);
+
+	ENGINEAPI void SetSpriteCuttingSize(FVector _Size);
+	ENGINEAPI void SetAnimationCuttingSize(std::string_view AnimationName, FVector _Size);
+
+	ENGINEAPI void SetAutoScale(bool _Value)
 	{
 		IsAutoScale = _Value;
 	}
 
-	void SetAutoScaleRatio(float _Scale)
+	ENGINEAPI void SetAutoScaleRatio(float _Scale)
 	{
 		AutoScaleRatio = _Scale;
 	}
@@ -88,7 +95,7 @@ public:
 	FUVValue UVValue;
 	FSpriteData SpriteData;
 
-	
+
 protected:
 
 private:

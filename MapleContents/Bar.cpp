@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "Bar.h"
-#include "MyGameInstance.h"
+#include "MapleInstance.h"
 
 
 UBar::UBar()

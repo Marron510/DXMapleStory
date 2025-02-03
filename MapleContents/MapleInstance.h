@@ -19,7 +19,7 @@ public:
 	MapleInstance& operator=(MapleInstance&& _Other) noexcept = delete;
 
 
-	PlayerStatus Status;
+	FPlayerStatus Status;
 
 	UWidget* InvenWidget;
 

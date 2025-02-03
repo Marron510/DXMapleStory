@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "PlayerHpBar.h"
 
-#include "MyGameInstance.h"
+#include "MapleInstance.h"
 #include "PlayerHpBarEffect.h"
 
 
@@ -22,16 +22,16 @@ UPlayerHpBar::~UPlayerHpBar()
 void UPlayerHpBar::Tick(float _DeltaTime)
 {
 	UImageWidget::Tick(_DeltaTime);
-	if (GetGameInstance<MyGameInstance>()->PlayerStatus.bIsHpChange)
+	if (GetGameInstance<MapleInstance>()->Status.bIsHpChange)
 	{
 		CurTime += _DeltaTime;
 		if (!bIsPlayEffect) 
 		{
 			PlayerHpBarEffect->SetActive(true);
 		}
-		StartPercent = GetGameInstance<MyGameInstance>()->PlayerStatus.PrevHpPercent;
-		TargetPercent = GetGameInstance<MyGameInstance>()->PlayerStatus.CurHpPercent;
-		BarLerp(StartPercent, TargetPercent, CurTime,GetGameInstance<MyGameInstance>()->PlayerStatus.bIsHpChange);
+		StartPercent = GetGameInstance<MapleInstance>()->Status.PrevHpPercent;
+		TargetPercent = GetGameInstance<MapleInstance>()->Status.CurHpPercent;
+		BarLerp(StartPercent, TargetPercent, CurTime,GetGameInstance<MapleInstance>()->Status.bIsHpChange);
 	}
 	else
 	{

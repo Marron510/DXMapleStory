@@ -26,6 +26,85 @@ UImageWidget::~UImageWidget()
 {
 }
 
+void UImageWidget::Render(UEngineCamera* Camera, float _DeltaTime)
+{
+	UWidget::Render(Camera, _DeltaTime);
+	if (nullptr != CurAnimation)
+	{
+		Sprite = CurAnimation->Sprite;
+
+		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
+		SpriteData = Sprite->GetSpriteData(CurIndex);
+	}
+
+	if (true == IsAutoScale && nullptr != Sprite)
+	{
+		FVector Scale = Sprite->GetSpriteScaleToReal(CurIndex);
+		Scale.Z = 1.0f;
+		SetRelativeScale3D(Scale * AutoScaleRatio);
+	}
+
+	CameraTransUpdate(Camera);
+
+	RenderUnit.Render(Camera, _DeltaTime);
+}
+
+
+void UImageWidget::SetSprite(std::string_view _Name, UINT _Index /*= 0*/)
+{
+	Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
+
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("존재하지 않는 텍스처를 세팅하려고 했습니다.");
+		return;
+	}
+
+	GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(_Index)->GetName());
+	SpriteData = Sprite->GetSpriteData(_Index);
+}
+
+void UImageWidget::SetTexture(std::string_view _Name, bool AutoScale /*= false*/, float _Ratio /*= 1.0f*/)
+{
+	std::shared_ptr<UEngineTexture> Texture = UEngineTexture::Find<UEngineTexture>(_Name);
+
+	if (nullptr == Texture)
+	{
+		MSGASSERT("로드하지 않은 텍스처를 사용하려고 했습니다.");
+	}
+
+	GetRenderUnit().SetTexture("ImageTexture", _Name);
+
+	if (true == AutoScale)
+	{
+		SetRelativeScale3D(Texture->GetTextureSize() * _Ratio);
+	}
+}
+void UImageWidget::SetAnimationPivot(std::string_view AnimationName, FVector _Pivot)
+{
+	std::string UpperName = UEngineString::ToUpper(AnimationName);
+	if (false == FrameAnimations.contains(UpperName))
+	{
+		MSGASSERT("존재하지 않은 애니메이션으로 변경하려고 했습니다. = " + UpperName);
+		return;
+	}
+	FrameAnimation* ChangeAnimation = &FrameAnimations[UpperName];
+	for (size_t i = 0; i < ChangeAnimation->FrameIndex.size(); i++)
+	{
+		ChangeAnimation->Sprite->GetSpriteData(ChangeAnimation->FrameIndex[i]).Pivot = _Pivot;
+	}
+}
+void UImageWidget::SetSpritePivot(FVector _Pivot)
+{
+	SpriteData.Pivot = _Pivot;
+}
+
+void UImageWidget::SetSpriteCuttingSize(FVector _Size)
+{
+	FSpriteData& SpriteData = Sprite->GetSpriteData(0);
+	SpriteData.CuttingSize = _Size;
+}
+
 void UImageWidget::Tick(float _DeltaTime)
 {
 	// 애니메이션 진행시키는 코드를 ComponentTick으로 옮겼다. 
@@ -186,6 +265,21 @@ void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string_
 
 }
 
+void UImageWidget::SetAnimationCuttingSize(std::string_view AnimationName, FVector _Size)
+{
+	std::string UpperName = UEngineString::ToUpper(AnimationName);
+	if (false == FrameAnimations.contains(UpperName))
+	{
+		MSGASSERT("존재하지 않은 애니메이션으로 변경하려고 했습니다. = " + UpperName);
+		return;
+	}
+	FrameAnimation* ChangeAnimation = &FrameAnimations[UpperName];
+	for (size_t i = 0; i < ChangeAnimation->FrameIndex.size(); i++)
+	{
+		ChangeAnimation->Sprite->GetSpriteData(ChangeAnimation->FrameIndex[i]).CuttingSize = _Size;
+	}
+}
+
 void UImageWidget::ChangeAnimation(std::string_view _AnimationName, bool _Force /*= false*/)
 {
 	std::string UpperName = UEngineString::ToUpper(_AnimationName);
@@ -264,63 +358,4 @@ UImageWidget::FrameAnimation* UImageWidget::FindAnimation(std::string_view _Anim
 	}
 
 	return &FrameAnimations[UpperString];
-}
-
-
-// Render
-void UImageWidget::Render(UEngineCamera* Camera, float _DeltaTime)
-{
-	
-	UWidget::Render(Camera, _DeltaTime);
-
-	if (nullptr != CurAnimation)
-	{
-		Sprite = CurAnimation->Sprite;
-
-		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
-		SpriteData = Sprite->GetSpriteData(CurIndex);
-	}
-
-	if (true == IsAutoScale && nullptr != Sprite)
-	{
-		FVector Scale = Sprite->GetSpriteScaleToReal(CurIndex);
-		Scale.Z = 1.0f;
-		SetRelativeScale3D(Scale * AutoScaleRatio);
-	}
-
-	CameraTransUpdate(Camera);
-
-	RenderUnit.Render(Camera, _DeltaTime);
-}
-
-
-void UImageWidget::SetSprite(std::string_view _Name, UINT _Index /*= 0*/)
-{
-	Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
-
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("존재하지 않는 텍스처를 세팅하려고 했습니다.");
-		return;
-	}
-
-	GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(_Index)->GetName());
-	SpriteData = Sprite->GetSpriteData(_Index);
-}
-
-void UImageWidget::SetTexture(std::string_view _Name, bool AutoScale /*= false*/, float _Ratio /*= 1.0f*/)
-{
-	std::shared_ptr<UEngineTexture> Texture = UEngineTexture::Find<UEngineTexture>(_Name);
-
-	if (nullptr == Texture)
-	{
-		MSGASSERT("로드하지 않은 텍스처를 사용하려고 했습니다.");
-	}
-
-	GetRenderUnit().SetTexture("ImageTexture", _Name);
-
-	if (true == AutoScale)
-	{
-		SetRelativeScale3D(Texture->GetTextureSize() * _Ratio);
-	}
 }
