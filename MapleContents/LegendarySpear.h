@@ -33,6 +33,6 @@ private:
 	class APlayer* Player = nullptr;
 	bool bIsCanUse = false;
 	bool bIsHit = false;
-	float LegendarySpearAtt = 5.0f;
+	float LegendarySpearAtt = 50.0f;
 };
 

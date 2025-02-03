@@ -82,7 +82,8 @@ void ALegendarySpear::BeginPlay()
 					LegendarySpearHit->ChangeAnimation("LegendarySpearHit");
 					LegendarySpearHit->SetRelativeLocation(FVector{ DiffLocationX,  -80.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
-					static_cast<USerenCollision*>(_Other)->Damage(LegendarySpearAtt);
+					GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(LegendarySpearAtt);
+					//static_cast<USerenCollision*>(_Other)->Damage(LegendarySpearAtt);
 					this->bIsCanUse = true;
 				}
 				else if (false == Player->GetbIsDirLeft())
@@ -91,7 +92,8 @@ void ALegendarySpear::BeginPlay()
 					LegendarySpearHit->ChangeAnimation("LegendarySpearHit");
 					LegendarySpearHit->SetRelativeLocation(FVector{ -DiffLocationX, -80.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
-					static_cast<USerenCollision*>(_Other)->Damage(LegendarySpearAtt);
+					GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(LegendarySpearAtt);
+					//static_cast<USerenCollision*>(_Other)->Damage(LegendarySpearAtt);
 					this->bIsCanUse = true;
 				}
 			}

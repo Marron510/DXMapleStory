@@ -39,6 +39,6 @@ private:
 	bool LeftShot = false;
 	bool DirCheck = false;
 	bool bIsHit = false;
-	float StrikeDualShotAtt = 1.0f;
+	float StrikeDualShotAtt = 20.0f;
 };
 

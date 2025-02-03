@@ -30,6 +30,6 @@ private:
 	class APlayer* Player = nullptr;
 	bool bIsCanUse = false;
 	bool bIsHit = false;
-	float UnicornSpikeAtt = 5.0f;
+	float UnicornSpikeAtt = 30.0f;
 };
 

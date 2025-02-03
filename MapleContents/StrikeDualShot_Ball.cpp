@@ -40,7 +40,8 @@ AStrikeDualShot_Ball::AStrikeDualShot_Ball()
 		{
 			if (_Other->GetCollisionProfileName() == "MONSTER")
 			{
-				static_cast<USerenCollision*>(_Other)->Damage(StrikeDualShotAtt);
+				GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(StrikeDualShotAtt);
+				//static_cast<USerenCollision*>(_Other)->Damage(StrikeDualShotAtt);
 				StrikeDualShot_Ball->ChangeAnimation("StrikeDualShotHit");
 
 				if (true == Player->GetbIsDirLeft())

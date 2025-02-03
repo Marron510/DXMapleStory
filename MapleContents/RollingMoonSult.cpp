@@ -75,7 +75,8 @@ void ARollingMoonSult::BeginPlay()
 					RollingMoonSultHit->ChangeAnimation("RollingMoonSultHit");
 					RollingMoonSultHit->SetRelativeLocation(FVector{ DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
-					static_cast<USerenCollision*>(_Other)->Damage(RollingMoonSultAtt);
+					GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(RollingMoonSultAtt);
+					//static_cast<USerenCollision*>(_Other)->Damage(RollingMoonSultAtt);
 					this->bIsCanUse = true;
 				}
 				else if (false == Player->GetbIsDirLeft())
@@ -84,7 +85,8 @@ void ARollingMoonSult::BeginPlay()
 					RollingMoonSultHit->ChangeAnimation("RollingMoonSultHit");
 					RollingMoonSultHit->SetRelativeLocation(FVector{ -DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
-					static_cast<USerenCollision*>(_Other)->Damage(RollingMoonSultAtt);
+					GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(RollingMoonSultAtt);
+					//static_cast<USerenCollision*>(_Other)->Damage(RollingMoonSultAtt);
 					this->bIsCanUse = true;
 				}
 			}

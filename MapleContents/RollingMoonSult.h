@@ -31,6 +31,6 @@ private:
 	class APlayer* Player = nullptr;
 	bool bIsCanUse = false;
 	bool bIsHit = false;
-	float RollingMoonSultAtt = 5.0f;
+	float RollingMoonSultAtt = 40.0f;
 };
 

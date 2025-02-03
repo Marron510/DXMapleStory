@@ -40,7 +40,8 @@ AIshtar_Ball::AIshtar_Ball()
 		{
 			if (_Other->GetCollisionProfileName() == "MONSTER")
 			{
-				static_cast<USerenCollision*>(_Other)->Damage(IshtarAtt);
+				GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(IshtarAtt);
+				//static_cast<USerenCollision*>(_Other)->Damage(IshtarAtt);
 				Ishtar_Ball->ChangeAnimation("IshHit");
 
 				if (true == Player->GetbIsDirLeft())

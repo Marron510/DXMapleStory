@@ -170,7 +170,7 @@ void ASeren::SerenDeathCheck()
 		return;
 	}
 
-	if (0 >= Collision->GetHp() && false == bIsDead)
+	if (0 >= GetGameInstance<MapleInstance>()->SerenStatus1.CurHp && false == bIsDead)
 	{
 		Collision->SetActive(false);
 		SerenFSM.ChangeState(ESerenState::Die);

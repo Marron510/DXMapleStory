@@ -40,6 +40,6 @@ private:
 	bool LeftShot = false;
 	bool DirCheck = false;
 	bool bIsHit = false;
-	float IshtarAtt = 1.0f;
+	float IshtarAtt = 20.0f;
 };
 
