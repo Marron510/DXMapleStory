@@ -87,6 +87,7 @@ private:
 	bool bIsHighKick = false;
 	
 	bool bIsSkillUsing = false;
+	bool bIsStrike = false;
 	bool bIsZeroGravity = false;
 
 	void StateInit();
@@ -117,9 +118,12 @@ private:
 
 	// 이슈 화살 생성 시간
 	float IshballTime = 0.2f;
+
 	// 이슈 위치
 	int IshNum = 0;
 
+	// 스듀 화살 생성 시간
+	float StrikeballTime = 0.0f; // 0.02f
 
 	// 무적 시간
 	float CanDamageTime = 0.0f;

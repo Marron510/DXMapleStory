@@ -13,7 +13,7 @@
 
 #include "WrathOfEnril.h"
 #include "Ishtar_Ball.h"
-
+#include "StrikeDualShot_Ball.h"
 
 
 void APlayer::StateInit()
@@ -651,7 +651,22 @@ void APlayer::IdleUseSkill(float _DeltaTime)
 	// Ω∫∆Æ∂Û¿Ã≈© µ‡æÛ º¶
 	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); 
 	
-	
+		StrikeballTime -= _DeltaTime;
+		if (0.0f >= StrikeballTime)
+		{
+			std::shared_ptr<AStrikeDualShot_Ball> AStrikeDualShotBall0 = GetWorld()->SpawnActor<AStrikeDualShot_Ball>();
+			std::shared_ptr<AStrikeDualShot_Ball> AStrikeDualShotBall1 = GetWorld()->SpawnActor<AStrikeDualShot_Ball>();
+			std::shared_ptr<AStrikeDualShot_Ball> AStrikeDualShotBall2 = GetWorld()->SpawnActor<AStrikeDualShot_Ball>();
+
+			AStrikeDualShotBall1->AddActorLocation(FVector{ -60.0f, 20.0f });
+			AStrikeDualShotBall2->AddActorLocation(FVector{ -120.0f, -20.0f });
+			bIsStrike = true;
+		}
+		if (true == bIsStrike && 0.0f >= StrikeballTime)
+		{
+			bIsStrike = false;
+			StrikeballTime = 0.4f;
+		}
 	}
 
 	// ¿ÃΩ¥≈∏∏£¿« ∏µ

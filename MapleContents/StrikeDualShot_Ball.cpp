@@ -21,8 +21,8 @@ AStrikeDualShot_Ball::AStrikeDualShot_Ball()
 	StrikeDualShot_Ball = CreateDefaultSubObject<USpriteRenderer>();
 	StrikeDualShot_Ball->SetupAttachment(RootComponent);
 
-	StrikeDualShot_Ball->CreateAnimation("StrikeDualShot_Ball", "StrikeDualShotBall", 0, 5, 0.0614f);
-	StrikeDualShot_Ball->CreateAnimation("StrikeDualShotHit", "StrikeDualShotHit", 0, 6, 0.06f);
+	StrikeDualShot_Ball->CreateAnimation("StrikeDualShot_Ball", "StrikeDualShotBall", 0, 1, 0.04f);
+	StrikeDualShot_Ball->CreateAnimation("StrikeDualShotHit", "StrikeDualShotHit", 0, 10, 0.08f);
 
 	StrikeDualShot_Ball->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 
