@@ -146,6 +146,9 @@
     <ClCompile Include="SmallAtom.cpp">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClCompile>
+    <ClCompile Include="Ishtar.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="SmallAtom.h">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ishtar.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
