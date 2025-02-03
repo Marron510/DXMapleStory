@@ -31,8 +31,8 @@ private:
 	// 레벨 위치
 	FVector LevelLocation = FVector(-70.0f, -320.0f);
 	FVector FirstLocation = FVector(-50.0f, -320.0f);
-	FVector SecondLocation = FVector(-40.0f, -320.0f);
-	FVector ThirdLocation = FVector(-30.0f, -320.0f);
+	FVector SecondLocation = FVector(-42.0f, -320.0f);
+	FVector ThirdLocation = FVector(-34.0f, -320.0f);
 	
 	//exp 바 위치
 	FVector ExpBarLocation = FVector(0.0f, -379.0f);

@@ -63,13 +63,13 @@ void ASerenHUD::BeginPlay()
 	}
 
 	{
-		std::shared_ptr<UImageWidget> First = CreateWidget<UImageWidget>(-1);
+		std::shared_ptr<UImageWidget> First = CreateWidget<UImageWidget>(1);
 		First->SetTexture("2.png", true, 1.0f);
 		First->SetRelativeLocation(FirstLocation);
 	}
 
 	{
-		std::shared_ptr<UImageWidget> Second = CreateWidget<UImageWidget>(-1);
+		std::shared_ptr<UImageWidget> Second = CreateWidget<UImageWidget>(0);
 		Second->SetTexture("8.png", true, 1.0f);
 		Second->SetRelativeLocation(SecondLocation);
 	}
