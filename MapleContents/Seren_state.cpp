@@ -109,7 +109,13 @@ void ASeren::Walk(float _DeltaTime)
 	CheckCollision->SetCollisionStay([this, _DeltaTime](UCollision* _This, UCollision* _Other)
 		{
 			bIsInRange = true;
-			if (true == SerenRender->IsCurAnimationEnd())
+
+			if (false == bIsRushEnd)
+			{
+				return;
+			}
+
+			if (true == SerenRender->IsCurAnimationEnd() )
 			{
 				if (0 >= SkillCoolTime && 3 > StingCount)
 				{
@@ -176,6 +182,8 @@ void ASeren::Walk(float _DeltaTime)
 
 void ASeren::Rush(float _DeltaTime)
 {
+	bIsRushEnd = false;
+
 	if (true == SerenRender->IsCurAnimationEnd() && true == bIsRush)
 	{
 		SkillCoolTime = StimgCoolTime;
@@ -186,12 +194,14 @@ void ASeren::Rush(float _DeltaTime)
 		{
 			AddActorLocation(FVector{ -RushDistance, 0.0f });
 			SerenFSM.ChangeState(ESerenState::Idle);
+			bIsRushEnd = true;
 			return;
 		}
 		if (0.0f < DifferentLocation.X)
 		{
 			AddActorLocation(FVector{ RushDistance, 0.0f });
 			SerenFSM.ChangeState(ESerenState::Idle);
+			bIsRushEnd = true;
 			return;
 		}
 	}

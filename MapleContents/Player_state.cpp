@@ -596,7 +596,7 @@ void APlayer::LegendarySpear(float _DeltaTime)
 	
 	if (true == bIsGround)
 	{
-		AddActorLocation(JumpVelocity * 0.3f);
+		AddActorLocation(JumpVelocity * 0.15f);
 		bIsZeroGravity = true;
 		return;
 	}

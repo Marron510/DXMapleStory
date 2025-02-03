@@ -33,15 +33,16 @@ ALegendarySpear::ALegendarySpear()
 	LegendarySpearMid->CreateAnimation("LegendarySpearMid", "LegendarySpearMid", 0, 19, 0.042f, false);
 	LegendarySpearMid->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 
-	LegendarySpearHit->CreateAnimation("LegendarySpearHit", "LegendarySpearHit", 0, 19, 0.042f, false);
+	LegendarySpearHit->CreateAnimation("LegendarySpearHit", "LegendarySpearHit", 0, 10, 0.1f, false);
 	LegendarySpearHit->CreateAnimation("None", "WrathOfEnril", 14, 14, 0.01f, false);
 
 	LegendarySpearFront->ChangeAnimation("None");
 	LegendarySpearMid->ChangeAnimation("None");
+	LegendarySpearHit->ChangeAnimation("None");
 
 	LegendarySpearFront->SetRelativeLocation(FVector{ -500.0f, -260.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) });
 	LegendarySpearMid->SetRelativeLocation(FVector{ 0.0f, -250.0f, static_cast<float>(EMapleZEnum::Player_Skill_Front) - 20.0f });
-
+	LegendarySpearHit->SetRelativeLocation(FVector{ 0.0f, 0.0f, 0.0f });
 
 
 
@@ -53,9 +54,6 @@ ALegendarySpear::ALegendarySpear()
 
 	Collision->SetScale3D({ 800.0f, 500.0f });
 	Collision->SetRelativeLocation(FVector{ -460.0f, 50.0f, static_cast<float>(EMapleZEnum::Player) });
-	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
-		{
-		});
 }
 
 ALegendarySpear::~ALegendarySpear()
@@ -80,18 +78,18 @@ void ALegendarySpear::BeginPlay()
 			{
 				if (true == Player->GetbIsDirLeft())
 				{
-					float DiffLocation = _Other->GetWorldLocation().X - Player->GetActorLocation().X;
+					float DiffLocationX = _Other->GetWorldLocation().X - Player->GetActorLocation().X;
 					LegendarySpearHit->ChangeAnimation("LegendarySpearHit");
-					LegendarySpearHit->SetRelativeLocation(FVector{ DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
+					LegendarySpearHit->SetRelativeLocation(FVector{ DiffLocationX,  -80.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
 					static_cast<USerenCollision*>(_Other)->Damage(LegendarySpearAtt);
 					this->bIsCanUse = true;
 				}
 				else if (false == Player->GetbIsDirLeft())
 				{
-					float DiffLocation = _Other->GetWorldLocation().X - Player->GetActorLocation().X;
+					float DiffLocationX = _Other->GetWorldLocation().X - Player->GetActorLocation().X;
 					LegendarySpearHit->ChangeAnimation("LegendarySpearHit");
-					LegendarySpearHit->SetRelativeLocation(FVector{ -DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
+					LegendarySpearHit->SetRelativeLocation(FVector{ -DiffLocationX, -80.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
 					static_cast<USerenCollision*>(_Other)->Damage(LegendarySpearAtt);
 					this->bIsCanUse = true;

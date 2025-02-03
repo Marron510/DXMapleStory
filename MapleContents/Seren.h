@@ -122,6 +122,7 @@ private:
 	bool bIsAuraDir = false;
 	bool bIsAuraLeft = false;
 	bool bIsAuraCheck = false;
+	bool bIsRushEnd = true;
 
 	// 맵패턴 상태 체크
 	bool bIsExplosion1 = false;
