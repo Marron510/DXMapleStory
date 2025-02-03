@@ -7,7 +7,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/Collision.h>
 
-
+#include "MapleInstance.h"
 #include "MapleEnum.h"
 #include "SerenCollision.h"
 #include "Player.h"

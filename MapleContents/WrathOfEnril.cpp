@@ -8,6 +8,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/Collision.h>
 
+#include "MapleInstance.h"
 #include "MapleEnum.h"
 #include "SerenCollision.h"
 #include "Player.h"
@@ -74,7 +75,8 @@ void AWrathOfEnril::BeginPlay()
 					WrathOfEnrilHit->ChangeAnimation("WrathOfEnrilHit");
 					WrathOfEnrilHit->SetRelativeLocation(FVector{ DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f});
 					bIsHit = true;
-					static_cast<USerenCollision*>(_Other)->Damage(WrathOfEnrilAtt);
+					GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(WrathOfEnrilAtt);
+					//static_cast<USerenCollision*>(_Other)->Damage(WrathOfEnrilAtt);
 					this->bIsCanUse = true;
 				}
 				else if (false == Player->GetbIsDirLeft())
@@ -83,7 +85,8 @@ void AWrathOfEnril::BeginPlay()
 					WrathOfEnrilHit->ChangeAnimation("WrathOfEnrilHit");
 					WrathOfEnrilHit->SetRelativeLocation(FVector{ -DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f});
 					bIsHit = true;
-					static_cast<USerenCollision*>(_Other)->Damage(WrathOfEnrilAtt);
+					GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(WrathOfEnrilAtt);
+					//static_cast<USerenCollision*>(_Other)->Damage(WrathOfEnrilAtt);
 					this->bIsCanUse = true;
 				}
 			}

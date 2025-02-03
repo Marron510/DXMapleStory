@@ -8,6 +8,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/Collision.h>
 
+#include "MapleInstance.h"
 #include "MapleEnum.h"
 #include "SerenCollision.h"
 #include "Player.h"
@@ -81,7 +82,8 @@ void AUnicornSpike::BeginPlay()
 					UnicornSpikeHit->ChangeAnimation("UnicornSpikeHit");
 					UnicornSpikeHit->SetRelativeLocation(FVector{ DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
-					static_cast<USerenCollision*>(_Other)->Damage(UnicornSpikeAtt);
+					GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(UnicornSpikeAtt);
+					//static_cast<USerenCollision*>(_Other)->Damage(UnicornSpikeAtt);
 					this->bIsCanUse = true;
 				}
 				else if (false == Player->GetbIsDirLeft())
@@ -90,7 +92,8 @@ void AUnicornSpike::BeginPlay()
 					UnicornSpikeHit->ChangeAnimation("UnicornSpikeHit");
 					UnicornSpikeHit->SetRelativeLocation(FVector{ -DiffLocation, 0.0f,  static_cast<float>(EMapleZEnum::Player_Skill_Front) + 20.0f });
 					bIsHit = true;
-					static_cast<USerenCollision*>(_Other)->Damage(UnicornSpikeAtt);
+					GetGameInstance<MapleInstance>()->SerenStatus1.TakeDamage(UnicornSpikeAtt);
+					//static_cast<USerenCollision*>(_Other)->Damage(UnicornSpikeAtt);
 					this->bIsCanUse = true;
 				}
 			}
