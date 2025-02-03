@@ -38,6 +38,10 @@ public:
 	{
 		return bIsDirLeft;
 	}
+	UFSMStateManager& GetFSM()
+	{
+		return FSM;
+	}
 
 	// 데미지 체크
 	bool bIsdamage = false;
@@ -95,7 +99,7 @@ private:
 	// 움직임
 	void Idle(float _DeltaTime);
 	void Prone(float _DeltaTime);
-	//void Hit(float _DeltaTime);
+	void Hit(float _DeltaTime);
 	void Walk(float _DeltaTime);
 	void IdleJump(float _DeltaTime);
 	void WalkJump(float _DeltaTime);
@@ -128,5 +132,8 @@ private:
 	// 무적 시간
 	float CanDamageTime = 0.0f;
 	float invincibilityTime = 2.0f;
+	
+	// 바인드 시간
+	float HitTime = 3.0f;
 };
 

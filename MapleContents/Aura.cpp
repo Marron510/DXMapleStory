@@ -1,8 +1,9 @@
 #include "PreCompile.h"
 #include "Aura.h"
 
-#include <EnginePlatform/EngineInput.h>
+#include <EngineBase/FSMStateManager.h>
 
+#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/Collision.h>
@@ -49,7 +50,7 @@ void AAura::BeginPlay()
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
 			GetGameInstance<MapleInstance>()->Status.TakeDamage(AuraDamage);
-			//float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
+			Player->GetFSM().ChangeState(ECharacterState::Hit);
 			Player->bIsdamageOn();
 		});
 }

@@ -33,12 +33,12 @@ FSM.CreateState(ECharacterState::Prone, std::bind(&APlayer::Prone, this, std::pl
 		}
 	);
 	
-	//FSM.CreateState(ECharacterState::Hit, std::bind(&APlayer::Hit, this, std::placeholders::_1),
-	//	[this]()
-	//	{
-	//		PlayerRenderer->ChangeAnimation("Hit");
-	//	}
-	//);
+	FSM.CreateState(ECharacterState::Hit, std::bind(&APlayer::Hit, this, std::placeholders::_1),
+		[this]()
+		{
+			PlayerRenderer->ChangeAnimation("Hit");
+		}
+	);
 
 	FSM.CreateState(ECharacterState::Walk, std::bind(&APlayer::Walk, this, std::placeholders::_1),
 		[this]()
@@ -156,6 +156,19 @@ void APlayer::Idle(float _DeltaTime)
 	
 }
 
+void APlayer::Hit(float _DeltaTime)
+{
+	// 제자리에서 이동전환
+	Gravity(_DeltaTime);
+	
+	HitTime -= _DeltaTime;
+
+	if (0.0f >= HitTime)
+	{
+		FSM.ChangeState(ECharacterState::Idle);
+		HitTime = 3.0f;
+	}
+}
 
 void APlayer::Prone(float _DeltaTime)
 {
