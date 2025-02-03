@@ -56,6 +56,7 @@ private:
 	// Ä«¸Þ¶ó
 	std::shared_ptr<class ACameraActor> Camera;
 	float CameraLocationX = 0.0f;
+	float CameraLocationY = 0.0f;
 
 
 	std::shared_ptr<class USpriteRenderer> MainHall_Sky = nullptr;

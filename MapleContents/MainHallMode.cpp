@@ -139,7 +139,7 @@ void AMainHallMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	CameraLocationX = Camera->GetActorLocation().X;
-	
+	CameraLocationY = Camera->GetActorLocation().Y;
 
 	UpdateSprite(_DeltaTime);
 	CameraMove(_DeltaTime);
@@ -149,15 +149,15 @@ void AMainHallMode::Tick(float _DeltaTime)
 void AMainHallMode::CameraMove(float _DeltaTime)
 {
 	
-	if (MapSizeHalfX + 400.0f > CameraLocationX)
+	if (MapSizeHalfX + 400.0f > Player->GetActorLocation().X && MapSizeHalfX - 400.0f < Player->GetActorLocation().X)
 	{
 		if (UEngineInput::IsPress(VK_LEFT)) 
 		{
-			Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 282.0f , -1000.0f });
+			Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 284.0f , -1000.0f });
 		}
 		if (UEngineInput::IsPress(VK_RIGHT)) 
 		{
-			Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 282.0f , -1000.0f }); 
+			Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 284.0f , -1000.0f }); 
 		}
 	}
 	if (MapSizeHalfX + 400.0f < CameraLocationX)
@@ -169,6 +169,11 @@ void AMainHallMode::CameraMove(float _DeltaTime)
 	{
 		Camera->SetActorLocation(FVector{ MapSizeHalfX - 400.0f, Player->GetActorLocation().Y + 282.0f , -1000.0f });
 	}
+
+
+	
+
+
 
 }
 
