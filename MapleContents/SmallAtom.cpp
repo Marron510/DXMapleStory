@@ -51,8 +51,8 @@ void ASmallAtom::BeginPlay()
 
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= AtomDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+			GetGameInstance<MapleInstance>()->Status.TakeDamage(AtomDamage);
+			float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 			Player->bIsdamageOn();
 			SmallAtom->ChangeAnimation("Small_Atom_End");
 			Collision->SetActive(false);

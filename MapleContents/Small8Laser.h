@@ -43,7 +43,7 @@ private:
 
 	float WaitTime = 1.3f;
 	float HitTime = 1.3f;
-	float LaserDamage = 30.0f;
+	float LaserDamage = 15000.0f;
 	float LaserSpeed = 0.1f;
 };
 

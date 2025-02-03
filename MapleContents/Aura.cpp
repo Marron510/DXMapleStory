@@ -48,8 +48,8 @@ void AAura::BeginPlay()
 
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= AuraDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+			GetGameInstance<MapleInstance>()->Status.TakeDamage(AuraDamage);
+			//float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 			Player->bIsdamageOn();
 		});
 }

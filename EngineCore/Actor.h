@@ -62,7 +62,7 @@ public:
 	}
 
 	template<typename Type>
-	Type* GetGameInstance()
+	ENGINEAPI Type* GetGameInstance()
 	{
 		return dynamic_cast<Type*>(GetGameInstance());
 	}

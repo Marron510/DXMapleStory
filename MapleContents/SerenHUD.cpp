@@ -2,6 +2,11 @@
 #include "SerenHUD.h"
 #include <EngineCore/ImageWidget.h>
 
+#include "PlayerHpBar.h"
+#include "PlayerMpBar.h"
+#include "PlayerHpBarEffect.h"
+#include "PlayerMpBarEffect.h"
+
 ASerenHUD::ASerenHUD()
 {
 
@@ -21,7 +26,18 @@ void ASerenHUD::BeginPlay()
 		PlayerBarBack->SetRelativeLocation(StatusBackLocation);
 	}
 
-	//  이 사이에 Hp, MP 바 넣어야함
+
+	// Hp, MP 바
+	{
+		std::shared_ptr<UPlayerHpBar> PlayerHpBar = CreateWidget<UPlayerHpBar>(-1);
+		std::shared_ptr<UPlayerMpBar> PlayerMpBar = CreateWidget<UPlayerMpBar>(-1);
+		std::shared_ptr<UPlayerHpBarEffect> PlayerHpBarEffect = CreateWidget<UPlayerHpBarEffect>(-1);
+		std::shared_ptr<UPlayerMpBarEffect> PlayerMpBarEffect = CreateWidget<UPlayerMpBarEffect>(-1);
+
+
+		PlayerHpBar->SetPlayerHpBarEffect(PlayerHpBarEffect.get());
+		PlayerMpBar->SetPlayerMpBarEffect(PlayerMpBarEffect.get());
+	}
 
 	{
 		std::shared_ptr<UImageWidget> CenterStatus = CreateWidget<UImageWidget>(-1);
@@ -105,6 +121,8 @@ void ASerenHUD::BeginPlay()
 		GageUI_Ball->SetRelativeLocation(GageBallLocation);
 		
 	}
+
+
 }
 
 void ASerenHUD::Tick(float _DeltaTime)

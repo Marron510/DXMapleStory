@@ -41,7 +41,7 @@ private:
 	bool bIsStart = false;
 	bool bIsEnd = false;
 
-	float AtomDamage = 10.0f;
+	float AtomDamage = 5000.0f;
 	float AtomSpeed = 100.0f;
 };
 

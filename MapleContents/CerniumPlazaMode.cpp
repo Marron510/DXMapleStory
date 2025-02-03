@@ -228,8 +228,6 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 	ChargeDriveActive();	
 	HighKickActive();
 
-	// 인스턴스가 체력을 가져야 한다 -> 플레이어의 체력
-	GetGameInstance<MapleInstance>()->Status.Hp;
 }
 
 

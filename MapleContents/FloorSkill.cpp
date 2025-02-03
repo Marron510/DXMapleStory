@@ -72,8 +72,8 @@ void AFloorSkill::Tick(float _DeltaTime)
 
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= ExplosionDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+			GetGameInstance<MapleInstance>()->Status.TakeDamage(ExplosionDamage);
+			//float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 			Player->bIsdamageOn();
 			Collision->SetActive(false);
 			HitCheck = false;

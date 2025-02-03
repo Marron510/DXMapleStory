@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "PlayerMpBar.h"
-#include "MyGameInstance.h"
+#include "MapleInstance.h"
 #include "PlayerMpBarEffect.h"
 
 UPlayerMpBar::UPlayerMpBar() 
@@ -9,7 +9,7 @@ UPlayerMpBar::UPlayerMpBar()
 	SetSpritePivot(FVector(0.0f, 0.5f));
 	FVector WindowSize = GEngine->GetMainWindow().GetWindowSize();
 	FVector WidgetSize = GetWorldScale3D();
-	SetWorldLocation(FVector(-77.0f, -WindowSize.hY() + WidgetSize.hY() + 20.0f));
+	SetWorldLocation(FVector(-77.0f, -WindowSize.hY() + WidgetSize.hY() + 26.0f));
 }
 
 UPlayerMpBar::~UPlayerMpBar() 
@@ -20,16 +20,16 @@ UPlayerMpBar::~UPlayerMpBar()
 void UPlayerMpBar::Tick(float _DeltaTime)
 {
 	UBar::Tick(_DeltaTime);
-	if (GetGameInstance<MyGameInstance>()->PlayerStatus.bIsMpChange)
+	if (GetGameInstance<MapleInstance>()->Status.bIsMpChange)
 	{
 		CurTime += _DeltaTime;
 		if (!bIsPlayEffect)
 		{
 			PlayerMpBarEffect->SetActive(true);
 		}
-		StartPercent = GetGameInstance<MyGameInstance>()->PlayerStatus.PrevMpPercent;
-		TargetPercent = GetGameInstance<MyGameInstance>()->PlayerStatus.CurMpPercent;
-		BarLerp(StartPercent, TargetPercent, CurTime, GetGameInstance<MyGameInstance>()->PlayerStatus.bIsMpChange);
+		StartPercent = GetGameInstance<MapleInstance>()->Status.PrevMpPercent;
+		TargetPercent = GetGameInstance<MapleInstance>()->Status.CurMpPercent;
+		BarLerp(StartPercent, TargetPercent, CurTime, GetGameInstance<MapleInstance>()->Status.bIsMpChange);
 	}
 	else 
 	{

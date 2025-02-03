@@ -9,12 +9,12 @@ class URenderUnit
 {
 public:
 	// constrcuter destructer
-	URenderUnit();
-	~URenderUnit();
+	ENGINEAPI URenderUnit();
+	ENGINEAPI ~URenderUnit();
 
 	UTransformObject* TransformObject = nullptr;
 
-	URenderer* ParentRenderer = nullptr;
+	class URenderer* ParentRenderer = nullptr;
 
 	// ¸Å½¬(À°Ã¼) 
 	std::shared_ptr<UMesh> Mesh;
@@ -25,6 +25,9 @@ public:
 
 	ENGINEAPI void SetMesh(std::string_view _Name);
 	ENGINEAPI void SetMaterial(std::string_view _Name);
+
+	//void SetInputAssembler1();
+	//void SetInputAssembler1();
 
 	ENGINEAPI virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
 
@@ -39,18 +42,17 @@ public:
 	ENGINEAPI void ConstantBufferLinkData(std::string_view Name, void* _Data);
 
 	ENGINEAPI void SetTexture(std::string_view _Name, std::string_view _ResName);
-	ENGINEAPI void SetTexture(std::string_view _Name, UEngineTexture* _Texture);
 	ENGINEAPI void SetTexture(std::string_view _Name, std::shared_ptr<UEngineTexture> _Texture);
-
 	ENGINEAPI void SetSampler(std::string_view Name, std::string_view _ResName);
+
+
+	ENGINEAPI void SetTexture(std::string_view _Name, UEngineTexture* _Texture);
 
 	ENGINEAPI void Reset();
 
 	std::map<EShaderType, UEngineShaderResources> Resources;
 
 private:
-
 	void InputLayOutCreate();
-
 };
 

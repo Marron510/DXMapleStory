@@ -1,9 +1,12 @@
 #pragma once
 #include "Widget.h"
+#include <EngineCore/EngineSprite.h>
+#include <EngineBase/EngineDelegate.h>
 
 // Ό³Έν :
 class UImageWidget : public UWidget
 {
+	// Animation
 public:
 	class FrameAnimation
 	{
@@ -11,20 +14,13 @@ public:
 		UEngineSprite* Sprite = nullptr;
 		std::vector<int> FrameIndex;
 		std::vector<float> FrameTime;
-		std::map<int, UEngineDelegate> Events;
+		std::map<int, EngineDelegate> Events;
 
 		int CurIndex = 0;
 		int ResultIndex = 0;
 		float CurTime = 0.0f;
 		bool Loop = true;
 		bool IsEnd = false;
-
-		int GetCurIndex()
-		{
-			return FrameIndex[CurIndex];
-		}
-
-
 
 		void Reset()
 		{
@@ -53,7 +49,10 @@ private:
 	float CurAnimationSpeed = 1.0f;
 	FrameAnimation* CurAnimation = nullptr;
 	std::map<std::string, FrameAnimation> FrameAnimations;
+
 public:
+
+
 	// constrcuter destructer
 	ENGINEAPI UImageWidget();
 	ENGINEAPI ~UImageWidget();
@@ -64,8 +63,8 @@ public:
 	UImageWidget& operator=(const UImageWidget& _Other) = delete;
 	UImageWidget& operator=(UImageWidget&& _Other) noexcept = delete;
 
-	ENGINEAPI void Render(UEngineCamera* Camera, float _DeltaTime) override;
 	ENGINEAPI void Tick(float _DeltaTime) override;
+	ENGINEAPI void Render(UEngineCamera* Camera, float _DeltaTime) override;
 
 	ENGINEAPI URenderUnit& GetRenderUnit()
 	{

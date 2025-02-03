@@ -36,7 +36,7 @@ private:
 
 	float WaitTime = 0.9f;
 	float HitTime = 0.9f;
-	float ExplosionDamage = 10.0f;
+	float ExplosionDamage = 8000.0f;
 	float FloorY = -280.0f;
 };
 

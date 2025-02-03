@@ -124,32 +124,32 @@ void ASmall8Laser::Tick(float _DeltaTime)
 
 	Collision1->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= LaserDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+			GetGameInstance<MapleInstance>()->Status.TakeDamage(LaserDamage);
+			float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 			Player->bIsdamageOn();
 			Collision1->SetActive(false);
 			WaitTime = HitTime;
 		});
 	Collision2->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= LaserDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+			GetGameInstance<MapleInstance>()->Status.TakeDamage(LaserDamage);
+			float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 			Player->bIsdamageOn();
 			Collision2->SetActive(false);
 			WaitTime = HitTime;
 		});
 	Collision3->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= LaserDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+			GetGameInstance<MapleInstance>()->Status.TakeDamage(LaserDamage);
+			float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 			Player->bIsdamageOn();
 			Collision3->SetActive(false);
 			WaitTime = HitTime;
 		});
 	Collision4->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
-			GetGameInstance<MapleInstance>()->Status.Hp -= LaserDamage;
-			float Curhp = GetGameInstance<MapleInstance>()->Status.Hp;
+			GetGameInstance<MapleInstance>()->Status.TakeDamage(LaserDamage);
+			float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 			Player->bIsdamageOn();
 			Collision4->SetActive(false);
 			WaitTime = HitTime;
