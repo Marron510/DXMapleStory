@@ -152,6 +152,9 @@
     <ClCompile Include="Ishtar_Ball.cpp">
       <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
     </ClCompile>
+    <ClCompile Include="StrikeDualShot_Ball.cpp">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -303,6 +306,9 @@
       <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
     </ClInclude>
     <ClInclude Include="Ishtar_Ball.h">
+      <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="StrikeDualShot_Ball.h">
       <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
     </ClInclude>
   </ItemGroup>

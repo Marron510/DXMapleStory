@@ -332,6 +332,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="StrikeDualShot.cpp" />
+    <ClCompile Include="StrikeDualShot_Ball.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="SunSet.cpp">
       <SubType>
       </SubType>
@@ -508,6 +512,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="StrikeDualShot.h" />
+    <ClInclude Include="StrikeDualShot_Ball.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SunSet.h">
       <SubType>
       </SubType>

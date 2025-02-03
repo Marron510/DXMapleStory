@@ -649,7 +649,10 @@ void APlayer::IdleUseSkill(float _DeltaTime)
 	if (UEngineInput::IsPress('A')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("Wrath"); }
 
 	// ½ºÆ®¶óÀÌÅ© µà¾ó ¼¦
-	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); }
+	if (UEngineInput::IsPress('S')) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); 
+	
+	
+	}
 
 	// ÀÌ½´Å¸¸£ÀÇ ¸µ
 	if (UEngineInput::IsPress(VK_SPACE)) { bIsSkillUsing = true; PlayerRenderer->ChangeAnimation("StrikeDualShot"); 
