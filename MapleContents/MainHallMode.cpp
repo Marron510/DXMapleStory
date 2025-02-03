@@ -129,7 +129,6 @@ void AMainHallMode::BeginPlay()
 	{
 		Camera = GetWorld()->GetMainCamera();
 		Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 44.0f, -1000.0f });
-		//Camera->AttachToActor(Player);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 	GetSpriteRender();
@@ -144,38 +143,33 @@ void AMainHallMode::Tick(float _DeltaTime)
 	UpdateSprite(_DeltaTime);
 	CameraMove(_DeltaTime);
 
+
 }
 
 void AMainHallMode::CameraMove(float _DeltaTime)
 {
-	
-	if (MapSizeHalfX + 400.0f > Player->GetActorLocation().X && MapSizeHalfX - 400.0f < Player->GetActorLocation().X)
-	{
-		if (UEngineInput::IsPress(VK_LEFT)) 
-		{
-			Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 284.0f , -1000.0f });
-		}
-		if (UEngineInput::IsPress(VK_RIGHT)) 
-		{
-			Camera->SetActorLocation(FVector{ Player->GetActorLocation().X, Player->GetActorLocation().Y + 284.0f , -1000.0f }); 
-		}
-	}
-	if (MapSizeHalfX + 400.0f < CameraLocationX)
-	{
-		Camera->SetActorLocation(FVector{ MapSizeHalfX + 400.0f, Player->GetActorLocation().Y + 282.0f , -1000.0f });
-	}
-	
-	if (MapSizeHalfX - 400.0f > CameraLocationX)
-	{
-		Camera->SetActorLocation(FVector{ MapSizeHalfX - 400.0f, Player->GetActorLocation().Y + 282.0f , -1000.0f });
-	}
 
+	FVector CameraPos = Camera->GetActorLocation(); 
+	FVector PlayerPos = GetWorld()->GetMainPawn()->GetActorLocation();  
+	FVector WindowSize = GEngine->GetMainWindow().GetWindowSize();  
 
-	
+	float HalfWindowWidth = WindowSize.X * 0.5f;
+	float HalfWindowHeight = WindowSize.Y * 0.5f;
 
+	float MapMinX = 2300.0f - MapSizeHalfX * 0.5f + HalfWindowWidth; 
+	float MapMaxX = 2200.0f + MapSizeHalfX * 0.5f - HalfWindowWidth; 
+	float MapMinY = -770.0f - MapSizeHalfY * 0.5f + HalfWindowHeight;
+	float MapMaxY = 770.0f + MapSizeHalfY * 0.5f - HalfWindowHeight; 
 
+	float TargetX = UEngineMath::Clamp(PlayerPos.X, MapMinX, MapMaxX);
+	float TargetY = UEngineMath::Clamp(PlayerPos.Y, MapMinY, MapMaxY);
 
+	float LerpSpeed = 5.0f; 
+	FVector SmoothCameraPos = FVector::Lerp(CameraPos, FVector(TargetX, TargetY, CameraPos.Z), _DeltaTime * LerpSpeed);
+
+	Camera->SetActorLocation(SmoothCameraPos);
 }
+
 
 void AMainHallMode::GetSpriteRender()
 {
