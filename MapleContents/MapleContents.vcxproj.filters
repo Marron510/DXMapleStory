@@ -155,6 +155,21 @@
     <ClCompile Include="StrikeDualShot_Ball.cpp">
       <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHpBar.cpp">
+      <Filter>MapleGobal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpBarEffect.cpp">
+      <Filter>MapleGobal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBar.cpp">
+      <Filter>MapleGobal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBarEffect.cpp">
+      <Filter>MapleGobal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Bar.cpp">
+      <Filter>MapleGobal\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -311,6 +326,21 @@
     <ClInclude Include="StrikeDualShot_Ball.h">
       <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerHpBar.h">
+      <Filter>MapleGobal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpBarEffect.h">
+      <Filter>MapleGobal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBar.h">
+      <Filter>MapleGobal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBarEffect.h">
+      <Filter>MapleGobal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
+      <Filter>MapleGobal\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -393,6 +423,9 @@
     </Filter>
     <Filter Include="SKill\03_SerenSkill\Phase2">
       <UniqueIdentifier>{e49c49de-7de4-461a-a3f7-5b4218a3bb05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI">
+      <UniqueIdentifier>{9e2a9c63-f334-443b-a667-28cae67b8731}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
