@@ -6,6 +6,7 @@
 #include "PlayerMpBar.h"
 #include "PlayerHpBarEffect.h"
 #include "PlayerMpBarEffect.h"
+#include "Boss1HpBar.h"
 
 ASerenHUD::ASerenHUD()
 {
@@ -122,7 +123,16 @@ void ASerenHUD::BeginPlay()
 		
 	}
 
+	// ¼¼·» HP ¹Ù
+	{
+		std::shared_ptr<UImageWidget> GageUI_Back = CreateWidget<UImageWidget>(-1);
+		GageUI_Back->SetTexture("Boss1_HPBar.png", true);
+		GageUI_Back->SetRelativeLocation(BossHPLocation);
+	}
 
+	{
+		std::shared_ptr<UBoss1HpBar> PlayerHpBar = CreateWidget<UBoss1HpBar>(-1);
+	}
 }
 
 void ASerenHUD::Tick(float _DeltaTime)

@@ -176,6 +176,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Bar.cpp" />
+    <ClCompile Include="Boss1HpBar.cpp" />
     <ClCompile Include="CerniumHUD.cpp">
       <SubType>
       </SubType>
@@ -370,6 +371,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Bar.h" />
+    <ClInclude Include="Boss1HpBar.h" />
     <ClInclude Include="CerniumHUD.h">
       <SubType>
       </SubType>

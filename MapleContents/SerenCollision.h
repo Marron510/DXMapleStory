@@ -36,7 +36,7 @@ public:
 protected:
 
 private:
-	float Hp = 100.0f;
+	float Hp = 1000.0f;
 	bool bIsDamaged = false;
 };
 

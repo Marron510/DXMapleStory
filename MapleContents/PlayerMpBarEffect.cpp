@@ -8,7 +8,7 @@ UPlayerMpBarEffect::UPlayerMpBarEffect()
 	SetAnimationPivot("MpBar_Effect", FVector(0.0f, 0.5f));
 	FVector WindowSize = GEngine->GetMainWindow().GetWindowSize();
 	FVector WidgetSize = GetWorldScale3D();
-	SetWorldLocation(FVector(-75.0f, -WindowSize.hY() + WidgetSize.hY() + 20.0f));
+	SetWorldLocation(FVector(-75.0f, -WindowSize.hY() + WidgetSize.hY() + 26.0f));
 }
 
 UPlayerMpBarEffect::~UPlayerMpBarEffect()

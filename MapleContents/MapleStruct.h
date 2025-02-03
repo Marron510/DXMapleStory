@@ -1,5 +1,28 @@
 #pragma once
 
+struct FSerenStatus1
+{
+	float MaxHp = 1000;
+	float PrevHp = 1000;
+	float CurHp = 1000;
+	bool bIsHpChange = false;
+	float CurHpPercent = 1.0f;
+	float PrevHpPercent = 1.0f;
+
+	void TakeDamage(float _Damage)
+	{
+		PrevHp = CurHp;
+		PrevHpPercent = CurHp / MaxHp;
+		CurHp -= _Damage;
+		if (CurHp < 0.0f)
+		{
+			CurHp = 0.0f;
+		}
+		CurHpPercent = CurHp / MaxHp;
+		bIsHpChange = true;
+	}
+};
+
 
 struct FPlayerStatus
 {

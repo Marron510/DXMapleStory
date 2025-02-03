@@ -8,7 +8,7 @@ UPlayerHpBarEffect::UPlayerHpBarEffect()
 	SetAnimationPivot("HpBar_Effect", FVector(0.0f, 0.5f));
 	FVector WindowSize = GEngine->GetMainWindow().GetWindowSize();
 	FVector WidgetSize = GetWorldScale3D();
-	SetWorldLocation(FVector(-76.0f, -WindowSize.hY() + WidgetSize.hY() + 35.0f));
+	SetWorldLocation(FVector(-76.0f, -WindowSize.hY() + WidgetSize.hY() + 42.0f));
 }
 
 UPlayerHpBarEffect::~UPlayerHpBarEffect()

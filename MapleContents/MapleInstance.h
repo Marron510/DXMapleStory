@@ -20,6 +20,8 @@ public:
 
 
 	FPlayerStatus Status;
+	
+	FSerenStatus1 SerenStatus1;
 
 	UWidget* InvenWidget;
 

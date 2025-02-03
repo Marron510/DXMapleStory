@@ -42,9 +42,10 @@ private:
 	FVector SkillFoldBarLocation = FVector(119.0f, -338.0f);
 
 	// 세렌 게이지 위치
-
 	FVector GageBackLocation = FVector(-500.0f, 202.0f);
 	FVector GageBallLocation = FVector(-501.0f, 202.0f);
 
+	// 세렌 HP바 위치
+	FVector BossHPLocation = FVector(0.0f, 360.0f);
 };
 

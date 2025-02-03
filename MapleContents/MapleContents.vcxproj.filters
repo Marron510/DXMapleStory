@@ -170,6 +170,9 @@
     <ClCompile Include="Bar.cpp">
       <Filter>MapleGobal\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Boss1HpBar.cpp">
+      <Filter>MapleGobal\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -339,6 +342,9 @@
       <Filter>MapleGobal\UI</Filter>
     </ClInclude>
     <ClInclude Include="Bar.h">
+      <Filter>MapleGobal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1HpBar.h">
       <Filter>MapleGobal\UI</Filter>
     </ClInclude>
   </ItemGroup>

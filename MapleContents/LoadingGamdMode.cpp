@@ -88,6 +88,21 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 				Dir.Append("Image");
 				Dir.Append("Global");
 				Dir.Append("UI");
+				Dir.Append("Phase1_HPBar");
+
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
+
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Global");
+				Dir.Append("UI");
 				Dir.Append("Player_MpBar");
 
 				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
