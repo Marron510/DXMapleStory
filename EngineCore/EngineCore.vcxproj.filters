@@ -341,6 +341,9 @@
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h">
       <Filter>ThirdParty\DirectxTex\Inc</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
+      <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Interface">

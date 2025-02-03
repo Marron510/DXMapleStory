@@ -293,6 +293,7 @@
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h" />
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h" />
     <ClInclude Include="TimeEventComponent.h" />
     <ClInclude Include="TransformObject.h" />
     <ClInclude Include="Widget.h" />
