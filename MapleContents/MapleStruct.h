@@ -23,6 +23,7 @@ struct FSerenStatus1
 	{
 		PrevGage = CurGage;
 		PrevGagePercent = CurGage / MaxGage;
+
 		CurGage += _GageDamage;
 		if (CurGage < 0.0f)
 		{

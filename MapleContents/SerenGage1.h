@@ -23,6 +23,10 @@ public:
 protected:
 
 private:
+	class APlayer* Player;
+	bool bIsGageOn = false;
+
+	float BindTime = 3.0f;
 
 };
 

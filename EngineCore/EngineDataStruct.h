@@ -10,6 +10,7 @@ struct FUVValue
 struct FResultColor
 {
 public:
+	float4 Ignore = {1.0f, 1.0f};
 	float4 PlusColor;
 	float4 MulColor;
 };
