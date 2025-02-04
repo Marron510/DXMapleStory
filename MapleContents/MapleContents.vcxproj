@@ -261,6 +261,34 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="IconLegendarySpear.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconLegendarySpearDisable.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconRollingMoonSult.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconRollingMoonSultDisable.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconStrikeDualShot.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconUnicornSpike.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconUnicornSpikeDisable.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Ishtar.cpp">
       <SubType>
       </SubType>
@@ -497,6 +525,34 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="IconLeafTornado.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconLegendarySpear.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconLegendarySpearDisable.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconRollingMoonSult.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconRollingMoonSultDisable.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconStrikeDualShot.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconUnicornSpike.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconUnicornSpikeDisable.h">
       <SubType>
       </SubType>
     </ClInclude>

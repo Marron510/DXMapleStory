@@ -21,7 +21,10 @@
 #include "IconHighKick.h"
 #include "IconLeafTornado.h"
 #include "IconIshtar.h"
-
+#include "IconLegendarySpear.h"
+#include "IconUnicornSpike.h"
+#include "IconStrikeDualShot.h"
+#include "IconRollingMoonSult.h"
 
 
 ASerenHUD::ASerenHUD()
@@ -188,6 +191,10 @@ void ASerenHUD::BeginPlay()
 		std::shared_ptr<UIconHighKick> IconHighKick = CreateWidget<UIconHighKick>(0);
 		std::shared_ptr<UIconLeafTornado> IconLeafTornado = CreateWidget<UIconLeafTornado>(0);
 		std::shared_ptr<UIconIshtar> IconIshtar = CreateWidget<UIconIshtar>(0);
+		std::shared_ptr<UIconLegendarySpear> IconLegendarySpear = CreateWidget<UIconLegendarySpear>(0);
+		std::shared_ptr<UIconUnicornSpike> IconUnicornSpike = CreateWidget<UIconUnicornSpike>(0);
+		std::shared_ptr<UIconStrikeDualShot> IconStrikeDualShot = CreateWidget<UIconStrikeDualShot>(0);
+		std::shared_ptr<UIconRollingMoonSult> IconRollingMoonSult = CreateWidget<UIconRollingMoonSult>(0);
 	}
 
 	// ¼¼·» ºû °ÔÀÌÁö

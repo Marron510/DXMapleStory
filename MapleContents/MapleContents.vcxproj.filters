@@ -206,6 +206,27 @@
     <ClCompile Include="IconIshtar.cpp">
       <Filter>MapleGobal\UI\SkillUI\Ishtar</Filter>
     </ClCompile>
+    <ClCompile Include="IconLegendarySpear.cpp">
+      <Filter>MapleGobal\UI\SkillUI\LegendarySpear</Filter>
+    </ClCompile>
+    <ClCompile Include="IconLegendarySpearDisable.cpp">
+      <Filter>MapleGobal\UI\SkillUI\LegendarySpear</Filter>
+    </ClCompile>
+    <ClCompile Include="IconUnicornSpike.cpp">
+      <Filter>MapleGobal\UI\SkillUI\UnicornSpike</Filter>
+    </ClCompile>
+    <ClCompile Include="IconUnicornSpikeDisable.cpp">
+      <Filter>MapleGobal\UI\SkillUI\UnicornSpike</Filter>
+    </ClCompile>
+    <ClCompile Include="IconStrikeDualShot.cpp">
+      <Filter>MapleGobal\UI\SkillUI\StrikeDualShot</Filter>
+    </ClCompile>
+    <ClCompile Include="IconRollingMoonSult.cpp">
+      <Filter>MapleGobal\UI\SkillUI\RollingMoonsult</Filter>
+    </ClCompile>
+    <ClCompile Include="IconRollingMoonSultDisable.cpp">
+      <Filter>MapleGobal\UI\SkillUI\RollingMoonsult</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -412,6 +433,27 @@
     </ClInclude>
     <ClInclude Include="IconIshtar.h">
       <Filter>MapleGobal\UI\SkillUI\Ishtar</Filter>
+    </ClInclude>
+    <ClInclude Include="IconLegendarySpear.h">
+      <Filter>MapleGobal\UI\SkillUI\LegendarySpear</Filter>
+    </ClInclude>
+    <ClInclude Include="IconLegendarySpearDisable.h">
+      <Filter>MapleGobal\UI\SkillUI\LegendarySpear</Filter>
+    </ClInclude>
+    <ClInclude Include="IconUnicornSpike.h">
+      <Filter>MapleGobal\UI\SkillUI\UnicornSpike</Filter>
+    </ClInclude>
+    <ClInclude Include="IconUnicornSpikeDisable.h">
+      <Filter>MapleGobal\UI\SkillUI\UnicornSpike</Filter>
+    </ClInclude>
+    <ClInclude Include="IconStrikeDualShot.h">
+      <Filter>MapleGobal\UI\SkillUI\StrikeDualShot</Filter>
+    </ClInclude>
+    <ClInclude Include="IconRollingMoonSult.h">
+      <Filter>MapleGobal\UI\SkillUI\RollingMoonsult</Filter>
+    </ClInclude>
+    <ClInclude Include="IconRollingMoonSultDisable.h">
+      <Filter>MapleGobal\UI\SkillUI\RollingMoonsult</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
