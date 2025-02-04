@@ -27,7 +27,7 @@
 #include "IconUnicornSpike.h"
 #include "IconStrikeDualShot.h"
 #include "IconRollingMoonSult.h"
-
+#include "BindUI.h"
 
 ASerenHUD::ASerenHUD()
 {
@@ -217,6 +217,12 @@ void ASerenHUD::BeginPlay()
 		GageUI_Front->SetRelativeLocation(GageFrontLocation);
 	}
 
+	// ºº∑ª πŸ¿ŒµÂ UI
+	
+	{
+		std::shared_ptr<UBindUI> GageUI_Front = CreateWidget<UBindUI>(1000);
+	}
+
 	// ºº∑ª HP πŸ
 	{
 		std::shared_ptr<UImageWidget> GageUI_Back = CreateWidget<UImageWidget>(-1);
@@ -224,8 +230,10 @@ void ASerenHUD::BeginPlay()
 		GageUI_Back->SetRelativeLocation(BossHPLocation);
 	}
 
+
+
 	{
-		std::shared_ptr<UBoss1HpBar> PlayerHpBar = CreateWidget<UBoss1HpBar>(-1);
+		std::shared_ptr<UBoss1HpBar> BossHpBar = CreateWidget<UBoss1HpBar>(-1);
 	}
 
 

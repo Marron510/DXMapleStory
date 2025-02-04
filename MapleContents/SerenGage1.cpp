@@ -68,14 +68,19 @@ void USerenGage1::GageLogic(float _DeltaTime)
 	if (true == bIsGageOn)
 	{
 		BindTime -= _DeltaTime;
+		
 	}
-
-	if (0.0f >= BindTime && true == bIsGageOn)
+	
+	if (4.0 >= BindTime && true == bIsGageOn)
 	{
 		GetGameInstance<MapleInstance>()->SerenStatus1.PrevGagePercent = 0.0f;
 		GetGameInstance<MapleInstance>()->SerenStatus1.CurGagePercent = 0.0f;
 		GetGameInstance<MapleInstance>()->SerenStatus1.PrevGage = 0.0f;
 		GetGameInstance<MapleInstance>()->SerenStatus1.CurGage = 0.0f;
+	}
+
+	if (0.0f >= BindTime && true == bIsGageOn)
+	{
 		bIsGageOn = false;
 		BindTime = 5.0f;
 	}

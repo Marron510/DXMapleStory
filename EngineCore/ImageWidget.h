@@ -43,6 +43,11 @@ public:
 	ENGINEAPI void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
 
 	ENGINEAPI FrameAnimation* FindAnimation(std::string_view _AnimationName);
+	
+	ENGINEAPI bool IsCurAnimationEnd()
+	{
+		return CurAnimation->IsEnd;
+	}
 
 private:
 	int CurIndex = 0;

@@ -224,6 +224,9 @@
     <ClCompile Include="IconRollingMoonSultDisable.cpp">
       <Filter>MapleGobal\UI\SkillUI\RollingMoonsult</Filter>
     </ClCompile>
+    <ClCompile Include="BindUI.cpp">
+      <Filter>MapleGobal\UI\BossUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -448,6 +451,9 @@
     </ClInclude>
     <ClInclude Include="IconRollingMoonSultDisable.h">
       <Filter>MapleGobal\UI\SkillUI\RollingMoonsult</Filter>
+    </ClInclude>
+    <ClInclude Include="BindUI.h">
+      <Filter>MapleGobal\UI\BossUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -160,7 +160,7 @@ private:
 
 	// ¼¼·» °ÔÀÌÁö
 	float RushGage = 10.0f;
-	float StingGage = 5.0f;
+	float StingGage = 50.0f;
 
 	// ÄğÅ¸ÀÓ
 	float SkillCoolTime = 0.0f;

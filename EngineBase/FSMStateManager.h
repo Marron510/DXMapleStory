@@ -75,6 +75,26 @@ public:
 		}
 	}
 
+	int GetCurrentStateKey() const
+	{
+		if (CurState == nullptr)
+		{
+			MSGASSERT("현재 상태가 지정되지 않았습니다.");
+			return -1; 
+		}
+		for (const auto& state : States)
+		{
+			if (&state.second == CurState)
+			{
+				return state.first;
+			}
+		}
+
+		MSGASSERT("현재 상태를 찾을 수 없습니다.");
+		return -1; 
+	}
+
+
 protected:
 	// ChangeState("Idle")
 	// ChangeState(EPlayerState::Idle)
