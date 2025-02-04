@@ -2,19 +2,19 @@
 
 #include "Icon.h"
 
-class IconCharge : public UIcon
+class UIconCharge : public UIcon
 {
 public:
 	// 持失切 社瑚切
-	IconCharge();
-	~IconCharge();
+	UIconCharge();
+	~UIconCharge();
 
 	// delete funcion
 
-	IconCharge(const IconCharge& _Other) = delete;
-	IconCharge(IconCharge&& _Other) noexcept = delete;
-	IconCharge& operator=(const IconCharge& _Other) = delete;
-	IconCharge& operator=(IconCharge&& _Other) noexcept = delete;
+	UIconCharge(const UIconCharge& _Other) = delete;
+	UIconCharge(UIconCharge&& _Other) noexcept = delete;
+	UIconCharge& operator=(const UIconCharge& _Other) = delete;
+	UIconCharge& operator=(UIconCharge&& _Other) noexcept = delete;
 
 	void Tick(float _DeltaTime) override;
 

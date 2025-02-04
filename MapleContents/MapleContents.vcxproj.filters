@@ -189,7 +189,22 @@
       <Filter>MapleGobal\UI\BossUI</Filter>
     </ClCompile>
     <ClCompile Include="IconCharge.cpp">
-      <Filter>MapleGobal\UI\SkillUI</Filter>
+      <Filter>MapleGobal\UI\SkillUI\ChargeDrive</Filter>
+    </ClCompile>
+    <ClCompile Include="IconEnril.cpp">
+      <Filter>MapleGobal\UI\SkillUI\Enril</Filter>
+    </ClCompile>
+    <ClCompile Include="IconEnrilDisable.cpp">
+      <Filter>MapleGobal\UI\SkillUI\Enril</Filter>
+    </ClCompile>
+    <ClCompile Include="IconHighKick.cpp">
+      <Filter>MapleGobal\UI\SkillUI\HIghKick</Filter>
+    </ClCompile>
+    <ClCompile Include="IconLeafTornado.cpp">
+      <Filter>MapleGobal\UI\SkillUI\LeafTornado</Filter>
+    </ClCompile>
+    <ClCompile Include="IconIshtar.cpp">
+      <Filter>MapleGobal\UI\SkillUI\Ishtar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -381,7 +396,22 @@
       <Filter>MapleGobal\UI\BossUI</Filter>
     </ClInclude>
     <ClInclude Include="IconCharge.h">
-      <Filter>MapleGobal\UI\SkillUI</Filter>
+      <Filter>MapleGobal\UI\SkillUI\ChargeDrive</Filter>
+    </ClInclude>
+    <ClInclude Include="IconEnril.h">
+      <Filter>MapleGobal\UI\SkillUI\Enril</Filter>
+    </ClInclude>
+    <ClInclude Include="IconEnrilDisable.h">
+      <Filter>MapleGobal\UI\SkillUI\Enril</Filter>
+    </ClInclude>
+    <ClInclude Include="IconHighKick.h">
+      <Filter>MapleGobal\UI\SkillUI\HIghKick</Filter>
+    </ClInclude>
+    <ClInclude Include="IconLeafTornado.h">
+      <Filter>MapleGobal\UI\SkillUI\LeafTornado</Filter>
+    </ClInclude>
+    <ClInclude Include="IconIshtar.h">
+      <Filter>MapleGobal\UI\SkillUI\Ishtar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -480,6 +510,33 @@
     </Filter>
     <Filter Include="MapleGobal\UI\BossUI">
       <UniqueIdentifier>{78ce676a-bdf3-4708-b708-e6f9bfcb4374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\ChargeDrive">
+      <UniqueIdentifier>{bbcf155e-b121-4ca0-bdbc-f725c8d80d9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\Enril">
+      <UniqueIdentifier>{8574c7fd-474e-45db-9573-b79df77867e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\HIghKick">
+      <UniqueIdentifier>{5d2f7b70-d8e8-4d7d-9934-b8a63cb66158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\Ishtar">
+      <UniqueIdentifier>{c790015d-66ca-4b7e-b2cd-46bf4b56113f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\LeafTornado">
+      <UniqueIdentifier>{ba6e2f4c-a401-4c16-b7e4-7f13315ff07c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\LegendarySpear">
+      <UniqueIdentifier>{5262c8f1-b1a9-4fc6-b9be-7b77a8d997fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\RollingMoonsult">
+      <UniqueIdentifier>{667d66bc-0b1e-4580-9305-224d8de6cfcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\StrikeDualShot">
+      <UniqueIdentifier>{b00c2bcc-5b8e-44cd-b23f-93da7efd8b2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI\UnicornSpike">
+      <UniqueIdentifier>{fa129d77-d5e4-465c-b1fd-73cb33268704}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -14,6 +14,16 @@
 #include "PlayerCurHPFont.h"
 #include "PlayerCurMPFont.h"
 
+
+// 스킬 UI
+#include "IconCharge.h"
+#include "IconEnril.h"
+#include "IconHighKick.h"
+#include "IconLeafTornado.h"
+#include "IconIshtar.h"
+
+
+
 ASerenHUD::ASerenHUD()
 {
 
@@ -170,6 +180,15 @@ void ASerenHUD::BeginPlay()
 		ExpBarCover->SetRelativeLocation(SkillFoldBarLocation);
 	}
 
+	// 스킬 UI
+
+	{
+		std::shared_ptr<UIconCharge> IconChargeDrive = CreateWidget<UIconCharge>(0);
+		std::shared_ptr<UIconEnril> IconEnril = CreateWidget<UIconEnril>(0);
+		std::shared_ptr<UIconHighKick> IconHighKick = CreateWidget<UIconHighKick>(0);
+		std::shared_ptr<UIconLeafTornado> IconLeafTornado = CreateWidget<UIconLeafTornado>(0);
+		std::shared_ptr<UIconIshtar> IconIshtar = CreateWidget<UIconIshtar>(0);
+	}
 
 	// 세렌 빛 게이지
 	{
@@ -195,7 +214,6 @@ void ASerenHUD::BeginPlay()
 	{
 		std::shared_ptr<UBoss1HpBar> PlayerHpBar = CreateWidget<UBoss1HpBar>(-1);
 	}
-
 
 
 }

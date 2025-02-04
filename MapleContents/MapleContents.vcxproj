@@ -241,6 +241,26 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="IconEnril.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconEnrilDisable.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconHighKick.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconIshtar.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IconLeafTornado.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Ishtar.cpp">
       <SubType>
       </SubType>
@@ -457,6 +477,26 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="IconCharge.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconEnril.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconEnrilDisable.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconHighKick.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconIshtar.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IconLeafTornado.h">
       <SubType>
       </SubType>
     </ClInclude>
