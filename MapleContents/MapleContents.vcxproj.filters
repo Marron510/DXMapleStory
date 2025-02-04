@@ -188,6 +188,9 @@
     <ClCompile Include="SerenGage1.cpp">
       <Filter>MapleGobal\UI\BossUI</Filter>
     </ClCompile>
+    <ClCompile Include="IconCharge.cpp">
+      <Filter>MapleGobal\UI\SkillUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -376,6 +379,9 @@
     </ClInclude>
     <ClInclude Include="SerenGage1.h">
       <Filter>MapleGobal\UI\BossUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IconCharge.h">
+      <Filter>MapleGobal\UI\SkillUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
