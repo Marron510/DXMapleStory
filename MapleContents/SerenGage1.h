@@ -19,7 +19,7 @@ public:
 
 	void Render(UEngineCamera* Camera, float _DeltaTime) override;
 	void BarLerp(float _StartPercent, float _EndPercent, float _f, bool& _bIsChange) override;
-
+	void GageLogic(float _DeltaTime);
 protected:
 
 private:

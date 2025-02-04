@@ -106,7 +106,8 @@ private:
 	void Air(float _DeltaTime);
 	void UpJump(float _DeltaTime);
 	void WalkUpJump(float _DeltaTime);
-	
+	void MapBind(float _DeltaTime);
+
 	//스킬
 	void LeafTornado(float _DeltaTime);
 	void WrathOfEnril(float _DeltaTime);
@@ -135,5 +136,6 @@ private:
 	
 	// 바인드 시간
 	float HitTime = 3.0f;
+	float BindTime = 5.0f;
 };
 

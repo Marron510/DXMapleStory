@@ -23,38 +23,7 @@ void USerenGage1::Tick(float _DeltaTime)
 {
 	UBar::Tick(_DeltaTime);
 
-	if (GetGameInstance<MapleInstance>()->SerenStatus1.bIsGageChange)
-	{
-		CurTime += _DeltaTime;
-		
-		StartPercent = GetGameInstance<MapleInstance>()->SerenStatus1.PrevGagePercent;
-		TargetPercent = GetGameInstance<MapleInstance>()->SerenStatus1.CurGagePercent;
-		
-		if (1.0f > TargetPercent)
-		{
-			BarLerp(StartPercent, TargetPercent, CurTime, GetGameInstance<MapleInstance>()->SerenStatus1.bIsGageChange);
-		}
-		else if (1.0f <= TargetPercent && false == bIsGageOn)
-		{
-			Player->GetFSM().ChangeState(ECharacterState::Hit);
-			bIsGageOn = true;
-		}
-	}
-
-	if (true == bIsGageOn)
-	{
-		BindTime -= _DeltaTime;
-	}
-
-	if (0.0f >= BindTime && true == bIsGageOn)
-	{
-		GetGameInstance<MapleInstance>()->SerenStatus1.PrevGagePercent = 0.0f;
-		GetGameInstance<MapleInstance>()->SerenStatus1.CurGagePercent = 0.0f;
-		GetGameInstance<MapleInstance>()->SerenStatus1.PrevGage = 0.0f;
-		GetGameInstance<MapleInstance>()->SerenStatus1.CurGage= 0.0f;
-		bIsGageOn = false;
-		BindTime = 3.0f;
-	}
+	GageLogic(_DeltaTime);
 }
 
 void USerenGage1::Render(UEngineCamera* Camera, float _DeltaTime)
@@ -73,11 +42,41 @@ void USerenGage1::BarLerp(float _StartPercent, float _EndPercent, float _f, bool
 		bIsChange = false;
 		CurTime = 0.0f;
 	}
+}
 
-	/*float4 value = FVector{0.0f, LerpGagePercent, 0.0f, 0.0f};
-	SetUVvalue(static_cast<FUVValue>(value));
-	if (LerpGagePercent == TargetPercent) {
-		bIsChange = false;
-		CurTime = 0.0f;
-	}*/
+
+void USerenGage1::GageLogic(float _DeltaTime)
+{
+	if (GetGameInstance<MapleInstance>()->SerenStatus1.bIsGageChange)
+	{
+		CurTime += _DeltaTime;
+
+		StartPercent = GetGameInstance<MapleInstance>()->SerenStatus1.PrevGagePercent;
+		TargetPercent = GetGameInstance<MapleInstance>()->SerenStatus1.CurGagePercent;
+
+		if (1.0f > TargetPercent)
+		{
+			BarLerp(StartPercent, TargetPercent, CurTime, GetGameInstance<MapleInstance>()->SerenStatus1.bIsGageChange);
+		}
+		else if (1.0f <= TargetPercent && false == bIsGageOn)
+		{
+			Player->GetFSM().ChangeState(ECharacterState::MapBind);
+			bIsGageOn = true;
+		}
+	}
+
+	if (true == bIsGageOn)
+	{
+		BindTime -= _DeltaTime;
+	}
+
+	if (0.0f >= BindTime && true == bIsGageOn)
+	{
+		GetGameInstance<MapleInstance>()->SerenStatus1.PrevGagePercent = 0.0f;
+		GetGameInstance<MapleInstance>()->SerenStatus1.CurGagePercent = 0.0f;
+		GetGameInstance<MapleInstance>()->SerenStatus1.PrevGage = 0.0f;
+		GetGameInstance<MapleInstance>()->SerenStatus1.CurGage = 0.0f;
+		bIsGageOn = false;
+		BindTime = 5.0f;
+	}
 }

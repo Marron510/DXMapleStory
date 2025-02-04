@@ -5,6 +5,7 @@ enum class ECharacterState
 	Idle,
 	Prone,
 	Hit,
+	MapBind,
 	Walk,
 	IdleJump,
 	WalkJump,
