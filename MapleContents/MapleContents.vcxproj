@@ -328,6 +328,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="SerenGage1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="SerenHUD.cpp">
       <SubType>
       </SubType>
@@ -528,6 +532,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="SerenCollision.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SerenGage1.h">
       <SubType>
       </SubType>
     </ClInclude>

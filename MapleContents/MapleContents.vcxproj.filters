@@ -185,6 +185,9 @@
     <ClCompile Include="Icon.cpp">
       <Filter>MapleGobal\UI\SkillUI</Filter>
     </ClCompile>
+    <ClCompile Include="SerenGage1.cpp">
+      <Filter>MapleGobal\UI\BossUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -371,6 +374,9 @@
     <ClInclude Include="Icon.h">
       <Filter>MapleGobal\UI\SkillUI</Filter>
     </ClInclude>
+    <ClInclude Include="SerenGage1.h">
+      <Filter>MapleGobal\UI\BossUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -465,6 +471,9 @@
     </Filter>
     <Filter Include="MapleGobal\UI\SkillUI">
       <UniqueIdentifier>{75636999-56cc-4013-a8f0-b7026f91b611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\BossUI">
+      <UniqueIdentifier>{78ce676a-bdf3-4708-b708-e6f9bfcb4374}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
