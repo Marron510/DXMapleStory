@@ -73,6 +73,7 @@ void AFloorSkill::Tick(float _DeltaTime)
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
 			GetGameInstance<MapleInstance>()->Status.TakeDamage(ExplosionDamage);
+			GetGameInstance<MapleInstance>()->SerenStatus1.IncreaseGage(FloorGage);
 			//float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 			Player->bIsdamageOn();
 			Collision->SetActive(false);

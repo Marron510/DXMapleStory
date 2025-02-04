@@ -14,6 +14,8 @@
 #include "PlayerCurHPFont.h"
 #include "PlayerCurMPFont.h"
 
+// ºº∑ª ∞‘¿Ã¡ˆ
+#include "SerenGage1.h"
 
 // Ω∫≈≥ UI
 #include "IconCharge.h"
@@ -199,7 +201,7 @@ void ASerenHUD::BeginPlay()
 
 	// ºº∑ª ∫˚ ∞‘¿Ã¡ˆ
 	{
-		std::shared_ptr<UImageWidget> GageUI_Back = CreateWidget<UImageWidget>(-1);
+		std::shared_ptr<UImageWidget> GageUI_Back = CreateWidget<UImageWidget>(-3);
 		GageUI_Back->SetTexture("GageUI_Back.png", true);
 		GageUI_Back->SetRelativeLocation(GageBackLocation);
 	}
@@ -208,7 +210,11 @@ void ASerenHUD::BeginPlay()
 		std::shared_ptr<UImageWidget> GageUI_Ball = CreateWidget<UImageWidget>(-1);
 		GageUI_Ball->SetTexture("GageUI_Ball.png", true);
 		GageUI_Ball->SetRelativeLocation(GageBallLocation);
-		
+	}
+
+	{
+		std::shared_ptr<USerenGage1> GageUI_Front = CreateWidget<USerenGage1>(0);
+		GageUI_Front->SetRelativeLocation(GageFrontLocation);
 	}
 
 	// ºº∑ª HP πŸ

@@ -137,9 +137,6 @@
     <ClCompile Include="Small8Laser.cpp">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClCompile>
-    <ClCompile Include="FirstGage.cpp">
-      <Filter>SKill\03_SerenSkill\Phase1</Filter>
-    </ClCompile>
     <ClCompile Include="FloorSkill.cpp">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClCompile>
@@ -363,9 +360,6 @@
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClInclude>
     <ClInclude Include="Small8Laser.h">
-      <Filter>SKill\03_SerenSkill\Phase1</Filter>
-    </ClInclude>
-    <ClInclude Include="FirstGage.h">
       <Filter>SKill\03_SerenSkill\Phase1</Filter>
     </ClInclude>
     <ClInclude Include="FloorSkill.h">

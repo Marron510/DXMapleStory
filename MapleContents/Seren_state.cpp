@@ -212,6 +212,7 @@ void ASeren::Rush(float _DeltaTime)
 			{
 				// 러쉬 데미지
 				GetGameInstance<MapleInstance>()->Status.TakeDamage(RushDamage);
+				GetGameInstance<MapleInstance>()->SerenStatus1.IncreaseGage(RushGage);
 				float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 				Player->bIsdamageOn();
 				bIsRush = true;
@@ -247,6 +248,7 @@ void ASeren::Sting(float _DeltaTime)
 			{
 				// 찌르기 데미지
 				GetGameInstance<MapleInstance>()->Status.TakeDamage(StingDamage);
+				GetGameInstance<MapleInstance>()->SerenStatus1.IncreaseGage(StingGage);
 				float Curhp = GetGameInstance<MapleInstance>()->Status.CurHp;
 				Player->bIsdamageOn();
 				bIsSting = true;

@@ -158,6 +158,9 @@ private:
 	float StingDamage = 6000.0f;
 	float RushDamage = 6000.0f;
 
+	// ¼¼·» °ÔÀÌÁö
+	float RushGage = 10.0f;
+	float StingGage = 5.0f;
 
 	// ÄğÅ¸ÀÓ
 	float SkillCoolTime = 0.0f;

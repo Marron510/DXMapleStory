@@ -90,6 +90,11 @@ public:
 		AutoScaleRatio = _Scale;
 	}
 
+	ENGINEAPI void SetUVvalue(FUVValue _Value)
+	{
+		UVValue = _Value;
+	}
+
 	FResultColor ColorData;
 	FUVValue UVValue;
 	FSpriteData SpriteData;

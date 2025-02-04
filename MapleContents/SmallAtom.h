@@ -43,5 +43,6 @@ private:
 
 	float AtomDamage = 5000.0f;
 	float AtomSpeed = 100.0f;
+	
 };
 

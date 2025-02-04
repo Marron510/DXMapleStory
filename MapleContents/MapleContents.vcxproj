@@ -217,10 +217,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="FirstGage.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="FloorSkill.cpp">
       <SubType>
       </SubType>
@@ -481,10 +477,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FirePriest.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="FirstGage.h">
       <SubType>
       </SubType>
     </ClInclude>

@@ -2,12 +2,37 @@
 
 struct FSerenStatus1
 {
+	// 세렌 체력
 	float MaxHp = 1000;
 	float PrevHp = 1000;
 	float CurHp = 1000;
 	bool bIsHpChange = false;
 	float CurHpPercent = 1.0f;
 	float PrevHpPercent = 1.0f;
+
+	// 게이지
+
+	float MaxGage = 100.0f;
+	float PrevGage = 0.0f;
+	float CurGage = 0.0f;
+	bool bIsGageChange = false;
+	float CurGagePercent = 0.0f;
+	float PrevGagePercent = 0.0f;
+
+	void IncreaseGage(float _GageDamage)
+	{
+		PrevGage = CurGage;
+		PrevGagePercent = CurGage / MaxGage;
+		CurGage += _GageDamage;
+		if (CurGage < 0.0f)
+		{
+			CurGage = 0.0f;
+		}
+
+		CurGagePercent = CurGage / MaxGage;
+		bIsGageChange = true;
+	}
+
 
 	void TakeDamage(float _Damage)
 	{

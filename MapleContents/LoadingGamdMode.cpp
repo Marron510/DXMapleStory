@@ -118,6 +118,32 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 					return;
 				}
 				Dir.Append("Image");
+				Dir.Append("Global/Phase1_UI");
+
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
+
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
+				Dir.Append("Global/Phase1_Gage");
+
+				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+			}
+
+			{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Image");
 				Dir.Append("Global");
 				Dir.Append("UI");
 				Dir.Append("SkillIcon");
@@ -467,19 +493,7 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 			}
 
-			{
-				UEngineDirectory Dir;
-				if (false == Dir.MoveParentToDirectory("MapleResources"))
-				{
-					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-					return;
-				}
-				Dir.Append("Image");
-				Dir.Append("Global/Phase1_UI");
-
-				UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-			}
-
+			
 			// 세르니움 이미지
 #pragma region 
 			{

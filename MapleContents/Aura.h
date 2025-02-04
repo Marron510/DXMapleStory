@@ -36,6 +36,7 @@ private:
 	// µ¥¹ÌÁö
 	float AuraDamage = 20000.0f;
 	float AuraSpeed = 160.0f;
+	float AuraGage = 10.0f;
 
 	float MapstartX = 1200.0f;
 	float MapEndX = 3500.0f;

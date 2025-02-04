@@ -50,6 +50,7 @@ void AAura::BeginPlay()
 	Collision->SetCollisionStay([this](UCollision* _This, UCollision* _Other)
 		{
 			GetGameInstance<MapleInstance>()->Status.TakeDamage(AuraDamage);
+			GetGameInstance<MapleInstance>()->SerenStatus1.IncreaseGage(AuraGage);
 			Player->GetFSM().ChangeState(ECharacterState::Hit);
 			Player->bIsdamageOn();
 		});
