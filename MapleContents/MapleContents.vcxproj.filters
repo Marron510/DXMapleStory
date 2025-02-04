@@ -155,24 +155,6 @@
     <ClCompile Include="StrikeDualShot_Ball.cpp">
       <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerHpBar.cpp">
-      <Filter>MapleGobal\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHpBarEffect.cpp">
-      <Filter>MapleGobal\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMpBar.cpp">
-      <Filter>MapleGobal\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMpBarEffect.cpp">
-      <Filter>MapleGobal\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Bar.cpp">
-      <Filter>MapleGobal\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Boss1HpBar.cpp">
-      <Filter>MapleGobal\UI</Filter>
-    </ClCompile>
     <ClCompile Include="MapleFont.cpp">
       <Filter>MapleGobal\Font</Filter>
     </ClCompile>
@@ -181,6 +163,27 @@
     </ClCompile>
     <ClCompile Include="PlayerCurMPFont.cpp">
       <Filter>MapleGobal\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Bar.cpp">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss1HpBar.cpp">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpBar.cpp">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpBarEffect.cpp">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBar.cpp">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBarEffect.cpp">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="Icon.cpp">
+      <Filter>MapleGobal\UI\SkillUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -338,24 +341,6 @@
     <ClInclude Include="StrikeDualShot_Ball.h">
       <Filter>SKill\02_PlayerSKill\001_ActiveSkill</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHpBar.h">
-      <Filter>MapleGobal\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHpBarEffect.h">
-      <Filter>MapleGobal\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMpBar.h">
-      <Filter>MapleGobal\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMpBarEffect.h">
-      <Filter>MapleGobal\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Bar.h">
-      <Filter>MapleGobal\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Boss1HpBar.h">
-      <Filter>MapleGobal\UI</Filter>
-    </ClInclude>
     <ClInclude Include="MapleFont.h">
       <Filter>MapleGobal\Font</Filter>
     </ClInclude>
@@ -364,6 +349,27 @@
     </ClInclude>
     <ClInclude Include="PlayerCurMPFont.h">
       <Filter>MapleGobal\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1HpBar.h">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpBar.h">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpBarEffect.h">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBar.h">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBarEffect.h">
+      <Filter>MapleGobal\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="Icon.h">
+      <Filter>MapleGobal\UI\SkillUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -453,6 +459,12 @@
     </Filter>
     <Filter Include="MapleGobal\Font">
       <UniqueIdentifier>{c684ae79-d817-49a7-84e2-9966586dd424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\Bar">
+      <UniqueIdentifier>{fb9608d0-349e-4c01-b6e1-e8c45e2ead91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\UI\SkillUI">
+      <UniqueIdentifier>{75636999-56cc-4013-a8f0-b7026f91b611}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
