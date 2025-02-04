@@ -10,6 +10,7 @@
 #include "CameraActor.h"
 #include "EngineGUI.h"
 #include "HUD.h"
+#include "EngineFont.h"
 #include "EngineRenderTarget.h"
 
 std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int _Order)

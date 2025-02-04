@@ -9,6 +9,7 @@
 #include <EngineCore/imgui.h>
 #include <EngineCore/EngineCamera.h>
 #include <EngineCore/EngineCore.h>
+#include <EngineCore/EngineFont.h>
 
 #include "TitleGameMode.h"
 #include "CerniumPlazaMode.h"
@@ -48,6 +49,19 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 
 		if (true == ThreadLoadingEnd)
 		{
+			//폰트
+		/*	{
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("MapleResources"))
+				{
+					MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+					return;
+				}
+				Dir.Append("Font");
+
+				UEngineFont::Load("Maplestory Light", Dir.GetPathToString());
+			}*/
+
 			// 글로벌 UI
 			{
 				UEngineDirectory Dir;

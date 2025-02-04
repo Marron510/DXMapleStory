@@ -173,6 +173,15 @@
     <ClCompile Include="Boss1HpBar.cpp">
       <Filter>MapleGobal\UI</Filter>
     </ClCompile>
+    <ClCompile Include="MapleFont.cpp">
+      <Filter>MapleGobal\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCurHPFont.cpp">
+      <Filter>MapleGobal\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCurMPFont.cpp">
+      <Filter>MapleGobal\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -347,6 +356,15 @@
     <ClInclude Include="Boss1HpBar.h">
       <Filter>MapleGobal\UI</Filter>
     </ClInclude>
+    <ClInclude Include="MapleFont.h">
+      <Filter>MapleGobal\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCurHPFont.h">
+      <Filter>MapleGobal\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCurMPFont.h">
+      <Filter>MapleGobal\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -432,6 +450,9 @@
     </Filter>
     <Filter Include="MapleGobal\UI">
       <UniqueIdentifier>{9e2a9c63-f334-443b-a667-28cae67b8731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapleGobal\Font">
+      <UniqueIdentifier>{c684ae79-d817-49a7-84e2-9966586dd424}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

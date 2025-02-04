@@ -20,7 +20,7 @@ public:
 
 
 
-	void FontDraw(const std::string& _Text, float _FontScale, const FVector& _Pos, const UColor& _Color = UColor::BLACK, FW1_TEXT_FLAG Flag = FW1_LEFT);
+	ENGINEAPI void FontDraw(const std::string& _Text, float _FontScale, const FVector& _Pos, const UColor& _Color = UColor::BLACK, FW1_TEXT_FLAG Flag = FW1_LEFT);
 
 protected:
 

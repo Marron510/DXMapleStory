@@ -264,6 +264,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MapleFont.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MapleInstance.cpp">
       <SubType>
       </SubType>
@@ -281,6 +285,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerCurHPFont.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerCurMPFont.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayerHpBar.cpp" />
     <ClCompile Include="PlayerHpBarEffect.cpp" />
     <ClCompile Include="PlayerMpBar.cpp" />
@@ -460,6 +472,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MapleEnum.h" />
+    <ClInclude Include="MapleFont.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MapleInstance.h">
       <SubType>
       </SubType>
@@ -478,6 +494,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerCurHPFont.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerCurMPFont.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerHpBar.h" />
     <ClInclude Include="PlayerHpBarEffect.h" />
     <ClInclude Include="PlayerMpBar.h" />

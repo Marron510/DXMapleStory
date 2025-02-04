@@ -22,6 +22,8 @@ void UEngineGraphicDevice::DefaultResourcesInit()
 	MaterialInit();
 
 	UEngineFont::Load("궁서", "궁서");
+	UEngineFont::Load("메이플스토리 Light", "Font");
+	UEngineFont::Load("메이플스토리 Bold", "Font");
 }
 
 void UEngineGraphicDevice::DepthStencilInit()

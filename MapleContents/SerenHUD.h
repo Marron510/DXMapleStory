@@ -23,17 +23,27 @@ protected:
 private:
 
 
-
 	// 위치
 	FVector StatusLocation = FVector(0.0f, -342.0f);
 	FVector StatusBackLocation = FVector(0.0f, -352.0f);
 	
 	// 레벨 위치
 	FVector LevelLocation = FVector(-70.0f, -320.0f);
-	FVector FirstLocation = FVector(-50.0f, -320.0f);
-	FVector SecondLocation = FVector(-42.0f, -320.0f);
-	FVector ThirdLocation = FVector(-34.0f, -320.0f);
-	
+	FVector FirstLocation = FVector(-54.0f, -320.0f);
+	FVector SecondLocation = FVector(-46.0f, -320.0f);
+	FVector ThirdLocation = FVector(-38.0f, -320.0f);
+
+	// 이름 위치
+	FVector NameLocation = FVector(-12.0f, -310.0f);
+
+	// HP 표시 위치
+	FVector MaxHpLocation = FVector(-26.2f, -334.2f);
+	FVector CurHpLocation = FVector(5.0f, -334.2f);
+
+	// MP 표시 위치
+	FVector MaxMpLocation = FVector(-26.2f, -349.2f);
+	FVector CurMpLocation = FVector(5.0f, -349.2f);
+
 	//exp 바 위치
 	FVector ExpBarLocation = FVector(0.0f, -379.0f);
 

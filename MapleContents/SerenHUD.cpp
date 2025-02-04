@@ -1,12 +1,18 @@
 #include "PreCompile.h"
 #include "SerenHUD.h"
+
 #include <EngineCore/ImageWidget.h>
+#include <EngineCore/FontWidget.h>
+
 
 #include "PlayerHpBar.h"
 #include "PlayerMpBar.h"
 #include "PlayerHpBarEffect.h"
 #include "PlayerMpBarEffect.h"
 #include "Boss1HpBar.h"
+#include "MapleInstance.h"
+#include "PlayerCurHPFont.h"
+#include "PlayerCurMPFont.h"
 
 ASerenHUD::ASerenHUD()
 {
@@ -21,6 +27,7 @@ ASerenHUD::~ASerenHUD()
 void ASerenHUD::BeginPlay()
 {
 	AHUD::BeginPlay();
+
 	{
 		std::shared_ptr<UImageWidget> PlayerBarBack = CreateWidget<UImageWidget>(-1);
 		PlayerBarBack->SetTexture("PlayerBarBack.png", true, 1.0f);
@@ -53,6 +60,48 @@ void ASerenHUD::BeginPlay()
 		ExpBarBack->SetRelativeLocation(ExpBarLocation);
 	}
 
+	// 현재 HP, MP
+	{
+		std::shared_ptr<UPlayerCurHPFont> CurHPWidget = CreateWidget<UPlayerCurHPFont>(5);
+		CurHPWidget->SetColor(UColor::WHITE);
+		CurHPWidget->SetScale(10.6f);
+		CurHPWidget->SetRelativeLocation(CurHpLocation);
+	}
+
+	{
+		std::shared_ptr<UPlayerCurMPFont> CurMPWidget = CreateWidget<UPlayerCurMPFont>(5);
+
+		CurMPWidget->SetColor(UColor::WHITE);
+		CurMPWidget->SetScale(10.6f);
+		CurMPWidget->SetRelativeLocation(CurMpLocation);
+	}
+
+	// Max HP, MP
+	{
+		std::shared_ptr<UFontWidget> MaxHPWidget = CreateWidget<UFontWidget>(5);
+
+		MaxHPWidget->SetFont("메이플스토리 Bold");
+		float FMaxHp = GetGameInstance<MapleInstance>()->Status.MaxHp;
+		int IMaxHp = static_cast<int>(FMaxHp);
+		std::string MaxHPstr = std::to_string(IMaxHp);
+		MaxHPWidget->SetText(MaxHPstr);
+		MaxHPWidget->SetColor(UColor::WHITE);
+		MaxHPWidget->SetScale(10.6f);
+		MaxHPWidget->SetRelativeLocation(MaxHpLocation);
+	}
+
+	{
+		std::shared_ptr<UFontWidget> MaxMPWidget = CreateWidget<UFontWidget>(5);
+
+		MaxMPWidget->SetFont("메이플스토리 Bold");
+		float FMaxMp = GetGameInstance<MapleInstance>()->Status.MaxMp;
+		int IMaxMp = static_cast<int>(FMaxMp);
+		std::string MaxMPstr = std::to_string(IMaxMp);
+		MaxMPWidget->SetText(MaxMPstr);
+		MaxMPWidget->SetColor(UColor::WHITE);
+		MaxMPWidget->SetScale(10.6f);
+		MaxMPWidget->SetRelativeLocation(MaxMpLocation);
+	}
 
 	// 레벨
 
@@ -80,6 +129,19 @@ void ASerenHUD::BeginPlay()
 		Third->SetRelativeLocation(ThirdLocation);
 	}
 
+	// 이름
+
+	{
+		std::shared_ptr<UFontWidget> NameWidget= CreateWidget<UFontWidget>(10002);
+
+		NameWidget->SetFont("메이플스토리 Bold");
+		NameWidget->SetText("호두");
+		NameWidget->SetColor(UColor::WHITE);
+		NameWidget->SetScale(15.0f);
+		NameWidget->SetRelativeLocation(NameLocation);
+	}
+
+	
 
 	// 이 사이에 exp 바 넣어야 함
 
@@ -133,9 +195,16 @@ void ASerenHUD::BeginPlay()
 	{
 		std::shared_ptr<UBoss1HpBar> PlayerHpBar = CreateWidget<UBoss1HpBar>(-1);
 	}
+
+
+
 }
 
 void ASerenHUD::Tick(float _DeltaTime)
 {
 	AHUD::Tick(_DeltaTime);
+
+
+	
+
 }
