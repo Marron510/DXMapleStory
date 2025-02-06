@@ -64,6 +64,8 @@ public:
 	{
 		return Enter != nullptr || Stay != nullptr || End != nullptr;
 	}
+	ENGINEAPI void SetColColor(FVector _Color);
+
 
 private:
 	ECollisionType CollisionType = ECollisionType::OBB2D;
@@ -81,5 +83,10 @@ private:
 
 	// Ãæµ¹ ³¡.
 	std::function<void(UCollision*, UCollision*)> End;
+
+	FVector Color = FVector::ZERO;
+
+	bool bHasRealColor = false;
+	FVector RealColor = FVector::ZERO;
 };
 

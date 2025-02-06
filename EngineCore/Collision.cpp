@@ -242,12 +242,26 @@ void UCollision::DebugRender(UEngineCamera* _Camera, float _DeltaTime)
 
 
 	Unit.ConstantBufferLinkData("FTransform", GetTransformRef());
-	FVector Color = { 0.0f, 1.0f, 0.0f };
+
+#ifdef _DEBUG
+	if (!bHasRealColor)
+		Color = { 0.0f, 1.0f, 0.0f, 1.0f };
+	else
+		Color = RealColor;
+#else 
+	Color = { 0.0f, 1.0f, 0.0f, 0.0f };
+#endif
+
+
 	Unit.ConstantBufferLinkData("OutColor", Color);
 
 	Unit.Render(_Camera, _DeltaTime);
 
 }
 
-
+void UCollision::SetColColor(FVector _Color)
+{
+	RealColor = _Color;
+	bHasRealColor = true;
+}
 

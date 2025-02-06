@@ -66,8 +66,8 @@ ASeren::ASeren()
 	{
 		Collision = CreateDefaultSubObject<USerenCollision>();
 		Collision->SetupAttachment(RootComponent);
+		Collision->SetColColor(FVector{ 1.0f,0.0f,0.0f });
 		Collision->SetCollisionProfileName("Monster");
-
 		Collision->SetScale3D({ 80.0f, 140.0f });
 		Collision->SetRelativeLocation(FVector{ -16.0f, 80.0f , static_cast<float>(EMapleZEnum::Monster) });
 		Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
@@ -109,6 +109,7 @@ ASeren::ASeren()
 	{
 		RushCollision = CreateDefaultSubObject<UCollision>();
 		RushCollision->SetupAttachment(RootComponent);
+		RushCollision->SetColColor(FVector{ 1.0f,0.0f,1.0f });
 		RushCollision->SetCollisionProfileName("MonsterSkill");
 		
 		RushCollision->SetScale3D({ 700.0f, 30.0f });
