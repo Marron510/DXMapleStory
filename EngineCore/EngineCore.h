@@ -2,7 +2,6 @@
 #include <EngineBase/EngineDefine.h>
 #include <EngineBase/EngineTimer.h>
 #include <EngineBase/EngineString.h>
-
 #include <EnginePlatform/EngineWindow.h>
 #include "EngineGraphicDevice.h"
 #include "IContentsCore.h"
@@ -11,11 +10,10 @@
 #include <memory>
 
 
+// Ό³Έν :
 class UEngineCore
 {
 public:
-	// constrcuter destructer
-	
 
 	ENGINEAPI static void EngineStart(HINSTANCE _Instance, std::string_view _DllName);
 
@@ -23,8 +21,8 @@ public:
 	static class std::shared_ptr<class ULevel> CreateLevel(std::string_view _Name)
 	{
 		std::string UpperString = UEngineString::ToUpper(_Name);
-		std::shared_ptr<ULevel> NewLevel = NewLevelCreate(UpperString);
 
+		std::shared_ptr<ULevel> NewLevel = NewLevelCreate(UpperString);
 
 		std::shared_ptr<GameModeType> GameMode = NewLevel->SpawnActor<GameModeType>();
 		std::shared_ptr<MainPawnType> Pawn = NewLevel->SpawnActor<MainPawnType>();
@@ -34,6 +32,28 @@ public:
 
 		return NewLevel;
 	}
+
+	template<typename GameModeType, typename MainPawnType, typename HUDType>
+	static void ResetLevel(std::string_view _LevelName)
+	{
+		std::string UpperName = UEngineString::ToUpper(_LevelName);
+
+		if (false == IsCurLevel(_LevelName)) 
+		{
+			CreateLevel<GameModeType, MainPawnType, HUDType>(UpperName); 
+		}
+		else 
+		{
+			std::shared_ptr<class ULevel> NextFrameLevel = ReadyToNextLevel(_LevelName);
+			NextFrameLevel = CreateLevel<GameModeType, MainPawnType, HUDType>(UpperName); 
+			SetNextLevel(NextFrameLevel);
+		}
+	}
+
+	ENGINEAPI static bool IsCurLevel(std::string_view _LevelName);
+	ENGINEAPI static std::shared_ptr<class ULevel> ReadyToNextLevel(std::string_view _LevelName);
+	ENGINEAPI static void SetNextLevel(std::shared_ptr<class ULevel> _NextLevel);
+	static void DestroyLevel(std::string_view _LevelName);
 
 	ENGINEAPI static void OpenLevel(std::string_view _Name);
 
@@ -57,12 +77,13 @@ public:
 	}
 
 
+
 protected:
 
 private:
-	UEngineWorkThreadPool ThreadPool;
-
 	std::shared_ptr<class UGameInstance> GameInstance;
+
+	UEngineWorkThreadPool ThreadPool;
 
 	UEngineWindow MainWindow;
 
@@ -85,6 +106,9 @@ private:
 	std::map<std::string, std::shared_ptr<class ULevel>> LevelMap;
 	std::shared_ptr<class ULevel> CurLevel;
 	std::shared_ptr<class ULevel> NextLevel;
+	int Frame = 60;
+	float CurFrameTime = 0.0f;
+	bool IsCurLevelReset = false;
 
 	ENGINEAPI static void SetGameInstance(std::shared_ptr<UGameInstance> _Inst);
 
