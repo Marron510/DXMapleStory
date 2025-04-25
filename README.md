@@ -1,4 +1,4 @@
-# 🎮 MapleStory Clone
+# 🎮 MapleStory 모작
 
 📁 **충돌 처리와 FSM 기반 상태 관리로 구현된 2D RPG 모작**
 
