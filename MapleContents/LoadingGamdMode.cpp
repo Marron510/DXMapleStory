@@ -1088,7 +1088,7 @@ void ALoadingGamdMode::Tick(float _DeltaTime)
 			UEngineCore::CreateLevel<AMainHallMode, APlayer, ASerenHUD>("MainHall");
 			UEngineCore::CreateLevel<ATheBoundaryOfTheWorld, APlayer, ASerenHUD>("TheBoundaryOfTheWorld");
 			
-			UEngineCore::OpenLevel("MainHall");
+			UEngineCore::OpenLevel("Plaza");
 		}
 
 	}

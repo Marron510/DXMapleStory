@@ -67,6 +67,8 @@ ACerniumPlazaMode::ACerniumPlazaMode()
 	GetWorld()->LinkCollisionProfile("Check", "Player");
 
 	GetWorld()->LinkCollisionProfile("MoveDot", "Ground");
+
+
 	GetWorld()->LinkCollisionProfile("MoveDot", "Platform");
 	GetWorld()->LinkCollisionProfile("Monster", "Player");
 
@@ -227,7 +229,12 @@ void ACerniumPlazaMode::Tick(float _DeltaTime)
 
 	ChargeDriveActive();	
 	HighKickActive();
-
+	
+	if (UEngineInput::IsDown('N'))
+	{
+		UEngineCore::OpenLevel("MainHall");
+	}
+	
 }
 
 

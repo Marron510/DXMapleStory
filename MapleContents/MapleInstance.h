@@ -21,9 +21,10 @@ public:
 
 	FPlayerStatus Status;
 	
+	UWidget* InvenWidget;
+	
 	FSerenStatus1 SerenStatus1;
 
-	UWidget* InvenWidget;
 
 
 protected:

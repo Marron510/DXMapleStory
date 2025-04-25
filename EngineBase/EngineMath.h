@@ -729,12 +729,10 @@ enum class ECollisionType
 {
 	Point,
 	Rect,
-	CirCle, // 타원이 아닌 정방원 
+	CirCle,
 	OBB2D,
 	Sphere,
-	// 회전하지 않은 박스
 	AABB,
-	// 회전한 박스
 	OBB,
 	Max
 

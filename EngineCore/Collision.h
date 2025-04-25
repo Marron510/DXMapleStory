@@ -78,7 +78,7 @@ private:
 	// 최초 충돌
 	std::function<void(UCollision*, UCollision*)> Enter;
 
-	// 지속 충돌 <= 언리얼은 이게 없습니다.
+	// 지속 충돌
 	std::function<void(UCollision*, UCollision*)> Stay;
 
 	// 충돌 끝.
